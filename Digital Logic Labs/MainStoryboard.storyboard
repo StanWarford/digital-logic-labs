@@ -100,6 +100,69 @@
             </objects>
             <point key="canvasLocation" x="387" y="-712"/>
         </scene>
+        <!--Dock View Controller-->
+        <scene sceneID="DdU-Br-Smq">
+            <objects>
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="KZz-PT-jaa" customClass="DLLDockViewController" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="MNE-hU-O20">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="704"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HQD-bY-Us6">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="b61-Lq-BO0">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="KZz-PT-jaa" id="HUb-cM-K5L"/>
+                            <outlet property="delegate" destination="KZz-PT-jaa" id="jeV-Re-21S"/>
+                        </connections>
+                    </collectionView>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tno-4u-hSz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2131" y="396"/>
+        </scene>
+        <!--Container View Controller - Board-->
+        <scene sceneID="iDC-cu-yxX">
+            <objects>
+                <viewController id="PhO-gY-R9p" customClass="DLLContainerViewController" sceneMemberID="viewController">
+                    <containerView key="view" contentMode="scaleToFill" id="TLY-vz-fuS">
+                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <connections>
+                            <segue destination="KZz-PT-jaa" kind="embed" id="RJG-c0-HhA"/>
+                        </connections>
+                    </containerView>
+                    <navigationItem key="navigationItem" title="Board" id="RJp-30-PpV">
+                        <barButtonItem key="rightBarButtonItem" title="Test" id="9cQ-ht-ekA">
+                            <connections>
+                                <segue destination="2tD-Wy-Jqa" kind="push" id="Fxt-Je-UzS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eo7-gJ-fNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="853" y="-93"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="9RL-hu-vI2">
             <objects>
@@ -123,7 +186,7 @@
                     <navigationItem key="navigationItem" id="6FG-Tt-BeV">
                         <barButtonItem key="rightBarButtonItem" title="Board" id="NNb-Yj-6eQ">
                             <connections>
-                                <segue destination="Usx-qD-Viu" kind="push" id="ByE-OA-aj9"/>
+                                <segue destination="PhO-gY-R9p" kind="push" id="WdB-A6-avG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -136,48 +199,7 @@
             </objects>
             <point key="canvasLocation" x="-1381" y="-116"/>
         </scene>
-        <!--View Controller - Board-->
-        <scene sceneID="D2C-Gr-io7">
-            <objects>
-                <viewController id="Usx-qD-Viu" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tce-V6-o9N">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eeR-m6-lJa">
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ubr-NH-HMl">
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ubr-NH-HMl" firstAttribute="top" secondItem="tce-V6-o9N" secondAttribute="top" constant="601" id="8j3-Ln-6ev"/>
-                            <constraint firstItem="ubr-NH-HMl" firstAttribute="leading" secondItem="tce-V6-o9N" secondAttribute="leading" type="default" id="FW8-gb-Kba"/>
-                            <constraint firstItem="eeR-m6-lJa" firstAttribute="trailing" secondItem="tce-V6-o9N" secondAttribute="trailing" type="default" id="TBY-0Y-Sck"/>
-                            <constraint firstItem="ubr-NH-HMl" firstAttribute="trailing" secondItem="tce-V6-o9N" secondAttribute="trailing" type="default" id="UhP-V2-BmP"/>
-                            <constraint firstItem="eeR-m6-lJa" firstAttribute="top" secondItem="tce-V6-o9N" secondAttribute="top" type="default" id="g9e-tl-t9c"/>
-                            <constraint firstItem="ubr-NH-HMl" firstAttribute="bottom" secondItem="tce-V6-o9N" secondAttribute="bottom" type="default" id="iXW-w8-K3d"/>
-                            <constraint firstAttribute="bottom" secondItem="eeR-m6-lJa" secondAttribute="bottom" constant="102" id="s85-YA-bna"/>
-                            <constraint firstItem="eeR-m6-lJa" firstAttribute="leading" secondItem="tce-V6-o9N" secondAttribute="leading" type="default" id="z0e-xz-VvN"/>
-                        </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Board" id="daL-cb-XpR">
-                        <barButtonItem key="rightBarButtonItem" title="Test" id="rQr-1z-gQe">
-                            <connections>
-                                <segue destination="2tD-Wy-Jqa" kind="push" id="qAT-XL-3KX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jef-iy-VGJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1022" y="-116"/>
-        </scene>
-        <!--View Controller-->
+        <!--View Controller - Test-->
         <scene sceneID="d5w-vq-7BV">
             <objects>
                 <viewController id="2tD-Wy-Jqa" sceneMemberID="viewController">
@@ -297,12 +319,12 @@
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1VT-ED-Axp"/>
+                    <navigationItem key="navigationItem" title="Test" id="1VT-ED-Axp"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wA4-Di-tnd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2540" y="-109"/>
+            <point key="canvasLocation" x="3390" y="-13"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DNP-Uu-Ru8">
@@ -323,10 +345,51 @@
             </objects>
             <point key="canvasLocation" x="-2648" y="-116"/>
         </scene>
+        <!--Board View Controller-->
+        <scene sceneID="epj-Q2-QC1">
+            <objects>
+                <viewController id="08m-92-v3D" customClass="DLLBoardViewController" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8K0-lK-VGN">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kjw-Cj-Pje" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2110" y="-561"/>
+        </scene>
     </scenes>
     <classes>
+        <class className="DLLBoardViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLBoardViewController.h"/>
+        </class>
+        <class className="DLLContainerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLContainerViewController.h"/>
+        </class>
+        <class className="DLLDockViewController" superclassName="UICollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLDockViewController.h"/>
+        </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
