@@ -14,19 +14,26 @@
 
 @implementation DLLContainerViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize boardView = _boardView;
+@synthesize dockView = _dockView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.boardView = [self.storyboard instantiateViewControllerWithIdentifier:@"UIBoardViewBoard"];
+    self.dockView = [self.storyboard instantiateViewControllerWithIdentifier:@"UIDockViewDock"];
+    
+    CGRect initialBoardFrame = self.boardView.view.frame;
+    CGRect initialDockFrame = self.dockView.view.frame;
+    CGAffineTransform zt = CGAffineTransformMakeTranslation(0, -20);
+    self.boardView.view.frame = CGRectApplyAffineTransform(initialBoardFrame, zt);
+    self.dockView.view.frame = CGRectApplyAffineTransform(initialDockFrame, zt);
+    
+    [self addChildViewController:self.boardView];
+    [self addChildViewController:self.dockView];
+    
+    [self.view addSubview:self.boardView.view];
+    [self.view addSubview:self.dockView.view];
 }
 
 - (void)didReceiveMemoryWarning

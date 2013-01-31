@@ -103,9 +103,9 @@
         <!--Dock View Controller-->
         <scene sceneID="DdU-Br-Smq">
             <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="KZz-PT-jaa" customClass="DLLDockViewController" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="UIDockViewDock" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KZz-PT-jaa" customClass="DLLDockViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="MNE-hU-O20">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="704"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -146,9 +146,6 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                        <connections>
-                            <segue destination="KZz-PT-jaa" kind="embed" id="RJG-c0-HhA"/>
-                        </connections>
                     </containerView>
                     <navigationItem key="navigationItem" title="Board" id="RJp-30-PpV">
                         <barButtonItem key="rightBarButtonItem" title="Test" id="9cQ-ht-ekA">
@@ -348,7 +345,7 @@
         <!--Board View Controller-->
         <scene sceneID="epj-Q2-QC1">
             <objects>
-                <viewController id="08m-92-v3D" customClass="DLLBoardViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UIBoardViewBoard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="08m-92-v3D" customClass="DLLBoardViewController" sceneMemberID="viewController">
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8K0-lK-VGN">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

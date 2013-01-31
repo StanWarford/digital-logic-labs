@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DLLBoardViewController.h"
+#import "DLLDockViewController.h"
 
 @interface DLLContainerViewController : UIViewController
+
+@property (nonatomic, weak) DLLBoardViewController *boardView;
+@property (nonatomic, weak) DLLDockViewController *dockView;
 
 @end
