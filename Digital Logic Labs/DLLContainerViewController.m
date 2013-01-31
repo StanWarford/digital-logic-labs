@@ -25,9 +25,10 @@
     
     CGRect initialBoardFrame = self.boardView.view.frame;
     CGRect initialDockFrame = self.dockView.view.frame;
-    CGAffineTransform zt = CGAffineTransformMakeTranslation(0, -20);
-    self.boardView.view.frame = CGRectApplyAffineTransform(initialBoardFrame, zt);
-    self.dockView.view.frame = CGRectApplyAffineTransform(initialDockFrame, zt);
+    CGAffineTransform moveBoard = CGAffineTransformMakeTranslation(-20, 0);
+    CGAffineTransform moveDock = CGAffineTransformMakeTranslation(-20, 584);
+    self.boardView.view.frame = CGRectApplyAffineTransform(initialBoardFrame, moveBoard);
+    self.dockView.view.frame = CGRectApplyAffineTransform(initialDockFrame, moveDock);
     
     [self addChildViewController:self.boardView];
     [self addChildViewController:self.dockView];
