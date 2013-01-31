@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DLLDockViewCell.h"
+#import "DLLDockViewLayout.h"
 
-@interface DLLDockViewController : UICollectionViewController
+@interface DLLDockViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @end

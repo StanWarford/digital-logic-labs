@@ -23,7 +23,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     // set frame height to 600
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, 584);
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, 554);
 }
 
 - (void)didReceiveMemoryWarning
