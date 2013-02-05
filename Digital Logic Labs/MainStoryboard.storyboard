@@ -107,7 +107,7 @@
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="MNE-hU-O20">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HQD-bY-Us6">
                             <size key="itemSize" width="50" height="50"/>
@@ -132,8 +132,8 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="ofn-2U-hDF" firstAttribute="top" secondItem="b61-Lq-BO0" secondAttribute="top" constant="20" type="default" id="0xD-do-Gix"/>
-                                    <constraint firstItem="ofn-2U-hDF" firstAttribute="centerX" secondItem="b61-Lq-BO0" secondAttribute="centerX" type="default" id="hMz-C2-ntE"/>
+                                    <constraint firstItem="ofn-2U-hDF" firstAttribute="top" secondItem="b61-Lq-BO0" secondAttribute="top" constant="20" type="default" id="E8F-Ij-tbF"/>
+                                    <constraint firstItem="ofn-2U-hDF" firstAttribute="centerX" secondItem="b61-Lq-BO0" secondAttribute="centerX" type="default" id="ynD-Vr-liG"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="cellTitle" destination="ofn-2U-hDF" id="Z96-hE-INA"/>
@@ -384,7 +384,6 @@
         <class className="DLLDockViewCell" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLDockViewCell.h"/>
             <relationships>
-                <relationship kind="outlet" name="cellImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="cellTitle" candidateClass="UILabel"/>
             </relationships>
         </class>

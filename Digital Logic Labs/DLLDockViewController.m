@@ -68,13 +68,23 @@
     // Retrieve reusable cell
     DLLDockViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"protoCell" forIndexPath:indexPath];
     
-    // Configure reusable cell
+    // Set label number
     NSInteger row = [indexPath row];
+    cell.cellTitle.text = [self.dataArray objectAtIndex:row];
+    
+    // set background
     UIView *backgroundView = [[UIView alloc] initWithFrame:cell.frame];
     backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"200px-AND_ANSI"]];
-    cell.cellTitle.text = [self.dataArray objectAtIndex:row];
     cell.backgroundView = backgroundView;
     cell.backgroundColor = UIColor.whiteColor;
+    
+    // set selection
+    UIView *selectedView = [[UIView alloc] initWithFrame:cell.frame];
+    selectedView.backgroundColor = UIColor.greenColor;
+    cell.selectedBackgroundView = selectedView;
+    
+    // set autoresizing
+    cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     return cell;
 }
