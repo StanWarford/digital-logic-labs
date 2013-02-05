@@ -10,7 +10,7 @@
 
 @interface  DLLModel()
 
-@property int labNum;
+@property int activeLab;
 
 @end
 
@@ -19,8 +19,11 @@
 - (id)init
 {
     //model constructor code here
+    
+    return self;
 }
 
+/* are these redundant with addComponent below?
 + (void)updateXMLWithCircuit:(int)circuitName AtCoordinates:(CGPoint)coords
 {
     //save updated circuit data into XML file
@@ -30,5 +33,35 @@
 {
     //save updated wire into XML file
 }
+ */
+
++ (void)addComponent//: (DLLComponent)component
+{    
+    //add a component to the XML file for the active board
+}
+
++ (void)moveComponent//: (DLLComponent)component
+{
+    //update coordinates of an existing component in XML
+}
+
+- (BOOL)collisionsDetected
+{
+    //helper method for collision detection
+    
+    return true;
+}
+
++ (void)removeComponent//: (DLLComponent)component
+{
+    //remove an existing component from XML file
+}
+
++ (void)clearBoard
+{
+    //reset XML to default
+}
+
+
 
 @end
