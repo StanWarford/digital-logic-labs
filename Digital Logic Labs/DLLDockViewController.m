@@ -70,9 +70,10 @@
     
     // Configure reusable cell
     NSInteger row = [indexPath row];
-    UIImage *image = [UIImage imageNamed:@"200px-AND_ANSI"];
+    UIView *backgroundView = [[UIView alloc] initWithFrame:cell.frame];
+    backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"200px-AND_ANSI"]];
     cell.cellTitle.text = [self.dataArray objectAtIndex:row];
-    cell.cellImage.image = image;
+    cell.backgroundView = backgroundView;
     cell.backgroundColor = UIColor.whiteColor;
     
     return cell;
@@ -86,7 +87,6 @@
     UIImage *image = [UIImage imageNamed:@"200px-AND_ANSI"];
     return image.size;
 }
-
 
 #pragma mark -
 #pragma mark MISC

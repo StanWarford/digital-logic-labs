@@ -10,7 +10,6 @@
 
 @implementation DLLDockViewCell
 
-@synthesize cellImage = _cellImage;
 @synthesize cellTitle = _cellTitle;
 
 #pragma mark -

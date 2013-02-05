@@ -123,7 +123,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" restorationIdentifier="" translatesAutoresizingMaskIntoConstraints="NO" id="wie-1h-8Ie"/>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofn-2U-hDF">
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -133,15 +132,10 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="wie-1h-8Ie" firstAttribute="bottom" secondItem="b61-Lq-BO0" secondAttribute="bottom" type="default" id="7gr-IV-OGh"/>
-                                    <constraint firstItem="ofn-2U-hDF" firstAttribute="centerX" secondItem="wie-1h-8Ie" secondAttribute="centerX" type="default" id="DCh-Yr-qLu"/>
-                                    <constraint firstItem="wie-1h-8Ie" firstAttribute="leading" secondItem="b61-Lq-BO0" secondAttribute="leading" type="default" id="RGb-LR-LLz"/>
-                                    <constraint firstItem="wie-1h-8Ie" firstAttribute="trailing" secondItem="b61-Lq-BO0" secondAttribute="trailing" type="default" id="XN9-M1-4LC"/>
-                                    <constraint firstItem="wie-1h-8Ie" firstAttribute="top" secondItem="b61-Lq-BO0" secondAttribute="top" type="default" id="dnT-0n-Ycp"/>
-                                    <constraint firstItem="ofn-2U-hDF" firstAttribute="top" secondItem="b61-Lq-BO0" secondAttribute="top" constant="20" type="default" id="r28-Nm-QJA"/>
+                                    <constraint firstItem="ofn-2U-hDF" firstAttribute="top" secondItem="b61-Lq-BO0" secondAttribute="top" constant="20" type="default" id="0xD-do-Gix"/>
+                                    <constraint firstItem="ofn-2U-hDF" firstAttribute="centerX" secondItem="b61-Lq-BO0" secondAttribute="centerX" type="default" id="hMz-C2-ntE"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="cellImage" destination="wie-1h-8Ie" id="Z4e-XN-AAW"/>
                                     <outlet property="cellTitle" destination="ofn-2U-hDF" id="Z96-hE-INA"/>
                                 </connections>
                             </collectionViewCell>
