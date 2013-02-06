@@ -7,7 +7,6 @@
 //
 
 #import "DLLDockViewLayout.h"
-#import "DLLDockViewCell.h"
 
 @implementation DLLDockViewLayout
 
