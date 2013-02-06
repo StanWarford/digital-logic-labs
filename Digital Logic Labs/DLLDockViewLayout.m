@@ -7,6 +7,7 @@
 //
 
 #import "DLLDockViewLayout.h"
+#import "DLLDockViewCell.h"
 
 @implementation DLLDockViewLayout
 
@@ -53,6 +54,23 @@
             }
         }
     }
+    
+    // Keep the middle element selected while scrolling
+    NSArray *visiblePaths = [NSArray array];
+    visiblePaths = [self.collectionView indexPathsForVisibleItems];
+    // check required at start since visiblePaths when this is first called is empty
+    if([visiblePaths count] > 0){
+        // calculate the row number that would be the middle--required because visiblePaths not always in order
+        NSMutableArray *temp = [NSMutableArray array];
+        for(NSIndexPath *path in visiblePaths){
+            [temp addObject:[NSNumber numberWithInteger:path.row]];
+        }
+        NSInteger middleOffset = [visiblePaths count]/2;
+        NSNumber *targetRow = [NSNumber numberWithInteger:[[temp valueForKeyPath:@"@max.intValue"] intValue] - middleOffset];
+        // get the index of the middle element and select it
+        NSInteger targetIndex = [temp indexOfObject:targetRow];
+        [self.collectionView selectItemAtIndexPath:visiblePaths[targetIndex] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    }
     return attributeList;
 }
 
@@ -81,6 +99,7 @@
             offSetAdjustment = itemHorizontalCenter - horizontalCenter;
         }
     }
+    
     return CGPointMake(proposedContentOffset.x+offSetAdjustment, proposedContentOffset.y);
 }
 

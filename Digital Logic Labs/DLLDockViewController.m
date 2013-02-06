@@ -42,6 +42,9 @@
     // Configure layout
     DLLDockViewLayout *dockLayout = [[DLLDockViewLayout alloc] init];
     [self.collectionView setCollectionViewLayout:dockLayout];
+    
+    // Allows manual selection (would have prefered this to be off but still allow programatic selection)
+    [self.collectionView setAllowsSelection:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -49,6 +52,25 @@
     // set the height of the frame to 150
     self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, self.collectionView.frame.origin.y, self.collectionView.frame.size.width, 150);
 }
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    // select middle item at start
+    NSArray *visiblePaths = [NSArray array]; // returns a list of indexPaths for visible objects
+    visiblePaths = [self.collectionView indexPathsForVisibleItems];
+    // calculate the row number that would be the middle--required because visiblePaths not always in order
+    NSMutableArray *temp = [NSMutableArray array];
+    for(NSIndexPath *path in visiblePaths){
+        [temp addObject:[NSNumber numberWithInteger:path.row]];
+    }
+    NSInteger middleOffset = [visiblePaths count]/2;
+    NSNumber *targetRow = [NSNumber numberWithInteger:[[temp valueForKeyPath:@"@max.intValue"] intValue] - middleOffset];
+    // get the index of the middle element and select it
+    NSInteger targetIndex = [temp indexOfObject:targetRow];
+    [self.collectionView selectItemAtIndexPath:visiblePaths[targetIndex] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+}
+
 
 #pragma mark -
 #pragma mark UICollectionViewDataSource methods
