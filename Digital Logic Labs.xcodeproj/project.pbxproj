@@ -150,6 +150,9 @@
 		CF9CC50216BB04250068A17D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				48F0C61D16C32AF70035EBFC /* chip-14.png */,
+				48F0C61E16C32AF70035EBFC /* breadboard.png */,
+				48F0C61F16C32AF70035EBFC /* chip-16.png */,
 				CF9CC4FF16BB041C0068A17D /* 200px-AND_ANSI.png */,
 			);
 			name = Resources;
@@ -207,9 +210,6 @@
 		CFDBF6D816B0C199009C3DA4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				48F0C61D16C32AF70035EBFC /* chip-14.png */,
-				48F0C61E16C32AF70035EBFC /* breadboard.png */,
-				48F0C61F16C32AF70035EBFC /* chip-16.png */,
 				D8AB957516C025B00074ABEB /* inventory.xml */,
 				CFDBF6D916B0C199009C3DA4 /* Digital Logic Labs-Info.plist */,
 				CFDBF6DA16B0C199009C3DA4 /* InfoPlist.strings */,
