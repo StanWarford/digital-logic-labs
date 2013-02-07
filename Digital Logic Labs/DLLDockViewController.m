@@ -56,6 +56,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     // select middle item at start
     NSArray *visiblePaths = [NSArray array]; // returns a list of indexPaths for visible objects
     visiblePaths = [self.collectionView indexPathsForVisibleItems];
