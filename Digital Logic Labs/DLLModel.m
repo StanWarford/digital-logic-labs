@@ -23,18 +23,6 @@
     return self;
 }
 
-/* are these redundant with addComponent below?
-+ (void)updateXMLWithCircuit:(int)circuitName AtCoordinates:(CGPoint)coords
-{
-    //save updated circuit data into XML file
-}
-
-+ (void)updateXMLWithWireStarting: (CGPoint)startPoint Ending: (CGPoint)endPoint WithColor: (NSString *)color
-{
-    //save updated wire into XML file
-}
- */
-
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(CGPoint)coords
 {
     
@@ -49,9 +37,7 @@
     // need internal safety w/ exceptions
 }
 
-
-
-- (BOOL)isChip:(NSInteger)partNum ValidatUpperLeftCornerCoordinate:(CGPoint)coords
+- (BOOL)isChip:(NSInteger)partNum ValidAtUpperLeftCornerCoordinate:(CGPoint)coords
 {
     //helper method for collision detection
     
@@ -65,8 +51,9 @@
     return true;
 }
 
-- (void)removeChipAtCoordinate: (CGPoint)coords //not necessarily upper left-need to check 2D array (w/ trinary entries?)
+- (void)removeComponentAtCoordinate:(CGPoint)coords //this will return component type (perhaps ENUM)-Casey
 {
+    //not necessarily upper left-need to check 2D array (w/ trinary entries?)
     //remove an existing component from XML file
 }
 
@@ -75,6 +62,5 @@
     //reset XML to default
 }
 
-
-
+// 2D needs to be 63x25 w/ 63rd row as a 'trash' row, items put here will not be added-mark as always unavailable
 @end
