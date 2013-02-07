@@ -35,29 +35,42 @@
 }
  */
 
-+ (void)addComponent//: (DLLComponent)component
-{    
-    //add a component to the XML file for the active board
-}
-
-+ (void)moveComponent//: (DLLComponent)component
+- (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(CGPoint)coords
 {
-    //update coordinates of an existing component in XML
+    
+    //add a component to the XML file for the active board
+    // need internal safety w/ exceptions
 }
 
-- (BOOL)collisionsDetected
+- (void)addWireFromPoint:(CGPoint)startingPoint toPoint:(CGPoint)endingPoint withColor:(UIColor *)color
+{
+    
+    //add a component to the XML file for the active board
+    // need internal safety w/ exceptions
+}
+
+
+
+- (BOOL)isChip:(NSInteger)partNum ValidatUpperLeftCornerCoordinate:(CGPoint)coords
 {
     //helper method for collision detection
     
     return true;
 }
 
-+ (void)removeComponent//: (DLLComponent)component
+- (BOOL)isConnectionAvailableAt:(CGPoint)point
+{
+    //helper method for collision detection
+    
+    return true;
+}
+
+- (void)removeChipAtCoordinate: (CGPoint)coords //not necessarily upper left-need to check 2D array (w/ trinary entries?)
 {
     //remove an existing component from XML file
 }
 
-+ (void)clearBoard
+- (void)clearBoard
 {
     //reset XML to default
 }
