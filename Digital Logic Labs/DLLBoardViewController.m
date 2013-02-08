@@ -23,8 +23,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    // set frame height to 600
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, 554);
+    // set frame height to 634
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, 634);
     
     // set background image
     UIImage *sourceBG = [UIImage imageNamed:@"breadboard"];
@@ -33,6 +33,7 @@
     UIGraphicsBeginImageContext(bgSize);
     [sourceBG drawInRect:CGRectMake(0,0,bgSize.width,bgSize.height)];
     UIImage *resizedBG = UIGraphicsGetImageFromCurrentImageContext();
+    
     UIGraphicsEndImageContext();
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:resizedBG];

@@ -122,22 +122,8 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofn-2U-hDF">
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <constraints>
-                                    <constraint firstItem="ofn-2U-hDF" firstAttribute="top" secondItem="b61-Lq-BO0" secondAttribute="top" constant="20" type="default" id="E8F-Ij-tbF"/>
-                                    <constraint firstItem="ofn-2U-hDF" firstAttribute="centerX" secondItem="b61-Lq-BO0" secondAttribute="centerX" type="default" id="ynD-Vr-liG"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="cellTitle" destination="ofn-2U-hDF" id="Z96-hE-INA"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

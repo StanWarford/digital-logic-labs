@@ -10,11 +10,13 @@
 
 @interface DLLDockViewController ()
 @property (nonatomic, strong) NSMutableArray *dataArray; // temporary repository of data just to get the demo working
+- (void)selectCenterItem;
 @end
 
 @implementation DLLDockViewController
 
 #define NUMBER_OF_SECTIONS 1
+#define DUMMY_CELL_COUNT 5 // number of invisible dummy cells in the dock
 
 @synthesize dataArray = _dataArray;
 
@@ -35,8 +37,19 @@
 {
     [super viewDidLoad];
 	// Populate dataArray with demo data
-    for(int i = 0; i < 50; i++){
-        [self.dataArray addObject:[NSString stringWithFormat:@"%d", i]];
+    for(int i = 0; i < 5; i++){
+        [self.dataArray addObject:[UIImage imageNamed:@"placeholder"]];
+    }
+    for(int i = 0; i < 5; i++){
+        [self.dataArray addObject:[UIImage imageNamed:@"200px-AND_ANSI"]];
+    }
+    [self.dataArray addObject:[UIImage imageNamed:@"chip-14.png"]];
+    [self.dataArray addObject:[UIImage imageNamed:@"chip-16.png"]];
+    for(int i = 0; i < 5; i++){
+        [self.dataArray addObject:[UIImage imageNamed:@"200px-AND_ANSI"]];
+    }
+    for(int i = 0; i < 5; i++){
+        [self.dataArray addObject:[UIImage imageNamed:@"placeholder"]];
     }
     
     // Configure layout
@@ -51,7 +64,7 @@
 {
     [super viewWillAppear:animated];
     // set the height of the frame to 150
-    self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, self.collectionView.frame.origin.y, self.collectionView.frame.size.width, 150);
+    self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, self.collectionView.frame.origin.y, self.collectionView.frame.size.width, 70);
 }
 
 
@@ -59,18 +72,7 @@
 {
     [super viewDidAppear:animated];
     // select middle item at start
-    NSArray *visiblePaths = [NSArray array]; // returns a list of indexPaths for visible objects
-    visiblePaths = [self.collectionView indexPathsForVisibleItems];
-    // calculate the row number that would be the middle--required because visiblePaths not always in order
-    NSMutableArray *temp = [NSMutableArray array];
-    for(NSIndexPath *path in visiblePaths){
-        [temp addObject:[NSNumber numberWithInteger:path.row]];
-    }
-    NSInteger middleOffset = [visiblePaths count]/2;
-    NSNumber *targetRow = [NSNumber numberWithInteger:[[temp valueForKeyPath:@"@max.intValue"] intValue] - middleOffset];
-    // get the index of the middle element and select it
-    NSInteger targetIndex = [temp indexOfObject:targetRow];
-    [self.collectionView selectItemAtIndexPath:visiblePaths[targetIndex] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    [self selectCenterItem];
 }
 
 
@@ -94,13 +96,21 @@
     
     // Set label number
     NSInteger row = [indexPath row];
-    cell.cellTitle.text = [self.dataArray objectAtIndex:row];
+    //cell.cellTitle.text = [NSString stringWithFormat:@"%d", row];
     
     // set background
     UIView *backgroundView = [[UIView alloc] initWithFrame:cell.frame];
-    backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"200px-AND_ANSI"]];
+    UIImage *sourceBG = [self.dataArray objectAtIndex:row];
+    CGSize bgSize = cell.frame.size;
+    
+    UIGraphicsBeginImageContext(bgSize);
+    [sourceBG drawInRect:CGRectMake(0,0,bgSize.width,bgSize.height)];
+    UIImage *resizedBG = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    backgroundView.backgroundColor = [UIColor colorWithPatternImage:resizedBG];
     cell.backgroundView = backgroundView;
-    cell.backgroundColor = UIColor.whiteColor;
+    //cell.backgroundColor = UIColor.whiteColor;
     
     // set selection
     UIView *selectedView = [[UIView alloc] initWithFrame:cell.frame];
@@ -123,11 +133,47 @@
 }
 
 #pragma mark -
+#pragma mark UICollectionViewDelegate methods
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self selectCenterItem];
+}
+
+#pragma mark -
 #pragma mark MISC
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// calculates the location of the center visible item in the dock and selects it
+- (void)selectCenterItem
+{
+    NSArray *visiblePaths = [NSArray array]; // returns a list of indexPaths for visible objects
+    visiblePaths = [self.collectionView indexPathsForVisibleItems];
+    // calculate the row number that would be the middle--required because visiblePaths not always in order
+    NSMutableArray *temp = [NSMutableArray array];
+    for(NSIndexPath *path in visiblePaths){
+        [temp addObject:[NSNumber numberWithInteger:path.row]];
+    }
+    NSInteger middleOffset = [visiblePaths count]/2;
+    NSNumber *targetRow = [NSNumber numberWithInteger:[[temp valueForKeyPath:@"@max.intValue"] intValue] - middleOffset];
+    // get the index of the middle element and select it
+    NSInteger targetIndex = [temp indexOfObject:targetRow];
+    [self.collectionView selectItemAtIndexPath:visiblePaths[targetIndex] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
 }
 
 @end

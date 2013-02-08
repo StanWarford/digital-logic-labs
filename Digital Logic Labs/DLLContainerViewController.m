@@ -31,7 +31,7 @@
     CGRect initialBoardFrame = self.boardView.view.frame;
     CGRect initialDockFrame = self.dockView.view.frame;
     CGAffineTransform moveBoard = CGAffineTransformMakeTranslation(-20, 0);
-    CGAffineTransform moveDock = CGAffineTransformMakeTranslation(-20, 554);
+    CGAffineTransform moveDock = CGAffineTransformMakeTranslation(-20, 634);
     self.boardView.view.frame = CGRectApplyAffineTransform(initialBoardFrame, moveBoard);
     self.dockView.view.frame = CGRectApplyAffineTransform(initialDockFrame, moveDock);
     

@@ -10,6 +10,4 @@
 
 @interface DLLDockViewCell : UICollectionViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *cellTitle;
-
 @end

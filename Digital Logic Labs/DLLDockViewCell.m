@@ -10,8 +10,6 @@
 
 @implementation DLLDockViewCell
 
-@synthesize cellTitle = _cellTitle;
-
 #pragma mark -
 #pragma mark MISC
 

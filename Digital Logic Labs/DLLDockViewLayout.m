@@ -10,9 +10,9 @@
 
 @implementation DLLDockViewLayout
 
-#define ITEM_SIZE 200 // needed to make active frame to select correct item to zoom
-#define ACTIVE_DISTANCE 200 // change to zoom cells outside of active frame
-#define ZOOM_FACTOR 0.3 // defines amount of zoom
+#define ITEM_SIZE 75 // needed to make active frame to select correct item to zoom
+#define ACTIVE_DISTANCE 100 // change to zoom cells outside of active frame
+#define ZOOM_FACTOR 0.5 // defines amount of zoom
 #define ITEM_SPACING 5000.0 // used to ensure items display in a single row
 #define LINE_SPACING 20.0 // defines minimum spacing between items
 
