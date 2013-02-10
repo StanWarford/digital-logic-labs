@@ -9,17 +9,28 @@
 #import "DLLModel.h"
 
 @interface  DLLModel()
-
 @property int activeLab;
-
+@property (strong, nonatomic) NSMutableArray *breadboardStateArray;
 @end
 
 @implementation DLLModel
 
+// lazy instantiation of breadboardStateArray
+- (NSMutableArray *)breadboardStateArray
+{
+    if (!_breadboardStateArray) _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 3];
+    return _breadboardStateArray;
+}
+
+//model constructor code here
 - (id)init
 {
-    //model constructor code here
+    // Creates 3 x 3 array w/ all values set to 0
+    // define overarching array as rows
     
+    [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:0];
+    [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:1];
+    [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:2];
     return self;
 }
 
@@ -44,11 +55,14 @@
     return true;
 }
 
+//helper method for collision detection
 - (BOOL)isConnectionAvailableAt:(CGPoint)point
 {
-    //helper method for collision detection
-    
-    return true;
+    NSUInteger rowCoordinate = point.y;
+    NSUInteger columnCoordinate = point.x;
+    NSArray * row = [_breadboardStateArray objectAtIndex:rowCoordinate];
+    return ![row objectAtIndex:columnCoordinate];
+    // 0 == false, anything else == true
 }
 
 - (void)removeComponentAtCoordinate:(CGPoint)coords //this will return component type (perhaps ENUM)-Casey
