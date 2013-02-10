@@ -10,6 +10,16 @@
 #import "DLLDockViewCell.h"
 #import "DLLDockViewLayout.h"
 
-@interface DLLDockViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@class DLLDockViewController;
+
+@protocol DLLDockViewControllerDelegate <NSObject>
+
+- (void)selectionDidChange:(NSInteger)selection;
+
+@end
+
+@interface DLLDockViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DLLDockViewLayoutDelegate>
+
+@property (nonatomic, weak) id <DLLDockViewControllerDelegate> delegate;
 
 @end

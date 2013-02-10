@@ -9,6 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+@class DLLDockViewLayout;
+
+@protocol DLLDockViewLayoutDelegate <NSObject>
+
+- (void)selectionDidChange:(NSInteger)selection;
+
+@end
+
 @interface DLLDockViewLayout : UICollectionViewFlowLayout
+
+@property (nonatomic, weak) id <DLLDockViewLayoutDelegate> delegate;
 
 @end

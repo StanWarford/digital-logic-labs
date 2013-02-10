@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DLLDockViewController.h"
 
-@interface DLLBoardViewController : UIViewController
+@interface DLLBoardViewController : UIViewController <DLLDockViewControllerDelegate>
+
+@property (nonatomic, assign) NSInteger selectedChip;
+@property (weak, nonatomic) IBOutlet UILabel *testLabel;
 
 @end

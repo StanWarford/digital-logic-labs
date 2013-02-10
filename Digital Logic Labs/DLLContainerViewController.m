@@ -35,6 +35,9 @@
     self.boardView.view.frame = CGRectApplyAffineTransform(initialBoardFrame, moveBoard);
     self.dockView.view.frame = CGRectApplyAffineTransform(initialDockFrame, moveDock);
     
+    // set dockView delegate to be boardView
+    self.dockView.delegate = self.boardView;
+    
     // add the subviews as children
     [self addChildViewController:self.boardView];
     [self addChildViewController:self.dockView];

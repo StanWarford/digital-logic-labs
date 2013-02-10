@@ -19,6 +19,7 @@
 #define DUMMY_CELL_COUNT 5 // number of invisible dummy cells in the dock
 
 @synthesize dataArray = _dataArray;
+@synthesize delegate = _delegate;
 
 #pragma mark -
 #pragma mark early initialization code
@@ -54,6 +55,7 @@
     
     // Configure layout
     DLLDockViewLayout *dockLayout = [[DLLDockViewLayout alloc] init];
+    dockLayout.delegate = self;
     [self.collectionView setCollectionViewLayout:dockLayout];
     
     // Allows manual selection (would have prefered this to be off but still allow programatic selection)
@@ -151,6 +153,14 @@
 }
 
 #pragma mark -
+#pragma mark DLLDockViewLayoutDelegate methods
+
+- (void)selectionDidChange:(NSInteger)selection
+{
+    [self.delegate selectionDidChange:selection];
+}
+
+#pragma mark -
 #pragma mark MISC
 
 - (void)didReceiveMemoryWarning
@@ -174,6 +184,7 @@
     // get the index of the middle element and select it
     NSInteger targetIndex = [temp indexOfObject:targetRow];
     [self.collectionView selectItemAtIndexPath:visiblePaths[targetIndex] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    [self.delegate selectionDidChange:[visiblePaths[targetIndex] row]];
 }
 
 @end

@@ -8,6 +8,12 @@
 
 #import "DLLDockViewLayout.h"
 
+@interface DLLDockViewLayout ()
+
+- (void)selectCenterItem;
+
+@end
+
 @implementation DLLDockViewLayout
 
 #define ITEM_SIZE 75 // needed to make active frame to select correct item to zoom
@@ -16,13 +22,14 @@
 #define ITEM_SPACING 5000.0 // used to ensure items display in a single row
 #define LINE_SPACING 20.0 // defines minimum spacing between items
 
+@synthesize delegate = _delegate;
+
 #pragma mark -
 #pragma mark initialization
 
 - (id)init
 {
-    self = [super init];
-    if(self){
+    if((self = [super init])){
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         self.minimumInteritemSpacing = ITEM_SPACING;
         self.minimumLineSpacing = LINE_SPACING;
@@ -55,21 +62,7 @@
     }
     
     // Keep the middle element selected while scrolling
-    NSArray *visiblePaths = [NSArray array];
-    visiblePaths = [self.collectionView indexPathsForVisibleItems];
-    // check required at start since visiblePaths when this is first called is empty
-    if([visiblePaths count] > 0){
-        // calculate the row number that would be the middle--required because visiblePaths not always in order
-        NSMutableArray *temp = [NSMutableArray array];
-        for(NSIndexPath *path in visiblePaths){
-            [temp addObject:[NSNumber numberWithInteger:path.row]];
-        }
-        NSInteger middleOffset = [visiblePaths count]/2;
-        NSNumber *targetRow = [NSNumber numberWithInteger:[[temp valueForKeyPath:@"@max.intValue"] intValue] - middleOffset];
-        // get the index of the middle element and select it
-        NSInteger targetIndex = [temp indexOfObject:targetRow];
-        [self.collectionView selectItemAtIndexPath:visiblePaths[targetIndex] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-    }
+    [self selectCenterItem];
     return attributeList;
 }
 
@@ -100,6 +93,29 @@
     }
     
     return CGPointMake(proposedContentOffset.x+offSetAdjustment, proposedContentOffset.y);
+}
+
+#pragma mark -
+#pragma mark MISC
+
+- (void)selectCenterItem
+{
+    NSArray *visiblePaths = [NSArray array];
+    visiblePaths = [self.collectionView indexPathsForVisibleItems];
+    // check required at start since visiblePaths when this is first called is empty
+    if([visiblePaths count] > 0){
+        // calculate the row number that would be the middle--required because visiblePaths not always in order
+        NSMutableArray *temp = [NSMutableArray array];
+        for(NSIndexPath *path in visiblePaths){
+            [temp addObject:[NSNumber numberWithInteger:path.row]];
+        }
+        NSInteger middleOffset = [visiblePaths count]/2;
+        NSNumber *targetRow = [NSNumber numberWithInteger:[[temp valueForKeyPath:@"@max.intValue"] intValue] - middleOffset];
+        // get the index of the middle element and select it
+        NSInteger targetIndex = [temp indexOfObject:targetRow];
+        [self.collectionView selectItemAtIndexPath:visiblePaths[targetIndex] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+        [self.delegate selectionDidChange:[visiblePaths[targetIndex] row]];
+    }
 }
 
 @end

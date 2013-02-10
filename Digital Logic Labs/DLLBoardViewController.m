@@ -14,10 +14,14 @@
 
 @implementation DLLBoardViewController
 
+@synthesize selectedChip = _selectedChip;
+@synthesize testLabel = _testLabel;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip ];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -37,6 +41,12 @@
     UIGraphicsEndImageContext();
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:resizedBG];
+}
+
+- (void)selectionDidChange:(NSInteger)selection
+{
+    self.selectedChip = selection;
+    self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip];
 }
 
 - (void)didReceiveMemoryWarning
