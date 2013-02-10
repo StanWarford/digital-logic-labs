@@ -15,7 +15,7 @@
 
 @implementation DLLModel
 
-// lazy instantiation of breadboardState
+// lazy instantiation of breadboardStateArray
 - (NSMutableArray *)breadboardStateArray
 {
     if (!_breadboardStateArray) _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 3];
@@ -58,9 +58,11 @@
 //helper method for collision detection
 - (BOOL)isConnectionAvailableAt:(CGPoint)point
 {
-    NSUInteger rowCoordinate = point.x;
+    NSUInteger rowCoordinate = point.y;
+    NSUInteger columnCoordinate = point.x;
     NSArray * row = [_breadboardStateArray objectAtIndex:rowCoordinate];
-    return true;
+    return ![row objectAtIndex:columnCoordinate];
+    // 0 == false, anything else == true
 }
 
 - (void)removeComponentAtCoordinate:(CGPoint)coords //this will return component type (perhaps ENUM)-Casey
