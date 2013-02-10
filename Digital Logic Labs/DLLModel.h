@@ -10,4 +10,18 @@
 
 @interface DLLModel : NSObject
 
+- (id)init;
+
+- (void)addChipWithPartNum:(NSInteger)partNum;
+
+- (void)addWireFromPoint:(CGPoint)startingPoint toPoint:(CGPoint) endingPoint withColor:(UIColor *)color;
+
+- (BOOL)isChip:(NSInteger)partNum ValidAtUpperLeftCornerCoordinate:(CGPoint)coords;
+
+- (BOOL)isConnectionAvailableAt:(CGPoint)point;
+
+- (void)removeComponentAtCoordinate:(CGPoint)coords;
+
+- (void)clearBoard;
+
 @end

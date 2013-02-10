@@ -18,6 +18,7 @@
 
 - (id)init
 {
+    NSArray * breadboardState = [NSArray arrayWithObjects:[NSArray arrayWithObjects:0,0,0, nil],[NSArray arrayWithObjects:0, 0, 0, nil],nil];
     //model constructor code here
     
     return self;
@@ -44,10 +45,10 @@
     return true;
 }
 
+//helper method for collision detection
 - (BOOL)isConnectionAvailableAt:(CGPoint)point
 {
-    //helper method for collision detection
-    
+    //return objectAtIndex:(NSUInteger)point;
     return true;
 }
 
