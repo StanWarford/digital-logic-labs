@@ -9,18 +9,28 @@
 #import "DLLModel.h"
 
 @interface  DLLModel()
-
 @property int activeLab;
-
+@property (strong, nonatomic) NSMutableArray *breadboardStateArray;
 @end
 
 @implementation DLLModel
 
+// lazy instantiation of breadboardState
+- (NSMutableArray *)breadboardStateArray
+{
+    if (!_breadboardStateArray) _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 3];
+    return _breadboardStateArray;
+}
+
+//model constructor code here
 - (id)init
 {
-    NSArray * breadboardState = [NSArray arrayWithObjects:[NSArray arrayWithObjects:0,0,0, nil],[NSArray arrayWithObjects:0, 0, 0, nil],nil];
-    //model constructor code here
+    // Creates 3 x 3 array w/ all values set to 0
+    // define overarching array as rows
     
+    [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:0];
+    [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:1];
+    [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:2];
     return self;
 }
 
@@ -48,7 +58,8 @@
 //helper method for collision detection
 - (BOOL)isConnectionAvailableAt:(CGPoint)point
 {
-    //return objectAtIndex:(NSUInteger)point;
+    NSUInteger rowCoordinate = point.x;
+    NSArray * row = [_breadboardStateArray objectAtIndex:rowCoordinate];
     return true;
 }
 
