@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DLLDockViewController.h"
+#import "DLLModel.h"
 
 @interface DLLBoardViewController : UIViewController <DLLDockViewControllerDelegate>
 

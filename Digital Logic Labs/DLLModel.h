@@ -12,13 +12,13 @@
 
 - (id)init;
 
-- (void)addChipWithPartNum:(NSInteger)partNum;
+- (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(CGPoint)coords;
 
 - (void)addWireFromPoint:(CGPoint)startingPoint toPoint:(CGPoint) endingPoint withColor:(UIColor *)color;
 
-- (BOOL)isChip:(NSInteger)partNum ValidAtUpperLeftCornerCoordinate:(CGPoint)coords;
+- (BOOL)isChip:(NSInteger)partNum validAtUpperLeftCornerCoordinate:(CGPoint)coords;
 
-- (BOOL)isConnectionAvailableAt:(CGPoint)point;
+- (BOOL)isConnectionAvailableAt:(CGPoint)coords;
 
 - (void)removeComponentAtCoordinate:(CGPoint)coords;
 

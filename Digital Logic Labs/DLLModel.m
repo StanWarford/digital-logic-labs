@@ -27,10 +27,11 @@
 {
     // Creates 3 x 3 array w/ all values set to 0
     // define overarching array as rows
-    
-    [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:0];
-    [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:1];
-    [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:2];
+    if((self = [super init])){
+        [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:0];
+        [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:1];
+        [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:2];
+    }
     return self;
 }
 
@@ -48,7 +49,7 @@
     // need internal safety w/ exceptions
 }
 
-- (BOOL)isChip:(NSInteger)partNum ValidAtUpperLeftCornerCoordinate:(CGPoint)coords
+- (BOOL)isChip:(NSInteger)partNum validAtUpperLeftCornerCoordinate:(CGPoint)coords
 {
     //helper method for collision detection
     
@@ -56,10 +57,10 @@
 }
 
 //helper method for collision detection
-- (BOOL)isConnectionAvailableAt:(CGPoint)point
+- (BOOL)isConnectionAvailableAt:(CGPoint)coords
 {
-    NSUInteger rowCoordinate = point.y;
-    NSUInteger columnCoordinate = point.x;
+    NSUInteger rowCoordinate = coords.y;
+    NSUInteger columnCoordinate = coords.x;
     NSArray * row = [_breadboardStateArray objectAtIndex:rowCoordinate];
     return ![row objectAtIndex:columnCoordinate];
     // 0 == false, anything else == true
