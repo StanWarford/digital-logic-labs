@@ -17,6 +17,8 @@
 @synthesize selectedChip = _selectedChip;
 @synthesize testLabel = _testLabel;
 
+#pragma mark -
+#pragma mark Initialization Metods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -43,12 +45,23 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:resizedBG];
 }
 
+#pragma mark -
+#pragma mark DLLDockViewControllerDelegate methods
 - (void)selectionDidChange:(NSInteger)selection
 {
     self.selectedChip = selection;
     self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip];
 }
 
+#pragma mark -
+#pragma mark Gesture Recognition methods
+- (IBAction)dragDetected:(UIPanGestureRecognizer*)sender
+{
+    // do something...
+}
+
+#pragma mark -
+#pragma mark MISC
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

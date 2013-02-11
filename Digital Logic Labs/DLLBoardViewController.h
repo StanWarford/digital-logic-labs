@@ -12,7 +12,8 @@
 
 @interface DLLBoardViewController : UIViewController <DLLDockViewControllerDelegate>
 
-@property (nonatomic, assign) NSInteger selectedChip;
+@property (assign, nonatomic) NSInteger selectedChip;
 @property (weak, nonatomic) IBOutlet UILabel *testLabel;
+- (IBAction)dragDetected:(UIPanGestureRecognizer*)sender;
 
 @end

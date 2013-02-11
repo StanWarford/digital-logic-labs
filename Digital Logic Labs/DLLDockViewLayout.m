@@ -26,7 +26,6 @@
 
 #pragma mark -
 #pragma mark initialization
-
 - (id)init
 {
     if((self = [super init])){
@@ -39,7 +38,6 @@
 
 #pragma mark -
 #pragma mark Zooming
-
 - (NSArray*)layoutAttributesForElementsInRect:(CGRect)rect
 {
     NSArray *attributeList = [super layoutAttributesForElementsInRect:rect];
@@ -68,7 +66,6 @@
 
 #pragma mark -
 #pragma mark Force Updates
-
 - (BOOL) shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
 {
     // set to true to refresh items while scrolling
@@ -77,7 +74,6 @@
 
 #pragma mark -
 #pragma mark Center Snapping
-
 - (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity
 {
     // Force scrolling to stop with items centered
@@ -97,7 +93,6 @@
 
 #pragma mark -
 #pragma mark MISC
-
 - (void)selectCenterItem
 {
     NSArray *visiblePaths = [NSArray array];

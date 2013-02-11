@@ -357,11 +357,15 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="enI-E4-rtn" firstAttribute="leading" secondItem="8K0-lK-VGN" secondAttribute="leading" constant="405" id="Cwh-ra-hlZ"/>
                             <constraint firstItem="enI-E4-rtn" firstAttribute="top" secondItem="8K0-lK-VGN" secondAttribute="top" constant="363" id="J7E-B6-RjJ"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jhF-9Q-Bgp" appends="YES" id="tTG-hR-EmP"/>
+                        </connections>
                     </view>
                     <toolbarItems/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -370,6 +374,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjw-Cj-Pje" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="jhF-9Q-Bgp">
+                    <connections>
+                        <action selector="dragDetected:" destination="08m-92-v3D" id="HTM-Lp-3t3"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2110" y="-561"/>
         </scene>
@@ -378,6 +387,7 @@
         <class className="DLLBoardViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLBoardViewController.h"/>
             <relationships>
+                <relationship kind="action" name="dragDetected:" candidateClass="UIPanGestureRecognizer"/>
                 <relationship kind="outlet" name="testLabel" candidateClass="UILabel"/>
             </relationships>
         </class>

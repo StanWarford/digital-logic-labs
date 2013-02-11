@@ -80,7 +80,6 @@
 
 #pragma mark -
 #pragma mark UICollectionViewDataSource methods
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return NUMBER_OF_SECTIONS;
@@ -127,7 +126,6 @@
 
 #pragma mark -
 #pragma mark UICollectionViewDelegateFlowLayout methods
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UIImage *image = [UIImage imageNamed:@"200px-AND_ANSI"];
@@ -136,7 +134,6 @@
 
 #pragma mark -
 #pragma mark UICollectionViewDelegate methods
-
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;
@@ -154,7 +151,6 @@
 
 #pragma mark -
 #pragma mark DLLDockViewLayoutDelegate methods
-
 - (void)selectionDidChange:(NSInteger)selection
 {
     [self.delegate selectionDidChange:selection];
@@ -162,7 +158,6 @@
 
 #pragma mark -
 #pragma mark MISC
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
