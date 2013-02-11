@@ -24,6 +24,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip ];
+    self.view.multipleTouchEnabled = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
