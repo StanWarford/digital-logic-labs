@@ -14,6 +14,7 @@
 
 @property (assign, nonatomic) NSInteger selectedChip;
 @property (weak, nonatomic) IBOutlet UILabel *testLabel;
+@property (strong, nonatomic) DLLModel *model;
 - (IBAction)dragDetected:(UIPanGestureRecognizer*)sender;
 
 @end

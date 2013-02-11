@@ -27,10 +27,11 @@
 {
     // Creates 3 x 3 array w/ all values set to 0
     // define overarching array as rows
+    NSNumber *temp = [NSNumber numberWithInt:1];
     if((self = [super init])){
-        [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:0];
-        [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:1];
-        [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:0,0,0,nil] atIndex:2];
+        [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:temp,temp,temp,nil] atIndex:0];
+        [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:temp,temp,temp,nil] atIndex:1];
+        [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:temp,temp,temp,nil] atIndex:2];
     }
     return self;
 }
@@ -53,7 +54,7 @@
 {
     //helper method for collision detection
     
-    return true;
+    return YES;
 }
 
 //helper method for collision detection
@@ -62,7 +63,7 @@
     NSUInteger rowCoordinate = coords.y;
     NSUInteger columnCoordinate = coords.x;
     NSArray * row = [_breadboardStateArray objectAtIndex:rowCoordinate];
-    return ![row objectAtIndex:columnCoordinate];
+    return 0 == [row objectAtIndex:columnCoordinate];
     // 0 == false, anything else == true
 }
 

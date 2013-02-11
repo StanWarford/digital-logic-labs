@@ -16,6 +16,7 @@
 
 @synthesize selectedChip = _selectedChip;
 @synthesize testLabel = _testLabel;
+@synthesize model = _model;
 
 #pragma mark -
 #pragma mark Initialization Metods
@@ -25,6 +26,7 @@
 	// Do any additional setup after loading the view.
     self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip ];
     self.view.multipleTouchEnabled = NO;
+    self.model = [[DLLModel alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -44,6 +46,10 @@
     UIGraphicsEndImageContext();
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:resizedBG];
+    
+    BOOL retVal = [self.model isConnectionAvailableAt:CGPointMake(1,1)];
+    self.testLabel.text = retVal ? @"Yes" : @"No";
+    NSLog(retVal ? @"Yes" : @"No");
 }
 
 #pragma mark -
@@ -51,7 +57,7 @@
 - (void)selectionDidChange:(NSInteger)selection
 {
     self.selectedChip = selection;
-    self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip];
+    //self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip];
 }
 
 #pragma mark -
