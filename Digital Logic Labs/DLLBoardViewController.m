@@ -26,7 +26,7 @@
 	// Do any additional setup after loading the view.
     self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip ];
     self.view.multipleTouchEnabled = NO;
-    self.model = [[DLLModel alloc] init];
+    self.model = [[DLLBoard alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -47,9 +47,11 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:resizedBG];
     
+    /*
     BOOL retVal = [self.model isConnectionAvailableAt:CGPointMake(1,1)];
     self.testLabel.text = retVal ? @"Yes" : @"No";
     NSLog(retVal ? @"Yes" : @"No");
+    */
 }
 
 #pragma mark -
@@ -57,15 +59,12 @@
 - (void)selectionDidChange:(NSInteger)selection
 {
     self.selectedChip = selection;
-    //self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip];
+    self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip];
 }
 
 #pragma mark -
-#pragma mark Gesture Recognition methods
-- (IBAction)dragDetected:(UIPanGestureRecognizer*)sender
-{
-    // do something...
-}
+#pragma mark Touch Recognition methods
+
 
 #pragma mark -
 #pragma mark MISC
