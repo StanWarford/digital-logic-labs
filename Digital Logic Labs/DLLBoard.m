@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Pepperdine. All rights reserved.
 //
 
-#import "DLLModel.h"
+#import "DLLBoard.h"
 
-@interface  DLLModel()
+@interface  DLLBoard()
 @property int activeLab;
 @property (strong, nonatomic) NSMutableArray *breadboardStateArray;
 @end
 
-@implementation DLLModel
+@implementation DLLBoard
 
 // lazy instantiation of breadboardStateArray
 - (NSMutableArray *)breadboardStateArray
