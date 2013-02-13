@@ -10,6 +10,13 @@
 
 @interface DLLBoard : NSObject
 
+typedef enum boardCellStates
+{
+    EMPTY,
+    CHIP,
+    WIRE
+} CellState;
+
 - (id)init;
 
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(CGPoint)coords;
@@ -18,7 +25,7 @@
 
 - (BOOL)isChip:(NSInteger)partNum validAtUpperLeftCornerCoordinate:(CGPoint)coords;
 
-- (BOOL)isConnectionAvailableAt:(CGPoint)coords;
+- (NSNumber *)boardStateAt:(CGPoint)coords;
 
 - (void)removeComponentAtCoordinate:(CGPoint)coords;
 

@@ -25,14 +25,22 @@
 //model constructor code here
 - (id)init
 {
-    // Creates 3 x 3 array w/ all values set to 0
+    // Creates 3 x 3 array w/ all values set to boardCellStates.EMPTY
     // define overarching array as rows
-    NSNumber *temp = [NSNumber numberWithInt:1];
-    if((self = [super init])){
-        [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:temp,temp,temp,nil] atIndex:0];
-        [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:temp,temp,temp,nil] atIndex:1];
-        [_breadboardStateArray insertObject:[NSMutableArray arrayWithObjects:temp,temp,temp,nil] atIndex:2];
+    int numRows = 3;
+    
+    NSMutableArray * boardColumns = [[NSMutableArray alloc] initWithCapacity: numRows];
+    
+    for(int i = 0; i < numRows; i++)
+    {
+        [boardColumns insertObject:[NSNumber numberWithInt: EMPTY] atIndex:i];
     }
+    
+    for(int i = 0; i < [_breadboardStateArray count]; i++)
+    {
+        [_breadboardStateArray insertObject: boardColumns atIndex: i];
+    }
+    
     return self;
 }
 
@@ -58,13 +66,13 @@
 }
 
 //helper method for collision detection
-- (BOOL)isConnectionAvailableAt:(CGPoint)coords
+- (NSNumber *)boardStateAt:(CGPoint)coords
 {
     NSUInteger rowCoordinate = coords.y;
     NSUInteger columnCoordinate = coords.x;
     NSArray * row = [_breadboardStateArray objectAtIndex:rowCoordinate];
-    return 0 == [row objectAtIndex:columnCoordinate];
-    // 0 == false, anything else == true
+    return [row objectAtIndex: columnCoordinate];
+    //return enumerated value at the given point
 }
 
 - (void)removeComponentAtCoordinate:(CGPoint)coords //this will return component type (perhaps ENUM)-Casey
