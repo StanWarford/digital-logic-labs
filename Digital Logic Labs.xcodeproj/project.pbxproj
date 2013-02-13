@@ -41,7 +41,7 @@
 		CFDBF70316B0C19A009C3DA4 /* Digital_Logic_LabsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDBF70216B0C19A009C3DA4 /* Digital_Logic_LabsTests.m */; };
 		CFDBF70D16B0C1D9009C3DA4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFDBF70C16B0C1D9009C3DA4 /* MainStoryboard.storyboard */; };
 		D8AB957616C025B00074ABEB /* inventory.xml in Resources */ = {isa = PBXBuildFile; fileRef = D8AB957516C025B00074ABEB /* inventory.xml */; };
-		D8AB957A16C027310074ABEB /* DLLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D8AB957916C027310074ABEB /* DLLModel.m */; };
+		D8AB957A16C027310074ABEB /* DLLBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = D8AB957916C027310074ABEB /* DLLBoard.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,8 +100,8 @@
 		CFDBF70216B0C19A009C3DA4 /* Digital_Logic_LabsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Digital_Logic_LabsTests.m; sourceTree = "<group>"; };
 		CFDBF70C16B0C1D9009C3DA4 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		D8AB957516C025B00074ABEB /* inventory.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = inventory.xml; path = ../inventory.xml; sourceTree = "<group>"; };
-		D8AB957816C027310074ABEB /* DLLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLModel.h; sourceTree = "<group>"; };
-		D8AB957916C027310074ABEB /* DLLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLModel.m; sourceTree = "<group>"; };
+		D8AB957816C027310074ABEB /* DLLBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLBoard.h; sourceTree = "<group>"; };
+		D8AB957916C027310074ABEB /* DLLBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLBoard.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,8 +233,8 @@
 				CF0D2DA816BAE0F000753DF9 /* ContainerView */,
 				CFDBF6E016B0C19A009C3DA4 /* DLLAppDelegate.h */,
 				CFDBF6E116B0C19A009C3DA4 /* DLLAppDelegate.m */,
-				D8AB957816C027310074ABEB /* DLLModel.h */,
-				D8AB957916C027310074ABEB /* DLLModel.m */,
+				D8AB957816C027310074ABEB /* DLLBoard.h */,
+				D8AB957916C027310074ABEB /* DLLBoard.m */,
 				CFDBF70C16B0C1D9009C3DA4 /* MainStoryboard.storyboard */,
 				CFDBF6EC16B0C19A009C3DA4 /* DLLViewController.h */,
 				CFDBF6ED16B0C19A009C3DA4 /* DLLViewController.m */,
@@ -409,7 +409,7 @@
 				CF0D2DB416BAE2FB00753DF9 /* DLLBoardViewController.m in Sources */,
 				CF9CC50516BB07A30068A17D /* DLLDockViewCell.m in Sources */,
 				CF9CC50816BB08A20068A17D /* DLLDockViewLayout.m in Sources */,
-				D8AB957A16C027310074ABEB /* DLLModel.m in Sources */,
+				D8AB957A16C027310074ABEB /* DLLBoard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
