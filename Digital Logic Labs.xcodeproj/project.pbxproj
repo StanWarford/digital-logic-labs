@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4836742416CC56AC008B87E6 /* Lab1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836741E16CC56AC008B87E6 /* Lab1.pdf */; };
+		4836742516CC56AC008B87E6 /* Lab2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836741F16CC56AC008B87E6 /* Lab2.pdf */; };
+		4836742616CC56AC008B87E6 /* Lab3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836742016CC56AC008B87E6 /* Lab3.pdf */; };
+		4836742716CC56AC008B87E6 /* Lab4.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836742116CC56AC008B87E6 /* Lab4.pdf */; };
+		4836742816CC56AC008B87E6 /* Lab5.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836742216CC56AC008B87E6 /* Lab5.pdf */; };
+		4836742916CC56AC008B87E6 /* Lab6.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836742316CC56AC008B87E6 /* Lab6.pdf */; };
 		48F0C62016C32AF70035EBFC /* chip-14.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F0C61D16C32AF70035EBFC /* chip-14.png */; };
 		48F0C62116C32AF70035EBFC /* breadboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F0C61E16C32AF70035EBFC /* breadboard.png */; };
 		48F0C62216C32AF70035EBFC /* chip-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F0C61F16C32AF70035EBFC /* chip-16.png */; };
@@ -49,6 +55,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4836741E16CC56AC008B87E6 /* Lab1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lab1.pdf; sourceTree = "<group>"; };
+		4836741F16CC56AC008B87E6 /* Lab2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lab2.pdf; sourceTree = "<group>"; };
+		4836742016CC56AC008B87E6 /* Lab3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lab3.pdf; sourceTree = "<group>"; };
+		4836742116CC56AC008B87E6 /* Lab4.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lab4.pdf; sourceTree = "<group>"; };
+		4836742216CC56AC008B87E6 /* Lab5.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lab5.pdf; sourceTree = "<group>"; };
+		4836742316CC56AC008B87E6 /* Lab6.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lab6.pdf; sourceTree = "<group>"; };
 		48F0C61D16C32AF70035EBFC /* chip-14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-14.png"; sourceTree = "<group>"; };
 		48F0C61E16C32AF70035EBFC /* breadboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = breadboard.png; sourceTree = "<group>"; };
 		48F0C61F16C32AF70035EBFC /* chip-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-16.png"; sourceTree = "<group>"; };
@@ -117,6 +129,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4836741D16CC56AC008B87E6 /* LabPdfs */ = {
+			isa = PBXGroup;
+			children = (
+				4836741E16CC56AC008B87E6 /* Lab1.pdf */,
+				4836741F16CC56AC008B87E6 /* Lab2.pdf */,
+				4836742016CC56AC008B87E6 /* Lab3.pdf */,
+				4836742116CC56AC008B87E6 /* Lab4.pdf */,
+				4836742216CC56AC008B87E6 /* Lab5.pdf */,
+				4836742316CC56AC008B87E6 /* Lab6.pdf */,
+			);
+			path = LabPdfs;
+			sourceTree = "<group>";
+		};
 		CF0D2DA816BAE0F000753DF9 /* ContainerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +246,7 @@
 		CFDBF6D816B0C199009C3DA4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4836741D16CC56AC008B87E6 /* LabPdfs */,
 				D8AB957516C025B00074ABEB /* inventory.xml */,
 				CFDBF6D916B0C199009C3DA4 /* Digital Logic Labs-Info.plist */,
 				CFDBF6DA16B0C199009C3DA4 /* InfoPlist.strings */,
@@ -335,6 +361,12 @@
 				48F0C62116C32AF70035EBFC /* breadboard.png in Resources */,
 				48F0C62216C32AF70035EBFC /* chip-16.png in Resources */,
 				CF35B6FE16C5902500D6358E /* placeholder.png in Resources */,
+				4836742416CC56AC008B87E6 /* Lab1.pdf in Resources */,
+				4836742516CC56AC008B87E6 /* Lab2.pdf in Resources */,
+				4836742616CC56AC008B87E6 /* Lab3.pdf in Resources */,
+				4836742716CC56AC008B87E6 /* Lab4.pdf in Resources */,
+				4836742816CC56AC008B87E6 /* Lab5.pdf in Resources */,
+				4836742916CC56AC008B87E6 /* Lab6.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -363,9 +363,6 @@
                             <constraint firstItem="enI-E4-rtn" firstAttribute="top" secondItem="8K0-lK-VGN" secondAttribute="top" constant="363" id="J7E-B6-RjJ"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="jhF-9Q-Bgp" appends="YES" id="tTG-hR-EmP"/>
-                        </connections>
                     </view>
                     <toolbarItems/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -374,11 +371,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjw-Cj-Pje" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="jhF-9Q-Bgp">
-                    <connections>
-                        <action selector="dragDetected:" destination="08m-92-v3D" id="HTM-Lp-3t3"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2110" y="-561"/>
         </scene>
