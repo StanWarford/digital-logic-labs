@@ -75,10 +75,19 @@
     //return enumerated value at the given point
 }
 
-- (BOOL) cellIsAvailableFor: (NSInteger)componentType
+- (BOOL)cellAt: (CGPoint)coords IsAvailableFor: (NSInteger)componentType
 {
-    //logic for determining if a a component is allowed in a cell
+    //logic for determining if a component is allowed in a cell
     //componentType should be enumerated CellState
+    
+    switch(componentType)
+    {
+        case CHIP:
+            break;
+        case WIRE:
+            break;
+        default: return NO;
+    }
     
     return YES;
 }
