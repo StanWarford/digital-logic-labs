@@ -30,7 +30,6 @@
 
 #pragma mark -
 #pragma mark view initialization code
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -62,7 +61,6 @@
 
 #pragma mark -
 #pragma mark MISC
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

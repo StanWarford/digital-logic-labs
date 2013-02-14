@@ -11,6 +11,7 @@
 @interface DLLDockViewController ()
 @property (nonatomic, strong) NSMutableArray *dataArray; // legacy
 @property (nonatomic, strong) NSArray *inventory;
+@property (nonatomic, strong) DLLDockViewLayout *dockLayout;
 - (void)selectCenterItem;
 @end
 
@@ -22,16 +23,24 @@
 @synthesize dataArray = _dataArray;
 @synthesize delegate = _delegate;
 @synthesize boardModel = _boardModel;
+@synthesize dockLayout = _dockLayout;
 
 #pragma mark -
-#pragma mark early initialization code
--(id) initWithCoder:(NSCoder *)aDecoder
+#pragma mark property instantiation
+- (NSMutableArray*)dataArray
 {
-    self = [super initWithCoder:aDecoder];
-    if(self){
-        self.dataArray = [NSMutableArray array];
+    if(!_dataArray){
+        _dataArray = [NSMutableArray array];
     }
-    return self;
+    return _dataArray;
+}
+
+- (DLLDockViewLayout*)dockLayout
+{
+    if(!_dockLayout){
+        _dockLayout = [[DLLDockViewLayout alloc] init];
+    }
+    return _dockLayout;
 }
 
 #pragma mark -
@@ -40,25 +49,24 @@
 {
     [super viewDidLoad];
 	// Populate dataArray with demo data (legacy)
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < DUMMY_CELL_COUNT; i++){
         [self.dataArray addObject:[UIImage imageNamed:@"placeholder"]];
     }
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < DUMMY_CELL_COUNT; i++){
         [self.dataArray addObject:[UIImage imageNamed:@"200px-AND_ANSI"]];
     }
     [self.dataArray addObject:[UIImage imageNamed:@"chip-14.png"]];
     [self.dataArray addObject:[UIImage imageNamed:@"chip-16.png"]];
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < DUMMY_CELL_COUNT; i++){
         [self.dataArray addObject:[UIImage imageNamed:@"200px-AND_ANSI"]];
     }
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < DUMMY_CELL_COUNT; i++){
         [self.dataArray addObject:[UIImage imageNamed:@"placeholder"]];
     }
     
     // Configure layout
-    DLLDockViewLayout *dockLayout = [[DLLDockViewLayout alloc] init];
-    dockLayout.delegate = self;
-    [self.collectionView setCollectionViewLayout:dockLayout];
+    self.dockLayout.delegate = self;
+    [self.collectionView setCollectionViewLayout:self.dockLayout];
     
     // Allows manual selection (would have prefered this to be off but still allow programatic selection)
     [self.collectionView setAllowsSelection:YES];
