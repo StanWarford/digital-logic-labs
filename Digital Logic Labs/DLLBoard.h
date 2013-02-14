@@ -25,7 +25,7 @@ typedef enum boardCellStates
 
 - (BOOL)isChip:(NSInteger)partNum validAtUpperLeftCornerCoordinate:(CGPoint)coords;
 
-- (NSNumber *)boardStateAt:(CGPoint)coords;
+- (NSInteger)boardStateAt:(CGPoint)coords;
 
 - (void)removeComponentAtCoordinate:(CGPoint)coords;
 
