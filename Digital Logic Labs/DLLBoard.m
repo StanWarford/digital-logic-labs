@@ -66,12 +66,12 @@
 }
 
 //helper method for collision detection
-- (NSNumber *)boardStateAt:(CGPoint)coords
+- (NSInteger)boardStateAt:(CGPoint)coords
 {
     NSUInteger rowCoordinate = coords.y;
     NSUInteger columnCoordinate = coords.x;
     NSArray * row = [_breadboardStateArray objectAtIndex:rowCoordinate];
-    return [row objectAtIndex: columnCoordinate];
+    return [[row objectAtIndex: columnCoordinate] integerValue];
     //return enumerated value at the given point
 }
 

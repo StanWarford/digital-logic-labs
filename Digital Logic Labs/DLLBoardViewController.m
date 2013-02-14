@@ -11,7 +11,7 @@
 @interface DLLBoardViewController ()
 @property (assign, nonatomic) NSInteger chipNumCache;
 @property (assign, nonatomic) NSInteger selectedChip;
-- (void)displayChip:(NSInteger)chipNum atCoordinate:(CGPoint)coords;
+- (void)displayGhostChip:(NSInteger)chipNum atCoordinate:(CGPoint)coords withHoleAvailable:(BOOL)available;
 @end
 
 @implementation DLLBoardViewController
@@ -31,11 +31,6 @@
     self.view.multipleTouchEnabled = NO;
     self.model = [[DLLBoard alloc] init];
     self.chipNumCache = nil;
-    if(nil){
-        NSLog(@"Nil does not return false");
-    }else{
-        NSLog(@"Nil does return false");
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -73,21 +68,57 @@
 
 #pragma mark -
 #pragma mark Touch Recognition methods
+// if something is touched, assume the user wants to edit its position and remove it immediately
+// then begin placing the ghost image on screen
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    [super touchesBegan:touches withEvent:event];
     UITouch *touch = [touches anyObject]; // with multitouch disabled, this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    if(![self.model isConnectionAvailableAt:loc]){
+    BOOL availability = [self.model boardStateAt:loc] == EMPTY; // EMPTY defined in DLLBoard.h
+    if(!availability){
         self.chipNumCache = [self.model removeComponentAtCoordinate:loc];
     }
-    [self displayChip:self.chipNumCache ? self.chipNumCache : self.selectedChip atCoordinate:loc];
+    [self displayGhostChip:self.chipNumCache ? self.chipNumCache : self.selectedChip atCoordinate:loc withHoleAvailable:availability];
+}
+
+// when the touch moves, query the model and update the ghost image
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesMoved:touches withEvent:event];
+    UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
+    CGPoint loc = [touch locationInView:self.view];
+    BOOL availability = [self.model boardStateAt:loc] == EMPTY; // EMPTY defined in DLLBoard.h
+    [self displayGhostChip:self.chipNumCache ? self.chipNumCache : self.selectedChip atCoordinate:loc withHoleAvailable:availability];
+}
+
+// when the touch ends, query the model one more time before adding the element
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesEnded:touches withEvent:event];
+    UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
+    CGPoint loc = [touch locationInView:self.view];
+    BOOL availability = [self.model boardStateAt:loc] == EMPTY; // EMPTY defined in DLLBoard.h
+    if(availability){
+        [self.model addChipWithPartNum:self.chipNumCache ? self.chipNumCache : self.selectedChip atUpperLeftCornerCoordinate:loc];
+    }
+    // display a permanent chip on the board at loc
+    self.chipNumCache = nil;
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesCancelled:touches withEvent:event];
+    // in case an error occurs, cancel out all touch info
+    self.chipNumCache = nil;
 }
 
 #pragma mark -
 #pragma mark display methods
-- (void)displayChip:(NSInteger)chipNum atCoordinate:(CGPoint)coords
+- (void)displayGhostChip:(NSInteger)chipNum atCoordinate:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
-    
+    // Display a normal ghost image of the chip if it's available
+    // Otherwise display a red shifted ghost image of the chip
 }
 
 #pragma mark -
