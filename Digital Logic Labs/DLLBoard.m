@@ -47,14 +47,14 @@
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(CGPoint)coords
 {
     
-    //add a component to the XML file for the active board
+    //add a component to the XML file and to data structure for the active board
     // need internal safety w/ exceptions
 }
 
 - (void)addWireFromPoint:(CGPoint)startingPoint toPoint:(CGPoint)endingPoint withColor:(UIColor *)color
 {
     
-    //add a component to the XML file for the active board
+    //add a component to the XML file and to data structure for the active board
     // need internal safety w/ exceptions
 }
 
@@ -75,6 +75,14 @@
     //return enumerated value at the given point
 }
 
+- (BOOL) cellIsAvailableFor: (NSInteger)componentType
+{
+    //logic for determining if a a component is allowed in a cell
+    //componentType should be enumerated CellState
+    
+    return YES;
+}
+
 - (void)removeComponentAtCoordinate:(CGPoint)coords //this will return component type (perhaps ENUM)-Casey
 {
     //not necessarily upper left-need to check 2D array (w/ trinary entries?)
@@ -83,7 +91,7 @@
 
 - (void)clearBoard
 {
-    //reset XML to default
+    //reset XML to default, clear data structure, and set all cells in board array to EMPTY
 }
 
 // 2D needs to be 63x25 w/ 63rd row as a 'trash' row, items put here will not be added-mark as always unavailable
