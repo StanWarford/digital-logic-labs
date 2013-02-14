@@ -12,7 +12,6 @@
 
 @interface DLLBoardViewController : UIViewController <DLLDockViewControllerDelegate>
 
-@property (assign, nonatomic) NSInteger selectedChip;
 @property (weak, nonatomic) IBOutlet UILabel *testLabel;
 @property (strong, nonatomic) DLLBoard *model;
 
