@@ -22,7 +22,7 @@
     return _breadboardStateArray;
 }
 
-//model constructor code here
+//board constructor code here
 - (id)init
 {
     // Creates 3 x 3 array w/ all values set to boardCellStates.EMPTY
