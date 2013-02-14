@@ -9,7 +9,8 @@
 #import "DLLDockViewController.h"
 
 @interface DLLDockViewController ()
-@property (nonatomic, strong) NSMutableArray *dataArray; // temporary repository of data just to get the demo working
+@property (nonatomic, strong) NSMutableArray *dataArray; // legacy
+@property (nonatomic, strong) NSArray *inventory;
 - (void)selectCenterItem;
 @end
 
@@ -20,6 +21,7 @@
 
 @synthesize dataArray = _dataArray;
 @synthesize delegate = _delegate;
+@synthesize boardModel = _boardModel;
 
 #pragma mark -
 #pragma mark early initialization code
@@ -37,7 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Populate dataArray with demo data
+	// Populate dataArray with demo data (legacy)
     for(int i = 0; i < 5; i++){
         [self.dataArray addObject:[UIImage imageNamed:@"placeholder"]];
     }

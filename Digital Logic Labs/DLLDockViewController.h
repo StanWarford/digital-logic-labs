@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DLLDockViewCell.h"
 #import "DLLDockViewLayout.h"
+#import "DLLBoard.h"
 
 @class DLLDockViewController;
 
@@ -20,6 +21,7 @@
 
 @interface DLLDockViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DLLDockViewLayoutDelegate>
 
-@property (nonatomic, weak) id <DLLDockViewControllerDelegate> delegate;
+@property (nonatomic, strong) id <DLLDockViewControllerDelegate> delegate;
+@property (nonatomic, weak) DLLBoard *boardModel;
 
 @end

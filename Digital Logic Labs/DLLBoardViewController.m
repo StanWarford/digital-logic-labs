@@ -11,14 +11,16 @@
 @interface DLLBoardViewController ()
 @property (assign, nonatomic) NSInteger chipNumCache;
 @property (assign, nonatomic) NSInteger selectedChip;
-- (void)displayGhostChip:(NSInteger)chipNum atCoordinate:(CGPoint)coords withHoleAvailable:(BOOL)available;
+@property (assign, nonatomic) BOOL isPlacingWire;
+- (CGPoint)nearestBoardCoordinateTo:(CGPoint)loc;
+- (CGPoint)viewCoordinateFromBoardCoordinate:(CGPoint)loc;
 @end
 
 @implementation DLLBoardViewController
 
 @synthesize selectedChip = _selectedChip;
 @synthesize testLabel = _testLabel;
-@synthesize model = _model;
+@synthesize boardModel = _boardModel;
 @synthesize chipNumCache = _chipNumCache;
 
 #pragma mark -
@@ -29,8 +31,7 @@
 	// Do any additional setup after loading the view.
     self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip ];
     self.view.multipleTouchEnabled = NO;
-    self.model = [[DLLBoard alloc] init];
-    self.chipNumCache = nil;
+    self.chipNumCache = EMPTY; // EMPTY defined in DLLBoard.h
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -50,12 +51,6 @@
     UIGraphicsEndImageContext();
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:resizedBG];
-    
-    /*
-    BOOL retVal = [self.model isConnectionAvailableAt:CGPointMake(1,1)];
-    self.testLabel.text = retVal ? @"Yes" : @"No";
-    NSLog(retVal ? @"Yes" : @"No");
-    */
 }
 
 #pragma mark -
@@ -75,11 +70,11 @@
     [super touchesBegan:touches withEvent:event];
     UITouch *touch = [touches anyObject]; // with multitouch disabled, this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    BOOL availability = [self.model boardStateAt:loc] == EMPTY; // EMPTY defined in DLLBoard.h
+    BOOL availability = [self.boardModel boardStateAt:loc] == EMPTY;
     if(!availability){
-        self.chipNumCache = [self.model removeComponentAtCoordinate:loc];
+        self.chipNumCache = [self.boardModel removeComponentAtCoordinate:loc];
     }
-    [self displayGhostChip:self.chipNumCache ? self.chipNumCache : self.selectedChip atCoordinate:loc withHoleAvailable:availability];
+    // display ghost image at loc
 }
 
 // when the touch moves, query the model and update the ghost image
@@ -88,8 +83,8 @@
     [super touchesMoved:touches withEvent:event];
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    BOOL availability = [self.model boardStateAt:loc] == EMPTY; // EMPTY defined in DLLBoard.h
-    [self displayGhostChip:self.chipNumCache ? self.chipNumCache : self.selectedChip atCoordinate:loc withHoleAvailable:availability];
+    BOOL availability = [self.boardModel boardStateAt:loc] == EMPTY;
+    // display ghost image at loc
 }
 
 // when the touch ends, query the model one more time before adding the element
@@ -98,27 +93,30 @@
     [super touchesEnded:touches withEvent:event];
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    BOOL availability = [self.model boardStateAt:loc] == EMPTY; // EMPTY defined in DLLBoard.h
+    BOOL availability = [self.boardModel boardStateAt:loc] == EMPTY;
     if(availability){
-        [self.model addChipWithPartNum:self.chipNumCache ? self.chipNumCache : self.selectedChip atUpperLeftCornerCoordinate:loc];
-    }
-    // display a permanent chip on the board at loc
-    self.chipNumCache = nil;
+        // display a permanent chip on the board at loc
+    } // otherwise do nothing
+    self.chipNumCache = EMPTY;
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesCancelled:touches withEvent:event];
     // in case an error occurs, cancel out all touch info
-    self.chipNumCache = nil;
+    self.chipNumCache = EMPTY;
 }
 
 #pragma mark -
 #pragma mark display methods
-- (void)displayGhostChip:(NSInteger)chipNum atCoordinate:(CGPoint)coords withHoleAvailable:(BOOL)available
+- (CGPoint)nearestBoardCoordinateTo:(CGPoint)loc
 {
-    // Display a normal ghost image of the chip if it's available
-    // Otherwise display a red shifted ghost image of the chip
+    return loc;
+}
+
+- (CGPoint)viewCoordinateFromBoardCoordinate:(CGPoint)loc
+{
+    return loc;
 }
 
 #pragma mark -
