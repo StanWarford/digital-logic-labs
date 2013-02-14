@@ -20,7 +20,7 @@
 
 - (BOOL)isConnectionAvailableAt:(CGPoint)coords;
 
-- (void)removeComponentAtCoordinate:(CGPoint)coords;
+- (NSInteger)removeComponentAtCoordinate:(CGPoint)coords;
 
 - (void)clearBoard;
 

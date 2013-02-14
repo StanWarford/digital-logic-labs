@@ -9,7 +9,9 @@
 #import "DLLBoardViewController.h"
 
 @interface DLLBoardViewController ()
-
+@property (assign, nonatomic) NSInteger chipNumCache;
+@property (assign, nonatomic) NSInteger selectedChip;
+- (void)displayChip:(NSInteger)chipNum atCoordinate:(CGPoint)coords;
 @end
 
 @implementation DLLBoardViewController
@@ -17,6 +19,7 @@
 @synthesize selectedChip = _selectedChip;
 @synthesize testLabel = _testLabel;
 @synthesize model = _model;
+@synthesize chipNumCache = _chipNumCache;
 
 #pragma mark -
 #pragma mark Initialization Metods
@@ -27,6 +30,12 @@
     self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip ];
     self.view.multipleTouchEnabled = NO;
     self.model = [[DLLBoard alloc] init];
+    self.chipNumCache = nil;
+    if(nil){
+        NSLog(@"Nil does not return false");
+    }else{
+        NSLog(@"Nil does return false");
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -64,7 +73,22 @@
 
 #pragma mark -
 #pragma mark Touch Recognition methods
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject]; // with multitouch disabled, this should only ever return a single touch
+    CGPoint loc = [touch locationInView:self.view];
+    if(![self.model isConnectionAvailableAt:loc]){
+        self.chipNumCache = [self.model removeComponentAtCoordinate:loc];
+    }
+    [self displayChip:self.chipNumCache ? self.chipNumCache : self.selectedChip atCoordinate:loc];
+}
 
+#pragma mark -
+#pragma mark display methods
+- (void)displayChip:(NSInteger)chipNum atCoordinate:(CGPoint)coords
+{
+    
+}
 
 #pragma mark -
 #pragma mark MISC
