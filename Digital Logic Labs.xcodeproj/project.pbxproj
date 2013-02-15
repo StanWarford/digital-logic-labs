@@ -33,7 +33,6 @@
 		CFDBF6E416B0C19A009C3DA4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CFDBF6E316B0C19A009C3DA4 /* Default.png */; };
 		CFDBF6E616B0C19A009C3DA4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CFDBF6E516B0C19A009C3DA4 /* Default@2x.png */; };
 		CFDBF6E816B0C19A009C3DA4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CFDBF6E716B0C19A009C3DA4 /* Default-568h@2x.png */; };
-		CFDBF6EE16B0C19A009C3DA4 /* DLLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDBF6ED16B0C19A009C3DA4 /* DLLViewController.m */; };
 		CFDBF6F616B0C19A009C3DA4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFDBF6F516B0C19A009C3DA4 /* SenTestingKit.framework */; };
 		CFDBF6F716B0C19A009C3DA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFDBF6D116B0C199009C3DA4 /* UIKit.framework */; };
 		CFDBF6F816B0C19A009C3DA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFDBF6D316B0C199009C3DA4 /* Foundation.framework */; };
@@ -90,8 +89,6 @@
 		CFDBF6E316B0C19A009C3DA4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		CFDBF6E516B0C19A009C3DA4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		CFDBF6E716B0C19A009C3DA4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		CFDBF6EC16B0C19A009C3DA4 /* DLLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLLViewController.h; sourceTree = "<group>"; };
-		CFDBF6ED16B0C19A009C3DA4 /* DLLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DLLViewController.m; sourceTree = "<group>"; };
 		CFDBF6F416B0C19A009C3DA4 /* Digital Logic LabsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Digital Logic LabsTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFDBF6F516B0C19A009C3DA4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		CFDBF6FD16B0C19A009C3DA4 /* Digital Logic LabsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digital Logic LabsTests-Info.plist"; sourceTree = "<group>"; };
@@ -236,8 +233,6 @@
 				D8AB957816C027310074ABEB /* DLLBoard.h */,
 				D8AB957916C027310074ABEB /* DLLBoard.m */,
 				CFDBF70C16B0C1D9009C3DA4 /* MainStoryboard.storyboard */,
-				CFDBF6EC16B0C19A009C3DA4 /* DLLViewController.h */,
-				CFDBF6ED16B0C19A009C3DA4 /* DLLViewController.m */,
 				CFDBF6D816B0C199009C3DA4 /* Supporting Files */,
 			);
 			path = "Digital Logic Labs";
@@ -403,7 +398,6 @@
 			files = (
 				CFDBF6DE16B0C199009C3DA4 /* main.m in Sources */,
 				CFDBF6E216B0C19A009C3DA4 /* DLLAppDelegate.m in Sources */,
-				CFDBF6EE16B0C19A009C3DA4 /* DLLViewController.m in Sources */,
 				CF0D2DAC16BAE12E00753DF9 /* DLLContainerViewController.m in Sources */,
 				CF0D2DB016BAE20600753DF9 /* DLLDockViewController.m in Sources */,
 				CF0D2DB416BAE2FB00753DF9 /* DLLBoardViewController.m in Sources */,
