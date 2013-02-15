@@ -29,7 +29,7 @@ typedef enum boardCellStates
 
 - (BOOL) cellIsAvailableFor: (NSInteger)componentType;
 
-- (void)removeComponentAtCoordinate:(CGPoint)coords;
+- (NSInteger)removeComponentAtCoordinate:(CGPoint)coords;
 
 - (void)clearBoard;
 

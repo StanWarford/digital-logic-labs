@@ -92,10 +92,16 @@
     return YES;
 }
 
-- (void)removeComponentAtCoordinate:(CGPoint)coords //this will return component type (perhaps ENUM)-Casey
+- (NSInteger)removeComponentAtCoordinate:(CGPoint)coords //this will return component type (perhaps ENUM)-Casey
 {
     //not necessarily upper left-need to check 2D array (w/ trinary entries?)
     //remove an existing component from XML file
+    return 0;
+}
+
+- (BOOL)cellIsAvailableFor:(NSInteger)componentType
+{
+    return YES;
 }
 
 - (void)clearBoard
