@@ -10,12 +10,13 @@
 #import "DLLDockViewCell.h"
 #import "DLLDockViewLayout.h"
 #import "DLLBoard.h"
+#import "DLLAComponent.h"
 
 @class DLLDockViewController;
 
 @protocol DLLDockViewControllerDelegate <NSObject>
 
-- (void)selectionDidChange:(NSInteger)selection;
+- (void)selectionDidChange:(DLLAComponent*)selection;
 
 @end
 

@@ -20,6 +20,8 @@
 		CF0D2DB016BAE20600753DF9 /* DLLDockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0D2DAF16BAE20600753DF9 /* DLLDockViewController.m */; };
 		CF0D2DB416BAE2FB00753DF9 /* DLLBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0D2DB316BAE2FB00753DF9 /* DLLBoardViewController.m */; };
 		CF35B6FE16C5902500D6358E /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = CF35B6FD16C5902500D6358E /* placeholder.png */; };
+		CF55D8EB16CF009700D8949B /* DLLAComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = CF55D8EA16CF009700D8949B /* DLLAComponent.m */; };
+		CF55D8EE16CF055D00D8949B /* DLLChip.m in Sources */ = {isa = PBXBuildFile; fileRef = CF55D8ED16CF055D00D8949B /* DLLChip.m */; };
 		CF9CC50016BB041C0068A17D /* 200px-AND_ANSI.png in Resources */ = {isa = PBXBuildFile; fileRef = CF9CC4FF16BB041C0068A17D /* 200px-AND_ANSI.png */; };
 		CF9CC50516BB07A30068A17D /* DLLDockViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9CC50416BB07A30068A17D /* DLLDockViewCell.m */; };
 		CF9CC50816BB08A20068A17D /* DLLDockViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9CC50716BB08A20068A17D /* DLLDockViewLayout.m */; };
@@ -70,6 +72,10 @@
 		CF0D2DB216BAE2FB00753DF9 /* DLLBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLBoardViewController.h; sourceTree = "<group>"; };
 		CF0D2DB316BAE2FB00753DF9 /* DLLBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLBoardViewController.m; sourceTree = "<group>"; };
 		CF35B6FD16C5902500D6358E /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		CF55D8E916CF009700D8949B /* DLLAComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLAComponent.h; sourceTree = "<group>"; };
+		CF55D8EA16CF009700D8949B /* DLLAComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLAComponent.m; sourceTree = "<group>"; };
+		CF55D8EC16CF055D00D8949B /* DLLChip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLChip.h; sourceTree = "<group>"; };
+		CF55D8ED16CF055D00D8949B /* DLLChip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLChip.m; sourceTree = "<group>"; };
 		CF9CC4FF16BB041C0068A17D /* 200px-AND_ANSI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "200px-AND_ANSI.png"; sourceTree = "<group>"; };
 		CF9CC50316BB07A30068A17D /* DLLDockViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLDockViewCell.h; sourceTree = "<group>"; };
 		CF9CC50416BB07A30068A17D /* DLLDockViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLDockViewCell.m; sourceTree = "<group>"; };
@@ -151,7 +157,6 @@
 		CF0D2DAD16BAE1C000753DF9 /* DockView */ = {
 			isa = PBXGroup;
 			children = (
-				CF9CC50216BB04250068A17D /* Resources */,
 				CF0D2DAE16BAE20600753DF9 /* DLLDockViewController.h */,
 				CF0D2DAF16BAE20600753DF9 /* DLLDockViewController.m */,
 				CF9CC50316BB07A30068A17D /* DLLDockViewCell.h */,
@@ -180,7 +185,21 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		CF9CC50216BB04250068A17D /* Resources */ = {
+		CF55D8E816CF003000D8949B /* DLLModel */ = {
+			isa = PBXGroup;
+			children = (
+				CF55D8EF16CF09E300D8949B /* Resources */,
+				D8AB957816C027310074ABEB /* DLLBoard.h */,
+				D8AB957916C027310074ABEB /* DLLBoard.m */,
+				CF55D8EC16CF055D00D8949B /* DLLChip.h */,
+				CF55D8ED16CF055D00D8949B /* DLLChip.m */,
+				CF55D8E916CF009700D8949B /* DLLAComponent.h */,
+				CF55D8EA16CF009700D8949B /* DLLAComponent.m */,
+			);
+			name = DLLModel;
+			sourceTree = "<group>";
+		};
+		CF55D8EF16CF09E300D8949B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				CF35B6FD16C5902500D6358E /* placeholder.png */,
@@ -225,13 +244,12 @@
 		CFDBF6D716B0C199009C3DA4 /* Digital Logic Labs */ = {
 			isa = PBXGroup;
 			children = (
+				CF55D8E816CF003000D8949B /* DLLModel */,
 				CF0D2DB116BAE2C600753DF9 /* BoardView */,
 				CF0D2DAD16BAE1C000753DF9 /* DockView */,
 				CF0D2DA816BAE0F000753DF9 /* ContainerView */,
 				CFDBF6E016B0C19A009C3DA4 /* DLLAppDelegate.h */,
 				CFDBF6E116B0C19A009C3DA4 /* DLLAppDelegate.m */,
-				D8AB957816C027310074ABEB /* DLLBoard.h */,
-				D8AB957916C027310074ABEB /* DLLBoard.m */,
 				CFDBF70C16B0C1D9009C3DA4 /* MainStoryboard.storyboard */,
 				CFDBF6D816B0C199009C3DA4 /* Supporting Files */,
 			);
@@ -404,6 +422,8 @@
 				CF9CC50516BB07A30068A17D /* DLLDockViewCell.m in Sources */,
 				CF9CC50816BB08A20068A17D /* DLLDockViewLayout.m in Sources */,
 				D8AB957A16C027310074ABEB /* DLLBoard.m in Sources */,
+				CF55D8EB16CF009700D8949B /* DLLAComponent.m in Sources */,
+				CF55D8EE16CF055D00D8949B /* DLLChip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

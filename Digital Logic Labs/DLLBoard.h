@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DLLAComponent.h"
+#import "DLLChip.h"
 
 @interface DLLBoard : NSObject
 
@@ -27,10 +29,12 @@ typedef enum boardCellStates
 
 - (NSInteger)boardStateAt:(CGPoint)coords;
 
-- (BOOL) cellIsAvailableFor: (NSInteger)componentType;
+- (BOOL)cellIsAvailableFor:(NSInteger)componentType;
 
-- (NSInteger)removeComponentAtCoordinate:(CGPoint)coords;
+- (DLLAComponent*)removeComponentAtCoordinate:(CGPoint)coords;
 
 - (void)clearBoard;
+
+- (NSArray*)getCurrentInventory;
 
 @end

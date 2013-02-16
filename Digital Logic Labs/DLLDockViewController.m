@@ -9,7 +9,7 @@
 #import "DLLDockViewController.h"
 
 @interface DLLDockViewController ()
-@property (nonatomic, strong) NSMutableArray *dataArray; // legacy
+@property (nonatomic, strong) NSArray *dataArray; // legacy
 @property (nonatomic, strong) NSArray *inventory;
 @property (nonatomic, strong) DLLDockViewLayout *dockLayout;
 - (void)selectCenterItem;
@@ -27,10 +27,10 @@
 
 #pragma mark -
 #pragma mark property instantiation
-- (NSMutableArray*)dataArray
+- (NSArray*)dataArray
 {
     if(!_dataArray){
-        _dataArray = [NSMutableArray array];
+        _dataArray = [self.boardModel getCurrentInventory];
     }
     return _dataArray;
 }
@@ -48,21 +48,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Populate dataArray with demo data (legacy)
-    for(int i = 0; i < DUMMY_CELL_COUNT; i++){
-        [self.dataArray addObject:[UIImage imageNamed:@"placeholder"]];
-    }
-    for(int i = 0; i < DUMMY_CELL_COUNT; i++){
-        [self.dataArray addObject:[UIImage imageNamed:@"200px-AND_ANSI"]];
-    }
-    [self.dataArray addObject:[UIImage imageNamed:@"chip-14.png"]];
-    [self.dataArray addObject:[UIImage imageNamed:@"chip-16.png"]];
-    for(int i = 0; i < DUMMY_CELL_COUNT; i++){
-        [self.dataArray addObject:[UIImage imageNamed:@"200px-AND_ANSI"]];
-    }
-    for(int i = 0; i < DUMMY_CELL_COUNT; i++){
-        [self.dataArray addObject:[UIImage imageNamed:@"placeholder"]];
-    }
     
     // Configure layout
     self.dockLayout.delegate = self;
@@ -111,7 +96,7 @@
     
     // set background
     UIView *backgroundView = [[UIView alloc] initWithFrame:cell.frame];
-    UIImage *sourceBG = [self.dataArray objectAtIndex:row];
+    UIImage *sourceBG = [[self.dataArray objectAtIndex:row] image];
     CGSize bgSize = cell.frame.size;
     
     UIGraphicsBeginImageContext(bgSize);
@@ -163,7 +148,7 @@
 #pragma mark DLLDockViewLayoutDelegate methods
 - (void)selectionDidChange:(NSInteger)selection
 {
-    [self.delegate selectionDidChange:selection];
+    [self.delegate selectionDidChange:[self.dataArray objectAtIndex:selection]];
 }
 
 #pragma mark -
@@ -189,7 +174,7 @@
     // get the index of the middle element and select it
     NSInteger targetIndex = [temp indexOfObject:targetRow];
     [self.collectionView selectItemAtIndexPath:visiblePaths[targetIndex] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-    [self.delegate selectionDidChange:[visiblePaths[targetIndex] row]];
+    [self.delegate selectionDidChange:[self.dataArray objectAtIndex:[visiblePaths[targetIndex] row]]];
 }
 
 @end
