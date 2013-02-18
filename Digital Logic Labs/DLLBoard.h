@@ -29,8 +29,8 @@ typedef enum boardCellStates
 - (DLLAComponent*)removeComponentAtCoordinate:(CGPoint)coords;
 - (void)clearBoard;
 
-- (BOOL)isChip:(NSInteger)partNum validAtUpperLeftCornerCoordinate:(CGPoint)coords;
 - (NSInteger)boardStateAt:(CGPoint)coords;
-- (BOOL)cellIsAvailableFor:(NSInteger)componentType;
+
+- (BOOL)cellAt: (CGPoint)coords IsAvailableFor: (NSInteger)componentType;
 
 @end

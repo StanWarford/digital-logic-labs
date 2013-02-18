@@ -12,7 +12,7 @@
 
 #pragma mark -
 #pragma mark initialization methods
-- (id)initWithIdenfifier:(NSInteger)identifier
+- (id)initWithIdenfifier:(NSInteger)identifier andType:(NSInteger)type
 {
     if((self = [super init])){
         self.identifier = identifier;
@@ -25,6 +25,7 @@
         }else{
             self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
         }
+    self.type = type;
     }
     return self;
 }

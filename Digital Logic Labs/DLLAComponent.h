@@ -19,9 +19,10 @@
 @interface DLLAComponent : NSObject
 
 @property (assign, nonatomic) NSInteger identifier;
+@property (assign, nonatomic) NSInteger type;
 @property (nonatomic, strong) UIImage *image;
 
-- (id)initWithIdenfifier:(NSInteger)identifier;
+- (id)initWithIdenfifier:(NSInteger)identifier andType:(NSInteger)type;
 
 - (void)displayComponentInView:(UIView*)view atCoordinates:(CGPoint)loc;
 - (void)displayGhostInView:(UIView*)view atCoordinates:(CGPoint)loc withHoleAvailable:(BOOL)available;

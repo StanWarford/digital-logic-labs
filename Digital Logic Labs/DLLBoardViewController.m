@@ -9,8 +9,8 @@
 #import "DLLBoardViewController.h"
 
 @interface DLLBoardViewController ()
-@property (nonatomic, strong) DLLAComponent *chipNumCache;
 @property (nonatomic, strong) DLLAComponent *selectedChip;
+@property (nonatomic, strong) DLLAComponent *activeComponent;
 @property (assign, nonatomic) BOOL isPlacingWire;
 - (CGPoint)nearestBoardCoordinateTo:(CGPoint)loc;
 - (CGPoint)viewCoordinateFromBoardCoordinate:(CGPoint)loc;
@@ -19,9 +19,9 @@
 @implementation DLLBoardViewController
 
 @synthesize selectedChip = _selectedChip;
+@synthesize activeComponent = _activeComponent;
 @synthesize testLabel = _testLabel;
 @synthesize boardModel = _boardModel;
-@synthesize chipNumCache = _chipNumCache;
 
 #pragma mark -
 #pragma mark Initialization Metods
@@ -31,7 +31,7 @@
 	// Do any additional setup after loading the view.
     self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip.identifier];
     self.view.multipleTouchEnabled = NO;
-    self.chipNumCache = nil;
+    self.activeComponent = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -70,11 +70,15 @@
     [super touchesBegan:touches withEvent:event];
     UITouch *touch = [touches anyObject]; // with multitouch disabled, this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    BOOL availability = [self.boardModel boardStateAt:loc] == EMPTY;
-    if(!availability){
-        self.chipNumCache = [self.boardModel removeComponentAtCoordinate:loc];
+    BOOL isEmpty = [self.boardModel boardStateAt:loc] == EMPTY;
+    if(!isEmpty){
+        self.activeComponent = [self.boardModel removeComponentAtCoordinate:loc];
+    }else{
+        self.activeComponent = self.selectedChip;
     }
-    [self.chipNumCache ? self.chipNumCache : self.selectedChip displayGhostInView:self.view atCoordinates:loc withHoleAvailable:availability];
+    BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableFor:self.activeComponent.type];
+    NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+    [self.activeComponent displayGhostInView:self.view atCoordinates:loc withHoleAvailable:isAvailable];
 }
 
 // when the touch moves, query the model and update the ghost image
@@ -83,8 +87,9 @@
     [super touchesMoved:touches withEvent:event];
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    BOOL availability = [self.boardModel boardStateAt:loc] == EMPTY;
-    [self.chipNumCache ? self.chipNumCache : self.selectedChip displayGhostInView:self.view atCoordinates:loc withHoleAvailable:availability];
+    BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableFor:self.activeComponent.type];
+    NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+    [self.activeComponent displayGhostInView:self.view atCoordinates:loc withHoleAvailable:isAvailable];
 }
 
 // when the touch ends, query the model one more time before adding the element
@@ -93,20 +98,20 @@
     [super touchesEnded:touches withEvent:event];
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    BOOL availability = [self.boardModel boardStateAt:loc] == EMPTY;
-    DLLAComponent *activeComponent = self.chipNumCache ? self.chipNumCache : self.selectedChip;
-    if(availability){
-        [self.boardModel addChipWithPartNum:activeComponent.identifier atUpperLeftCornerCoordinate:loc];
-        [activeComponent displayComponentInView:self.view atCoordinates:loc];
+    BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableFor:self.activeComponent.type];
+    NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+    if(isAvailable){
+        [self.boardModel addChipWithPartNum:self.activeComponent.identifier atUpperLeftCornerCoordinate:loc];
+        [self.activeComponent displayComponentInView:self.view atCoordinates:loc];
     } // otherwise do nothing
-    self.chipNumCache = EMPTY;
+    self.activeComponent = nil;
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesCancelled:touches withEvent:event];
     // in case an error occurs, cancel out all touch info
-    self.chipNumCache = EMPTY;
+    self.activeComponent = nil;
 }
 
 #pragma mark -

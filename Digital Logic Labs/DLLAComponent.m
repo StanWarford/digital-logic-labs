@@ -11,11 +11,12 @@
 @implementation DLLAComponent
 
 @synthesize identifier = _identifier;
+@synthesize type = _type;
 @synthesize image = _image;
 
 #pragma mark -
 #pragma mark initialization methods
-- (id)initWithIdenfifier:(NSInteger)identifier
+- (id)initWithIdenfifier:(NSInteger)identifier andType:(NSInteger)type
 {
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
     return nil;

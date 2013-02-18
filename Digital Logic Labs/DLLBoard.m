@@ -35,12 +35,12 @@
         NSMutableArray* temp = [NSMutableArray array];
 
         for(int i = 0; i < 5; i++){
-            [temp addObject:[[DLLChip alloc] initWithIdenfifier:3]];
+            [temp addObject:[[DLLChip alloc] initWithIdenfifier:3 andType:CHIP]];
         }
-        [temp addObject:[[DLLChip alloc] initWithIdenfifier:1]];
-        [temp addObject:[[DLLChip alloc] initWithIdenfifier:2]];
+        [temp addObject:[[DLLChip alloc] initWithIdenfifier:1 andType:CHIP]];
+        [temp addObject:[[DLLChip alloc] initWithIdenfifier:2 andType:CHIP]];
         for(int i = 0; i < 5; i++){
-            [temp addObject:[[DLLChip alloc] initWithIdenfifier:3]];
+            [temp addObject:[[DLLChip alloc] initWithIdenfifier:3 andType:CHIP]];
         }
         
         _inventory = [NSArray arrayWithArray:temp];
@@ -78,7 +78,7 @@
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(CGPoint)coords
 {
     
-    //add a component to the XML file and to data structure for the active board
+    //add a component to data structure for the active board
     // need internal safety w/ exceptions
 }
 
@@ -105,10 +105,6 @@
 
 #pragma mark -
 #pragma mark board state methods
-- (BOOL)isChip:(NSInteger)partNum validAtUpperLeftCornerCoordinate:(CGPoint)coords
-{
-    return YES;
-}
 
 - (NSInteger)boardStateAt:(CGPoint)coords
 {
@@ -133,11 +129,6 @@
         default: return NO;
     }
     
-    return YES;
-}
-
-- (BOOL)cellIsAvailableFor:(NSInteger)componentType
-{
     return YES;
 }
 
