@@ -9,11 +9,14 @@
 #import "DLLBoard.h"
 
 @interface  DLLBoard()
-@property int activeLab;
+@property (assign, nonatomic) NSInteger activeLab;
 @property (strong, nonatomic) NSMutableArray *breadboardStateArray;
 @end
 
 @implementation DLLBoard
+
+@synthesize breadboardStateArray = _breadboardStateArray;
+@synthesize activeLab = _activeLab;
 
 // lazy instantiation of breadboardStateArray
 - (NSMutableArray *)breadboardStateArray
@@ -92,10 +95,16 @@
     return YES;
 }
 
-- (void)removeComponentAtCoordinate:(CGPoint)coords //this will return component type (perhaps ENUM)-Casey
+- (DLLAComponent*)removeComponentAtCoordinate:(CGPoint)coords //this will return component type (perhaps ENUM)-Casey
 {
     //not necessarily upper left-need to check 2D array (w/ trinary entries?)
     //remove an existing component from XML file
+    return [[DLLChip alloc] init];
+}
+
+- (BOOL)cellIsAvailableFor:(NSInteger)componentType
+{
+    return YES;
 }
 
 - (void)clearBoard
@@ -104,4 +113,25 @@
 }
 
 // 2D needs to be 63x25 w/ 63rd row as a 'trash' row, items put here will not be added-mark as always unavailable
+
+- (NSArray*)getCurrentInventory
+{
+    NSMutableArray* temp = [NSMutableArray array];
+    
+    for(int i = 0; i < 5; i++){
+        [temp addObject:[[DLLChip alloc] initWithIdenfifier:0]];
+    }
+    for(int i = 0; i < 5; i++){
+        [temp addObject:[[DLLChip alloc] initWithIdenfifier:3]];
+    }
+    [temp addObject:[[DLLChip alloc] initWithIdenfifier:1]];
+    [temp addObject:[[DLLChip alloc] initWithIdenfifier:2]];
+    for(int i = 0; i < 5; i++){
+        [temp addObject:[[DLLChip alloc] initWithIdenfifier:3]];
+    }
+    for(int i = 0; i < 5; i++){
+       [temp addObject:[[DLLChip alloc] initWithIdenfifier:0]];
+    }
+    return [NSArray arrayWithArray:temp];
+}
 @end

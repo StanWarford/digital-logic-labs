@@ -16,16 +16,28 @@
 
 @synthesize boardView = _boardView;
 @synthesize dockView = _dockView;
+@synthesize boardModel = _boardModel;
+
+#pragma mark -
+#pragma mark property instantiation
+- (DLLBoard*)boardModel
+{
+    if (!_boardModel){
+        _boardModel = [[DLLBoard alloc] init];
+    }
+    return _boardModel;
+}
 
 #pragma mark -
 #pragma mark view initialization code
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // instantiate the two subviews to be added
     self.boardView = [self.storyboard instantiateViewControllerWithIdentifier:@"UIBoardViewBoard"];
+    self.boardView.boardModel = self.boardModel;
     self.dockView = [self.storyboard instantiateViewControllerWithIdentifier:@"UIDockViewDock"];
+    self.dockView.boardModel = self.boardModel;
     
     // move the instantiated frames to their correct positions on screen
     CGRect initialBoardFrame = self.boardView.view.frame;
@@ -49,7 +61,6 @@
 
 #pragma mark -
 #pragma mark MISC
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

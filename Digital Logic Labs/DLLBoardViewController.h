@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "DLLDockViewController.h"
 #import "DLLBoard.h"
+#import "DLLAComponent.h"
 
 @interface DLLBoardViewController : UIViewController <DLLDockViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *testLabel;
-@property (strong, nonatomic) DLLBoard *model;
+@property (strong, nonatomic) IBOutlet UILabel *testLabel;
+@property (weak, nonatomic) DLLBoard *boardModel;
 
 @end

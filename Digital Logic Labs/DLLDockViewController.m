@@ -9,7 +9,9 @@
 #import "DLLDockViewController.h"
 
 @interface DLLDockViewController ()
-@property (nonatomic, strong) NSMutableArray *dataArray; // temporary repository of data just to get the demo working
+@property (nonatomic, strong) NSArray *dataArray; // legacy
+@property (nonatomic, strong) NSArray *inventory;
+@property (nonatomic, strong) DLLDockViewLayout *dockLayout;
 - (void)selectCenterItem;
 @end
 
@@ -20,16 +22,25 @@
 
 @synthesize dataArray = _dataArray;
 @synthesize delegate = _delegate;
+@synthesize boardModel = _boardModel;
+@synthesize dockLayout = _dockLayout;
 
 #pragma mark -
-#pragma mark early initialization code
--(id) initWithCoder:(NSCoder *)aDecoder
+#pragma mark property instantiation
+- (NSArray*)dataArray
 {
-    self = [super initWithCoder:aDecoder];
-    if(self){
-        self.dataArray = [NSMutableArray array];
+    if(!_dataArray){
+        _dataArray = [self.boardModel getCurrentInventory];
     }
-    return self;
+    return _dataArray;
+}
+
+- (DLLDockViewLayout*)dockLayout
+{
+    if(!_dockLayout){
+        _dockLayout = [[DLLDockViewLayout alloc] init];
+    }
+    return _dockLayout;
 }
 
 #pragma mark -
@@ -37,26 +48,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Populate dataArray with demo data
-    for(int i = 0; i < 5; i++){
-        [self.dataArray addObject:[UIImage imageNamed:@"placeholder"]];
-    }
-    for(int i = 0; i < 5; i++){
-        [self.dataArray addObject:[UIImage imageNamed:@"200px-AND_ANSI"]];
-    }
-    [self.dataArray addObject:[UIImage imageNamed:@"chip-14.png"]];
-    [self.dataArray addObject:[UIImage imageNamed:@"chip-16.png"]];
-    for(int i = 0; i < 5; i++){
-        [self.dataArray addObject:[UIImage imageNamed:@"200px-AND_ANSI"]];
-    }
-    for(int i = 0; i < 5; i++){
-        [self.dataArray addObject:[UIImage imageNamed:@"placeholder"]];
-    }
     
     // Configure layout
-    DLLDockViewLayout *dockLayout = [[DLLDockViewLayout alloc] init];
-    dockLayout.delegate = self;
-    [self.collectionView setCollectionViewLayout:dockLayout];
+    self.dockLayout.delegate = self;
+    [self.collectionView setCollectionViewLayout:self.dockLayout];
     
     // Allows manual selection (would have prefered this to be off but still allow programatic selection)
     [self.collectionView setAllowsSelection:YES];
@@ -101,7 +96,7 @@
     
     // set background
     UIView *backgroundView = [[UIView alloc] initWithFrame:cell.frame];
-    UIImage *sourceBG = [self.dataArray objectAtIndex:row];
+    UIImage *sourceBG = [[self.dataArray objectAtIndex:row] image];
     CGSize bgSize = cell.frame.size;
     
     UIGraphicsBeginImageContext(bgSize);
@@ -153,7 +148,7 @@
 #pragma mark DLLDockViewLayoutDelegate methods
 - (void)selectionDidChange:(NSInteger)selection
 {
-    [self.delegate selectionDidChange:selection];
+    [self.delegate selectionDidChange:[self.dataArray objectAtIndex:selection]];
 }
 
 #pragma mark -
@@ -179,7 +174,7 @@
     // get the index of the middle element and select it
     NSInteger targetIndex = [temp indexOfObject:targetRow];
     [self.collectionView selectItemAtIndexPath:visiblePaths[targetIndex] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-    [self.delegate selectionDidChange:[visiblePaths[targetIndex] row]];
+    [self.delegate selectionDidChange:[self.dataArray objectAtIndex:[visiblePaths[targetIndex] row]]];
 }
 
 @end
