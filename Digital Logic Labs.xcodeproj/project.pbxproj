@@ -157,6 +157,7 @@
 		CF0D2DAD16BAE1C000753DF9 /* DockView */ = {
 			isa = PBXGroup;
 			children = (
+				CF80E86316D2CFA900DBA574 /* Resources */,
 				CF0D2DAE16BAE20600753DF9 /* DLLDockViewController.h */,
 				CF0D2DAF16BAE20600753DF9 /* DLLDockViewController.m */,
 				CF9CC50316BB07A30068A17D /* DLLDockViewCell.h */,
@@ -202,10 +203,17 @@
 		CF55D8EF16CF09E300D8949B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CF35B6FD16C5902500D6358E /* placeholder.png */,
 				48F0C61D16C32AF70035EBFC /* chip-14.png */,
 				48F0C61F16C32AF70035EBFC /* chip-16.png */,
 				CF9CC4FF16BB041C0068A17D /* 200px-AND_ANSI.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		CF80E86316D2CFA900DBA574 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CF35B6FD16C5902500D6358E /* placeholder.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

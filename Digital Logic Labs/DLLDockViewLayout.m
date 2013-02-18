@@ -26,18 +26,19 @@
 
 #pragma mark -
 #pragma mark initialization
-- (id)init
+- (id)initWithDelegate:(id)delegate
 {
     if((self = [super init])){
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         self.minimumInteritemSpacing = ITEM_SPACING;
         self.minimumLineSpacing = LINE_SPACING;
+        self.delegate = delegate;
     }
     return self;
 }
 
 #pragma mark -
-#pragma mark Zooming
+#pragma mark zoom methods
 - (NSArray*)layoutAttributesForElementsInRect:(CGRect)rect
 {
     NSArray *attributeList = [super layoutAttributesForElementsInRect:rect];
@@ -65,7 +66,7 @@
 }
 
 #pragma mark -
-#pragma mark Force Updates
+#pragma mark update forcing methods
 - (BOOL) shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
 {
     // set to true to refresh items while scrolling
@@ -73,7 +74,7 @@
 }
 
 #pragma mark -
-#pragma mark Center Snapping
+#pragma mark center snapping methods
 - (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity
 {
     // Force scrolling to stop with items centered

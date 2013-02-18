@@ -33,10 +33,7 @@
 {
     if(!_inventory){
         NSMutableArray* temp = [NSMutableArray array];
-        
-        for(int i = 0; i < 5; i++){
-            [temp addObject:[[DLLChip alloc] initWithIdenfifier:0]];
-        }
+
         for(int i = 0; i < 5; i++){
             [temp addObject:[[DLLChip alloc] initWithIdenfifier:3]];
         }
@@ -45,9 +42,7 @@
         for(int i = 0; i < 5; i++){
             [temp addObject:[[DLLChip alloc] initWithIdenfifier:3]];
         }
-        for(int i = 0; i < 5; i++){
-            [temp addObject:[[DLLChip alloc] initWithIdenfifier:0]];
-        }
+        
         _inventory = [NSArray arrayWithArray:temp];
     }
     return _inventory;

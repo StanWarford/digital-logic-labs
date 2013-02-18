@@ -22,4 +22,6 @@
 
 @property (nonatomic, weak) id <DLLDockViewLayoutDelegate> delegate;
 
+- (id)initWithDelegate:(id)delegate;
+
 @end

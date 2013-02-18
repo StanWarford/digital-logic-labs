@@ -17,7 +17,7 @@
 @implementation DLLDockViewController
 
 #define NUMBER_OF_SECTIONS 1
-#define DUMMY_CELL_COUNT 5 // number of invisible dummy cells in the dock
+#define PADDING_CELL_COUNT 5 // number of invisible padding cells on either side of the dock
 
 @synthesize delegate = _delegate;
 @synthesize boardModel = _boardModel;
@@ -28,29 +28,28 @@
 - (DLLDockViewLayout*)dockLayout
 {
     if(!_dockLayout){
-        _dockLayout = [[DLLDockViewLayout alloc] init];
+        _dockLayout = [[DLLDockViewLayout alloc] initWithDelegate:self];
     }
     return _dockLayout;
 }
 
 #pragma mark -
-#pragma mark view initialization code
+#pragma mark view initialization methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     // Configure layout
-    self.dockLayout.delegate = self;
     [self.collectionView setCollectionViewLayout:self.dockLayout];
     
-    // Allows manual selection (would have prefered this to be off but still allow programatic selection)
-    [self.collectionView setAllowsSelection:YES];
+    // Disable manual selection
+    [self.collectionView setAllowsSelection:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    // set the height of the frame to 150
+    // set the height of the frame to 70
     self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, self.collectionView.frame.origin.y, self.collectionView.frame.size.width, 70);
 }
 
@@ -58,7 +57,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    // select middle item at start
     [self selectCenterItem];
 }
 
@@ -72,7 +70,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.boardModel.inventory count];
+    return [self.boardModel.inventory count] + PADDING_CELL_COUNT*2;
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -80,13 +78,17 @@
     // Retrieve reusable cell
     DLLDockViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"protoCell" forIndexPath:indexPath];
     
-    // Set label number
+    // cache row number for future use
     NSInteger row = [indexPath row];
-    //cell.cellTitle.text = [NSString stringWithFormat:@"%d", row];
     
     // set background
     UIView *backgroundView = [[UIView alloc] initWithFrame:cell.frame];
-    UIImage *sourceBG = [[self.boardModel.inventory objectAtIndex:row] image];
+    UIImage *sourceBG;
+    if(row >= PADDING_CELL_COUNT && row < [self.boardModel.inventory count] + PADDING_CELL_COUNT){
+        sourceBG = [[self.boardModel.inventory objectAtIndex:row - PADDING_CELL_COUNT] image];
+    }else{
+        sourceBG = [UIImage imageNamed:@"placeholder"];
+    }
     CGSize bgSize = cell.frame.size;
     
     UIGraphicsBeginImageContext(bgSize);
@@ -133,7 +135,9 @@
 #pragma mark DLLDockViewLayoutDelegate methods
 - (void)selectionDidChange:(NSInteger)selection
 {
-    [self.delegate selectionDidChange:[self.boardModel.inventory objectAtIndex:selection]];
+    if(selection >= PADDING_CELL_COUNT && selection < [self.boardModel.inventory count] + PADDING_CELL_COUNT){
+        [self.delegate selectionDidChange:[self.boardModel.inventory objectAtIndex:selection - PADDING_CELL_COUNT]];
+    }
 }
 
 #pragma mark -
@@ -156,9 +160,11 @@
     }
     NSInteger middleOffset = [visiblePaths count]/2;
     NSNumber *targetRow = [NSNumber numberWithInteger:[[temp valueForKeyPath:@"@max.intValue"] intValue] - middleOffset];
-    // get the index of the middle element and notify delegate
+    // get the index of the middle element and notify delegate only if the middle cell is in the correct range
     NSInteger targetIndex = [temp indexOfObject:targetRow];
-    [self.delegate selectionDidChange:[self.boardModel.inventory objectAtIndex:[visiblePaths[targetIndex] row]]];
+    if(targetIndex >= PADDING_CELL_COUNT && targetIndex < [self.boardModel.inventory count] + PADDING_CELL_COUNT){
+        [self.delegate selectionDidChange:[self.boardModel.inventory objectAtIndex:[visiblePaths[targetIndex] row] - PADDING_CELL_COUNT]];
+    }
 }
 
 @end
