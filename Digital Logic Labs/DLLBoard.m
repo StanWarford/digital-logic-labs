@@ -17,36 +17,69 @@
 
 @synthesize breadboardStateArray = _breadboardStateArray;
 @synthesize activeLab = _activeLab;
+@synthesize inventory = _inventory;
 
-// lazy instantiation of breadboardStateArray
+#pragma mark -
+#pragma mark lazy instantiation methods
 - (NSMutableArray *)breadboardStateArray
 {
-    if (!_breadboardStateArray) _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 3];
+    if (!_breadboardStateArray){
+        _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 3];
+    }
     return _breadboardStateArray;
 }
 
-//board constructor code here
+- (NSArray*)inventory
+{
+    if(!_inventory){
+        NSMutableArray* temp = [NSMutableArray array];
+        
+        for(int i = 0; i < 5; i++){
+            [temp addObject:[[DLLChip alloc] initWithIdenfifier:0]];
+        }
+        for(int i = 0; i < 5; i++){
+            [temp addObject:[[DLLChip alloc] initWithIdenfifier:3]];
+        }
+        [temp addObject:[[DLLChip alloc] initWithIdenfifier:1]];
+        [temp addObject:[[DLLChip alloc] initWithIdenfifier:2]];
+        for(int i = 0; i < 5; i++){
+            [temp addObject:[[DLLChip alloc] initWithIdenfifier:3]];
+        }
+        for(int i = 0; i < 5; i++){
+            [temp addObject:[[DLLChip alloc] initWithIdenfifier:0]];
+        }
+        _inventory = [NSArray arrayWithArray:temp];
+    }
+    return _inventory;
+}
+
+#pragma mark -
+#pragma mark initialization methods
 - (id)init
 {
     // Creates 3 x 3 array w/ all values set to boardCellStates.EMPTY
     // define overarching array as rows
-    int numRows = 3;
+    if((self = [super init])){
+        int numRows = 3;
     
-    NSMutableArray * boardColumns = [[NSMutableArray alloc] initWithCapacity: numRows];
-    
-    for(int i = 0; i < numRows; i++)
-    {
-        [boardColumns insertObject:[NSNumber numberWithInt: EMPTY] atIndex:i];
-    }
-    
-    for(int i = 0; i < [_breadboardStateArray count]; i++)
-    {
+        NSMutableArray * boardColumns = [[NSMutableArray alloc] initWithCapacity: numRows];
+        
+        for(int i = 0; i < numRows; i++)
+        {
+            [boardColumns insertObject:[NSNumber numberWithInt: EMPTY] atIndex:i];
+        }
+        
+        for(int i = 0; i < [_breadboardStateArray count]; i++)
+        {
         [_breadboardStateArray insertObject: boardColumns atIndex: i];
+        }
     }
     
     return self;
 }
 
+#pragma mark -
+#pragma mark component addition methods
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(CGPoint)coords
 {
     
@@ -61,14 +94,27 @@
     // need internal safety w/ exceptions
 }
 
+#pragma mark -
+#pragma mark component removal methods
+- (DLLAComponent*)removeComponentAtCoordinate:(CGPoint)coords //this will return component type (perhaps ENUM)-Casey
+{
+    //not necessarily upper left-need to check 2D array (w/ trinary entries?)
+    //remove an existing component from XML file
+    return [[DLLChip alloc] init];
+}
+
+- (void)clearBoard
+{
+    //reset XML to default, clear data structure, and set all cells in board array to EMPTY
+}
+
+#pragma mark -
+#pragma mark board state methods
 - (BOOL)isChip:(NSInteger)partNum validAtUpperLeftCornerCoordinate:(CGPoint)coords
 {
-    //helper method for collision detection
-    
     return YES;
 }
 
-//helper method for collision detection
 - (NSInteger)boardStateAt:(CGPoint)coords
 {
     NSUInteger rowCoordinate = coords.y;
@@ -95,43 +141,10 @@
     return YES;
 }
 
-- (DLLAComponent*)removeComponentAtCoordinate:(CGPoint)coords //this will return component type (perhaps ENUM)-Casey
-{
-    //not necessarily upper left-need to check 2D array (w/ trinary entries?)
-    //remove an existing component from XML file
-    return [[DLLChip alloc] init];
-}
-
 - (BOOL)cellIsAvailableFor:(NSInteger)componentType
 {
     return YES;
 }
 
-- (void)clearBoard
-{
-    //reset XML to default, clear data structure, and set all cells in board array to EMPTY
-}
-
 // 2D needs to be 63x25 w/ 63rd row as a 'trash' row, items put here will not be added-mark as always unavailable
-
-- (NSArray*)getCurrentInventory
-{
-    NSMutableArray* temp = [NSMutableArray array];
-    
-    for(int i = 0; i < 5; i++){
-        [temp addObject:[[DLLChip alloc] initWithIdenfifier:0]];
-    }
-    for(int i = 0; i < 5; i++){
-        [temp addObject:[[DLLChip alloc] initWithIdenfifier:3]];
-    }
-    [temp addObject:[[DLLChip alloc] initWithIdenfifier:1]];
-    [temp addObject:[[DLLChip alloc] initWithIdenfifier:2]];
-    for(int i = 0; i < 5; i++){
-        [temp addObject:[[DLLChip alloc] initWithIdenfifier:3]];
-    }
-    for(int i = 0; i < 5; i++){
-       [temp addObject:[[DLLChip alloc] initWithIdenfifier:0]];
-    }
-    return [NSArray arrayWithArray:temp];
-}
 @end

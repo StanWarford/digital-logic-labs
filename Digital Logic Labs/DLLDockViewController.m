@@ -9,7 +9,6 @@
 #import "DLLDockViewController.h"
 
 @interface DLLDockViewController ()
-@property (nonatomic, strong) NSArray *dataArray; // legacy
 @property (nonatomic, strong) NSArray *inventory;
 @property (nonatomic, strong) DLLDockViewLayout *dockLayout;
 - (void)selectCenterItem;
@@ -20,21 +19,12 @@
 #define NUMBER_OF_SECTIONS 1
 #define DUMMY_CELL_COUNT 5 // number of invisible dummy cells in the dock
 
-@synthesize dataArray = _dataArray;
 @synthesize delegate = _delegate;
 @synthesize boardModel = _boardModel;
 @synthesize dockLayout = _dockLayout;
 
 #pragma mark -
 #pragma mark property instantiation
-- (NSArray*)dataArray
-{
-    if(!_dataArray){
-        _dataArray = [self.boardModel getCurrentInventory];
-    }
-    return _dataArray;
-}
-
 - (DLLDockViewLayout*)dockLayout
 {
     if(!_dockLayout){
@@ -82,7 +72,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.dataArray count];
+    return [self.boardModel.inventory count];
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -96,7 +86,7 @@
     
     // set background
     UIView *backgroundView = [[UIView alloc] initWithFrame:cell.frame];
-    UIImage *sourceBG = [[self.dataArray objectAtIndex:row] image];
+    UIImage *sourceBG = [[self.boardModel.inventory objectAtIndex:row] image];
     CGSize bgSize = cell.frame.size;
     
     UIGraphicsBeginImageContext(bgSize);
@@ -107,11 +97,6 @@
     backgroundView.backgroundColor = [UIColor colorWithPatternImage:resizedBG];
     cell.backgroundView = backgroundView;
     //cell.backgroundColor = UIColor.whiteColor;
-    
-    // set selection
-    UIView *selectedView = [[UIView alloc] initWithFrame:cell.frame];
-    selectedView.backgroundColor = UIColor.greenColor;
-    cell.selectedBackgroundView = selectedView;
     
     // set autoresizing
     cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -148,7 +133,7 @@
 #pragma mark DLLDockViewLayoutDelegate methods
 - (void)selectionDidChange:(NSInteger)selection
 {
-    [self.delegate selectionDidChange:[self.dataArray objectAtIndex:selection]];
+    [self.delegate selectionDidChange:[self.boardModel.inventory objectAtIndex:selection]];
 }
 
 #pragma mark -
@@ -159,7 +144,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-// calculates the location of the center visible item in the dock and selects it
+// calculates the location of the center visible item in the dock and notifies the delegate what it is
 - (void)selectCenterItem
 {
     NSArray *visiblePaths = [NSArray array]; // returns a list of indexPaths for visible objects
@@ -171,10 +156,9 @@
     }
     NSInteger middleOffset = [visiblePaths count]/2;
     NSNumber *targetRow = [NSNumber numberWithInteger:[[temp valueForKeyPath:@"@max.intValue"] intValue] - middleOffset];
-    // get the index of the middle element and select it
+    // get the index of the middle element and notify delegate
     NSInteger targetIndex = [temp indexOfObject:targetRow];
-    [self.collectionView selectItemAtIndexPath:visiblePaths[targetIndex] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-    [self.delegate selectionDidChange:[self.dataArray objectAtIndex:[visiblePaths[targetIndex] row]]];
+    [self.delegate selectionDidChange:[self.boardModel.inventory objectAtIndex:[visiblePaths[targetIndex] row]]];
 }
 
 @end

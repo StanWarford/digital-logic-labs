@@ -19,22 +19,18 @@ typedef enum boardCellStates
     WIRE
 } CellState;
 
+@property (nonatomic, strong) NSArray* inventory;
+
 - (id)init;
 
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(CGPoint)coords;
-
 - (void)addWireFromPoint:(CGPoint)startingPoint toPoint:(CGPoint) endingPoint withColor:(UIColor *)color;
 
-- (BOOL)isChip:(NSInteger)partNum validAtUpperLeftCornerCoordinate:(CGPoint)coords;
-
-- (NSInteger)boardStateAt:(CGPoint)coords;
-
-- (BOOL)cellIsAvailableFor:(NSInteger)componentType;
-
 - (DLLAComponent*)removeComponentAtCoordinate:(CGPoint)coords;
-
 - (void)clearBoard;
 
-- (NSArray*)getCurrentInventory;
+- (BOOL)isChip:(NSInteger)partNum validAtUpperLeftCornerCoordinate:(CGPoint)coords;
+- (NSInteger)boardStateAt:(CGPoint)coords;
+- (BOOL)cellIsAvailableFor:(NSInteger)componentType;
 
 @end

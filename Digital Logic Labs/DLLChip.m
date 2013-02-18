@@ -10,6 +10,8 @@
 
 @implementation DLLChip
 
+#pragma mark -
+#pragma mark initialization methods
 - (id)initWithIdenfifier:(NSInteger)identifier
 {
     if((self = [super init])){
@@ -27,6 +29,8 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark display methods
 - (void)displayComponentInView:(UIView *)view atCoordinates:(CGPoint)loc
 {
     // display chip

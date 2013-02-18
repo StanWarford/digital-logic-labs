@@ -18,7 +18,7 @@
 
 #define ITEM_SIZE 75 // needed to make active frame to select correct item to zoom
 #define ACTIVE_DISTANCE 100 // change to zoom cells outside of active frame
-#define ZOOM_FACTOR 0.5 // defines amount of zoom
+#define ZOOM_FACTOR 0.7 // defines amount of zoom
 #define ITEM_SPACING 5000.0 // used to ensure items display in a single row
 #define LINE_SPACING 20.0 // defines minimum spacing between items
 
@@ -108,7 +108,6 @@
         NSNumber *targetRow = [NSNumber numberWithInteger:[[temp valueForKeyPath:@"@max.intValue"] intValue] - middleOffset];
         // get the index of the middle element and select it
         NSInteger targetIndex = [temp indexOfObject:targetRow];
-        [self.collectionView selectItemAtIndexPath:visiblePaths[targetIndex] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
         [self.delegate selectionDidChange:[visiblePaths[targetIndex] row]];
     }
 }

@@ -13,6 +13,16 @@
 @synthesize identifier = _identifier;
 @synthesize image = _image;
 
+#pragma mark -
+#pragma mark initialization methods
+- (id)initWithIdenfifier:(NSInteger)identifier
+{
+    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
+    return nil;
+}
+
+#pragma mark -
+#pragma mark display methods
 - (void)displayComponentInView:(UIView *)view atCoordinates:(CGPoint)loc
 {
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
