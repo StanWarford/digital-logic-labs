@@ -84,7 +84,7 @@
     {
         case CHIP:
             break;
-        case WIRE:
+        case WIRE: return [self boardStateAt: coords] == EMPTY;
             break;
         default: return NO;
     }
