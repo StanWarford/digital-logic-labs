@@ -18,9 +18,9 @@
         self.identifier = identifier;
         if(self.identifier == 0){
             self.image = [UIImage imageNamed:@"placeholder"];
-        }else if(self.identifier == 1){
+        }else if(self.identifier == 7400){
             self.image = [UIImage imageNamed:@"chip-14"];
-        }else if(self.identifier == 2){
+        }else if(self.identifier == 7476){
             self.image = [UIImage imageNamed:@"chip-16"];
         }else{
             self.image = [UIImage imageNamed:@"200px-AND_ANSI"];

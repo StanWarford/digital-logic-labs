@@ -37,8 +37,8 @@
         for(int i = 0; i < 5; i++){
             [temp addObject:[[DLLChip alloc] initWithIdenfifier:3 andType:CHIP]];
         }
-        [temp addObject:[[DLLChip alloc] initWithIdenfifier:1 andType:CHIP]];
-        [temp addObject:[[DLLChip alloc] initWithIdenfifier:2 andType:CHIP]];
+        [temp addObject:[[DLLChip alloc] initWithIdenfifier:7400 andType:CHIP]];
+        [temp addObject:[[DLLChip alloc] initWithIdenfifier:7476 andType:CHIP]];
         for(int i = 0; i < 5; i++){
             [temp addObject:[[DLLChip alloc] initWithIdenfifier:3 andType:CHIP]];
         }
@@ -64,9 +64,9 @@
             [boardColumns insertObject:[NSNumber numberWithInt: EMPTY] atIndex:i];
         }
         
-        for(int i = 0; i < [_breadboardStateArray count]; i++)
+        for(int i = 0; i < [self.breadboardStateArray count]; i++)
         {
-        [_breadboardStateArray insertObject: boardColumns atIndex: i];
+        [self.breadboardStateArray insertObject: boardColumns atIndex: i];
         }
     }
     
@@ -110,25 +110,52 @@
 {
     NSUInteger rowCoordinate = coords.y;
     NSUInteger columnCoordinate = coords.x;
-    NSArray * row = [_breadboardStateArray objectAtIndex:rowCoordinate];
+    NSArray * row = [self.breadboardStateArray objectAtIndex:rowCoordinate];
     return [[row objectAtIndex: columnCoordinate] integerValue];
     //return enumerated value at the given point
 }
 
-- (BOOL)cellAt: (CGPoint)coords IsAvailableFor: (NSInteger)componentType
+- (BOOL)cellAt: (CGPoint)coords IsAvailableForChip: (NSInteger)partNum  OfType: (NSInteger)componentType
 {
     //logic for determining if a component is allowed in a cell
     //componentType should be enumerated CellState
     
     switch(componentType)
     {
-        case CHIP:
+        case CHIP: return [self willChip: partNum FitAt: coords];
             break;
         case WIRE: return [self boardStateAt: coords] == EMPTY;
             break;
         default: return NO;
     }
     
+    return YES;
+}
+
+#pragma mark -
+#pragma mark helper methods
+- (BOOL)willChip: (NSInteger)partNum FitAt: (CGPoint)coords
+{
+    int x = coords.x;
+    int y = coords.y;
+    
+    if(partNum == 7400) //assume 14 pin
+    {
+        for(;coords.x <= x + 2; coords.x++)
+        {
+            for(;coords.y <= y + 7; coords.y++)
+            {
+                if([self boardStateAt: coords] != EMPTY) return NO;
+            }
+        }
+        
+        
+        
+        
+    } else if(partNum == 7476)  //assume 16 pin
+    {
+        
+    }
     return YES;
 }
 

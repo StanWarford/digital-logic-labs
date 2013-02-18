@@ -31,6 +31,6 @@ typedef enum boardCellStates
 
 - (NSInteger)boardStateAt:(CGPoint)coords;
 
-- (BOOL)cellAt: (CGPoint)coords IsAvailableFor: (NSInteger)componentType;
+- (BOOL)cellAt: (CGPoint)coords IsAvailableForChip: (NSInteger)partNum  OfType: (NSInteger)componentType;
 
 @end

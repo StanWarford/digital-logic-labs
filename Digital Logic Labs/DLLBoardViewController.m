@@ -76,7 +76,7 @@
     }else{
         self.activeComponent = self.selectedChip;
     }
-    BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableFor:self.activeComponent.type];
+    BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     [self.activeComponent displayGhostInView:self.view atCoordinates:loc withHoleAvailable:isAvailable];
 }
@@ -87,7 +87,7 @@
     [super touchesMoved:touches withEvent:event];
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableFor:self.activeComponent.type];
+    BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     [self.activeComponent displayGhostInView:self.view atCoordinates:loc withHoleAvailable:isAvailable];
 }
@@ -98,7 +98,7 @@
     [super touchesEnded:touches withEvent:event];
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableFor:self.activeComponent.type];
+    BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     if(isAvailable){
         [self.boardModel addChipWithPartNum:self.activeComponent.identifier atUpperLeftCornerCoordinate:loc];
