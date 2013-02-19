@@ -108,11 +108,14 @@
 
 - (NSInteger)boardStateAt:(CGPoint)coords
 {
+    /* Casey - this is not working correctly
     NSUInteger rowCoordinate = coords.y;
     NSUInteger columnCoordinate = coords.x;
     NSArray * row = [self.breadboardStateArray objectAtIndex:rowCoordinate];
     return [[row objectAtIndex: columnCoordinate] integerValue];
     //return enumerated value at the given point
+    */
+    return EMPTY;
 }
 
 - (BOOL)cellAt: (CGPoint)coords IsAvailableForChip: (NSInteger)partNum  OfType: (NSInteger)componentType

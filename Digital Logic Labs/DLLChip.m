@@ -8,6 +8,12 @@
 
 #import "DLLChip.h"
 
+@interface DLLChip()
+
+- (UIImage*)makeGhostWithHoleAvailable:(BOOL)available;
+
+@end
+
 @implementation DLLChip
 
 #pragma mark -
@@ -34,12 +40,43 @@
 #pragma mark display methods
 - (void)displayComponentInView:(UIView *)view atCoordinates:(CGPoint)loc
 {
-    // display chip
+    if(self.imageView){
+        [self removeImageView];
+    }
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(loc.x, loc.y, self.image.size.width, self.image.size.height)];
+    self.imageView.image = self.image;
+    [view addSubview:self.imageView];
 }
 
 - (void)displayGhostInView:(UIView *)view atCoordinates:(CGPoint)loc withHoleAvailable:(BOOL)available
 {
-    // display ghost chip
+    if(self.imageView){
+        [self removeImageView];
+    }
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(loc.x, loc.y, self.image.size.width, self.image.size.height)];
+    self.imageView.image = [self makeGhostWithHoleAvailable:available];
+    [view addSubview:self.imageView];
 }
 
+- (void)translateGhostImageTo:(CGPoint)coords withHoleAvailable:(BOOL)available
+{
+    [UIView beginAnimations:@"UIImage Move" context:NULL];
+    CGSize size = self.imageView.frame.size;
+    self.imageView.frame = CGRectMake(coords.x, coords.y, size.width, size.height);
+    [UIView commitAnimations];
+}
+
+- (void)removeImageView
+{
+    [self.imageView removeFromSuperview];
+    self.imageView = nil;
+}
+
+#pragma mark -
+#pragma mark image manipulation methods
+- (UIImage*)makeGhostWithHoleAvailable:(BOOL)available
+{
+    // manipulate self.image to be a ghost (with highliting if !available)
+    return self.image;
+}
 @end

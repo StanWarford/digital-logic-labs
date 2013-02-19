@@ -68,42 +68,62 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
+    
     UITouch *touch = [touches anyObject]; // with multitouch disabled, this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    BOOL isEmpty = [self.boardModel boardStateAt:loc] == EMPTY;
+    CGPoint boardLoc = [self nearestBoardCoordinateTo:loc];
+    CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
+    BOOL isEmpty = [self.boardModel boardStateAt:boardLoc] == EMPTY;
+    
     if(!isEmpty){
         self.activeComponent = [self.boardModel removeComponentAtCoordinate:loc];
+        [self.activeComponent removeImageView];
     }else{
         self.activeComponent = self.selectedChip;
     }
+    
     BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
-    [self.activeComponent displayGhostInView:self.view atCoordinates:loc withHoleAvailable:isAvailable];
+    
+    [self.activeComponent displayGhostInView:self.view atCoordinates:displayLoc withHoleAvailable:isAvailable];
 }
 
 // when the touch moves, query the model and update the ghost image
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesMoved:touches withEvent:event];
+    
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
+    CGPoint boardLoc = [self nearestBoardCoordinateTo:loc];
+    CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
+    
+    BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
-    [self.activeComponent displayGhostInView:self.view atCoordinates:loc withHoleAvailable:isAvailable];
+    
+    [self.activeComponent translateGhostImageTo:displayLoc withHoleAvailable:isAvailable];
 }
 
 // when the touch ends, query the model one more time before adding the element
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesEnded:touches withEvent:event];
+    
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
+    CGPoint boardLoc = [self nearestBoardCoordinateTo:loc];
+    CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
+    
     BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+    
     if(isAvailable){
-        [self.boardModel addChipWithPartNum:self.activeComponent.identifier atUpperLeftCornerCoordinate:loc];
-        [self.activeComponent displayComponentInView:self.view atCoordinates:loc];
-    } // otherwise do nothing
+        [self.boardModel addChipWithPartNum:self.activeComponent.identifier atUpperLeftCornerCoordinate:boardLoc];
+        [self.activeComponent displayComponentInView:self.view atCoordinates:displayLoc];
+    }else{
+        [self.activeComponent removeImageView];
+    }
+    
     self.activeComponent = nil;
 }
 
@@ -118,7 +138,7 @@
 #pragma mark display methods
 - (CGPoint)nearestBoardCoordinateTo:(CGPoint)loc
 {
-    return loc;
+    return CGPointMake(0,0);
 }
 
 - (CGPoint)viewCoordinateFromBoardCoordinate:(CGPoint)loc

@@ -13,6 +13,7 @@
 @synthesize identifier = _identifier;
 @synthesize type = _type;
 @synthesize image = _image;
+@synthesize imageView = _imageView;
 
 #pragma mark -
 #pragma mark initialization methods
@@ -30,6 +31,16 @@
 }
 
 - (void)displayGhostInView:(UIView *)view atCoordinates:(CGPoint)loc withHoleAvailable:(BOOL)available
+{
+    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
+}
+
+- (void)translateGhostImageTo:(CGPoint)coords withholdAvailable:(BOOL)available
+{
+    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
+}
+
+- (void)removeImageView
 {
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }

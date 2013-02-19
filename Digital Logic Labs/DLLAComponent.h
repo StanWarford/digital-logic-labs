@@ -21,11 +21,14 @@
 @property (assign, nonatomic) NSInteger identifier;
 @property (assign, nonatomic) NSInteger type;
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIImageView *imageView;
 
 - (id)initWithIdenfifier:(NSInteger)identifier andType:(NSInteger)type;
 
 - (void)displayComponentInView:(UIView*)view atCoordinates:(CGPoint)loc;
 - (void)displayGhostInView:(UIView*)view atCoordinates:(CGPoint)loc withHoleAvailable:(BOOL)available;
+- (void)translateGhostImageTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
+- (void)removeImageView;
 
 // more methods and properties to be defined later
 
