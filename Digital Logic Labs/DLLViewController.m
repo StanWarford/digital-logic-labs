@@ -17,6 +17,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // PDF Viewer Code
+       /* NSString *path = [[NSBundle mainBundle] pathForResource:@"Lab1" ofType:@"pdf" inDirectory:@""];
+        NSURL *url = [NSURL fileURLWithPath:path];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [webview loadRequest:request];
+     */
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "DLLDockViewController.h"
-#import "DLLModel.h"
+#import "DLLBoard.h"
 
 @interface DLLBoardViewController : UIViewController <DLLDockViewControllerDelegate>
 
 @property (assign, nonatomic) NSInteger selectedChip;
 @property (weak, nonatomic) IBOutlet UILabel *testLabel;
-@property (strong, nonatomic) DLLModel *model;
+@property (strong, nonatomic) DLLBoard *model;
 - (IBAction)dragDetected:(UIPanGestureRecognizer*)sender;
 
 @end
