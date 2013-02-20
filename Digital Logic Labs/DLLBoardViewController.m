@@ -9,19 +9,18 @@
 #import "DLLBoardViewController.h"
 
 @interface DLLBoardViewController ()
-@property (nonatomic, strong) DLLAComponent *selectedChip;
 @property (nonatomic, strong) DLLAComponent *activeComponent;
 @property (assign, nonatomic) BOOL isPlacingWire;
+@property (nonatomic, assign) NSInteger selection;
 - (CGPoint)nearestBoardCoordinateTo:(CGPoint)loc;
 - (CGPoint)viewCoordinateFromBoardCoordinate:(CGPoint)loc;
 @end
 
 @implementation DLLBoardViewController
 
-@synthesize selectedChip = _selectedChip;
 @synthesize activeComponent = _activeComponent;
-@synthesize testLabel = _testLabel;
 @synthesize boardModel = _boardModel;
+@synthesize selection = _selection;
 
 #pragma mark -
 #pragma mark Initialization Metods
@@ -29,7 +28,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip.identifier];
     self.view.multipleTouchEnabled = NO;
     self.activeComponent = nil;
 }
@@ -55,10 +53,9 @@
 
 #pragma mark -
 #pragma mark DLLDockViewControllerDelegate methods
-- (void)selectionDidChange:(DLLAComponent*)selection
+- (void)selectionDidChange:(NSInteger)selection
 {
-    self.selectedChip = selection;
-    self.testLabel.text = [NSString stringWithFormat:@"%d", self.selectedChip.identifier];
+    self.selection = selection;
 }
 
 #pragma mark -
@@ -79,7 +76,7 @@
         self.activeComponent = [self.boardModel removeComponentAtCoordinate:loc];
         [self.activeComponent removeImageView];
     }else{
-        self.activeComponent = self.selectedChip;
+        self.activeComponent = [self.boardModel getNewComponentFromInventoryIndex:self.selection];
     }
     
     BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
@@ -138,7 +135,7 @@
 #pragma mark display methods
 - (CGPoint)nearestBoardCoordinateTo:(CGPoint)loc
 {
-    return CGPointMake(0,0);
+    return loc;
 }
 
 - (CGPoint)viewCoordinateFromBoardCoordinate:(CGPoint)loc

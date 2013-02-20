@@ -25,12 +25,12 @@ typedef enum boardCellStates
 
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(CGPoint)coords;
 - (void)addWireFromPoint:(CGPoint)startingPoint toPoint:(CGPoint) endingPoint withColor:(UIColor *)color;
+- (DLLAComponent*)getNewComponentFromInventoryIndex:(NSInteger)index;
 
 - (DLLAComponent*)removeComponentAtCoordinate:(CGPoint)coords;
 - (void)clearBoard;
 
 - (NSInteger)boardStateAt:(CGPoint)coords;
-
 - (BOOL)cellAt: (CGPoint)coords IsAvailableForChip: (NSInteger)partNum  OfType: (NSInteger)componentType;
 
 @end

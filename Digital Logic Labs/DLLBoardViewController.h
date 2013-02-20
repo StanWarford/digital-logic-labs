@@ -13,7 +13,6 @@
 
 @interface DLLBoardViewController : UIViewController <DLLDockViewControllerDelegate>
 
-@property (strong, nonatomic) IBOutlet UILabel *testLabel;
 @property (weak, nonatomic) DLLBoard *boardModel;
 
 @end

@@ -89,6 +89,11 @@
     // need internal safety w/ exceptions
 }
 
+- (DLLAComponent*)getNewComponentFromInventoryIndex:(NSInteger)index
+{
+    return [[DLLChip alloc] initWithIdenfifier:7400 andType:CHIP];
+}
+
 #pragma mark -
 #pragma mark component removal methods
 - (DLLAComponent*)removeComponentAtCoordinate:(CGPoint)coords //this will return component type (perhaps ENUM)-Casey

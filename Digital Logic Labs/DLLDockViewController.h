@@ -16,7 +16,7 @@
 
 @protocol DLLDockViewControllerDelegate <NSObject>
 
-- (void)selectionDidChange:(DLLAComponent*)selection;
+- (void)selectionDidChange:(NSInteger)selection;
 
 @end
 

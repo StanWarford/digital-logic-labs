@@ -136,7 +136,7 @@
 - (void)selectionDidChange:(NSInteger)selection
 {
     if(selection >= PADDING_CELL_COUNT && selection < [self.boardModel.inventory count] + PADDING_CELL_COUNT){
-        [self.delegate selectionDidChange:[self.boardModel.inventory objectAtIndex:selection - PADDING_CELL_COUNT]];
+        [self.delegate selectionDidChange:selection - PADDING_CELL_COUNT];
     }
 }
 

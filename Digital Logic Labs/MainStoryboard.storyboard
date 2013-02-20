@@ -349,26 +349,12 @@
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8K0-lK-VGN">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enI-E4-rtn">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="enI-E4-rtn" firstAttribute="leading" secondItem="8K0-lK-VGN" secondAttribute="leading" constant="405" id="Cwh-ra-hlZ"/>
-                            <constraint firstItem="enI-E4-rtn" firstAttribute="top" secondItem="8K0-lK-VGN" secondAttribute="top" constant="363" id="J7E-B6-RjJ"/>
-                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <connections>
-                        <outlet property="testLabel" destination="enI-E4-rtn" id="J57-6m-0ld"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjw-Cj-Pje" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -378,10 +364,6 @@
     <classes>
         <class className="DLLBoardViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLBoardViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="dragDetected:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="outlet" name="testLabel" candidateClass="UILabel"/>
-            </relationships>
         </class>
         <class className="DLLContainerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLContainerViewController.h"/>
