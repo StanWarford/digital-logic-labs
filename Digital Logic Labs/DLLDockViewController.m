@@ -70,7 +70,9 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.boardModel.inventory count] + PADDING_CELL_COUNT*2;
+    //return [self.boardModel.inventory count] + PADDING_CELL_COUNT*2;
+    //TODO: rewrite using new inventory model
+    return nil;
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -84,11 +86,14 @@
     // set background
     UIView *backgroundView = [[UIView alloc] initWithFrame:cell.frame];
     UIImage *sourceBG;
-    if(row >= PADDING_CELL_COUNT && row < [self.boardModel.inventory count] + PADDING_CELL_COUNT){
-        sourceBG = [[self.boardModel.inventory objectAtIndex:row - PADDING_CELL_COUNT] image];
-    }else{
-        sourceBG = [UIImage imageNamed:@"placeholder"];
-    }
+    //if(row >= PADDING_CELL_COUNT && row < [self.boardModel.inventory count] + PADDING_CELL_COUNT){
+    //    sourceBG = [[self.boardModel.inventory objectAtIndex:row - PADDING_CELL_COUNT] image];
+    //}else{
+    //    sourceBG = [UIImage imageNamed:@"placeholder"];
+    //}
+    
+    //TODO: rewrite using new inventory model
+    
     CGSize bgSize = cell.frame.size;
     
     UIGraphicsBeginImageContext(bgSize);
@@ -135,9 +140,11 @@
 #pragma mark DLLDockViewLayoutDelegate methods
 - (void)selectionDidChange:(NSInteger)selection
 {
-    if(selection >= PADDING_CELL_COUNT && selection < [self.boardModel.inventory count] + PADDING_CELL_COUNT){
-        [self.delegate selectionDidChange:selection - PADDING_CELL_COUNT];
-    }
+    //if(selection >= PADDING_CELL_COUNT && selection < [self.boardModel.inventory count] + PADDING_CELL_COUNT){
+    //    [self.delegate selectionDidChange:selection - PADDING_CELL_COUNT];
+    //}
+    
+    //TODO: rewrite this using new inventory model
 }
 
 #pragma mark -
@@ -162,9 +169,11 @@
     NSNumber *targetRow = [NSNumber numberWithInteger:[[temp valueForKeyPath:@"@max.intValue"] intValue] - middleOffset];
     // get the index of the middle element and notify delegate only if the middle cell is in the correct range
     NSInteger targetIndex = [temp indexOfObject:targetRow];
-    if(targetIndex >= PADDING_CELL_COUNT && targetIndex < [self.boardModel.inventory count] + PADDING_CELL_COUNT){
-        [self.delegate selectionDidChange:[self.boardModel.inventory objectAtIndex:[visiblePaths[targetIndex] row] - PADDING_CELL_COUNT]];
-    }
+    //if(targetIndex >= PADDING_CELL_COUNT && targetIndex < [self.boardModel.inventory count] + PADDING_CELL_COUNT){
+    //    [self.delegate selectionDidChange:[self.boardModel.inventory objectAtIndex:[visiblePaths[targetIndex] row] - PADDING_CELL_COUNT]];
+    
+    //TODO: rewrite this using new inventory model
+    //}
 }
 
 @end

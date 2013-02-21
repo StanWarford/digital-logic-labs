@@ -17,7 +17,6 @@
 
 @synthesize breadboardStateArray = _breadboardStateArray;
 @synthesize activeLab = _activeLab;
-@synthesize inventory = _inventory;
 
 #pragma mark -
 #pragma mark lazy instantiation methods
@@ -27,25 +26,6 @@
         _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 3];
     }
     return _breadboardStateArray;
-}
-
-- (NSArray*)inventory
-{
-    if(!_inventory){
-        NSMutableArray* temp = [NSMutableArray array];
-
-        for(int i = 0; i < 5; i++){
-            [temp addObject:[[DLLChip alloc] initWithIdenfifier:3 andType:CHIP]];
-        }
-        [temp addObject:[[DLLChip alloc] initWithIdenfifier:7400 andType:CHIP]];
-        [temp addObject:[[DLLChip alloc] initWithIdenfifier:7476 andType:CHIP]];
-        for(int i = 0; i < 5; i++){
-            [temp addObject:[[DLLChip alloc] initWithIdenfifier:3 andType:CHIP]];
-        }
-        
-        _inventory = [NSArray arrayWithArray:temp];
-    }
-    return _inventory;
 }
 
 #pragma mark -
@@ -92,6 +72,16 @@
 - (DLLAComponent*)getNewComponentFromInventoryIndex:(NSInteger)index
 {
     return [[DLLChip alloc] initWithIdenfifier:7400 andType:CHIP];
+}
+
+- (UIImage *)getImageFromInventoryIndex: (NSInteger)index
+{
+    return nil;
+}
+
+- (NSInteger)getInventorySize
+{
+    return 0;
 }
 
 #pragma mark -
