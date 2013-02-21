@@ -14,8 +14,8 @@
 		4836742816CC56AC008B87E6 /* Lab5.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836742216CC56AC008B87E6 /* Lab5.pdf */; };
 		4836742916CC56AC008B87E6 /* Lab6.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836742316CC56AC008B87E6 /* Lab6.pdf */; };
 		486B08DB16D58CD400F0E4B8 /* breadboard-new.png in Resources */ = {isa = PBXBuildFile; fileRef = 486B08D616D58CD400F0E4B8 /* breadboard-new.png */; };
-		486B08DC16D58CD400F0E4B8 /* chip-14.png in Resources */ = {isa = PBXBuildFile; fileRef = 486B08D716D58CD400F0E4B8 /* chip-14.png */; };
-		486B08DD16D58CD400F0E4B8 /* chip-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 486B08D816D58CD400F0E4B8 /* chip-16.png */; };
+		486B08DC16D58CD400F0E4B8 /* chip-14_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 486B08D716D58CD400F0E4B8 /* chip-14_new.png */; };
+		486B08DD16D58CD400F0E4B8 /* chip-16_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 486B08D816D58CD400F0E4B8 /* chip-16_new.png */; };
 		486B08DE16D58CD400F0E4B8 /* light-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 486B08D916D58CD400F0E4B8 /* light-off.png */; };
 		486B08DF16D58CD400F0E4B8 /* light-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 486B08DA16D58CD400F0E4B8 /* light-on.png */; };
 		486B08E316D5948300F0E4B8 /* DLLSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B08E216D5948300F0E4B8 /* DLLSplitViewController.m */; };
@@ -70,8 +70,8 @@
 		4836742216CC56AC008B87E6 /* Lab5.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab5.pdf; path = LabPdfs/Lab5.pdf; sourceTree = "<group>"; };
 		4836742316CC56AC008B87E6 /* Lab6.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab6.pdf; path = LabPdfs/Lab6.pdf; sourceTree = "<group>"; };
 		486B08D616D58CD400F0E4B8 /* breadboard-new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "breadboard-new.png"; sourceTree = "<group>"; };
-		486B08D716D58CD400F0E4B8 /* chip-14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-14.png"; sourceTree = "<group>"; };
-		486B08D816D58CD400F0E4B8 /* chip-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-16.png"; sourceTree = "<group>"; };
+		486B08D716D58CD400F0E4B8 /* chip-14_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-14_new.png"; sourceTree = "<group>"; };
+		486B08D816D58CD400F0E4B8 /* chip-16_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-16_new.png"; sourceTree = "<group>"; };
 		486B08D916D58CD400F0E4B8 /* light-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light-off.png"; sourceTree = "<group>"; };
 		486B08DA16D58CD400F0E4B8 /* light-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light-on.png"; sourceTree = "<group>"; };
 		486B08E116D5948300F0E4B8 /* DLLSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLSplitViewController.h; sourceTree = "<group>"; };
@@ -152,8 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				486B08D616D58CD400F0E4B8 /* breadboard-new.png */,
-				486B08D716D58CD400F0E4B8 /* chip-14.png */,
-				486B08D816D58CD400F0E4B8 /* chip-16.png */,
+				486B08D716D58CD400F0E4B8 /* chip-14_new.png */,
+				486B08D816D58CD400F0E4B8 /* chip-16_new.png */,
 				486B08D916D58CD400F0E4B8 /* light-off.png */,
 				486B08DA16D58CD400F0E4B8 /* light-on.png */,
 			);
@@ -414,8 +414,8 @@
 				4836742816CC56AC008B87E6 /* Lab5.pdf in Resources */,
 				4836742916CC56AC008B87E6 /* Lab6.pdf in Resources */,
 				486B08DB16D58CD400F0E4B8 /* breadboard-new.png in Resources */,
-				486B08DC16D58CD400F0E4B8 /* chip-14.png in Resources */,
-				486B08DD16D58CD400F0E4B8 /* chip-16.png in Resources */,
+				486B08DC16D58CD400F0E4B8 /* chip-14_new.png in Resources */,
+				486B08DD16D58CD400F0E4B8 /* chip-16_new.png in Resources */,
 				486B08DE16D58CD400F0E4B8 /* light-off.png in Resources */,
 				486B08DF16D58CD400F0E4B8 /* light-on.png in Resources */,
 			);

@@ -42,10 +42,7 @@
 - (void)selectionDidChangeTo:(NSInteger)selection
 {
     NSInteger offsetSelection = selection + 1;
-    NSString *path;
-    
-    // switch to determine path
-    
+    NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Lab%d", offsetSelection] ofType:@"pdf" inDirectory:@""];
     NSURL *targetURL = [NSURL fileURLWithPath:path];
     NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
     [self.myWebView loadRequest:request];
