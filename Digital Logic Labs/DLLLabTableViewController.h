@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DLLLabTableViewController : UITableViewController <UITableViewDataSource>
+@protocol DLLLabTableViewControllerDelegate <NSObject>
+- (void) selectionDidChangeTo:(NSInteger)selection;
+@end
 
-@property(nonatomic, assign) id<UITableViewDelegate> delegate;
+@interface DLLLabTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, weak) id <DLLLabTableViewControllerDelegate> delegate;
 
 @end

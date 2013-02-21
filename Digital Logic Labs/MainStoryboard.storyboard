@@ -65,7 +65,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J5n-AZ-ojf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="387" y="-712"/>
+            <point key="canvasLocation" x="-133" y="-660"/>
         </scene>
         <!--Dock View Controller-->
         <scene sceneID="DdU-Br-Smq">
@@ -127,25 +127,10 @@
             </objects>
             <point key="canvasLocation" x="853" y="-93"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="9RL-hu-vI2">
-            <objects>
-                <navigationController id="NA8-HW-o9j" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="67a-Ax-ZVv">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="sXR-kR-irG" kind="relationship" relationship="rootViewController" id="q50-Ka-2DP"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lo1-QK-kFb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-149" y="-712"/>
-        </scene>
         <!--Split View Controller-->
         <scene sceneID="brV-fB-yel">
             <objects>
-                <splitViewController id="Ssc-NW-jFM" sceneMemberID="viewController">
+                <splitViewController id="Ssc-NW-jFM" customClass="DLLSplitViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="6FG-Tt-BeV">
                         <barButtonItem key="rightBarButtonItem" title="Board" id="NNb-Yj-6eQ">
@@ -155,8 +140,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="NA8-HW-o9j" kind="relationship" relationship="masterViewController" id="ipY-wi-HNv"/>
                         <segue destination="ZnP-Q9-eLL" kind="relationship" relationship="detailViewController" id="NYh-7I-Rrn"/>
+                        <segue destination="sXR-kR-irG" kind="relationship" relationship="masterViewController" id="pvs-pR-khM"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4OQ-sn-btQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -375,6 +360,9 @@
             <relationships>
                 <relationship kind="outlet" name="myWebView" candidateClass="UIWebView"/>
             </relationships>
+        </class>
+        <class className="DLLSplitViewController" superclassName="UISplitViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLSplitViewController.h"/>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>

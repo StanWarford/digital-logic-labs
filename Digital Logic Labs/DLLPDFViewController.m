@@ -15,7 +15,7 @@
 
 @implementation DLLPDFViewController
 
-@synthesize myWebView;
+@synthesize myWebView = _myWebView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -33,10 +33,22 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Lab1" ofType:@"pdf" inDirectory:@""];
     NSURL *targetURL = [NSURL fileURLWithPath:path];
     NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
-    [myWebView loadRequest:request];
+    [self.myWebView loadRequest:request];
 	// Do any additional setup after loading the view.
     // data source
     // delegate
+}
+
+- (void)selectionDidChangeTo:(NSInteger)selection
+{
+    NSInteger offsetSelection = selection + 1;
+    NSString *path;
+    
+    // switch to determine path
+    
+    NSURL *targetURL = [NSURL fileURLWithPath:path];
+    NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
+    [self.myWebView loadRequest:request];
 }
 
 - (void)didReceiveMemoryWarning

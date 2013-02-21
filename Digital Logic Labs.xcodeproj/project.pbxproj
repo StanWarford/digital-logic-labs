@@ -18,6 +18,7 @@
 		486B08DD16D58CD400F0E4B8 /* chip-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 486B08D816D58CD400F0E4B8 /* chip-16.png */; };
 		486B08DE16D58CD400F0E4B8 /* light-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 486B08D916D58CD400F0E4B8 /* light-off.png */; };
 		486B08DF16D58CD400F0E4B8 /* light-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 486B08DA16D58CD400F0E4B8 /* light-on.png */; };
+		486B08E316D5948300F0E4B8 /* DLLSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B08E216D5948300F0E4B8 /* DLLSplitViewController.m */; };
 		4879503516CC6ED000D6DEFD /* DLLLabTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4879503416CC6ED000D6DEFD /* DLLLabTableViewController.m */; };
 		4879503816CC6F2C00D6DEFD /* DLLPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4879503716CC6F2C00D6DEFD /* DLLPDFViewController.m */; };
 		48F0C62016C32AF70035EBFC /* chip-14.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F0C61D16C32AF70035EBFC /* chip-14.png */; };
@@ -62,17 +63,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4836741E16CC56AC008B87E6 /* Lab1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lab1.pdf; sourceTree = "<group>"; };
-		4836741F16CC56AC008B87E6 /* Lab2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lab2.pdf; sourceTree = "<group>"; };
-		4836742016CC56AC008B87E6 /* Lab3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lab3.pdf; sourceTree = "<group>"; };
-		4836742116CC56AC008B87E6 /* Lab4.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lab4.pdf; sourceTree = "<group>"; };
-		4836742216CC56AC008B87E6 /* Lab5.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lab5.pdf; sourceTree = "<group>"; };
-		4836742316CC56AC008B87E6 /* Lab6.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Lab6.pdf; sourceTree = "<group>"; };
+		4836741E16CC56AC008B87E6 /* Lab1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab1.pdf; path = LabPdfs/Lab1.pdf; sourceTree = "<group>"; };
+		4836741F16CC56AC008B87E6 /* Lab2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab2.pdf; path = LabPdfs/Lab2.pdf; sourceTree = "<group>"; };
+		4836742016CC56AC008B87E6 /* Lab3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab3.pdf; path = LabPdfs/Lab3.pdf; sourceTree = "<group>"; };
+		4836742116CC56AC008B87E6 /* Lab4.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab4.pdf; path = LabPdfs/Lab4.pdf; sourceTree = "<group>"; };
+		4836742216CC56AC008B87E6 /* Lab5.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab5.pdf; path = LabPdfs/Lab5.pdf; sourceTree = "<group>"; };
+		4836742316CC56AC008B87E6 /* Lab6.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab6.pdf; path = LabPdfs/Lab6.pdf; sourceTree = "<group>"; };
 		486B08D616D58CD400F0E4B8 /* breadboard-new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "breadboard-new.png"; sourceTree = "<group>"; };
 		486B08D716D58CD400F0E4B8 /* chip-14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-14.png"; sourceTree = "<group>"; };
 		486B08D816D58CD400F0E4B8 /* chip-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-16.png"; sourceTree = "<group>"; };
 		486B08D916D58CD400F0E4B8 /* light-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light-off.png"; sourceTree = "<group>"; };
 		486B08DA16D58CD400F0E4B8 /* light-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light-on.png"; sourceTree = "<group>"; };
+		486B08E116D5948300F0E4B8 /* DLLSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLSplitViewController.h; sourceTree = "<group>"; };
+		486B08E216D5948300F0E4B8 /* DLLSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLSplitViewController.m; sourceTree = "<group>"; };
 		4879503316CC6ED000D6DEFD /* DLLLabTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLLabTableViewController.h; sourceTree = "<group>"; };
 		4879503416CC6ED000D6DEFD /* DLLLabTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLLabTableViewController.m; sourceTree = "<group>"; };
 		4879503616CC6F2C00D6DEFD /* DLLPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLPDFViewController.h; sourceTree = "<group>"; };
@@ -145,19 +148,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4836741D16CC56AC008B87E6 /* LabPdfs */ = {
-			isa = PBXGroup;
-			children = (
-				4836741E16CC56AC008B87E6 /* Lab1.pdf */,
-				4836741F16CC56AC008B87E6 /* Lab2.pdf */,
-				4836742016CC56AC008B87E6 /* Lab3.pdf */,
-				4836742116CC56AC008B87E6 /* Lab4.pdf */,
-				4836742216CC56AC008B87E6 /* Lab5.pdf */,
-				4836742316CC56AC008B87E6 /* Lab6.pdf */,
-			);
-			path = LabPdfs;
-			sourceTree = "<group>";
-		};
 		486B08D516D58CD400F0E4B8 /* Chip and Breadboard Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,13 +160,29 @@
 			path = "Chip and Breadboard Images";
 			sourceTree = "<group>";
 		};
+		486B08E416D5B71000F0E4B8 /* Lab PDFs */ = {
+			isa = PBXGroup;
+			children = (
+				4836741E16CC56AC008B87E6 /* Lab1.pdf */,
+				4836741F16CC56AC008B87E6 /* Lab2.pdf */,
+				4836742016CC56AC008B87E6 /* Lab3.pdf */,
+				4836742116CC56AC008B87E6 /* Lab4.pdf */,
+				4836742216CC56AC008B87E6 /* Lab5.pdf */,
+				4836742316CC56AC008B87E6 /* Lab6.pdf */,
+			);
+			name = "Lab PDFs";
+			sourceTree = "<group>";
+		};
 		4879503116CC6E5E00D6DEFD /* LabView */ = {
 			isa = PBXGroup;
 			children = (
+				486B08E416D5B71000F0E4B8 /* Lab PDFs */,
 				4879503316CC6ED000D6DEFD /* DLLLabTableViewController.h */,
 				4879503416CC6ED000D6DEFD /* DLLLabTableViewController.m */,
 				4879503616CC6F2C00D6DEFD /* DLLPDFViewController.h */,
 				4879503716CC6F2C00D6DEFD /* DLLPDFViewController.m */,
+				486B08E116D5948300F0E4B8 /* DLLSplitViewController.h */,
+				486B08E216D5948300F0E4B8 /* DLLSplitViewController.m */,
 			);
 			name = LabView;
 			sourceTree = "<group>";
@@ -287,7 +293,6 @@
 			isa = PBXGroup;
 			children = (
 				486B08D516D58CD400F0E4B8 /* Chip and Breadboard Images */,
-				4836741D16CC56AC008B87E6 /* LabPdfs */,
 				D8AB957516C025B00074ABEB /* inventory.xml */,
 				CFDBF6D916B0C199009C3DA4 /* Digital Logic Labs-Info.plist */,
 				CFDBF6DA16B0C199009C3DA4 /* InfoPlist.strings */,
@@ -458,6 +463,7 @@
 				D8AB957A16C027310074ABEB /* DLLBoard.m in Sources */,
 				4879503516CC6ED000D6DEFD /* DLLLabTableViewController.m in Sources */,
 				4879503816CC6F2C00D6DEFD /* DLLPDFViewController.m in Sources */,
+				486B08E316D5948300F0E4B8 /* DLLSplitViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

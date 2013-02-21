@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DLLLabTableViewController.h"
 
-@interface DLLPDFViewController : UIViewController
+@interface DLLPDFViewController : UIViewController <DLLLabTableViewControllerDelegate>
 
+- (void) selectionDidChangeTo:(NSInteger)selection;
 @property (strong, nonatomic) IBOutlet UIWebView *myWebView;
 
 @end
