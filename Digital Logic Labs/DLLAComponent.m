@@ -10,6 +10,8 @@
 
 @implementation DLLAComponent
 
+// Casey - random change
+
 @synthesize identifier = _identifier;
 @synthesize type = _type;
 @synthesize image = _image;
