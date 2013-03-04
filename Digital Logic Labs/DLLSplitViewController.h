@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "DLLLabTableViewController.h"
 #import "DLLPDFViewController.h"
+#import "DLLBoard.h"
+#import "DLLContainerViewController.h"
 
 @interface DLLSplitViewController : UISplitViewController
+
+@property (nonatomic, strong) DLLBoard *boardModel;
 
 @end

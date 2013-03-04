@@ -189,12 +189,12 @@
 			isa = PBXGroup;
 			children = (
 				486B08E416D5B71000F0E4B8 /* Lab PDFs */,
+				486B08E116D5948300F0E4B8 /* DLLSplitViewController.h */,
+				486B08E216D5948300F0E4B8 /* DLLSplitViewController.m */,
 				4879503316CC6ED000D6DEFD /* DLLLabTableViewController.h */,
 				4879503416CC6ED000D6DEFD /* DLLLabTableViewController.m */,
 				4879503616CC6F2C00D6DEFD /* DLLPDFViewController.h */,
 				4879503716CC6F2C00D6DEFD /* DLLPDFViewController.m */,
-				486B08E116D5948300F0E4B8 /* DLLSplitViewController.h */,
-				486B08E216D5948300F0E4B8 /* DLLSplitViewController.m */,
 			);
 			name = LabView;
 			sourceTree = "<group>";

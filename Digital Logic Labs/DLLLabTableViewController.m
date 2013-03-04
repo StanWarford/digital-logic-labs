@@ -16,18 +16,12 @@
 
 #define NUMBER_OF_SECTIONS 1
 #define NUMBER_OF_ROWS 6
+#define INNER_PADDING 12
 
 @synthesize delegate = _delegate;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
+#pragma mark -
+#pragma mark view initialization methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -38,53 +32,49 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
+#pragma mark -
+#pragma mark TableView datasource methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
     return NUMBER_OF_SECTIONS;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     // Number of rows is the number of time zones in the region for the specified section.
     return NUMBER_OF_ROWS;
 }
 
-// Populated the table.
+// Populate the table.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
-    
     UILabel *label;
     
     label = (UILabel *)[cell viewWithTag:1];
     label.text = [NSString stringWithFormat:@"Lab %d", indexPath.row + 1];
    
     return cell;
-
 }
 
-// Indents each label in the table 12 spaces..
+// Indents each label in the table to the center of the cell
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 12;
+    return INNER_PADDING;
 }
 
 #pragma mark -
-#pragma mark Table view delegate
-
+#pragma mark TableView delegate methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.delegate selectionDidChangeTo:indexPath.row];
-    
+}
+
+#pragma mark -
+#pragma mark MISC
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

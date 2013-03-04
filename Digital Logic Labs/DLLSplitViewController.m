@@ -14,15 +14,20 @@
 
 @implementation DLLSplitViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize boardModel = _boardModel;
+
+#pragma mark -
+#pragma mark property instantiation
+- (DLLBoard*)boardModel
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if (!_boardModel){
+        _boardModel = [[DLLBoard alloc] init];
     }
-    return self;
+    return _boardModel;
 }
 
+#pragma mark -
+#pragma mark view initialization methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -31,11 +36,18 @@
     tableView.delegate = pdfView;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+#pragma mark -
+#pragma mark segue control methods
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [super viewWillAppear:animated];
+    if([segue.identifier isEqualToString:@"LabToBoardSegue"]){
+        DLLContainerViewController *controller = (DLLContainerViewController*)segue.destinationViewController;
+        controller.boardModel = self.boardModel;
+    }
 }
 
+#pragma mark -
+#pragma mark MISC
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

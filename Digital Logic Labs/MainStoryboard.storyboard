@@ -135,7 +135,7 @@
                     <navigationItem key="navigationItem" id="6FG-Tt-BeV">
                         <barButtonItem key="rightBarButtonItem" title="Board" id="NNb-Yj-6eQ">
                             <connections>
-                                <segue destination="PhO-gY-R9p" kind="push" id="WdB-A6-avG"/>
+                                <segue destination="PhO-gY-R9p" kind="push" identifier="LabToBoardSegue" id="WdB-A6-avG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

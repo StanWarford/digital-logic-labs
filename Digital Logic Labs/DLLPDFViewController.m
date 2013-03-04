@@ -10,44 +10,43 @@
 
 
 @interface DLLPDFViewController ()
-
+- (void)displayPageNamed:(NSString*)title ofType:(NSString*)type;
 @end
 
 @implementation DLLPDFViewController
 
+#define FILE_TYPE @"pdf"
+
 @synthesize myWebView = _myWebView;
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
+#pragma mark -
+#pragma mark view initialization methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Lab1" ofType:@"pdf" inDirectory:@""];
-    NSURL *targetURL = [NSURL fileURLWithPath:path];
-    NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
-    [self.myWebView loadRequest:request];
-	// Do any additional setup after loading the view.
-    // data source
-    // delegate
+    [self displayPageNamed:@"Lab1" ofType:FILE_TYPE];
 }
 
+#pragma mark -
+#pragma mark DLLTableViewControllerDelegate methods
 - (void)selectionDidChangeTo:(NSInteger)selection
 {
     NSInteger offsetSelection = selection + 1;
-    NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Lab%d", offsetSelection] ofType:@"pdf" inDirectory:@""];
+    [self displayPageNamed:[NSString stringWithFormat:@"Lab%d", offsetSelection] ofType:FILE_TYPE];
+}
+
+#pragma mark -
+#pragma mark page display methods
+- (void)displayPageNamed:(NSString *)title ofType:(NSString *)type
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:title ofType:type inDirectory:@""];
     NSURL *targetURL = [NSURL fileURLWithPath:path];
     NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
     [self.myWebView loadRequest:request];
 }
 
+#pragma mark -
+#pragma mark MISC
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
