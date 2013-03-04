@@ -12,11 +12,8 @@
 
 - (BOOL)isEqual:(id)otherPoint
 {
-    if([otherPoint class] == [self class])
-    {
-        //return self.xCoord == otherPoint.xCoord && self.yCoord == otherPoint.yCoord;
-        return YES;
-    } else return NO;
+    DLLPoint * comparePoint = (DLLPoint *) otherPoint;
+    return self.xCoord == comparePoint.xCoord && self.yCoord == comparePoint.yCoord;
 }
 
 @end
