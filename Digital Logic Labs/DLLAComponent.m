@@ -15,37 +15,11 @@
 
 @synthesize identifier = _identifier;
 @synthesize type = _type;
-@synthesize image = _image;
-@synthesize imageView = _imageView;
 
-#pragma mark -
-#pragma mark initialization methods
-- (id)initWithIdenfifier:(NSInteger)identifier andType:(NSInteger)type
+-(id)initWithIdentifier:(NSInteger)identifier andType:(NSInteger)type
 {
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
     return nil;
-}
-
-#pragma mark -
-#pragma mark display methods
-- (void)displayComponentInView:(UIView *)view atCoordinates:(CGPoint)loc
-{
-    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
-}
-
-- (void)displayGhostInView:(UIView *)view atCoordinates:(CGPoint)loc withHoleAvailable:(BOOL)available
-{
-    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
-}
-
-- (void)translateGhostImageTo:(CGPoint)coords withholdAvailable:(BOOL)available
-{
-    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
-}
-
-- (void)removeImageView
-{
-    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }
 
 @end

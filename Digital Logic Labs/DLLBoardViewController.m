@@ -72,17 +72,20 @@
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
     BOOL isEmpty = [self.boardModel boardStateAt:boardLoc] == EMPTY;
     
+/***** Casey - This chunk will be affected by the view model and chipview changes *****/
     if(!isEmpty){
+        // Query dictionary to find and remove correct chipview
         self.activeComponent = [self.boardModel removeComponentAtCoordinate:loc];
-        [self.activeComponent removeImageView];
+        //[self.activeComponent removeImageView];
     }else{
+        // Ask the view model to instantiate and return the correct chipview class
         self.activeComponent = [self.boardModel getNewComponentFromInventoryIndex:self.selection];
     }
     
     BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
-    [self.activeComponent displayGhostInView:self.view atCoordinates:displayLoc withHoleAvailable:isAvailable];
+    //[self.activeComponent displayGhostInView:self.view atCoordinates:displayLoc withHoleAvailable:isAvailable];
 }
 
 // when the touch moves, query the model and update the ghost image
@@ -94,11 +97,13 @@
     CGPoint loc = [touch locationInView:self.view];
     CGPoint boardLoc = [self nearestBoardCoordinateTo:loc];
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
-    
+
+/***** Casey - This chunk will be affected by the view model and chipview changes *****/
     BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
-    [self.activeComponent translateGhostImageTo:displayLoc withHoleAvailable:isAvailable];
+    // This code will work once activecomponent is a DLLAComponentView
+    //[self.activeComponent translateGhostImageTo:displayLoc withHoleAvailable:isAvailable];
 }
 
 // when the touch ends, query the model one more time before adding the element
@@ -110,15 +115,18 @@
     CGPoint loc = [touch locationInView:self.view];
     CGPoint boardLoc = [self nearestBoardCoordinateTo:loc];
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
-    
+
+/***** Casey - This chunk will be affected by the view model and chipview changes *****/
     BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
     if(isAvailable){
+        // Tell the active component to display itself
         [self.boardModel addChipWithPartNum:self.activeComponent.identifier atUpperLeftCornerCoordinate:boardLoc];
-        [self.activeComponent displayComponentInView:self.view atCoordinates:displayLoc];
+        //[self.activeComponent displayComponentInView:self.view atCoordinates:displayLoc];
     }else{
-        [self.activeComponent removeImageView];
+        // tell the active component that the user canceled the add command and deallocate
+        //[self.activeComponent removeImageView];
     }
     
     self.activeComponent = nil;

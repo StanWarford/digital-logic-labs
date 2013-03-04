@@ -12,9 +12,4 @@
 
 - (id)initWithIdenfifier:(NSInteger)identifier andType:(NSInteger)type;
 
-- (void)displayComponentInView:(UIView *)view atCoordinates:(CGPoint)loc;
-- (void)displayGhostInView:(UIView *)view atCoordinates:(CGPoint)loc withHoleAvailable:(BOOL)available;
-- (void)translateGhostImageTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
-- (void)removeImageView;
-
 @end
