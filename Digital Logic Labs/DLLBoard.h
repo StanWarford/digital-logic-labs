@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DLLAComponent.h"
 #import "DLLChip.h"
+#import "DLLPoint.h"
 
 @interface DLLBoard : NSObject
 
@@ -21,16 +22,16 @@ typedef enum boardCellStates
 
 - (id)init;
 
-- (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(CGPoint)coords;
-- (void)addWireFromPoint:(CGPoint)startingPoint toPoint:(CGPoint) endingPoint withColor:(UIColor *)color;
+- (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(DLLPoint *)coords;
+- (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *) endingPoint withColor:(UIColor *)color;
 - (DLLAComponent*)getNewComponentFromInventoryIndex:(NSInteger)index;
 - (UIImage *)getImageFromInventoryIndex: (NSInteger)index;
 - (NSInteger)getInventorySize;
 
-- (DLLAComponent*)removeComponentAtCoordinate:(CGPoint)coords;
+- (DLLAComponent*)removeComponentAtCoordinate:(DLLPoint *)coords;
 - (void)clearBoard;
 
-- (NSInteger)boardStateAt:(CGPoint)coords;
-- (BOOL)cellAt: (CGPoint)coords IsAvailableForChip: (NSInteger)partNum  OfType: (NSInteger)componentType;
+- (NSInteger)boardStateAt:(DLLPoint *)coords;
+- (BOOL)cellAt: (DLLPoint *)coords IsAvailableForChip: (NSInteger)partNum  OfType: (NSInteger)componentType;
 
 @end

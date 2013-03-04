@@ -23,7 +23,7 @@
 - (NSMutableArray *)breadboardStateArray
 {
     if (!_breadboardStateArray){
-        _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 3];
+        _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 62];
     }
     return _breadboardStateArray;
 }
@@ -32,16 +32,16 @@
 #pragma mark initialization methods
 - (id)init
 {
-    // Creates 3 x 3 array w/ all values set to boardCellStates.EMPTY
+    // Creates 62 x 62 array w/ all values set to boardCellStates.EMPTY
     // define overarching array as rows
     if((self = [super init])){
-        int numRows = 3;
+        int numRows = 62;
     
         NSMutableArray * boardColumns = [[NSMutableArray alloc] initWithCapacity: numRows];
         
         for(int i = 0; i < numRows; i++)
         {
-            [boardColumns insertObject:[NSNumber numberWithInt: EMPTY] atIndex:i];
+            [boardColumns insertObject:nil atIndex:i];
         }
         
         for(int i = 0; i < [self.breadboardStateArray count]; i++)
@@ -55,38 +55,25 @@
 
 #pragma mark -
 #pragma mark component addition methods
-- (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(CGPoint)coords
+- (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(DLLPoint *)coords
 {
     
     //add a component to data structure for the active board
     // need internal safety w/ exceptions
 }
 
-- (void)addWireFromPoint:(CGPoint)startingPoint toPoint:(CGPoint)endingPoint withColor:(UIColor *)color
+- (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *)endingPoint withColor:(UIColor *)color
 {
     
     //add a component to the XML file and to data structure for the active board
     // need internal safety w/ exceptions
 }
 
-- (DLLAComponent*)getNewComponentFromInventoryIndex:(NSInteger)index
-{
-    return [[DLLChip alloc] initWithIdenfifier:7400 andType:CHIP];
-}
 
-- (UIImage *)getImageFromInventoryIndex: (NSInteger)index
-{
-    return nil;
-}
-
-- (NSInteger)getInventorySize
-{
-    return 0;
-}
 
 #pragma mark -
 #pragma mark component removal methods
-- (DLLAComponent*)removeComponentAtCoordinate:(CGPoint)coords //this will return component type (perhaps ENUM)-Casey
+- (DLLAComponent*)removeComponentAtCoordinate:(DLLPoint *)coords //this will return component type (perhaps ENUM)-Casey
 {
     //not necessarily upper left-need to check 2D array (w/ trinary entries?)
     //remove an existing component from XML file
@@ -101,7 +88,7 @@
 #pragma mark -
 #pragma mark board state methods
 
-- (NSInteger)boardStateAt:(CGPoint)coords
+- (NSInteger)boardStateAt:(DLLPoint *)coords
 {
     /* Casey - this is not working correctly
     NSUInteger rowCoordinate = coords.y;
@@ -113,10 +100,11 @@
     return EMPTY;
 }
 
-- (BOOL)cellAt: (CGPoint)coords IsAvailableForChip: (NSInteger)partNum  OfType: (NSInteger)componentType
+- (BOOL)cellAt: (DLLPoint *)coords IsAvailableForChip: (NSInteger)partNum  OfType: (NSInteger)componentType
 {
     //logic for determining if a component is allowed in a cell
     //componentType should be enumerated CellState
+    //THIS NEEDS TO CHANGE -- Need to query array for object at passed coord
     
     switch(componentType)
     {
@@ -132,16 +120,16 @@
 
 #pragma mark -
 #pragma mark helper methods
-- (BOOL)willChip: (NSInteger)partNum FitAt: (CGPoint)coords
+- (BOOL)willChip: (NSInteger)partNum FitAt: (DLLPoint *)coords
 {
-    int x = coords.x;
-    int y = coords.y;
+    int x = coords.xCoord;
+    int y = coords.yCoord;
     
     if(partNum == 7400) //assume 14 pin
     {
-        for(;coords.x <= x + 2; coords.x++)
+        for(;coords.xCoord <= x + 2; coords.xCoord++)
         {
-            for(;coords.y <= y + 7; coords.y++)
+            for(;coords.yCoord <= y + 7; coords.yCoord++)
             {
                 if([self boardStateAt: coords] != EMPTY) return NO;
             }
