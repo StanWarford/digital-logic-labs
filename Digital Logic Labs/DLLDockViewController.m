@@ -25,7 +25,7 @@
 @synthesize inventory = _inventory;
 
 #pragma mark -
-#pragma mark property instantiation
+#pragma mark property instantiation methods
 - (DLLDockViewLayout*)dockLayout
 {
     if(!_dockLayout){
@@ -48,7 +48,6 @@
             [temp addObject:[[DLLChipView alloc] initChipOfSize:7]];
         }
         _inventory = [NSArray arrayWithArray:temp];
-        temp = nil;
     }
     return _inventory;
 }
@@ -89,7 +88,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.inventory count];
+    return [self.inventory count] + 2*PADDING_CELL_COUNT;
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
