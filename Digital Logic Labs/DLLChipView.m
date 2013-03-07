@@ -29,6 +29,22 @@
     return self;
 }
 
+- (id)initChipOfSize:(NSInteger)size
+{
+    if((self = [super init])){
+        if(size == 0){
+            self.image = [UIImage imageNamed:@"placeholder"];
+        }else if(size == 7400){
+            self.image = [UIImage imageNamed:@"chip-14"];
+        }else if(size == 7476){
+            self.image = [UIImage imageNamed:@"chip-16"];
+        }else{
+            self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
+        }
+    }
+    return self;
+}
+
 #pragma mark -
 #pragma mark display methods
 - (void)displayComponentInView:(UIView *)view

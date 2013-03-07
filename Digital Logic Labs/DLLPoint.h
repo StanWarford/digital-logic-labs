@@ -13,6 +13,9 @@
 @property (nonatomic)NSUInteger xCoord;
 @property (nonatomic)NSUInteger yCoord;
 
+- (id)initWithCoords:(CGPoint)coords;
+
 - (BOOL)isEqual:(id)otherPoint;
+- (CGPoint)CGPointFromCoords;
 
 @end

@@ -24,9 +24,6 @@ typedef enum boardCellStates
 
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(DLLPoint *)coords;
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *) endingPoint withColor:(UIColor *)color;
-- (DLLAComponent*)getNewComponentFromInventoryIndex:(NSInteger)index;
-- (UIImage *)getImageFromInventoryIndex: (NSInteger)index;
-- (NSInteger)getInventorySize;
 
 - (DLLAComponent *)removeComponentAtCoordinate:(DLLPoint *)coords;
 - (void)clearBoard;
