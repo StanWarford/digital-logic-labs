@@ -97,7 +97,7 @@
         [self.activeComponent removeImageView];
     }else{
         // Ask the dock to instantiate and return the correct chipview class
-        self.activeComponent = self.selection;
+        self.activeComponent = [[[self.selection class] alloc] initChipOfSize:[self.selection identifier] AtLocation:displayLoc];
     }
     
     BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.identifier];
@@ -162,12 +162,20 @@
 #pragma mark display methods
 - (DLLPoint*)nearestBoardCoordinateTo:(CGPoint)loc
 {
-    return [[DLLPoint alloc] initWithCoords:CGPointMake(0, 0)];
+    NSInteger x = loc.x;
+    NSInteger y = loc.y;
+    NSInteger calcX = (x*62)/1024;
+    NSInteger calcY = (y*62)/768;
+    return [[DLLPoint alloc] initWithCoords:CGPointMake(calcX, calcY)];
 }
 
 - (CGPoint)viewCoordinateFromBoardCoordinate:(DLLPoint*)loc
 {
-    return [loc CGPointFromCoords];
+    NSInteger x = loc.xCoord;
+    NSInteger y = loc.yCoord;
+    NSInteger calcX = (x*1024)/62;
+    NSInteger calcY = (y*768)/62;
+    return CGPointMake(calcX, calcY);
 }
 
 #pragma mark -
