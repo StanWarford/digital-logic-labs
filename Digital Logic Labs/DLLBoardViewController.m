@@ -12,6 +12,7 @@
 @property (nonatomic, strong) DLLAComponentView *activeComponent;
 @property (nonatomic, assign) BOOL isPlacingWire;
 @property (nonatomic, assign) DLLAComponentView *selection;
+@property (nonatomic, strong) NSDictionary* dictionary;
 - (DLLPoint*)nearestBoardCoordinateTo:(CGPoint)loc;
 - (CGPoint)viewCoordinateFromBoardCoordinate:(DLLPoint*)loc;
 @end
@@ -21,15 +22,21 @@
 @synthesize activeComponent = _activeComponent;
 @synthesize boardModel = _boardModel;
 @synthesize selection = _selection;
+@synthesize dictionary = _dictionary;
 
-NSMutableDictionary *dictionary = nil;
-+ (void)initialize {
-    dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                  @"1", @"One",
-                  @"2", @"Two",
-                  @"3", @"Three",
-                  nil];
-    NSLog(@"dictionary = %@", dictionary);
+#pragma mark -
+#pragma mark Property Initilazition Methods
+- (NSDictionary*)dictionary
+{
+    if(!_dictionary){
+        NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 @"1", @"One",
+                                 @"2", @"Two",
+                                 @"3", @"Three",
+                                 nil];
+        _dictionary = temp;
+    }
+    return _dictionary;
 }
 
 #pragma mark -
@@ -74,10 +81,10 @@ NSMutableDictionary *dictionary = nil;
 // then begin placing the ghost image on screen
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSString *value = [dictionary objectForKey:@"One"];
-    NSLog(value);
-    
     [super touchesBegan:touches withEvent:event];
+    
+    NSString *value = [self.dictionary objectForKey:@"One"];
+    NSLog(value);
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled, this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
@@ -103,10 +110,10 @@ NSMutableDictionary *dictionary = nil;
 // when the touch moves, query the model and update the ghost image
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSString *value = [dictionary objectForKey:@"Two"];
-    NSLog(value);
-    
     [super touchesMoved:touches withEvent:event];
+    
+    NSString *value = [self.dictionary objectForKey:@"Two"];
+    NSLog(value);
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
@@ -122,10 +129,10 @@ NSMutableDictionary *dictionary = nil;
 // when the touch ends, query the model one more time before adding the element
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSString *value = [dictionary objectForKey:@"Three"];
-    NSLog(value);
-    
     [super touchesEnded:touches withEvent:event];
+    
+    NSString *value = [self.dictionary objectForKey:@"Three"];
+    NSLog(value);
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
