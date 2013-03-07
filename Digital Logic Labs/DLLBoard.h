@@ -24,6 +24,4 @@
 - (DLLAComponent *)boardStateAt:(DLLPoint *)coords;
 - (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger)size;
 
-@property (nonatomic) NSNull * myNull;
-
 @end
