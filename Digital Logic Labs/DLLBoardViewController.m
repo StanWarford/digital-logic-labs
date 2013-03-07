@@ -165,7 +165,7 @@
 #pragma mark display methods
 - (DLLPoint*)nearestBoardCoordinateTo:(CGPoint)loc
 {
-    return [[DLLPoint alloc] initWithCoords:loc];
+    return [[DLLPoint alloc] initWithCoords:CGPointMake(0, 0)];
 }
 
 - (CGPoint)viewCoordinateFromBoardCoordinate:(DLLPoint*)loc
