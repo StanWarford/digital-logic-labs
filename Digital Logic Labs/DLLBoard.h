@@ -28,10 +28,10 @@ typedef enum boardCellStates
 - (UIImage *)getImageFromInventoryIndex: (NSInteger)index;
 - (NSInteger)getInventorySize;
 
-- (DLLAComponent*)removeComponentAtCoordinate:(DLLPoint *)coords;
+- (DLLAComponent *)removeComponentAtCoordinate:(DLLPoint *)coords;
 - (void)clearBoard;
 
-- (NSInteger)boardStateAt:(DLLPoint *)coords;
-- (BOOL)cellAt: (DLLPoint *)coords IsAvailableForChip: (NSInteger)partNum  OfType: (NSInteger)componentType;
+- (DLLAComponent *)boardStateAt:(DLLPoint *)coords;
+- (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger)size;
 
 @end

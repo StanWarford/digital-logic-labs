@@ -32,7 +32,7 @@
 #pragma mark initialization methods
 - (id)init
 {
-    // Creates 62 x 62 array w/ all values set to boardCellStates.EMPTY
+    // Creates 62 x 62 array w/ all values set to nil
     // define overarching array as rows
     if((self = [super init])){
         int numRows = 62;
@@ -73,9 +73,9 @@
 
 #pragma mark -
 #pragma mark component removal methods
-- (DLLAComponent*)removeComponentAtCoordinate:(DLLPoint *)coords //this will return component type (perhaps ENUM)-Casey
+- (DLLAComponent*)removeComponentAtCoordinate:(DLLPoint *)coords //this will return component type -Casey
 {
-    //not necessarily upper left-need to check 2D array (w/ trinary entries?)
+    //not necessarily upper left-need to check 2D array
     //remove an existing component from XML file
     return [[DLLChip alloc] init];
 }
@@ -88,60 +88,47 @@
 #pragma mark -
 #pragma mark board state methods
 
-- (NSInteger)boardStateAt:(DLLPoint *)coords
+- (DLLAComponent *)boardStateAt:(DLLPoint *)coords
 {
-    /* Casey - this is not working correctly
-    NSUInteger rowCoordinate = coords.y;
-    NSUInteger columnCoordinate = coords.x;
-    NSArray * row = [self.breadboardStateArray objectAtIndex:rowCoordinate];
-    return [[row objectAtIndex: columnCoordinate] integerValue];
-    //return enumerated value at the given point
-    */
-    return EMPTY;
+    return (DLLAComponent *)self.breadboardStateArray[coords.xCoord][coords.yCoord];
 }
 
-- (BOOL)cellAt: (DLLPoint *)coords IsAvailableForChip: (NSInteger)partNum  OfType: (NSInteger)componentType
+- (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger) size
 {
-    //logic for determining if a component is allowed in a cell
-    //componentType should be enumerated CellState
-    //THIS NEEDS TO CHANGE -- Need to query array for object at passed coord
+    /*
+        Wire size = 1
+        ALU size = 24
+        All other chips size = 14 or 16, respectively
+     */
     
-    switch(componentType)
+    //reminder: ALU spans double the rows
+    NSArray * validChipRows = @[@39, @40, @49, @50];
+    // TODO: add correct coordinates for switch slots
+    //NSArray * validSwitchSlots  = @[
+    //                                [[DLLPoint(20, 10) alloc] init],
+    //                                [[DLLPoint(30, 10) alloc] init]
+    //                                ];
+    
+    if(size == 1) // wire
     {
-        case CHIP: return [self willChip: partNum FitAt: coords];
-            break;
-        case WIRE: return [self boardStateAt: coords] == EMPTY;
-            break;
-        default: return NO;
-    }
-    
-    return YES;
-}
-
-#pragma mark -
-#pragma mark helper methods
-- (BOOL)willChip: (NSInteger)partNum FitAt: (DLLPoint *)coords
-{
-    int x = coords.xCoord;
-    int y = coords.yCoord;
-    
-    if(partNum == 7400) //assume 14 pin
+        if ([self boardStateAt: coords]) return NO;
+    } else if (size == 24) // ALU
     {
-        for(;coords.xCoord <= x + 2; coords.xCoord++)
+        if(![validChipRows containsObject: [NSNumber numberWithInt: coords.yCoord]])
+            return NO;
+        
+    } else // chip
+    {
+    
+        if(![validChipRows containsObject: [NSNumber numberWithInt: coords.yCoord]])
+            return NO;
+        
+        for(int leftLimit = coords.xCoord; coords.xCoord <= leftLimit + size / 2; coords.xCoord++)
         {
-            for(;coords.yCoord <= y + 7; coords.yCoord++)
-            {
-                if([self boardStateAt: coords] != EMPTY) return NO;
-            }
+            if([self boardStateAt: coords]) return NO;
         }
-        
-        
-        
-        
-    } else if(partNum == 7476)  //assume 16 pin
-    {
-        
     }
+    
     return YES;
 }
 
