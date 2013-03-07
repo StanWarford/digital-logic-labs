@@ -9,11 +9,11 @@
 #import "DLLBoardViewController.h"
 
 @interface DLLBoardViewController ()
-@property (nonatomic, strong) DLLAComponent *activeComponent;
-@property (assign, nonatomic) BOOL isPlacingWire;
-@property (nonatomic, assign) NSInteger selection;
-- (CGPoint)nearestBoardCoordinateTo:(CGPoint)loc;
-- (CGPoint)viewCoordinateFromBoardCoordinate:(CGPoint)loc;
+@property (nonatomic, strong) DLLAComponentView *activeComponent;
+@property (nonatomic, assign) BOOL isPlacingWire;
+@property (nonatomic, assign) DLLAComponentView *selection;
+- (DLLPoint*)nearestBoardCoordinateTo:(CGPoint)loc;
+- (CGPoint)viewCoordinateFromBoardCoordinate:(DLLPoint*)loc;
 @end
 
 @implementation DLLBoardViewController
@@ -53,7 +53,7 @@
 
 #pragma mark -
 #pragma mark DLLDockViewControllerDelegate methods
-- (void)selectionDidChange:(NSInteger)selection
+- (void)selectionDidChange:(DLLAComponentView*)selection
 {
     self.selection = selection;
 }
@@ -68,24 +68,23 @@
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled, this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    CGPoint boardLoc = [self nearestBoardCoordinateTo:loc];
+    DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
     BOOL isEmpty = [self.boardModel boardStateAt:boardLoc] == EMPTY;
     
-/***** Casey - This chunk will be affected by the view model and chipview changes *****/
     if(!isEmpty){
         // Query dictionary to find and remove correct chipview
-        self.activeComponent = [self.boardModel removeComponentAtCoordinate:loc];
-        //[self.activeComponent removeImageView];
+        self.activeComponent = [self.boardModel removeComponentAtCoordinate:boardLoc];
+        [self.activeComponent removeImageView];
     }else{
-        // Ask the view model to instantiate and return the correct chipview class
-        self.activeComponent = [self.boardModel getNewComponentFromInventoryIndex:self.selection];
+        // Ask the dock to instantiate and return the correct chipview class
+        self.activeComponent = self.selection;
     }
     
     BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
-    //[self.activeComponent displayGhostInView:self.view atCoordinates:displayLoc withHoleAvailable:isAvailable];
+    [self.activeComponent displayGhostInView:self.view withHoleAvailable:isAvailable];
 }
 
 // when the touch moves, query the model and update the ghost image
@@ -95,15 +94,13 @@
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    CGPoint boardLoc = [self nearestBoardCoordinateTo:loc];
+    DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
 
-/***** Casey - This chunk will be affected by the view model and chipview changes *****/
     BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
-    // This code will work once activecomponent is a DLLAComponentView
-    //[self.activeComponent translateGhostImageTo:displayLoc withHoleAvailable:isAvailable];
+    [self.activeComponent translateGhostImageTo:displayLoc withHoleAvailable:isAvailable];
 }
 
 // when the touch ends, query the model one more time before adding the element
@@ -113,20 +110,19 @@
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    CGPoint boardLoc = [self nearestBoardCoordinateTo:loc];
+    DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
 
-/***** Casey - This chunk will be affected by the view model and chipview changes *****/
     BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
     if(isAvailable){
         // Tell the active component to display itself
-        [self.boardModel addChipWithPartNum:self.activeComponent.identifier atUpperLeftCornerCoordinate:boardLoc];
-        //[self.activeComponent displayComponentInView:self.view atCoordinates:displayLoc];
+        [self.boardModel addChipWithPartNum:self.activeComponent. atUpperLeftCornerCoordinate:boardLoc];
+        [self.activeComponent displayComponentInView:self.view];
     }else{
         // tell the active component that the user canceled the add command and deallocate
-        //[self.activeComponent removeImageView];
+        [self.activeComponent removeImageView];
     }
     
     self.activeComponent = nil;
@@ -141,14 +137,14 @@
 
 #pragma mark -
 #pragma mark display methods
-- (CGPoint)nearestBoardCoordinateTo:(CGPoint)loc
+- (DLLPoint*)nearestBoardCoordinateTo:(CGPoint)loc
 {
-    return loc;
+    return [[DLLPoint alloc] initWithCoords:loc];
 }
 
-- (CGPoint)viewCoordinateFromBoardCoordinate:(CGPoint)loc
+- (CGPoint)viewCoordinateFromBoardCoordinate:(DLLPoint*)loc
 {
-    return loc;
+    return [loc CGPointFromCoords];
 }
 
 #pragma mark -

@@ -9,9 +9,9 @@
 #import "DLLDockViewController.h"
 
 @interface DLLDockViewController ()
-@property (nonatomic, strong) NSArray *inventory;
 @property (nonatomic, strong) DLLDockViewLayout *dockLayout;
 - (void)selectCenterItem;
+- (void)initializeInventory;
 @end
 
 @implementation DLLDockViewController
@@ -22,6 +22,7 @@
 @synthesize delegate = _delegate;
 @synthesize boardModel = _boardModel;
 @synthesize dockLayout = _dockLayout;
+@synthesize inventory = _inventory;
 
 #pragma mark -
 #pragma mark property instantiation
@@ -31,6 +32,25 @@
         _dockLayout = [[DLLDockViewLayout alloc] initWithDelegate:self];
     }
     return _dockLayout;
+}
+
+- (NSArray*)inventory
+{
+    if(!_inventory){
+        NSMutableArray* temp = [NSMutableArray array];
+    
+        for(int i = 0; i < 5; i++){
+            [temp addObject:[[DLLChipView alloc] initChipOfSize:7]];
+        }
+        [temp addObject:[[DLLChipView alloc] initChipOfSize:7400]];
+        [temp addObject:[[DLLChipView alloc] initChipOfSize:7476]];
+        for(int i = 0; i < 5; i++){
+            [temp addObject:[[DLLChipView alloc] initChipOfSize:7]];
+        }
+        _inventory = [NSArray arrayWithArray:temp];
+        temp = nil;
+    }
+    return _inventory;
 }
 
 #pragma mark -
@@ -60,7 +80,6 @@
     [self selectCenterItem];
 }
 
-
 #pragma mark -
 #pragma mark UICollectionViewDataSource methods
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -70,9 +89,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    //return [self.boardModel.inventory count] + PADDING_CELL_COUNT*2;
-    //TODO: rewrite using new inventory model
-    return nil;
+    return [self.inventory count];
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -86,13 +103,11 @@
     // set background
     UIView *backgroundView = [[UIView alloc] initWithFrame:cell.frame];
     UIImage *sourceBG;
-    //if(row >= PADDING_CELL_COUNT && row < [self.boardModel.inventory count] + PADDING_CELL_COUNT){
-    //    sourceBG = [[self.boardModel.inventory objectAtIndex:row - PADDING_CELL_COUNT] image];
-    //}else{
-    //    sourceBG = [UIImage imageNamed:@"placeholder"];
-    //}
-    
-    //TODO: rewrite using new inventory model
+    if(row >= PADDING_CELL_COUNT && row < [self.inventory count] + PADDING_CELL_COUNT){
+        sourceBG = [[self.inventory objectAtIndex:row - PADDING_CELL_COUNT] image];
+    }else{
+        sourceBG = [UIImage imageNamed:@"placeholder"];
+    }
     
     CGSize bgSize = cell.frame.size;
     
@@ -140,11 +155,9 @@
 #pragma mark DLLDockViewLayoutDelegate methods
 - (void)selectionDidChange:(NSInteger)selection
 {
-    //if(selection >= PADDING_CELL_COUNT && selection < [self.boardModel.inventory count] + PADDING_CELL_COUNT){
-    //    [self.delegate selectionDidChange:selection - PADDING_CELL_COUNT];
-    //}
-    
-    //TODO: rewrite this using new inventory model
+    if(selection >= PADDING_CELL_COUNT && selection < [self.inventory count] + PADDING_CELL_COUNT){
+        [self.delegate selectionDidChange:[self.inventory objectAtIndex:selection - PADDING_CELL_COUNT]];
+    }
 }
 
 #pragma mark -
@@ -169,11 +182,9 @@
     NSNumber *targetRow = [NSNumber numberWithInteger:[[temp valueForKeyPath:@"@max.intValue"] intValue] - middleOffset];
     // get the index of the middle element and notify delegate only if the middle cell is in the correct range
     NSInteger targetIndex = [temp indexOfObject:targetRow];
-    //if(targetIndex >= PADDING_CELL_COUNT && targetIndex < [self.boardModel.inventory count] + PADDING_CELL_COUNT){
-    //    [self.delegate selectionDidChange:[self.boardModel.inventory objectAtIndex:[visiblePaths[targetIndex] row] - PADDING_CELL_COUNT]];
-    
-    //TODO: rewrite this using new inventory model
-    //}
+    if(targetIndex >= PADDING_CELL_COUNT && targetIndex < [self.inventory count] + PADDING_CELL_COUNT){
+        [self.delegate selectionDidChange:[self.inventory objectAtIndex:targetIndex]];
+    }
 }
 
 @end
