@@ -36,13 +36,12 @@
     // define overarching array as rows
     if((self = [super init])){
         int numRows = 62;
-        NSNull * myNull = [NSNull null];
     
         NSMutableArray * boardColumns = [[NSMutableArray alloc] initWithCapacity: numRows];
         
         for(int i = 0; i < numRows; i++)
         {
-            [boardColumns insertObject: myNull atIndex:i];
+            [boardColumns insertObject: self.myNull atIndex:i];
         }
         
         for(int i = 0; i < [self.breadboardStateArray count]; i++)
@@ -91,7 +90,11 @@
 
 - (DLLAComponent *)boardStateAt:(DLLPoint *)coords
 {
-    return (DLLAComponent *)self.breadboardStateArray[coords.xCoord][coords.yCoord];
+    id component = self.breadboardStateArray[coords.xCoord][coords.yCoord];
+    
+    if(component == self.myNull)
+        return nil;
+    else return (DLLAComponent *)component;
 }
 
 - (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger) size

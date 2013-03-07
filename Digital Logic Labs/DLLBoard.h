@@ -13,13 +13,6 @@
 
 @interface DLLBoard : NSObject
 
-typedef enum boardCellStates
-{
-    EMPTY,
-    CHIP,
-    WIRE
-} CellState;
-
 - (id)init;
 
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(DLLPoint *)coords;
@@ -30,5 +23,7 @@ typedef enum boardCellStates
 
 - (DLLAComponent *)boardStateAt:(DLLPoint *)coords;
 - (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger)size;
+
+@property (nonatomic) NSNull * myNull;
 
 @end
