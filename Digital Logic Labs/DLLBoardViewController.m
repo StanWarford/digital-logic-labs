@@ -83,8 +83,7 @@
 {
     [super touchesBegan:touches withEvent:event];
     
-    NSString *value = [self.dictionary objectForKey:@"One"];
-    NSLog(value);
+    //NSString *value = [self.dictionary objectForKey:@"One"];
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled, this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
@@ -112,8 +111,7 @@
 {
     [super touchesMoved:touches withEvent:event];
     
-    NSString *value = [self.dictionary objectForKey:@"Two"];
-    NSLog(value);
+    //NSString *value = [self.dictionary objectForKey:@"Two"];
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
@@ -131,8 +129,7 @@
 {
     [super touchesEnded:touches withEvent:event];
     
-    NSString *value = [self.dictionary objectForKey:@"Three"];
-    NSLog(value);
+    //NSString *value = [self.dictionary objectForKey:@"Three"];
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
@@ -144,7 +141,7 @@
     
     if(isAvailable){
         // Tell the active component to display itself
-        [self.boardModel addChipWithPartNum:self.activeComponent atUpperLeftCornerCoordinate:boardLoc];
+        [self.boardModel addChipWithPartNum:self.activeComponent.identifier atUpperLeftCornerCoordinate:boardLoc];
         [self.activeComponent displayComponentInView:self.view];
     }else{
         // tell the active component that the user canceled the add command and deallocate
