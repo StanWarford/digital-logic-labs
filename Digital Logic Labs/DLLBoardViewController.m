@@ -70,7 +70,7 @@
     CGPoint loc = [touch locationInView:self.view];
     DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
-    BOOL isEmpty = [self.boardModel boardStateAt:boardLoc] == EMPTY;
+    BOOL isEmpty = [self.boardModel boardStateAt:boardLoc] == nil;
     
     if(!isEmpty){
         // Query dictionary to find and remove correct chipview
@@ -81,7 +81,7 @@
         self.activeComponent = self.selection;
     }
     
-    BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
+    BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.identifier];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
     [self.activeComponent displayGhostInView:self.view withHoleAvailable:isAvailable];
@@ -97,7 +97,7 @@
     DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
 
-    BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
+    BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.identifier];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
     [self.activeComponent translateGhostImageTo:displayLoc withHoleAvailable:isAvailable];
@@ -113,12 +113,12 @@
     DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
 
-    BOOL isAvailable = [self.boardModel cellAt:loc IsAvailableForChip:self.activeComponent.identifier OfType:self.activeComponent.type];
+    BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.identifier];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
     if(isAvailable){
         // Tell the active component to display itself
-        [self.boardModel addChipWithPartNum:self.activeComponent. atUpperLeftCornerCoordinate:boardLoc];
+        [self.boardModel addChipWithPartNum:self.activeComponent atUpperLeftCornerCoordinate:boardLoc];
         [self.activeComponent displayComponentInView:self.view];
     }else{
         // tell the active component that the user canceled the add command and deallocate

@@ -36,12 +36,13 @@
     // define overarching array as rows
     if((self = [super init])){
         int numRows = 62;
+        NSNull * myNull = [NSNull null];
     
         NSMutableArray * boardColumns = [[NSMutableArray alloc] initWithCapacity: numRows];
         
         for(int i = 0; i < numRows; i++)
         {
-            [boardColumns insertObject:nil atIndex:i];
+            [boardColumns insertObject: myNull atIndex:i];
         }
         
         for(int i = 0; i < [self.breadboardStateArray count]; i++)
