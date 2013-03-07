@@ -22,6 +22,16 @@
 @synthesize boardModel = _boardModel;
 @synthesize selection = _selection;
 
+NSMutableDictionary *dictionary = nil;
++ (void)initialize {
+    dictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                  @"1", @"One",
+                  @"2", @"Two",
+                  @"3", @"Three",
+                  nil];
+    NSLog(@"dictionary = %@", dictionary);
+}
+
 #pragma mark -
 #pragma mark Initialization Metods
 - (void)viewDidLoad
@@ -64,6 +74,9 @@
 // then begin placing the ghost image on screen
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    NSString *value = [dictionary objectForKey:@"One"];
+    NSLog(value);
+    
     [super touchesBegan:touches withEvent:event];
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled, this should only ever return a single touch
@@ -90,6 +103,9 @@
 // when the touch moves, query the model and update the ghost image
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    NSString *value = [dictionary objectForKey:@"Two"];
+    NSLog(value);
+    
     [super touchesMoved:touches withEvent:event];
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
@@ -106,6 +122,9 @@
 // when the touch ends, query the model one more time before adding the element
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    NSString *value = [dictionary objectForKey:@"Three"];
+    NSLog(value);
+    
     [super touchesEnded:touches withEvent:event];
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
