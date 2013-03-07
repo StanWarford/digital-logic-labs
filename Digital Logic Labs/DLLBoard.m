@@ -32,22 +32,23 @@
 #pragma mark initialization methods
 - (id)init
 {
-    // Creates 62 x 62 array w/ all values set to nil
+    // Creates 62 x 62 array w/ all values set to NSNull * myNull
     // define overarching array as rows
     if((self = [super init])){
         int numRows = 62;
         NSNull * myNull = [NSNull null];
     
-        NSMutableArray * boardColumns = [[NSMutableArray alloc] initWithCapacity: numRows];
+        NSMutableArray * boardColumns;
         
         for(int i = 0; i < numRows; i++)
         {
-            [boardColumns insertObject: myNull atIndex:i];
-        }
-        
-        for(int i = 0; i < [self.breadboardStateArray count]; i++)
-        {
-        [self.breadboardStateArray insertObject: boardColumns atIndex: i];
+            for(int j = 0; j < numRows; j++)
+            {
+                boardColumns = [[NSMutableArray alloc] initWithCapacity: numRows];
+                [boardColumns insertObject: myNull atIndex: j];
+            }
+            
+            [self.breadboardStateArray insertObject: boardColumns atIndex: i];
         }
     }
     
@@ -91,7 +92,7 @@
 
 - (DLLAComponent *)boardStateAt:(DLLPoint *)coords
 {
-    id component = self.breadboardStateArray[coords.xCoord][coords.yCoord];
+    id component = [[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord];
     NSNull * myNull = [NSNull null];
     
     if(component == myNull)
