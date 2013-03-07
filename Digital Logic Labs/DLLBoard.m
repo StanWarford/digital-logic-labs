@@ -42,9 +42,9 @@
         
         for(int i = 0; i < numRows; i++)
         {
+            boardColumns = [[NSMutableArray alloc] initWithCapacity: numRows];
             for(int j = 0; j < numRows; j++)
             {
-                boardColumns = [[NSMutableArray alloc] initWithCapacity: numRows];
                 [boardColumns insertObject: myNull atIndex: j];
             }
             
