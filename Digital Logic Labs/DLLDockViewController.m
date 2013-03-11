@@ -41,8 +41,8 @@
         for(int i = 0; i < 5; i++){
             [temp addObject:[[DLLChipView alloc] initChipOfSize:7]];
         }
-        [temp addObject:[[DLLChipView alloc] initChipOfSize:7400]];
-        [temp addObject:[[DLLChipView alloc] initChipOfSize:7476]];
+        [temp addObject:[[DLLChipView alloc] initChipOfSize:14]];
+        [temp addObject:[[DLLChipView alloc] initChipOfSize:16]];
         for(int i = 0; i < 5; i++){
             [temp addObject:[[DLLChipView alloc] initChipOfSize:7]];
         }

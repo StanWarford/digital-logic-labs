@@ -13,6 +13,7 @@
 @synthesize image = _image;
 @synthesize imageView = _imageView;
 @synthesize start = _start;
+@synthesize size = _size;
 
 #pragma mark -
 #pragma mark display methods

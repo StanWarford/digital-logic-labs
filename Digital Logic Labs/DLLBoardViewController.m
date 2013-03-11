@@ -12,7 +12,7 @@
 @property (nonatomic, strong) DLLAComponentView *activeComponent;
 @property (nonatomic, assign) BOOL isPlacingWire;
 @property (nonatomic, assign) DLLAComponentView *selection;
-@property (nonatomic, strong) NSDictionary* dictionary;
+@property (nonatomic, strong) NSDictionary *dictionary;
 - (DLLPoint*)nearestBoardCoordinateTo:(CGPoint)loc;
 - (CGPoint)viewCoordinateFromBoardCoordinate:(DLLPoint*)loc;
 @end
@@ -23,21 +23,6 @@
 @synthesize boardModel = _boardModel;
 @synthesize selection = _selection;
 @synthesize dictionary = _dictionary;
-
-#pragma mark -
-#pragma mark Property Initilazition Methods
-- (NSDictionary*)dictionary
-{
-    if(!_dictionary){
-        NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                 @"1", @"One",
-                                 @"2", @"Two",
-                                 @"3", @"Three",
-                                 nil];
-        _dictionary = temp;
-    }
-    return _dictionary;
-}
 
 #pragma mark -
 #pragma mark Initialization Metods
@@ -94,13 +79,13 @@
     if(!isEmpty){
         // Query dictionary to find and remove correct chipview
         self.activeComponent = [self.boardModel removeComponentAtCoordinate:boardLoc];
-        [self.activeComponent removeImageView];
+        [[self.dictionary objectForKey:boardLoc] removeImageView];
     }else{
-        // Ask the dock to instantiate and return the correct chipview class
-        self.activeComponent = [[[self.selection class] alloc] initChipOfSize:[self.selection identifier] AtLocation:displayLoc];
+        // Instantiate a new chip based on dock selection
+        self.activeComponent = [[[self.selection class] alloc] initChipOfSize:self.selection.size AtLocation:displayLoc];
     }
     
-    BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.identifier];
+    BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
     [self.activeComponent displayGhostInView:self.view withHoleAvailable:isAvailable];
@@ -118,7 +103,7 @@
     DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
 
-    BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.identifier];
+    BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
     [self.activeComponent translateGhostImageTo:displayLoc withHoleAvailable:isAvailable];
@@ -136,15 +121,24 @@
     DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
 
-    BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.identifier];
+    BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
     if(isAvailable){
-        // Tell the active component to display itself
-        [self.boardModel addChipWithPartNum:self.activeComponent.identifier atUpperLeftCornerCoordinate:boardLoc];
+        // Tell the active component to display itself and notify model
         [self.activeComponent displayComponentInView:self.view];
+        [self.boardModel addChipWithPartNum:self.activeComponent.size atUpperLeftCornerCoordinate:boardLoc];
+        
+        // Set pointers in dictionary to the displayed object
+        NSInteger x = displayLoc.x;
+        NSInteger y = displayLoc.y;
+        NSMutableDictionary *dict = [self.dictionary mutableCopy];
+        for(int i = 0; i < self.activeComponent.size; i++){
+            i < self.activeComponent.size/2 ? [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:CGPointMake(x+i, y)]] : [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:CGPointMake(x+i, y+1)]];
+        }
+        self.dictionary = [NSDictionary dictionaryWithDictionary:dict];
     }else{
-        // tell the active component that the user canceled the add command and deallocate
+        // User requested invalid object placement, remove activeComponent from view
         [self.activeComponent removeImageView];
     }
     

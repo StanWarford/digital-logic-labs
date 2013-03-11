@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, assign) NSInteger identifier;
+@property (nonatomic, assign) NSInteger size;
 @property (nonatomic, assign) CGPoint start;
 
 - (void)displayComponentInView:(UIView*)view;

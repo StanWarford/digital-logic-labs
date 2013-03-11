@@ -15,16 +15,20 @@
 - (id)initChipOfSize:(NSInteger)size AtLocation:(CGPoint)coords
 {
     if((self = [super init])){
-        if(size == 0){
-            self.image = [UIImage imageNamed:@"placeholder"];
-        }else if(size == 7400){
-            self.image = [UIImage imageNamed:@"chip-14"];
-        }else if(size == 7476){
-            self.image = [UIImage imageNamed:@"chip-16"];
-        }else{
-            self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
+        switch (size)
+        {
+            case 14:
+                self.image = [UIImage imageNamed:@"chip-14"];
+                break;
+            case 16:
+                self.image = [UIImage imageNamed:@"chip-16"];
+                break;
+            default:
+                self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
+                break;
         }
         self.start = coords;
+        self.size = size;
     }
     return self;
 }
@@ -32,15 +36,20 @@
 - (id)initChipOfSize:(NSInteger)size
 {
     if((self = [super init])){
-        if(size == 0){
-            self.image = [UIImage imageNamed:@"placeholder"];
-        }else if(size == 7400){
-            self.image = [UIImage imageNamed:@"chip-14"];
-        }else if(size == 7476){
-            self.image = [UIImage imageNamed:@"chip-16"];
-        }else{
-            self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
+        switch (size)
+        {
+            case 14:
+                self.image = [UIImage imageNamed:@"chip-14"];
+                break;
+            case 16:
+                self.image = [UIImage imageNamed:@"chip-16"];
+                break;
+            default:
+                self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
+                break;
         }
+        self.start = CGPointMake(0.0, 0.0);
+        self.size = size;
     }
     return self;
 }

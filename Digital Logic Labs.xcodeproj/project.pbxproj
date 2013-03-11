@@ -74,9 +74,9 @@
 		4836742116CC56AC008B87E6 /* Lab4.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab4.pdf; path = LabPdfs/Lab4.pdf; sourceTree = "<group>"; };
 		4836742216CC56AC008B87E6 /* Lab5.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab5.pdf; path = LabPdfs/Lab5.pdf; sourceTree = "<group>"; };
 		4836742316CC56AC008B87E6 /* Lab6.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab6.pdf; path = LabPdfs/Lab6.pdf; sourceTree = "<group>"; };
-		486B08D616D58CD400F0E4B8 /* breadboard-new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "breadboard-new.png"; sourceTree = "<group>"; };
-		486B08D716D58CD400F0E4B8 /* chip-14_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-14_new.png"; sourceTree = "<group>"; };
-		486B08D816D58CD400F0E4B8 /* chip-16_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-16_new.png"; sourceTree = "<group>"; };
+		486B08D616D58CD400F0E4B8 /* breadboard-new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "breadboard-new.png"; path = "Chip and Breadboard Images/breadboard-new.png"; sourceTree = "<group>"; };
+		486B08D716D58CD400F0E4B8 /* chip-14_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chip-14_new.png"; path = "Chip and Breadboard Images/chip-14_new.png"; sourceTree = "<group>"; };
+		486B08D816D58CD400F0E4B8 /* chip-16_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chip-16_new.png"; path = "Chip and Breadboard Images/chip-16_new.png"; sourceTree = "<group>"; };
 		486B08D916D58CD400F0E4B8 /* light-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light-off.png"; sourceTree = "<group>"; };
 		486B08DA16D58CD400F0E4B8 /* light-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light-on.png"; sourceTree = "<group>"; };
 		486B08E116D5948300F0E4B8 /* DLLSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLSplitViewController.h; sourceTree = "<group>"; };
@@ -166,6 +166,7 @@
 		3A9DFD6616E80FD200C58C4A /* Component View Objects */ = {
 			isa = PBXGroup;
 			children = (
+				CF25D10C16EE6D2300720AF5 /* Resources */,
 				CFB535B116E53E1D000DC011 /* DLLAComponentView.h */,
 				CFB535B216E53E1D000DC011 /* DLLAComponentView.m */,
 				CFB535B416E53E4A000DC011 /* DLLChipView.h */,
@@ -179,9 +180,6 @@
 		486B08D516D58CD400F0E4B8 /* Chip and Breadboard Images */ = {
 			isa = PBXGroup;
 			children = (
-				486B08D616D58CD400F0E4B8 /* breadboard-new.png */,
-				486B08D716D58CD400F0E4B8 /* chip-14_new.png */,
-				486B08D816D58CD400F0E4B8 /* chip-16_new.png */,
 				486B08D916D58CD400F0E4B8 /* light-off.png */,
 				486B08DA16D58CD400F0E4B8 /* light-on.png */,
 			);
@@ -251,10 +249,24 @@
 			name = BoardView;
 			sourceTree = "<group>";
 		};
+		CF25D10C16EE6D2300720AF5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				48F0C61D16C32AF70035EBFC /* chip-14.png */,
+				486B08D716D58CD400F0E4B8 /* chip-14_new.png */,
+				48F0C61F16C32AF70035EBFC /* chip-16.png */,
+				486B08D816D58CD400F0E4B8 /* chip-16_new.png */,
+				CF9CC4FF16BB041C0068A17D /* 200px-AND_ANSI.png */,
+				CF35B6FD16C5902500D6358E /* placeholder.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		CF35B6FB16C589E700D6358E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				48F0C61E16C32AF70035EBFC /* breadboard.png */,
+				486B08D616D58CD400F0E4B8 /* breadboard-new.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -278,9 +290,6 @@
 		CF55D8EF16CF09E300D8949B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				48F0C61D16C32AF70035EBFC /* chip-14.png */,
-				48F0C61F16C32AF70035EBFC /* chip-16.png */,
-				CF9CC4FF16BB041C0068A17D /* 200px-AND_ANSI.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -288,7 +297,6 @@
 		CF80E86316D2CFA900DBA574 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CF35B6FD16C5902500D6358E /* placeholder.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
