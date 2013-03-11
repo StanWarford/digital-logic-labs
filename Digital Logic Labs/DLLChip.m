@@ -9,9 +9,6 @@
 #import "DLLChip.h"
 
 @interface DLLChip()
-
-- (UIImage*)makeGhostWithHoleAvailable:(BOOL)available;
-
 @end
 
 @implementation DLLChip

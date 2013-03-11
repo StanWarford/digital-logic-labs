@@ -11,7 +11,6 @@
 @interface DLLDockViewController ()
 @property (nonatomic, strong) DLLDockViewLayout *dockLayout;
 - (void)selectCenterItem;
-- (void)initializeInventory;
 @end
 
 @implementation DLLDockViewController
