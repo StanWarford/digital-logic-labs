@@ -40,10 +40,15 @@
     // set frame height to 634
     self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, 634);
     
-    // set background image
-    UIImage *sourceBG = [UIImage imageNamed:@"breadboard"];
-    CGSize bgSize = self.view.frame.size;
+    CGRect viewBounds = [self.view bounds];
+    CGFloat scale = [[UIScreen mainScreen] scale];
     
+    NSLog([NSString stringWithFormat:@"%f x %f", viewBounds.size.width * scale, viewBounds.size.height * scale]);
+    
+    // set background image
+    UIImage *sourceBG = [UIImage imageNamed:@"breadboard-new"];
+    CGSize bgSize = self.view.frame.size;
+
     UIGraphicsBeginImageContext(bgSize);
     [sourceBG drawInRect:CGRectMake(0,0,bgSize.width,bgSize.height)];
     UIImage *resizedBG = UIGraphicsGetImageFromCurrentImageContext();
