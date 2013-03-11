@@ -76,10 +76,18 @@
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
     BOOL isEmpty = [self.boardModel boardStateAt:boardLoc] == nil;
     
+    // Remove any component the user touched, and assume the user wants to edit that component otherwise add a new component from the dock
     if(!isEmpty){
         // Query dictionary to find and remove correct chipview
-        self.activeComponent = [self.boardModel removeComponentAtCoordinate:boardLoc];
-        [[self.dictionary objectForKey:boardLoc] removeImageView];
+        [self.boardModel removeComponentAtCoordinate:boardLoc];
+        self.activeComponent = [self.dictionary objectForKey:boardLoc];
+        [self.activeComponent removeImageView];
+        NSArray *temp = [self.dictionary allKeysForObject:self.activeComponent];
+        NSMutableDictionary *dict = [self.dictionary mutableCopy];
+        for(NSValue *value in temp){
+            [dict removeObjectForKey:value];
+        }
+        self.dictionary = [NSDictionary dictionaryWithDictionary:dict];
     }else{
         // Instantiate a new chip based on dock selection
         self.activeComponent = [[[self.selection class] alloc] initChipOfSize:self.selection.size AtLocation:displayLoc];
