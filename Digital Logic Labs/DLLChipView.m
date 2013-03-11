@@ -78,6 +78,7 @@
 
 - (void)translateGhostImageTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
+    self.start = coords;
     [UIView beginAnimations:@"UIImage Move" context:NULL];
     CGSize size = self.imageView.frame.size;
     self.imageView.frame = CGRectMake(coords.x, coords.y, size.width, size.height);

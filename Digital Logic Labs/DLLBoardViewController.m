@@ -12,7 +12,7 @@
 @property (nonatomic, strong) DLLAComponentView *activeComponent;
 @property (nonatomic, assign) BOOL isPlacingWire;
 @property (nonatomic, assign) DLLAComponentView *selection;
-@property (nonatomic, strong) NSDictionary *dictionary;
+@property (nonatomic, strong) NSDictionary *pointMap;
 - (DLLPoint*)nearestBoardCoordinateTo:(CGPoint)loc;
 - (CGPoint)viewCoordinateFromBoardCoordinate:(DLLPoint*)loc;
 @end
@@ -22,7 +22,7 @@
 @synthesize activeComponent = _activeComponent;
 @synthesize boardModel = _boardModel;
 @synthesize selection = _selection;
-@synthesize dictionary = _dictionary;
+@synthesize pointMap = _pointMap;
 
 #pragma mark -
 #pragma mark Initialization Metods
@@ -68,8 +68,6 @@
 {
     [super touchesBegan:touches withEvent:event];
     
-    //NSString *value = [self.dictionary objectForKey:@"One"];
-    
     UITouch *touch = [touches anyObject]; // with multitouch disabled, this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
     DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
@@ -80,14 +78,14 @@
     if(!isEmpty){
         // Query dictionary to find and remove correct chipview
         [self.boardModel removeComponentAtCoordinate:boardLoc];
-        self.activeComponent = [self.dictionary objectForKey:boardLoc];
+        self.activeComponent = [self.pointMap objectForKey:boardLoc];
         [self.activeComponent removeImageView];
-        NSArray *temp = [self.dictionary allKeysForObject:self.activeComponent];
-        NSMutableDictionary *dict = [self.dictionary mutableCopy];
+        NSArray *temp = [self.pointMap allKeysForObject:self.activeComponent];
+        NSMutableDictionary *dict = [self.pointMap mutableCopy];
         for(NSValue *value in temp){
             [dict removeObjectForKey:value];
         }
-        self.dictionary = [NSDictionary dictionaryWithDictionary:dict];
+        self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
     }else{
         // Instantiate a new chip based on dock selection
         self.activeComponent = [[[self.selection class] alloc] initChipOfSize:self.selection.size AtLocation:displayLoc];
@@ -103,8 +101,6 @@
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesMoved:touches withEvent:event];
-    
-    //NSString *value = [self.dictionary objectForKey:@"Two"];
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
@@ -122,8 +118,6 @@
 {
     [super touchesEnded:touches withEvent:event];
     
-    //NSString *value = [self.dictionary objectForKey:@"Three"];
-    
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
     DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
@@ -140,11 +134,11 @@
         // Set pointers in dictionary to the displayed object
         NSInteger x = displayLoc.x;
         NSInteger y = displayLoc.y;
-        NSMutableDictionary *dict = [self.dictionary mutableCopy];
+        NSMutableDictionary *dict = [self.pointMap mutableCopy];
         for(int i = 0; i < self.activeComponent.size; i++){
             i < self.activeComponent.size/2 ? [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:CGPointMake(x+i, y)]] : [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:CGPointMake(x+i, y+1)]];
         }
-        self.dictionary = [NSDictionary dictionaryWithDictionary:dict];
+        self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
     }else{
         // User requested invalid object placement, remove activeComponent from view
         [self.activeComponent removeImageView];
