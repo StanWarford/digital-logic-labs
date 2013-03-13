@@ -27,7 +27,7 @@
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }
 
-- (void)translateGhostImageTo:(CGPoint)coords withHoleAvailable:(BOOL)available
+- (void)translateImageViewTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }
