@@ -11,7 +11,6 @@
 @interface DLLWireView : DLLAComponentView
 
 @property (nonatomic, assign) CGPoint end;
-@property (nonatomic, strong) UIColor *color;
 
 - (id)initWire;
 - (id)initWireWithStartAt:(CGPoint)coords withColor:(UIColor*)color;

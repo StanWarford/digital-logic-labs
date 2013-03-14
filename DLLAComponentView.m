@@ -12,6 +12,7 @@
 
 @synthesize image = _image;
 @synthesize imageView = _imageView;
+@synthesize color = _color; // only used in wire
 @synthesize start = _start;
 @synthesize size = _size;
 

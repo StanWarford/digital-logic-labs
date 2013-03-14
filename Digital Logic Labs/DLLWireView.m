@@ -37,21 +37,25 @@
 
 #pragma mark -
 #pragma mark display methods
+// called when touches ended
 - (void)displayComponentInView:(UIView*)view atCoordinates:(CGPoint)loc
 {
     
 }
 
+// called when touches began
 - (void)displayGhostInView:(UIView*)view atCoordinates:(CGPoint)loc withHoleAvailable:(BOOL)available
 {
     
 }
 
+// called when touches moved
 - (void)translateImageViewTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
     
 }
 
+// called when touches began
 - (void)removeImageView
 {
     

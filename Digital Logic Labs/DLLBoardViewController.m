@@ -10,9 +10,9 @@
 
 @interface DLLBoardViewController ()
 @property (nonatomic, strong) DLLAComponentView *activeComponent;
-@property (nonatomic, assign) BOOL isPlacingWire;
-@property (nonatomic, assign) DLLAComponentView *selection;
 @property (nonatomic, strong) NSDictionary *pointMap;
+@property (nonatomic, strong) DLLAComponentView *selection;
+@property (nonatomic, assign) BOOL isPlacingWire;
 - (DLLPoint*)nearestBoardCoordinateTo:(CGPoint)loc;
 - (CGPoint)viewCoordinateFromBoardCoordinate:(DLLPoint*)loc;
 @end
@@ -20,9 +20,10 @@
 @implementation DLLBoardViewController
 
 @synthesize activeComponent = _activeComponent;
-@synthesize boardModel = _boardModel;
-@synthesize selection = _selection;
 @synthesize pointMap = _pointMap;
+@synthesize selection = _selection;
+@synthesize boardModel = _boardModel;
+@synthesize isPlacingWire = _isPlacingWire;
 
 #pragma mark -
 #pragma mark Initialization Metods
@@ -32,6 +33,7 @@
 	// Do any additional setup after loading the view.
     self.view.multipleTouchEnabled = NO;
     self.activeComponent = nil;
+    self.isPlacingWire = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -92,13 +94,18 @@
         }
         self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
     }else{
-        // Instantiate a new chip based on dock selection
-        self.activeComponent = [[[self.selection class] alloc] initChipOfSize:self.selection.size AtLocation:displayLoc];
+        // Instantiate a new chip or wire based on dock selection
+        if([self.selection isKindOfClass:[DLLChipView class]]){
+            self.activeComponent = [[[self.selection class] alloc] initChipOfSize:self.selection.size AtLocation:displayLoc];
+        }else{
+            self.activeComponent = [[[self.selection class] alloc] initWireWithStartAt:displayLoc withColor:self.selection.color];
+        }
     }
     
     BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
+    self.isPlacingWire = [self.activeComponent isKindOfClass:[DLLWireView class]];
     [self.activeComponent displayGhostInView:self.view withHoleAvailable:isAvailable];
 }
 

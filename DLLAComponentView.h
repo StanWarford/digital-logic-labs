@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIColor *color;
 @property (nonatomic, assign) NSInteger size;
 @property (nonatomic, assign) CGPoint start;
 
