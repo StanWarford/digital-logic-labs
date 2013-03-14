@@ -21,6 +21,24 @@
     return self;
 }
 
+- (id)initWithIntX:(int)x andY:(int)y
+{
+    if((self = [super init])){
+        self.xCoord = (NSUInteger)x;
+        self.yCoord = (NSUInteger)y;
+    }
+    return self;
+}
+
+- (id)init
+{
+    if((self = [super init])){
+        self.xCoord = 0;
+        self.yCoord = 0;
+    }
+    return self;
+}
+
 #pragma mark -
 #pragma mark Utility methods
 - (BOOL)isEqual:(id)otherPoint
@@ -32,6 +50,19 @@
 - (CGPoint)CGPointFromCoords
 {
     return CGPointMake((CGFloat)self.xCoord, (CGFloat)self.yCoord);
+}
+
+- (NSString *)toString
+{
+    NSNumber * number = [NSNumber numberWithInt: self.xCoord * 100 + self.yCoord];
+    NSString * stringVal = @"";
+    
+    if(number <= @999)
+        [stringVal stringByAppendingString: @"0"];
+    
+    [stringVal stringByAppendingString: [number stringValue]];
+    
+    return stringVal;
 }
 
 @end

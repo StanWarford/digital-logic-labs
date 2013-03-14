@@ -14,8 +14,11 @@
 @property (nonatomic)NSUInteger yCoord;
 
 - (id)initWithCoords:(CGPoint)coords;
+- (id)initWithIntX:(int)x andY:(int)y;
+- (id)init;
 
 - (BOOL)isEqual:(id)otherPoint;
 - (CGPoint)CGPointFromCoords;
+- (NSString *)toString;
 
 @end

@@ -10,6 +10,6 @@
 
 @interface DLLChip : DLLAComponent
 
-- (id)initWithIdenfifier:(NSInteger)identifier andType:(NSInteger)type;
+- (id)initWithIdenfifier:(NSInteger)identifier;
 
 @end
