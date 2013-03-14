@@ -13,7 +13,8 @@
 @property (nonatomic, assign) CGPoint end;
 @property (nonatomic, strong) UIColor *color;
 
--(id)initWireAtLocation:(CGPoint)coords withColor:(UIColor*)color;
+- (id)initWire;
+- (id)initWireWithStartAt:(CGPoint)coords withColor:(UIColor*)color;
 
 - (void)displayComponentInView:(UIView*)view atCoordinates:(CGPoint)loc;
 - (void)displayGhostInView:(UIView*)view atCoordinates:(CGPoint)loc withHoleAvailable:(BOOL)available;

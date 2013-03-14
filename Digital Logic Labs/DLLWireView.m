@@ -14,11 +14,23 @@
 
 #pragma mark -
 #pragma mark initialization methods
--(id)initWireAtLocation:(CGPoint)coords withColor:(UIColor *)color
+// initialize a wire with default values to be used in dock
+- (id)initWire
+{
+    if((self = [super init])){
+        self.start = CGPointMake(0.0, 0.0);
+        self.color = [UIColor redColor];
+        self.image = [UIImage imageNamed:@"wire"];
+    }
+    return self;
+}
+
+-(id)initWireWithStartAt:(CGPoint)coords withColor:(UIColor *)color
 {
     if((self = [super init])){
         self.start = coords;
         self.color = color;
+        self.image = [UIImage imageNamed:@"wire"];
     }
     return self;
 }

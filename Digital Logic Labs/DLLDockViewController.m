@@ -46,6 +46,7 @@
         for(int i = 0; i < 5; i++){
             [temp addObject:[[DLLChipView alloc] initChipOfSize:7]];
         }
+        [temp addObject:[[DLLWireView alloc] initWire]];
         _inventory = [NSArray arrayWithArray:temp];
     }
     return _inventory;

@@ -37,6 +37,7 @@
 		CFB535B316E53E1D000DC011 /* DLLAComponentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB535B216E53E1D000DC011 /* DLLAComponentView.m */; };
 		CFB535B616E53E4A000DC011 /* DLLChipView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB535B516E53E4A000DC011 /* DLLChipView.m */; };
 		CFB535B916E5407F000DC011 /* DLLWireView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB535B816E5407F000DC011 /* DLLWireView.m */; };
+		CFC8061816F2513900F446FC /* wire.png in Resources */ = {isa = PBXBuildFile; fileRef = CFC8061716F2513900F446FC /* wire.png */; };
 		CFDBF6D216B0C199009C3DA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFDBF6D116B0C199009C3DA4 /* UIKit.framework */; };
 		CFDBF6D416B0C199009C3DA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFDBF6D316B0C199009C3DA4 /* Foundation.framework */; };
 		CFDBF6D616B0C199009C3DA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFDBF6D516B0C199009C3DA4 /* CoreGraphics.framework */; };
@@ -111,6 +112,7 @@
 		CFB535B516E53E4A000DC011 /* DLLChipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLChipView.m; sourceTree = "<group>"; };
 		CFB535B716E5407F000DC011 /* DLLWireView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLWireView.h; sourceTree = "<group>"; };
 		CFB535B816E5407F000DC011 /* DLLWireView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLWireView.m; sourceTree = "<group>"; };
+		CFC8061716F2513900F446FC /* wire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wire.png; sourceTree = "<group>"; };
 		CFDBF6CD16B0C199009C3DA4 /* Digital Logic Labs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digital Logic Labs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFDBF6D116B0C199009C3DA4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CFDBF6D316B0C199009C3DA4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -258,6 +260,7 @@
 				486B08D816D58CD400F0E4B8 /* chip-16_new.png */,
 				CF9CC4FF16BB041C0068A17D /* 200px-AND_ANSI.png */,
 				CF35B6FD16C5902500D6358E /* placeholder.png */,
+				CFC8061716F2513900F446FC /* wire.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				486B08DD16D58CD400F0E4B8 /* chip-16_new.png in Resources */,
 				486B08DE16D58CD400F0E4B8 /* light-off.png in Resources */,
 				486B08DF16D58CD400F0E4B8 /* light-on.png in Resources */,
+				CFC8061816F2513900F446FC /* wire.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
