@@ -13,11 +13,10 @@
 
 @implementation DLLChip
 
-- (id)initWithIdentifier:(NSInteger)identifier andType:(NSInteger)type
+- (id)initWithIdentifier:(NSInteger)identifier
 {
     if((self = [super init])){
         self.identifier = identifier;
-        self.type = type;
     }
     return self;
 }

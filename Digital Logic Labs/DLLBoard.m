@@ -11,6 +11,9 @@
 @interface  DLLBoard()
 @property (assign, nonatomic) NSInteger activeLab;
 @property (strong, nonatomic) NSMutableArray *breadboardStateArray;
+@property (strong, nonatomic) NSMutableDictionary *chipDictionary;
+@property (strong, nonatomic) NSMutableDictionary *electricalPointToBoardPointDictionary;
+@property (strong, nonatomic) NSMutableDictionary *boardPointToElectricalPointDictionary;
 @end
 
 @implementation DLLBoard
@@ -26,6 +29,36 @@
         _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 62];
     }
     return _breadboardStateArray;
+}
+
+#pragma mark -
+#pragma mark lazy instantiation methods
+- (NSMutableDictionary *)chipDictionary
+{
+    if (!_chipDictionary){
+        _chipDictionary = [[NSMutableDictionary alloc] init];
+    }
+    return _chipDictionary;
+}
+
+#pragma mark -
+#pragma mark lazy instantiation methods
+- (NSMutableDictionary *)electricalPointToBoardPointDictionary;
+{
+    if (!_electricalPointToBoardPointDictionary){
+        _electricalPointToBoardPointDictionary = [[NSMutableDictionary alloc] init];
+    }
+    return _electricalPointToBoardPointDictionary;
+}
+
+#pragma mark -
+#pragma mark lazy instantiation methods
+- (NSMutableDictionary *)boardPointToElectricalPointDictionary
+{
+    if (!_boardPointToElectricalPointDictionary){
+        _boardPointToElectricalPointDictionary = [[NSMutableDictionary alloc] init];
+    }
+    return _boardPointToElectricalPointDictionary;
 }
 
 #pragma mark -
@@ -55,13 +88,54 @@
     return self;
 }
 
+-(void)populateElectricalPointToBoardPointDictionary
+{
+    for (int x = 0; x <= 62; x++) {
+        NSString * key0 = [[NSNumber numberWithInt: x * 4] stringValue];
+        NSString * key1 = [[NSNumber numberWithInt: x * 4 + 1] stringValue];
+        NSString * key2 = [[NSNumber numberWithInt: x * 4 + 2] stringValue];
+        NSString * key3 = [[NSNumber numberWithInt: x * 4 + 3] stringValue];
+        DLLPoint *p0, *p1, *p2, *p3, *p4,
+                 *p5, *p6, *p7, *p8, *p9,
+                 *p10, *p11, *p12, *p13, *p14,
+                 *p15, *p16, *p17, *p18, *p19;
+        p0 = [[DLLPoint alloc] initWithIntX:x andY: 7];
+        p1 = [[DLLPoint alloc] initWithIntX:x andY: 8];
+        p2 = [[DLLPoint alloc] initWithIntX:x andY: 9];
+        p3 = [[DLLPoint alloc] initWithIntX:x andY: 10];
+        p4 = [[DLLPoint alloc] initWithIntX:x andY: 11];
+        p5 = [[DLLPoint alloc] initWithIntX:x andY: 12];
+        p6 = [[DLLPoint alloc] initWithIntX:x andY: 13];
+        p7 = [[DLLPoint alloc] initWithIntX:x andY: 14];
+        p8 = [[DLLPoint alloc] initWithIntX:x andY: 15];
+        p9 = [[DLLPoint alloc] initWithIntX:x andY: 16];
+        p10 = [[DLLPoint alloc] initWithIntX:x andY: 19];
+        p11 = [[DLLPoint alloc] initWithIntX:x andY: 20];
+        p12 = [[DLLPoint alloc] initWithIntX:x andY: 21];
+        p13 = [[DLLPoint alloc] initWithIntX:x andY: 22];
+        p14 = [[DLLPoint alloc] initWithIntX:x andY: 23];
+        p15 = [[DLLPoint alloc] initWithIntX:x andY: 24];
+        p16 = [[DLLPoint alloc] initWithIntX:x andY: 25];
+        p17 = [[DLLPoint alloc] initWithIntX:x andY: 26];
+        p18 = [[DLLPoint alloc] initWithIntX:x andY: 27];
+        p19 = [[DLLPoint alloc] initWithIntX:x andY: 28];
+        NSArray *value0 = @[p0, p1, p2, p3, p4];
+        NSArray *value1 = @[p5, p6, p7, p8, p9];
+        NSArray *value2 = @[p10, p1, p12, p13, p14];
+        NSArray *value3 = @[p15, p16, p17, p18, p19];
+        
+        [self.electricalPointToBoardPointDictionary setValue: value0 forKey: key0];
+        [self.electricalPointToBoardPointDictionary setValue: value1 forKey: key1];
+        [self.electricalPointToBoardPointDictionary setValue: value2 forKey: key2];
+        [self.electricalPointToBoardPointDictionary setValue: value3 forKey: key3];
+    }
+}
+
 #pragma mark -
 #pragma mark component addition methods
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(DLLPoint *)coords
 {
-    
-    //add a component to data structure for the active board
-    // need internal safety w/ exceptions
+    [self.chipDictionary setValue: [[DLLChip alloc] initWithIdenfifier: partNum] forKey: coords.toString];
 }
 
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *)endingPoint withColor:(UIColor *)color
