@@ -17,6 +17,9 @@
 
 @implementation DLLChipView
 
+#define COLOR_INTENSITY 0.5 // 0 < n < 1, 1 = opaque 0 = transparent
+#define GHOST_TRANSPARENCY 0.5 // 0 < n < 1, 1 = opaque 0 = transparent
+
 @synthesize availableGhostImage = _availableGhostImage;
 @synthesize unavailableGhostImage = _unavailableGhostImage;
 
@@ -125,14 +128,14 @@
 - (UIImage*)makeGhostWithHoleAvailable:(BOOL)available forImage:(UIImage*)image
 {
     UIImage *targetImage = image;
-    CGFloat colorIntensity = 0.5;
-    CGFloat ghostTransparency = 0.5;
     UIColor *highlightColor = [UIColor redColor];
     
     // If unavailable, highlight the image with highlightColor at intensity
     if(!available){
-        // highlight image
+        // create grayscale image to highlight
         UIImage *grayImage = [self convertImageToGrayScale:image];
+        
+        // highlight grayscale image with highlight color
         CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
         CGSize size = grayImage.size;
         UIGraphicsBeginImageContextWithOptions(size, NO, 2);
@@ -142,7 +145,7 @@
         
         CGContextSetFillColorWithColor(context, highlightColor.CGColor);
         CGContextSetBlendMode(context, kCGBlendModeOverlay);
-        CGContextSetAlpha(context, colorIntensity);
+        CGContextSetAlpha(context, COLOR_INTENSITY);
         
         CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(CGPointZero.x, CGPointZero.y, grayImage.size.width, grayImage.size.height));
         
@@ -168,7 +171,7 @@
     
     CGContextSetBlendMode(ctx, kCGBlendModeMultiply);
     
-    CGContextSetAlpha(ctx, ghostTransparency);
+    CGContextSetAlpha(ctx, GHOST_TRANSPARENCY);
     
     CGContextDrawImage(ctx, area, targetImage.CGImage);
     
