@@ -115,7 +115,7 @@
     BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
-    [self.activeComponent translateGhostImageTo:displayLoc withHoleAvailable:isAvailable];
+    [self.activeComponent translateImageViewTo:displayLoc withHoleAvailable:isAvailable];
 }
 
 // when the touch ends, query the model one more time before adding the element

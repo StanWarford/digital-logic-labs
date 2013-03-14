@@ -17,7 +17,7 @@
 
 - (void)displayComponentInView:(UIView*)view;
 - (void)displayGhostInView:(UIView*)view withHoleAvailable:(BOOL)available;
-- (void)translateGhostImageTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
+- (void)translateImageViewTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
 - (void)removeImageView;
 
 @end

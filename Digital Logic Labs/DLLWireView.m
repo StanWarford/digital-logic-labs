@@ -35,7 +35,7 @@
     
 }
 
-- (void)translateGhostImageTo:(CGPoint)coords withHoleAvailable:(BOOL)available
+- (void)translateImageViewTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
     
 }
