@@ -9,11 +9,34 @@
 #import "DLLChipView.h"
 
 @interface DLLChipView ()
+@property (nonatomic, weak) UIImage* availableGhostImage;
+@property (nonatomic, weak) UIImage* unavailableGhostImage;
 - (UIImage*)makeGhostWithHoleAvailable:(BOOL)available forImage:(UIImage*)image;
 - (UIImage*)convertImageToGrayScale:(UIImage*)image;
 @end
 
 @implementation DLLChipView
+
+@synthesize availableGhostImage = _availableGhostImage;
+@synthesize unavailableGhostImage = _unavailableGhostImage;
+
+#pragma mark -
+#pragma mark property instantiation methods
+- (UIImage*)availableGhostImage
+{
+    if(!_availableGhostImage){
+        _availableGhostImage = [self makeGhostWithHoleAvailable:YES forImage:self.image];
+    }
+    return _availableGhostImage;
+}
+
+- (UIImage*)unavailableGhostImage
+{
+    if(!_unavailableGhostImage){
+        _unavailableGhostImage = [self makeGhostWithHoleAvailable:NO forImage:self.image];
+    }
+    return _unavailableGhostImage;
+}
 
 #pragma mark -
 #pragma mark initialization methods
@@ -77,13 +100,14 @@
         [self removeImageView];
     }
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.start.x, self.start.y, self.image.size.width, self.image.size.height)];
-    self.imageView.image = [self makeGhostWithHoleAvailable:available forImage:self.image];
+    self.imageView.image = available ? self.availableGhostImage : self.unavailableGhostImage;
     [view addSubview:self.imageView];
 }
 
 - (void)translateImageViewTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
     self.start = coords;
+    self.imageView.image = available ? self.availableGhostImage :self.unavailableGhostImage;
     [UIView beginAnimations:@"UIImage Move" context:NULL];
     CGSize size = self.imageView.frame.size;
     self.imageView.frame = CGRectMake(coords.x, coords.y, size.width, size.height);
