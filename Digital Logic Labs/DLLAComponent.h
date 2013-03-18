@@ -9,19 +9,19 @@
 /*
  This is an abstract class and should never be instantiated directly.
 
- Subclasses must implement all metods defined in this class without calls to super.
-
- All properties have been synthesized in this class, and therefore do not need to be resynthesized in subclasses.
+ Subclasses must implement all methods defined in this class without calls to super.
+ 
+ init calls to super will raise an exception.
 */
+
 
 #import <Foundation/Foundation.h>
 
 @interface DLLAComponent : NSObject
 
 @property (assign, nonatomic) NSInteger identifier;
-@property (assign, nonatomic) NSInteger type;
 
--(id)initWithIdentifier:(NSInteger)identifier andType:(NSInteger)type;
+-(id)initWithIdentifier:(NSInteger)identifier;
 
 // more methods and properties to be defined later
 
