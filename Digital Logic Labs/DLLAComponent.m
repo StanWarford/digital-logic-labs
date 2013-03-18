@@ -13,10 +13,7 @@
 // Casey - random change
 // Casey - random change 2
 
-@synthesize identifier = _identifier;
-@synthesize type = _type;
-
--(id)initWithIdentifier:(NSInteger)identifier andType:(NSInteger)type
+-(id)initWithIdentifier:(NSInteger)identifier
 {
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
     return nil;
