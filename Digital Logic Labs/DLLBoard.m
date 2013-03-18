@@ -10,8 +10,8 @@
 
 @interface  DLLBoard()
 @property (assign, nonatomic) NSInteger activeLab;
-@property (strong, nonatomic) NSMutableArray *breadboardStateArray;
 @property (strong, nonatomic) NSMutableDictionary *chipDictionary;
+@property (strong, nonatomic) NSMutableArray *breadboardStateArray;
 @property (strong, nonatomic) NSMutableDictionary *electricalPointToBoardPointDictionary;
 @property (strong, nonatomic) NSMutableDictionary *boardPointToElectricalPointDictionary;
 @end

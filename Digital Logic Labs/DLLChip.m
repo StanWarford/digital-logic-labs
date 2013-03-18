@@ -14,7 +14,7 @@
 {
     if(self = [super init])
     {
-        
+        self.isFunctional = NO;
     }
     
     return self;
@@ -24,6 +24,7 @@
 {
     if(self = [super init]){
         self.identifier = identifier;
+        self.isFunctional = NO;
     }
     return self;
 }

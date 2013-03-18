@@ -10,6 +10,8 @@
 
 @interface DLLChip : DLLAComponent
 
+@property BOOL isFunctional;
+
 - (id)initWithIdenfifier:(NSInteger)identifier;
 
 @end
