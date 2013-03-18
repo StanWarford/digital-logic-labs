@@ -83,6 +83,8 @@
             
             [self.breadboardStateArray insertObject: boardColumns atIndex: i];
         }
+        
+        [self populateDictionaries];
     }
     
     return self;
