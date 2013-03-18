@@ -158,7 +158,7 @@
 
 - (void)clearBoard
 {
-    //reset XML to default, clear data structure, and set all cells in board array to EMPTY
+    //reset XML to default, clear data structure, and set all cells in board array to NSNull
 }
 
 #pragma mark -
