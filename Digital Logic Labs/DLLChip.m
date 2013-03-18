@@ -8,14 +8,21 @@
 
 #import "DLLChip.h"
 
-@interface DLLChip()
-@end
-
 @implementation DLLChip
+
+- (id)init
+{
+    if(self = [super init])
+    {
+        
+    }
+    
+    return self;
+}
 
 - (id)initWithIdentifier:(NSInteger)identifier
 {
-    if((self = [super init])){
+    if(self = [super init]){
         self.identifier = identifier;
     }
     return self;
