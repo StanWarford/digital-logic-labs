@@ -8,11 +8,17 @@
 
 #import "DLLBoardViewController.h"
 
+typedef enum{
+    notWire,
+    wireStart,
+    wireEnd
+} placementState;
+
 @interface DLLBoardViewController ()
 @property (nonatomic, strong) DLLAComponentView *activeComponent;
 @property (nonatomic, strong) NSDictionary *pointMap;
 @property (nonatomic, strong) DLLAComponentView *selection;
-@property (nonatomic, assign) BOOL isPlacingWire;
+@property (nonatomic, assign) placementState state;
 - (DLLPoint*)nearestBoardCoordinateTo:(CGPoint)loc;
 - (CGPoint)viewCoordinateFromBoardCoordinate:(DLLPoint*)loc;
 @end
@@ -23,7 +29,7 @@
 @synthesize pointMap = _pointMap;
 @synthesize selection = _selection;
 @synthesize boardModel = _boardModel;
-@synthesize isPlacingWire = _isPlacingWire;
+@synthesize state = _state;
 
 #pragma mark -
 #pragma mark Initialization Metods
@@ -33,7 +39,7 @@
 	// Do any additional setup after loading the view.
     self.view.multipleTouchEnabled = NO;
     self.activeComponent = nil;
-    self.isPlacingWire = NO;
+    self.state = notWire;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -81,31 +87,35 @@
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
     BOOL isEmpty = [self.boardModel boardStateAt:boardLoc] == nil;
     
-    // Remove any component the user touched, and assume the user wants to edit that component otherwise add a new component from the dock
-    if(!isEmpty){
-        // Query dictionary to find and remove correct chipview
-        [self.boardModel removeComponentAtCoordinate:boardLoc];
-        self.activeComponent = [self.pointMap objectForKey:boardLoc];
-        [self.activeComponent removeImageView];
-        NSArray *temp = [self.pointMap allKeysForObject:self.activeComponent];
-        NSMutableDictionary *dict = [self.pointMap mutableCopy];
-        for(NSValue *value in temp){
-            [dict removeObjectForKey:value];
+    if(self.state == notWire){
+        // Remove any component the user touched, and assume the user wants to edit that component otherwise add a new component from the dock
+        if(!isEmpty){
+            // Query dictionary to find and remove correct chipview
+            [self.boardModel removeComponentAtCoordinate:boardLoc];
+            self.activeComponent = [self.pointMap objectForKey:boardLoc];
+            [self.activeComponent removeImageView];
+            NSArray *temp = [self.pointMap allKeysForObject:self.activeComponent];
+            NSMutableDictionary *dict = [self.pointMap mutableCopy];
+            for(NSValue *value in temp){
+                [dict removeObjectForKey:value];
+            }
+            self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
+        }else{ // spot is not empty
+            // Instantiate a new chip or wire based on dock selection
+            if([self.selection isKindOfClass:[DLLChipView class]]){
+                self.activeComponent = [[[self.selection class] alloc] initChipOfSize:self.selection.size AtLocation:displayLoc];
+            }else{
+                self.activeComponent = [[[self.selection class] alloc] initWireWithStartAt:displayLoc withColor:self.selection.color];
+            }
         }
-        self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
-    }else{
-        // Instantiate a new chip or wire based on dock selection
-        if([self.selection isKindOfClass:[DLLChipView class]]){
-            self.activeComponent = [[[self.selection class] alloc] initChipOfSize:self.selection.size AtLocation:displayLoc];
-        }else{
-            self.activeComponent = [[[self.selection class] alloc] initWireWithStartAt:displayLoc withColor:self.selection.color];
-        }
+        self.state = [self.activeComponent isKindOfClass:[DLLWireView class]] ? wireStart : notWire;
+    }else{ // user is placing wire
+        
     }
     
     BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
-    
-    self.isPlacingWire = [self.activeComponent isKindOfClass:[DLLWireView class]];
+
     [self.activeComponent displayGhostInView:self.view withHoleAvailable:isAvailable];
 }
 
