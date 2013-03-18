@@ -88,7 +88,7 @@
     return self;
 }
 
--(void)populateElectricalPointToBoardPointDictionary
+-(void)populateDictionaries
 {
     for (int x = 0; x <= 62; x++) {
         NSString * key0 = [[NSNumber numberWithInt: x * 4] stringValue];
@@ -124,6 +124,26 @@
         NSArray *value2 = @[p10, p1, p12, p13, p14];
         NSArray *value3 = @[p15, p16, p17, p18, p19];
         
+        [self.boardPointToElectricalPointDictionary setValue: key0 forKey: [p0 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key0 forKey: [p1 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key0 forKey: [p2 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key0 forKey: [p3 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key0 forKey: [p4 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key1 forKey: [p5 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key1 forKey: [p6 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key1 forKey: [p7 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key1 forKey: [p8 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key1 forKey: [p9 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key2 forKey: [p10 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key2 forKey: [p11 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key2 forKey: [p12 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key2 forKey: [p13 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key2 forKey: [p14 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key3 forKey: [p15 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key3 forKey: [p16 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key3 forKey: [p17 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key3 forKey: [p18 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: key3 forKey: [p19 toString]];
         [self.electricalPointToBoardPointDictionary setValue: value0 forKey: key0];
         [self.electricalPointToBoardPointDictionary setValue: value1 forKey: key1];
         [self.electricalPointToBoardPointDictionary setValue: value2 forKey: key2];
