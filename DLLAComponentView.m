@@ -12,9 +12,10 @@
 
 @synthesize image = _image;
 @synthesize imageView = _imageView;
-@synthesize color = _color; // only used in wire
+@synthesize color = _color;
 @synthesize start = _start;
 @synthesize size = _size;
+@synthesize end = _end;
 
 #pragma mark -
 #pragma mark display methods
@@ -28,7 +29,12 @@
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }
 
-- (void)translateImageViewTo:(CGPoint)coords withHoleAvailable:(BOOL)available
+- (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available
+{
+    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
+}
+
+- (void)translateEndTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }

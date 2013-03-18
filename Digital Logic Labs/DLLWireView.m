@@ -50,7 +50,13 @@
 }
 
 // called when touches moved
-- (void)translateImageViewTo:(CGPoint)coords withHoleAvailable:(BOOL)available
+- (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available
+{
+    
+}
+
+// called when touches moved
+- (void)translateEndTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
     
 }

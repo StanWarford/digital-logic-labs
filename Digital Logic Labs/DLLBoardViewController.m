@@ -21,6 +21,7 @@ typedef enum{
 @property (nonatomic, assign) placementState state;
 - (DLLPoint*)nearestBoardCoordinateTo:(CGPoint)loc;
 - (CGPoint)viewCoordinateFromBoardCoordinate:(DLLPoint*)loc;
+- (void)removeComponentFromPointMap:(DLLAComponentView*)component;
 @end
 
 @implementation DLLBoardViewController
@@ -94,12 +95,7 @@ typedef enum{
             [self.boardModel removeComponentAtCoordinate:boardLoc];
             self.activeComponent = [self.pointMap objectForKey:boardLoc];
             [self.activeComponent removeImageView];
-            NSArray *temp = [self.pointMap allKeysForObject:self.activeComponent];
-            NSMutableDictionary *dict = [self.pointMap mutableCopy];
-            for(NSValue *value in temp){
-                [dict removeObjectForKey:value];
-            }
-            self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
+            [self removeComponentFromPointMap:self.activeComponent];
         }else{ // spot is not empty
             // Instantiate a new chip or wire based on dock selection
             if([self.selection isKindOfClass:[DLLChipView class]]){
@@ -109,14 +105,18 @@ typedef enum{
             }
         }
         self.state = [self.activeComponent isKindOfClass:[DLLWireView class]] ? wireStart : notWire;
-    }else{ // user is placing wire
         
+        BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize:self.activeComponent.size];
+        NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+        
+        [self.activeComponent displayGhostInView:self.view withHoleAvailable:isAvailable];
+    }else{ // user is already placing wire
+        BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize:self.activeComponent.size];
+        [self.activeComponent translateEndTo:displayLoc withHoleAvailable:isAvailable];
+        self.state = wireEnd;
+        
+        [self.activeComponent displayGhostInView:self.view withHoleAvailable:isAvailable];
     }
-    
-    BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
-    NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
-
-    [self.activeComponent displayGhostInView:self.view withHoleAvailable:isAvailable];
 }
 
 // when the touch moves, query the model and update the ghost image
@@ -128,11 +128,15 @@ typedef enum{
     CGPoint loc = [touch locationInView:self.view];
     DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
-
     BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
-    NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
-    [self.activeComponent translateImageViewTo:displayLoc withHoleAvailable:isAvailable];
+    if(self.state == wireEnd){ // user is placing end of wire
+        [self.activeComponent translateEndTo:displayLoc withHoleAvailable:isAvailable];
+    }else{ // user is placing start of wire or not placing a wire
+        NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+        
+        [self.activeComponent translateStartTo:displayLoc withHoleAvailable:isAvailable];
+    }
 }
 
 // when the touch ends, query the model one more time before adding the element
@@ -147,26 +151,49 @@ typedef enum{
 
     BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
-    
-    if(isAvailable){
-        // Tell the active component to display itself and notify model
-        [self.activeComponent displayComponentInView:self.view];
-        [self.boardModel addChipWithPartNum:self.activeComponent.size atUpperLeftCornerCoordinate:boardLoc];
-        
-        // Set pointers in dictionary to the displayed object
-        NSInteger x = displayLoc.x;
-        NSInteger y = displayLoc.y;
-        NSMutableDictionary *dict = [self.pointMap mutableCopy];
-        for(int i = 0; i < self.activeComponent.size; i++){
-            i < self.activeComponent.size/2 ? [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:CGPointMake(x+i, y)]] : [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:CGPointMake(x+i, y+1)]];
+    if(self.state = notWire){ // user is not placing a wire
+        if(isAvailable){
+            // Tell the active component to display itself and notify model
+            [self.activeComponent displayComponentInView:self.view];
+            [self.boardModel addChipWithPartNum:self.activeComponent.size atUpperLeftCornerCoordinate:boardLoc];
+            
+            // Set pointers in dictionary to the displayed object
+            NSInteger x = self.activeComponent.start.x;
+            NSInteger y = self.activeComponent.start.y;
+            NSMutableDictionary *dict = [self.pointMap mutableCopy];
+            for(int i = 0; i < self.activeComponent.size; i++){
+                i < self.activeComponent.size/2 ? [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:CGPointMake(x+i, y)]] : [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:CGPointMake(x+i, y+1)]];
+            }
+            self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
+        }else{
+            // User requested invalid object placement, remove activeComponent from view
+            [self.activeComponent removeImageView];
         }
-        self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
-    }else{
-        // User requested invalid object placement, remove activeComponent from view
-        [self.activeComponent removeImageView];
+        
+        self.activeComponent = nil;
+    }else if(self.state == wireStart){ // user is placing start of wire
+        if(isAvailable){
+            NSMutableDictionary *dict = [self.pointMap mutableCopy];
+            [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:self.activeComponent.start]];
+            self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
+        }else{
+            [self.activeComponent removeImageView];
+        }
+    }else{ // user is placing end of wire
+        if(isAvailable){
+            [self.activeComponent displayComponentInView:self.view];
+            [self.boardModel addWireFromPoint:[[DLLPoint alloc] initWithCoords:self.activeComponent.start] toPoint:[[DLLPoint alloc] initWithCoords:self.activeComponent.end] withColor:self.activeComponent.color];
+            
+            // set pointers in dictionary to the displayed object
+            NSMutableDictionary *dict = [self.pointMap mutableCopy];
+            [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:self.activeComponent.end]];
+            self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
+        }else{
+            // user requested invalid object placement, remove activeComponent from view and dictionary
+            [self.activeComponent removeImageView];
+            [self removeComponentFromPointMap:self.activeComponent];
+        }
     }
-    
-    self.activeComponent = nil;
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
@@ -194,6 +221,18 @@ typedef enum{
     NSInteger calcX = (x*1024)/62;
     NSInteger calcY = (y*768)/62;
     return CGPointMake(calcX, calcY);
+}
+
+#pragma mark -
+#pragma mark utility methods
+- (void)removeComponentFromPointMap:(DLLAComponentView *)component
+{
+    NSArray *temp = [self.pointMap allKeysForObject:component];
+    NSMutableDictionary *dict = [self.pointMap mutableCopy];
+    for(NSValue *value in temp){
+        [dict removeObjectForKey:value];
+    }
+    self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
 }
 
 #pragma mark -

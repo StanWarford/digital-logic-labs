@@ -15,7 +15,8 @@
 
 - (void)displayComponentInView:(UIView*)view;
 - (void)displayGhostInView:(UIView*)view withHoleAvailable:(BOOL)available;
-- (void)translateImageViewTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
+- (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
+- (void)translateEndTo:(CGPoint)coords withHoleAvailable:(BOOL)available; // only used by wire
 - (void)removeImageView;
 
 @end

@@ -107,7 +107,7 @@
     [view addSubview:self.imageView];
 }
 
-- (void)translateImageViewTo:(CGPoint)coords withHoleAvailable:(BOOL)available
+- (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
     self.start = coords;
     self.imageView.image = available ? self.availableGhostImage :self.unavailableGhostImage;
@@ -115,6 +115,11 @@
     CGSize size = self.imageView.frame.size;
     self.imageView.frame = CGRectMake(coords.x, coords.y, size.width, size.height);
     [UIView commitAnimations];
+}
+
+- (void)translateEndTo:(CGPoint)coords withHoleAvailable:(BOOL)available
+{
+    [NSException raise:NSInternalInconsistencyException format:@"%@ is not used with chips.", NSStringFromSelector(_cmd)];
 }
 
 - (void)removeImageView
