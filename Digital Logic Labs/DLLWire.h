@@ -14,4 +14,7 @@
 @property DLLPoint * startPoint;
 @property DLLPoint * endPoint;
 
+- (id)initWithStartPoint: (DLLPoint *)startPoint
+             AndEndPoint: (DLLPoint *)endPoint;
+
 @end

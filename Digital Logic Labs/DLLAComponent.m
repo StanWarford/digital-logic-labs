@@ -10,11 +10,8 @@
 
 @implementation DLLAComponent
 
-// Casey - random change
-// Casey - random change 2
-
 -(id)initWithIdentifier:(NSInteger)identifier
-{
+{    
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
     return nil;
 }

@@ -10,13 +10,12 @@
 
 @implementation DLLWire
 
-- (id)initWithStartPoint: (DLLPoint *)startPoint AndEndPoint: (DLLPoint *)endPoint
+- (id)initWithStartPoint: (DLLPoint *)startPoint
+             AndEndPoint: (DLLPoint *)endPoint
 {
-    if(self = [super init])
-    {
-        self.startPoint = startPoint;
-        self.endPoint = endPoint;
-    }
+    self.identifier = 9999; //unique number to differentiate a wire
+    self.startPoint = startPoint;
+    self.endPoint = endPoint;
     
     return self;
 }

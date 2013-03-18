@@ -12,20 +12,16 @@
 
 - (id)init
 {
-    if(self = [super init])
-    {
-        self.isFunctional = NO;
-    }
+    self.isFunctional = NO;
     
     return self;
 }
 
 - (id)initWithIdentifier:(NSInteger)identifier
 {
-    if(self = [super init]){
-        self.identifier = identifier;
-        self.isFunctional = NO;
-    }
+    self.identifier = identifier;
+    self.isFunctional = NO;
+    
     return self;
 }
 
