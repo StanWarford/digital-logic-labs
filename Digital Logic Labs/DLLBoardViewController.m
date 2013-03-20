@@ -99,9 +99,9 @@ typedef enum{
         }else{ // spot is not empty
             // Instantiate a new chip or wire based on dock selection
             if([self.selection isKindOfClass:[DLLChipView class]]){
-                self.activeComponent = [[[self.selection class] alloc] initChipOfSize:self.selection.size AtLocation:displayLoc];
+                self.activeComponent = [[[self.selection class] alloc] initChipOfSize:self.selection.size AtLocation:displayLoc inView:self.view];
             }else{
-                self.activeComponent = [[[self.selection class] alloc] initWireWithStartAt:displayLoc withColor:self.selection.color];
+                self.activeComponent = [[[self.selection class] alloc] initWireWithStartAt:displayLoc withColor:self.selection.color inView:self.view];
             }
         }
         self.state = [self.activeComponent isKindOfClass:[DLLWireView class]] ? wireStart : notWire;
@@ -109,7 +109,7 @@ typedef enum{
         BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize:self.activeComponent.size];
         NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
         
-        [self.activeComponent displayGhostInView:self.view withHoleAvailable:isAvailable];
+        [self.activeComponent displayGhostWithHoleAvailable:isAvailable];
     }else{ // wireEnd - user is placing end of wire
         BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize:self.activeComponent.size];
         BOOL didTouchStart = NO; // True if user touched the start of the wire false otherwise
@@ -118,7 +118,7 @@ typedef enum{
         }else{
             [self.activeComponent translateEndTo:displayLoc withHoleAvailable:isAvailable];
         
-            [self.activeComponent displayGhostInView:self.view withHoleAvailable:isAvailable];
+            [self.activeComponent displayGhostWithHoleAvailable:isAvailable];
         }
     }
 }
@@ -158,7 +158,7 @@ typedef enum{
     if(self.state = notWire){ // user is not placing a wire
         if(isAvailable){
             // Tell the active component to display itself and notify model
-            [self.activeComponent displayComponentInView:self.view];
+            [self.activeComponent displayComponent];
             [self.boardModel addChipWithPartNum:self.activeComponent.size atUpperLeftCornerCoordinate:boardLoc];
             
             // Set pointers in dictionary to the displayed object
@@ -191,7 +191,7 @@ typedef enum{
         
     }else{ // user is placing end of wire
         if(isAvailable){
-            [self.activeComponent displayComponentInView:self.view];
+            [self.activeComponent displayComponent];
             [self.boardModel addWireFromPoint:[[DLLPoint alloc] initWithCoords:self.activeComponent.start] toPoint:[[DLLPoint alloc] initWithCoords:self.activeComponent.end] withColor:self.activeComponent.color];
             
             // set pointers in dictionary to the displayed object

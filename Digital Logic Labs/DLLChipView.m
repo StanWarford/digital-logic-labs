@@ -43,7 +43,7 @@
 
 #pragma mark -
 #pragma mark initialization methods
-- (id)initChipOfSize:(NSInteger)size AtLocation:(CGPoint)coords
+- (id)initChipOfSize:(NSInteger)size AtLocation:(CGPoint)coords inView:(UIView *)view
 {
     if((self = [super init])){
         switch (size)
@@ -60,6 +60,7 @@
         }
         self.start = coords;
         self.size = size;
+        self.targetView = view;
     }
     return self;
 }
@@ -87,24 +88,24 @@
 
 #pragma mark -
 #pragma mark display methods
-- (void)displayComponentInView:(UIView *)view
+- (void)displayComponent
 {
     if(self.imageView){
         [self removeImageView];
     }
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.start.x, self.start.y, self.image.size.width, self.image.size.height)];
     self.imageView.image = self.image;
-    [view addSubview:self.imageView];
+    [self.targetView addSubview:self.imageView];
 }
 
-- (void)displayGhostInView:(UIView *)view withHoleAvailable:(BOOL)available
+- (void)displayGhostWithHoleAvailable:(BOOL)available
 {
     if(self.imageView){
         [self removeImageView];
     }
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.start.x, self.start.y, self.image.size.width, self.image.size.height)];
     self.imageView.image = available ? self.availableGhostImage : self.unavailableGhostImage;
-    [view addSubview:self.imageView];
+    [self.targetView addSubview:self.imageView];
 }
 
 - (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available

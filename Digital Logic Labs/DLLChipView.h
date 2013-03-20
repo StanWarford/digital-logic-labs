@@ -10,11 +10,11 @@
 
 @interface DLLChipView : DLLAComponentView
 
-- (id)initChipOfSize:(NSInteger)size AtLocation:(CGPoint)coords;
+- (id)initChipOfSize:(NSInteger)size AtLocation:(CGPoint)coords inView:(UIView*)view;
 - (id)initChipOfSize:(NSInteger)size;
 
-- (void)displayComponentInView:(UIView*)view;
-- (void)displayGhostInView:(UIView*)view withHoleAvailable:(BOOL)available;
+- (void)displayComponent;
+- (void)displayGhostWithHoleAvailable:(BOOL)available;
 - (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
 - (void)translateEndTo:(CGPoint)coords withHoleAvailable:(BOOL)available; // only used by wire
 - (void)removeImageView;

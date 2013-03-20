@@ -11,10 +11,10 @@
 @interface DLLWireView : DLLAComponentView
 
 - (id)initWire;
-- (id)initWireWithStartAt:(CGPoint)coords withColor:(UIColor*)color;
+- (id)initWireWithStartAt:(CGPoint)coords withColor:(UIColor*)color inView:(UIView*)view;
 
-- (void)displayComponentInView:(UIView*)view atCoordinates:(CGPoint)loc;
-- (void)displayGhostInView:(UIView*)view atCoordinates:(CGPoint)loc withHoleAvailable:(BOOL)available;
+- (void)displayComponent;
+- (void)displayGhostWithHoleAvailable:(BOOL)available;
 - (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
 - (void)translateEndTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
 - (void)removeImageView;

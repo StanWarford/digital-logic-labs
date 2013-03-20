@@ -12,6 +12,7 @@
 
 @synthesize image = _image;
 @synthesize imageView = _imageView;
+@synthesize targetView = _targetView;
 @synthesize color = _color;
 @synthesize start = _start;
 @synthesize size = _size;
@@ -19,12 +20,12 @@
 
 #pragma mark -
 #pragma mark display methods
-- (void)displayComponentInView:(UIView *)view;
+- (void)displayComponent;
 {
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }
 
-- (void)displayGhostInView:(UIView *)view withHoleAvailable:(BOOL)available
+- (void)displayGhostWithHoleAvailable:(BOOL)available
 {
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }
