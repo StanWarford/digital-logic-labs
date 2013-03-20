@@ -18,7 +18,8 @@
 - (id)initWire
 {
     if((self = [super init])){
-        self.start = CGPointMake(0.0, 0.0);
+        self.start = CGPointMake(0, 0);
+        self.end = CGPointMake(0, 0);
         self.color = [UIColor redColor];
         self.image = [UIImage imageNamed:@"wire"];
     }
@@ -29,6 +30,7 @@
 {
     if((self = [super init])){
         self.start = coords;
+        self.end = CGPointMake(0, 0);
         self.color = color;
         self.image = [UIImage imageNamed:@"wire"];
     }

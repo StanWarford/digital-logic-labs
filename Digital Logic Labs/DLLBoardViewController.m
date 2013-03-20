@@ -9,9 +9,9 @@
 #import "DLLBoardViewController.h"
 
 typedef enum{
-    notWire,
-    wireStart,
-    wireEnd
+    notWire, // user is not placing a wire
+    wireStart, // user is placing the start of a wire
+    wireEnd // user is placing the end of a wire
 } placementState;
 
 @interface DLLBoardViewController ()
@@ -88,14 +88,14 @@ typedef enum{
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
     BOOL isEmpty = [self.boardModel boardStateAt:boardLoc] == nil;
     
-    if(self.state == notWire){
+    if(self.state == notWire){ // user has not placed a wire
         // Remove any component the user touched, and assume the user wants to edit that component otherwise add a new component from the dock
         if(!isEmpty){
             // Query dictionary to find and remove correct chipview
             [self.boardModel removeComponentAtCoordinate:boardLoc];
             self.activeComponent = [self.pointMap objectForKey:boardLoc];
-            [self.activeComponent removeImageView];
             [self removeComponentFromPointMap:self.activeComponent];
+            [self.activeComponent removeImageView];
         }else{ // spot is not empty
             // Instantiate a new chip or wire based on dock selection
             if([self.selection isKindOfClass:[DLLChipView class]]){
@@ -110,12 +110,16 @@ typedef enum{
         NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
         
         [self.activeComponent displayGhostInView:self.view withHoleAvailable:isAvailable];
-    }else{ // user is already placing wire
+    }else{ // wireEnd - user is placing end of wire
         BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize:self.activeComponent.size];
-        [self.activeComponent translateEndTo:displayLoc withHoleAvailable:isAvailable];
-        self.state = wireEnd;
+        BOOL didTouchStart = NO; // True if user touched the start of the wire false otherwise
+        if(didTouchStart){
+            // change state back to wireStart and edit the start position of the wire
+        }else{
+            [self.activeComponent translateEndTo:displayLoc withHoleAvailable:isAvailable];
         
-        [self.activeComponent displayGhostInView:self.view withHoleAvailable:isAvailable];
+            [self.activeComponent displayGhostInView:self.view withHoleAvailable:isAvailable];
+        }
     }
 }
 
@@ -129,12 +133,11 @@ typedef enum{
     DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
     CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
     BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
+    NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
     if(self.state == wireEnd){ // user is placing end of wire
         [self.activeComponent translateEndTo:displayLoc withHoleAvailable:isAvailable];
     }else{ // user is placing start of wire or not placing a wire
-        NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
-        
         [self.activeComponent translateStartTo:displayLoc withHoleAvailable:isAvailable];
     }
 }
@@ -151,6 +154,7 @@ typedef enum{
 
     BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+    
     if(self.state = notWire){ // user is not placing a wire
         if(isAvailable){
             // Tell the active component to display itself and notify model
@@ -169,16 +173,22 @@ typedef enum{
             // User requested invalid object placement, remove activeComponent from view
             [self.activeComponent removeImageView];
         }
-        
         self.activeComponent = nil;
+        
     }else if(self.state == wireStart){ // user is placing start of wire
         if(isAvailable){
+            // add start of wire to pointMap
             NSMutableDictionary *dict = [self.pointMap mutableCopy];
             [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:self.activeComponent.start]];
             self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
+            
+            self.state = wireEnd;
         }else{
             [self.activeComponent removeImageView];
+            self.state = notWire;
+            self.activeComponent = nil;
         }
+        
     }else{ // user is placing end of wire
         if(isAvailable){
             [self.activeComponent displayComponentInView:self.view];
@@ -193,6 +203,7 @@ typedef enum{
             [self.activeComponent removeImageView];
             [self removeComponentFromPointMap:self.activeComponent];
         }
+        self.state = notWire;
     }
 }
 
