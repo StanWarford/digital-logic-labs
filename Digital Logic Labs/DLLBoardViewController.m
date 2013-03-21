@@ -55,7 +55,7 @@ typedef enum{
     NSLog([NSString stringWithFormat:@"%f x %f", viewBounds.size.width * scale, viewBounds.size.height * scale]);
     
     // set background image
-    UIImage *sourceBG = [UIImage imageNamed:@"breadboard-new"];
+    UIImage *sourceBG = [UIImage imageNamed:@"board-new-resized.png"]; // breadboard-new
     CGSize bgSize = self.view.frame.size;
 
     UIGraphicsBeginImageContext(bgSize);

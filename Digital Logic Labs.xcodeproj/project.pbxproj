@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48190C8E16FA6E2D003BC4E4 /* board-new-resized.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8A16FA6E2D003BC4E4 /* board-new-resized.png */; };
+		48190C8F16FA6E2D003BC4E4 /* chip-14-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8B16FA6E2D003BC4E4 /* chip-14-gray.png */; };
+		48190C9016FA6E2D003BC4E4 /* chip-16-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8C16FA6E2D003BC4E4 /* chip-16-gray.png */; };
+		48190C9116FA6E2D003BC4E4 /* wire.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8D16FA6E2D003BC4E4 /* wire.png */; };
 		4836742416CC56AC008B87E6 /* Lab1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836741E16CC56AC008B87E6 /* Lab1.pdf */; };
 		4836742516CC56AC008B87E6 /* Lab2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836741F16CC56AC008B87E6 /* Lab2.pdf */; };
 		4836742616CC56AC008B87E6 /* Lab3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836742016CC56AC008B87E6 /* Lab3.pdf */; };
@@ -72,6 +76,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		48190C8A16FA6E2D003BC4E4 /* board-new-resized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "board-new-resized.png"; sourceTree = "<group>"; };
+		48190C8B16FA6E2D003BC4E4 /* chip-14-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-14-gray.png"; sourceTree = "<group>"; };
+		48190C8C16FA6E2D003BC4E4 /* chip-16-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-16-gray.png"; sourceTree = "<group>"; };
+		48190C8D16FA6E2D003BC4E4 /* wire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wire.png; sourceTree = "<group>"; };
 		4836741E16CC56AC008B87E6 /* Lab1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab1.pdf; path = LabPdfs/Lab1.pdf; sourceTree = "<group>"; };
 		4836741F16CC56AC008B87E6 /* Lab2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab2.pdf; path = LabPdfs/Lab2.pdf; sourceTree = "<group>"; };
 		4836742016CC56AC008B87E6 /* Lab3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab3.pdf; path = LabPdfs/Lab3.pdf; sourceTree = "<group>"; };
@@ -193,6 +201,10 @@
 		486B08D516D58CD400F0E4B8 /* Chip and Breadboard Images */ = {
 			isa = PBXGroup;
 			children = (
+				48190C8A16FA6E2D003BC4E4 /* board-new-resized.png */,
+				48190C8B16FA6E2D003BC4E4 /* chip-14-gray.png */,
+				48190C8C16FA6E2D003BC4E4 /* chip-16-gray.png */,
+				48190C8D16FA6E2D003BC4E4 /* wire.png */,
 				486B08D916D58CD400F0E4B8 /* light-off.png */,
 				486B08DA16D58CD400F0E4B8 /* light-on.png */,
 			);
@@ -494,6 +506,10 @@
 				486B08DE16D58CD400F0E4B8 /* light-off.png in Resources */,
 				486B08DF16D58CD400F0E4B8 /* light-on.png in Resources */,
 				CFC8061816F2513900F446FC /* wire.png in Resources */,
+				48190C8E16FA6E2D003BC4E4 /* board-new-resized.png in Resources */,
+				48190C8F16FA6E2D003BC4E4 /* chip-14-gray.png in Resources */,
+				48190C9016FA6E2D003BC4E4 /* chip-16-gray.png in Resources */,
+				48190C9116FA6E2D003BC4E4 /* wire.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
