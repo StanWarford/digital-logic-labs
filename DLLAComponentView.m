@@ -12,6 +12,7 @@
 
 @synthesize image = _image;
 @synthesize imageView = _imageView;
+@synthesize wireDrawing = _wireDrawing;
 @synthesize targetView = _targetView;
 @synthesize color = _color;
 @synthesize start = _start;
@@ -40,7 +41,7 @@
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }
 
-- (void)removeImageView
+- (void)removeGraphics
 {
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }

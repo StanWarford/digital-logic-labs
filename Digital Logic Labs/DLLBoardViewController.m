@@ -95,7 +95,7 @@ typedef enum{
             [self.boardModel removeComponentAtCoordinate:boardLoc];
             self.activeComponent = [self.pointMap objectForKey:boardLoc];
             [self removeComponentFromPointMap:self.activeComponent];
-            [self.activeComponent removeImageView];
+            [self.activeComponent removeGraphics];
         }else{ // spot is not empty
             // Instantiate a new chip or wire based on dock selection
             if([self.selection isKindOfClass:[DLLChipView class]]){
@@ -171,7 +171,7 @@ typedef enum{
             self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
         }else{
             // User requested invalid object placement, remove activeComponent from view
-            [self.activeComponent removeImageView];
+            [self.activeComponent removeGraphics];
         }
         self.activeComponent = nil;
         
@@ -184,7 +184,7 @@ typedef enum{
             
             self.state = wireEnd;
         }else{
-            [self.activeComponent removeImageView];
+            [self.activeComponent removeGraphics];
             self.state = notWire;
             self.activeComponent = nil;
         }
@@ -200,7 +200,7 @@ typedef enum{
             self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
         }else{
             // user requested invalid object placement, remove activeComponent from view and dictionary
-            [self.activeComponent removeImageView];
+            [self.activeComponent removeGraphics];
             [self removeComponentFromPointMap:self.activeComponent];
         }
         self.state = notWire;

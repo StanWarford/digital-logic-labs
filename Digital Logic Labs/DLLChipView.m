@@ -91,7 +91,7 @@
 - (void)displayComponent
 {
     if(self.imageView){
-        [self removeImageView];
+        [self removeGraphics];
     }
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.start.x, self.start.y, self.image.size.width, self.image.size.height)];
     self.imageView.image = self.image;
@@ -101,7 +101,7 @@
 - (void)displayGhostWithHoleAvailable:(BOOL)available
 {
     if(self.imageView){
-        [self removeImageView];
+        [self removeGraphics];
     }
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.start.x, self.start.y, self.image.size.width, self.image.size.height)];
     self.imageView.image = available ? self.availableGhostImage : self.unavailableGhostImage;
@@ -123,7 +123,7 @@
     [NSException raise:NSInternalInconsistencyException format:@"%@ is not used with chips.", NSStringFromSelector(_cmd)];
 }
 
-- (void)removeImageView
+- (void)removeGraphics
 {
     [self.imageView removeFromSuperview];
     self.imageView = nil;

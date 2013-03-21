@@ -17,6 +17,6 @@
 - (void)displayGhostWithHoleAvailable:(BOOL)available;
 - (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
 - (void)translateEndTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
-- (void)removeImageView;
+- (void)removeGraphics;
 
 @end

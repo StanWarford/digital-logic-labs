@@ -53,6 +53,7 @@
 		CFDBF70016B0C19A009C3DA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFDBF6FE16B0C19A009C3DA4 /* InfoPlist.strings */; };
 		CFDBF70316B0C19A009C3DA4 /* Digital_Logic_LabsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDBF70216B0C19A009C3DA4 /* Digital_Logic_LabsTests.m */; };
 		CFDBF70D16B0C1D9009C3DA4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFDBF70C16B0C1D9009C3DA4 /* MainStoryboard.storyboard */; };
+		CFE0830316FA84A800E77C35 /* DLLWireDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE0830216FA84A800E77C35 /* DLLWireDrawing.m */; };
 		D86C198A16E5149100E4303B /* DLLPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D86C198916E5149100E4303B /* DLLPoint.m */; };
 		D87DB90016F772E5000C6CE4 /* DLLWire.m in Sources */ = {isa = PBXBuildFile; fileRef = D87DB8FF16F772E5000C6CE4 /* DLLWire.m */; };
 		D87DB90416F77434000C6CE4 /* DLL14PinDIP.m in Sources */ = {isa = PBXBuildFile; fileRef = D87DB90316F77434000C6CE4 /* DLL14PinDIP.m */; };
@@ -135,6 +136,8 @@
 		CFDBF70116B0C19A009C3DA4 /* Digital_Logic_LabsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Digital_Logic_LabsTests.h; sourceTree = "<group>"; };
 		CFDBF70216B0C19A009C3DA4 /* Digital_Logic_LabsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Digital_Logic_LabsTests.m; sourceTree = "<group>"; };
 		CFDBF70C16B0C1D9009C3DA4 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		CFE0830116FA84A800E77C35 /* DLLWireDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLWireDrawing.h; sourceTree = "<group>"; };
+		CFE0830216FA84A800E77C35 /* DLLWireDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLWireDrawing.m; sourceTree = "<group>"; };
 		D86C198816E5149100E4303B /* DLLPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLPoint.h; sourceTree = "<group>"; };
 		D86C198916E5149100E4303B /* DLLPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLPoint.m; sourceTree = "<group>"; };
 		D87DB8FE16F772E5000C6CE4 /* DLLWire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DLLWire.h; path = "Digital Logic Labs/DLLWire.h"; sourceTree = SOURCE_ROOT; };
@@ -181,6 +184,8 @@
 				CFB535B516E53E4A000DC011 /* DLLChipView.m */,
 				CFB535B716E5407F000DC011 /* DLLWireView.h */,
 				CFB535B816E5407F000DC011 /* DLLWireView.m */,
+				CFE0830116FA84A800E77C35 /* DLLWireDrawing.h */,
+				CFE0830216FA84A800E77C35 /* DLLWireDrawing.m */,
 			);
 			name = "Component View Objects";
 			sourceTree = "<group>";
@@ -541,6 +546,7 @@
 				CFB535B616E53E4A000DC011 /* DLLChipView.m in Sources */,
 				CFB535B916E5407F000DC011 /* DLLWireView.m in Sources */,
 				D87DB90416F77434000C6CE4 /* DLL14PinDIP.m in Sources */,
+				CFE0830316FA84A800E77C35 /* DLLWireDrawing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

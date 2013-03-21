@@ -43,45 +43,49 @@
 // called when touches ended
 - (void)displayComponent
 {
-    // assume both start and end are in valid positions.
-    // draw 2 solid <self.color> dots at start and end
-    // connect the two dots with a solid <self.color> line
+    if(self.wireDrawing){
+        [self removeGraphics];
+    }
+    
+    self.wireDrawing = [[DLLWireDrawing alloc] initWithFrame:self.targetView.frame fromStart:self.start toEnd:self.end asGhost:NO withColor:self.color];
+    //[self.wireDrawing setNeedsDisplay];
+    
+    [self.targetView addSubview:self.wireDrawing];
 }
 
 // called when touches began
 - (void)displayGhostWithHoleAvailable:(BOOL)available
 {
-    // assume start is a valid point
-    // if end is (0,0) only draw ghost circle for start point
-    // otherwise draw ghost circle for start point and end point, and connect with ghost line
+    if(self.wireDrawing){
+        [self removeGraphics];
+    }
+    
+    self.wireDrawing = [[DLLWireDrawing alloc] initWithFrame:self.targetView.frame fromStart:self.start toEnd:self.end asGhost:YES withColor:self.color];
+    //[self.wireDrawing setNeedsDisplay];
+    
+    [self.targetView addSubview:self.wireDrawing];
 }
 
 // called when touches moved
 - (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
-    // assume ghost image has already been drawn
     self.start = coords;
-    [UIView beginAnimations:@"Start Move" context:NULL];
-    // if end is (0, 0) only redraw start dot in a new position
-    // otherwise redraw start dot, and connect start and end with ghost line
-    [UIView commitAnimations];
+    self.wireDrawing.start = self.start;
+    [self.wireDrawing setNeedsDisplay];
 }
 
 // called when touches moved
 - (void)translateEndTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
-    // assume ghost image has already been drawn
-    // assume start is in a valid position
     self.end = coords;
-    [UIView beginAnimations:@"End Move" context:NULL];
-    // redraw end dot and connect to start with ghost line
-    [UIView commitAnimations];
+    self.wireDrawing.end = self.end;
+    [self.wireDrawing setNeedsDisplay];
 }
 
-// called when touches began
-- (void)removeImageView
+- (void)removeGraphics
 {
-    // remove drawing from view
+    [self.wireDrawing removeFromSuperview];
+    self.wireDrawing = nil;
 }
 
 @end
