@@ -10,6 +10,9 @@
 
 @implementation DLLWireDrawing
 
+#define LINE_WIDTH 2.0
+#define GHOST_TRANSPARENCY 0.5
+
 @synthesize color = _color;
 @synthesize isGhost = _isGhost;
 @synthesize start = _start;
@@ -46,11 +49,14 @@
 {
     // if only one point is valid, just draw that point as a dot
     // if 2 points are valid, draw 2 dots and connect with a line
-    if(self.isGhost){
-        // draw ghost
-    }else{
-        // draw solid
-    }
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    // set color
+    const CGFloat *components = CGColorGetComponents(self.color.CGColor);
+    CGFloat RGBA[] = {components[0], components[1], components[2], self.isGhost ? GHOST_TRANSPARENCY : 1.0};
+    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+    CGColorRef color = CGColorCreate(colorspace, components);
+    CGContextSetStrokeColorWithColor(context, color);
 }
 
 
