@@ -18,19 +18,22 @@
 - (id)initWire
 {
     if((self = [super init])){
-        self.start = CGPointMake(0.0, 0.0);
+        self.start = CGPointMake(0, 0);
+        self.end = CGPointMake(0, 0);
         self.color = [UIColor redColor];
         self.image = [UIImage imageNamed:@"wire"];
     }
     return self;
 }
 
--(id)initWireWithStartAt:(CGPoint)coords withColor:(UIColor *)color
+-(id)initWireWithStartAt:(CGPoint)coords withColor:(UIColor *)color inView:(UIView *)view
 {
     if((self = [super init])){
         self.start = coords;
+        self.end = CGPointMake(0, 0);
         self.color = color;
         self.image = [UIImage imageNamed:@"wire"];
+        self.targetView = view;
     }
     return self;
 }
@@ -38,27 +41,51 @@
 #pragma mark -
 #pragma mark display methods
 // called when touches ended
-- (void)displayComponentInView:(UIView*)view atCoordinates:(CGPoint)loc
+- (void)displayComponent
 {
+    if(self.wireDrawing){
+        [self removeGraphics];
+    }
     
+    self.wireDrawing = [[DLLWireDrawing alloc] initWithFrame:self.targetView.frame fromStart:self.start toEnd:self.end asGhost:NO withColor:self.color];
+    //[self.wireDrawing setNeedsDisplay];
+    
+    [self.targetView addSubview:self.wireDrawing];
 }
 
 // called when touches began
-- (void)displayGhostInView:(UIView*)view atCoordinates:(CGPoint)loc withHoleAvailable:(BOOL)available
+- (void)displayGhostWithHoleAvailable:(BOOL)available
 {
+    if(self.wireDrawing){
+        [self removeGraphics];
+    }
     
+    self.wireDrawing = [[DLLWireDrawing alloc] initWithFrame:self.targetView.frame fromStart:self.start toEnd:self.end asGhost:YES withColor:self.color];
+    //[self.wireDrawing setNeedsDisplay];
+    
+    [self.targetView addSubview:self.wireDrawing];
 }
 
 // called when touches moved
-- (void)translateImageViewTo:(CGPoint)coords withHoleAvailable:(BOOL)available
+- (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
-    
+    self.start = coords;
+    self.wireDrawing.start = self.start;
+    [self.wireDrawing setNeedsDisplay];
 }
 
-// called when touches began
-- (void)removeImageView
+// called when touches moved
+- (void)translateEndTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
-    
+    self.end = coords;
+    self.wireDrawing.end = self.end;
+    [self.wireDrawing setNeedsDisplay];
+}
+
+- (void)removeGraphics
+{
+    [self.wireDrawing removeFromSuperview];
+    self.wireDrawing = nil;
 }
 
 @end

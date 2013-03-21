@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48190C8E16FA6E2D003BC4E4 /* board-new-resized.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8A16FA6E2D003BC4E4 /* board-new-resized.png */; };
+		48190C8F16FA6E2D003BC4E4 /* chip-14-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8B16FA6E2D003BC4E4 /* chip-14-gray.png */; };
+		48190C9016FA6E2D003BC4E4 /* chip-16-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8C16FA6E2D003BC4E4 /* chip-16-gray.png */; };
+		48190C9116FA6E2D003BC4E4 /* wire.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8D16FA6E2D003BC4E4 /* wire.png */; };
 		4836742416CC56AC008B87E6 /* Lab1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836741E16CC56AC008B87E6 /* Lab1.pdf */; };
 		4836742516CC56AC008B87E6 /* Lab2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836741F16CC56AC008B87E6 /* Lab2.pdf */; };
 		4836742616CC56AC008B87E6 /* Lab3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836742016CC56AC008B87E6 /* Lab3.pdf */; };
@@ -53,6 +57,7 @@
 		CFDBF70016B0C19A009C3DA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFDBF6FE16B0C19A009C3DA4 /* InfoPlist.strings */; };
 		CFDBF70316B0C19A009C3DA4 /* Digital_Logic_LabsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDBF70216B0C19A009C3DA4 /* Digital_Logic_LabsTests.m */; };
 		CFDBF70D16B0C1D9009C3DA4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFDBF70C16B0C1D9009C3DA4 /* MainStoryboard.storyboard */; };
+		CFE0830316FA84A800E77C35 /* DLLWireDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE0830216FA84A800E77C35 /* DLLWireDrawing.m */; };
 		D86C198A16E5149100E4303B /* DLLPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D86C198916E5149100E4303B /* DLLPoint.m */; };
 		D87DB90016F772E5000C6CE4 /* DLLWire.m in Sources */ = {isa = PBXBuildFile; fileRef = D87DB8FF16F772E5000C6CE4 /* DLLWire.m */; };
 		D87DB90416F77434000C6CE4 /* DLL14PinDIP.m in Sources */ = {isa = PBXBuildFile; fileRef = D87DB90316F77434000C6CE4 /* DLL14PinDIP.m */; };
@@ -71,6 +76,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		48190C8A16FA6E2D003BC4E4 /* board-new-resized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "board-new-resized.png"; sourceTree = "<group>"; };
+		48190C8B16FA6E2D003BC4E4 /* chip-14-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-14-gray.png"; sourceTree = "<group>"; };
+		48190C8C16FA6E2D003BC4E4 /* chip-16-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-16-gray.png"; sourceTree = "<group>"; };
+		48190C8D16FA6E2D003BC4E4 /* wire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wire.png; sourceTree = "<group>"; };
 		4836741E16CC56AC008B87E6 /* Lab1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab1.pdf; path = LabPdfs/Lab1.pdf; sourceTree = "<group>"; };
 		4836741F16CC56AC008B87E6 /* Lab2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab2.pdf; path = LabPdfs/Lab2.pdf; sourceTree = "<group>"; };
 		4836742016CC56AC008B87E6 /* Lab3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab3.pdf; path = LabPdfs/Lab3.pdf; sourceTree = "<group>"; };
@@ -135,6 +144,8 @@
 		CFDBF70116B0C19A009C3DA4 /* Digital_Logic_LabsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Digital_Logic_LabsTests.h; sourceTree = "<group>"; };
 		CFDBF70216B0C19A009C3DA4 /* Digital_Logic_LabsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Digital_Logic_LabsTests.m; sourceTree = "<group>"; };
 		CFDBF70C16B0C1D9009C3DA4 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		CFE0830116FA84A800E77C35 /* DLLWireDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLWireDrawing.h; sourceTree = "<group>"; };
+		CFE0830216FA84A800E77C35 /* DLLWireDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLWireDrawing.m; sourceTree = "<group>"; };
 		D86C198816E5149100E4303B /* DLLPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLPoint.h; sourceTree = "<group>"; };
 		D86C198916E5149100E4303B /* DLLPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLPoint.m; sourceTree = "<group>"; };
 		D87DB8FE16F772E5000C6CE4 /* DLLWire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DLLWire.h; path = "Digital Logic Labs/DLLWire.h"; sourceTree = SOURCE_ROOT; };
@@ -181,6 +192,8 @@
 				CFB535B516E53E4A000DC011 /* DLLChipView.m */,
 				CFB535B716E5407F000DC011 /* DLLWireView.h */,
 				CFB535B816E5407F000DC011 /* DLLWireView.m */,
+				CFE0830116FA84A800E77C35 /* DLLWireDrawing.h */,
+				CFE0830216FA84A800E77C35 /* DLLWireDrawing.m */,
 			);
 			name = "Component View Objects";
 			sourceTree = "<group>";
@@ -188,6 +201,10 @@
 		486B08D516D58CD400F0E4B8 /* Chip and Breadboard Images */ = {
 			isa = PBXGroup;
 			children = (
+				48190C8A16FA6E2D003BC4E4 /* board-new-resized.png */,
+				48190C8B16FA6E2D003BC4E4 /* chip-14-gray.png */,
+				48190C8C16FA6E2D003BC4E4 /* chip-16-gray.png */,
+				48190C8D16FA6E2D003BC4E4 /* wire.png */,
 				486B08D916D58CD400F0E4B8 /* light-off.png */,
 				486B08DA16D58CD400F0E4B8 /* light-on.png */,
 			);
@@ -489,6 +506,10 @@
 				486B08DE16D58CD400F0E4B8 /* light-off.png in Resources */,
 				486B08DF16D58CD400F0E4B8 /* light-on.png in Resources */,
 				CFC8061816F2513900F446FC /* wire.png in Resources */,
+				48190C8E16FA6E2D003BC4E4 /* board-new-resized.png in Resources */,
+				48190C8F16FA6E2D003BC4E4 /* chip-14-gray.png in Resources */,
+				48190C9016FA6E2D003BC4E4 /* chip-16-gray.png in Resources */,
+				48190C9116FA6E2D003BC4E4 /* wire.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +562,7 @@
 				CFB535B616E53E4A000DC011 /* DLLChipView.m in Sources */,
 				CFB535B916E5407F000DC011 /* DLLWireView.m in Sources */,
 				D87DB90416F77434000C6CE4 /* DLL14PinDIP.m in Sources */,
+				CFE0830316FA84A800E77C35 /* DLLWireDrawing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

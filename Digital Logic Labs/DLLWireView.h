@@ -10,14 +10,13 @@
 
 @interface DLLWireView : DLLAComponentView
 
-@property (nonatomic, assign) CGPoint end;
-
 - (id)initWire;
-- (id)initWireWithStartAt:(CGPoint)coords withColor:(UIColor*)color;
+- (id)initWireWithStartAt:(CGPoint)coords withColor:(UIColor*)color inView:(UIView*)view;
 
-- (void)displayComponentInView:(UIView*)view atCoordinates:(CGPoint)loc;
-- (void)displayGhostInView:(UIView*)view atCoordinates:(CGPoint)loc withHoleAvailable:(BOOL)available;
-- (void)translateImageViewTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
-- (void)removeImageView;
+- (void)displayComponent;
+- (void)displayGhostWithHoleAvailable:(BOOL)available;
+- (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
+- (void)translateEndTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
+- (void)removeGraphics;
 
 @end

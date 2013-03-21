@@ -12,28 +12,36 @@
 
 @synthesize image = _image;
 @synthesize imageView = _imageView;
-@synthesize color = _color; // only used in wire
+@synthesize wireDrawing = _wireDrawing;
+@synthesize targetView = _targetView;
+@synthesize color = _color;
 @synthesize start = _start;
 @synthesize size = _size;
+@synthesize end = _end;
 
 #pragma mark -
 #pragma mark display methods
-- (void)displayComponentInView:(UIView *)view;
+- (void)displayComponent;
 {
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }
 
-- (void)displayGhostInView:(UIView *)view withHoleAvailable:(BOOL)available
+- (void)displayGhostWithHoleAvailable:(BOOL)available
 {
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }
 
-- (void)translateImageViewTo:(CGPoint)coords withHoleAvailable:(BOOL)available
+- (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }
 
-- (void)removeImageView
+- (void)translateEndTo:(CGPoint)coords withHoleAvailable:(BOOL)available
+{
+    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
+}
+
+- (void)removeGraphics
 {
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }
