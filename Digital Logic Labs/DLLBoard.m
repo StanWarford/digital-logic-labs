@@ -151,6 +151,65 @@
         [self.electricalPointToBoardPointDictionary setValue: value2 forKey: key2];
         [self.electricalPointToBoardPointDictionary setValue: value3 forKey: key3];
     }
+    
+    // ground = Electrical Point 252
+    // power = Electrical Point 253
+    NSMutableArray *groundArray = [[NSMutableArray alloc] initWithCapacity:189];
+    NSMutableArray *powerArray = [[NSMutableArray alloc] initWithCapacity:189];
+    for (int x = 0; x <= 62;x++)
+    {
+        groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 5];
+        groundArray[x + 63] = [[DLLPoint alloc] initWithIntX:x andY: 17];
+        groundArray[x + 126] = [[DLLPoint alloc] initWithIntX:x andY: 29];
+        powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 6];
+        powerArray[x + 63] = [[DLLPoint alloc] initWithIntX:x andY: 18];
+        powerArray[x + 126] = [[DLLPoint alloc] initWithIntX:x andY: 30];
+    }
+    [self.electricalPointToBoardPointDictionary setValue: groundArray forKey: @"252"];
+    [self.electricalPointToBoardPointDictionary setValue: powerArray forKey: @"253"];
+    
+    // Switch X = Electrical Point 254
+    // Debounced Switch X = Electrical Point 255
+    // Switch Y = Electrical Point 256
+    // Debounced Switch Y = Electrical Point 257
+    // SW1-SW8 = Electrical Points 258-265
+    for (int x=0; x <= 11; x++) {
+        DLLPoint *p1, *p2, *p3, *p4;
+        p1 = [[DLLPoint alloc] initWithIntX:x*5 andY: 1];
+        p2 = [[DLLPoint alloc] initWithIntX:x*5 andY: 2];
+        p3 = [[DLLPoint alloc] initWithIntX:x*5 andY: 3];
+        p4 = [[DLLPoint alloc] initWithIntX:x*5 andY: 4];
+        NSArray *switchArray = @[p1, p2, p3, p4];
+        NSString *key = [[NSNumber numberWithInt: x + 254] stringValue];
+        [self.electricalPointToBoardPointDictionary setValue:switchArray forKey: key];
+    }
+    
+    // Lights A-H = Electrical Points 266-273
+    DLLPoint *p1, *p2, *p3, *p4, *p5, *p6, *p7, *p8;
+    p1 = [[DLLPoint alloc] initWithIntX:25 andY: 0];
+    p2 = [[DLLPoint alloc] initWithIntX:26 andY: 0];
+    p3 = [[DLLPoint alloc] initWithIntX:27 andY: 0];
+    p4 = [[DLLPoint alloc] initWithIntX:28 andY: 0];
+    p5 = [[DLLPoint alloc] initWithIntX:50 andY: 0];
+    p6 = [[DLLPoint alloc] initWithIntX:51 andY: 0];
+    p7 = [[DLLPoint alloc] initWithIntX:52 andY: 0];
+    p8 = [[DLLPoint alloc] initWithIntX:53 andY: 0];
+    NSArray *lightArray1 = @[p1];
+    NSArray *lightArray2 = @[p2];
+    NSArray *lightArray3 = @[p3];
+    NSArray *lightArray4 = @[p4];
+    NSArray *lightArray5 = @[p5];
+    NSArray *lightArray6 = @[p6];
+    NSArray *lightArray7 = @[p7];
+    NSArray *lightArray8 = @[p8];
+    [self.electricalPointToBoardPointDictionary setValue: lightArray1 forKey: @"266"];
+    [self.electricalPointToBoardPointDictionary setValue: lightArray2 forKey: @"267"];
+    [self.electricalPointToBoardPointDictionary setValue: lightArray3 forKey: @"268"];
+    [self.electricalPointToBoardPointDictionary setValue: lightArray4 forKey: @"269"];
+    [self.electricalPointToBoardPointDictionary setValue: lightArray5 forKey: @"270"];
+    [self.electricalPointToBoardPointDictionary setValue: lightArray6 forKey: @"271"];
+    [self.electricalPointToBoardPointDictionary setValue: lightArray7 forKey: @"272"];
+    [self.electricalPointToBoardPointDictionary setValue: lightArray8 forKey: @"273"];
 }
 
 #pragma mark -
