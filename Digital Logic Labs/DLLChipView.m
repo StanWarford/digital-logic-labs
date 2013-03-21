@@ -49,10 +49,10 @@
         switch (size)
         {
             case 14:
-                self.image = [UIImage imageNamed:@"chip-14_new"];
+                self.image = [UIImage imageNamed:@"chip-14-gray"];
                 break;
             case 16:
-                self.image = [UIImage imageNamed:@"chip-16_new"];
+                self.image = [UIImage imageNamed:@"chip-16-gray"];
                 break;
             default:
                 self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
@@ -71,10 +71,10 @@
         switch (size)
         {
             case 14:
-                self.image = [UIImage imageNamed:@"chip-14_new"];
+                self.image = [UIImage imageNamed:@"chip-14-gray"];
                 break;
             case 16:
-                self.image = [UIImage imageNamed:@"chip-16_new"];
+                self.image = [UIImage imageNamed:@"chip-16-gray"];
                 break;
             default:
                 self.image = [UIImage imageNamed:@"200px-AND_ANSI"];

@@ -12,7 +12,7 @@
 
 #define LINE_WIDTH 2.0
 #define GHOST_TRANSPARENCY 0.5
-#define CIRCLE_DIAMETER 3
+#define CIRCLE_DIAMETER 12
 
 @synthesize color = _color;
 @synthesize isGhost = _isGhost;
@@ -27,6 +27,7 @@
         self.start = CGPointMake(0, 0);
         self.end = CGPointMake(0, 0);
         self.isGhost = NO;
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -39,6 +40,7 @@
         self.start = start;
         self.end = end;
         self.isGhost = isGhost;
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -70,14 +72,14 @@
     // draw circle at start
     CGRect startRect = CGRectMake(self.start.x, self.start.y, CIRCLE_DIAMETER, CIRCLE_DIAMETER);
     CGContextAddEllipseInRect(context, startRect);
-    CGContextStrokePath(context);
+    //CGContextStrokePath(context);
     CGContextFillEllipseInRect(context, startRect);
     // draw line to end and circle at end if end is valid
     if(self.end.x > 0 || self.end.y > 0){
         CGContextAddLineToPoint(context, self.end.x, self.end.y);
+        CGContextStrokePath(context);
         CGRect endRect = CGRectMake(self.end.x, self.end.y, CIRCLE_DIAMETER, CIRCLE_DIAMETER);
         CGContextAddEllipseInRect(context, endRect);
-        CGContextStrokePath(context);
         CGContextFillEllipseInRect(context, endRect);
     }
     // release colorspace

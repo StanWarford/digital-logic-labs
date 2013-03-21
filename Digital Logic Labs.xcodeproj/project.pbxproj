@@ -25,9 +25,6 @@
 		486B08E316D5948300F0E4B8 /* DLLSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B08E216D5948300F0E4B8 /* DLLSplitViewController.m */; };
 		4879503516CC6ED000D6DEFD /* DLLLabTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4879503416CC6ED000D6DEFD /* DLLLabTableViewController.m */; };
 		4879503816CC6F2C00D6DEFD /* DLLPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4879503716CC6F2C00D6DEFD /* DLLPDFViewController.m */; };
-		48F0C62016C32AF70035EBFC /* chip-14.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F0C61D16C32AF70035EBFC /* chip-14.png */; };
-		48F0C62116C32AF70035EBFC /* breadboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F0C61E16C32AF70035EBFC /* breadboard.png */; };
-		48F0C62216C32AF70035EBFC /* chip-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 48F0C61F16C32AF70035EBFC /* chip-16.png */; };
 		CF0D2DAC16BAE12E00753DF9 /* DLLContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0D2DAB16BAE12E00753DF9 /* DLLContainerViewController.m */; };
 		CF0D2DB016BAE20600753DF9 /* DLLDockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0D2DAF16BAE20600753DF9 /* DLLDockViewController.m */; };
 		CF0D2DB416BAE2FB00753DF9 /* DLLBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0D2DB316BAE2FB00753DF9 /* DLLBoardViewController.m */; };
@@ -41,7 +38,6 @@
 		CFB535B316E53E1D000DC011 /* DLLAComponentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB535B216E53E1D000DC011 /* DLLAComponentView.m */; };
 		CFB535B616E53E4A000DC011 /* DLLChipView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB535B516E53E4A000DC011 /* DLLChipView.m */; };
 		CFB535B916E5407F000DC011 /* DLLWireView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB535B816E5407F000DC011 /* DLLWireView.m */; };
-		CFC8061816F2513900F446FC /* wire.png in Resources */ = {isa = PBXBuildFile; fileRef = CFC8061716F2513900F446FC /* wire.png */; };
 		CFDBF6D216B0C199009C3DA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFDBF6D116B0C199009C3DA4 /* UIKit.framework */; };
 		CFDBF6D416B0C199009C3DA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFDBF6D316B0C199009C3DA4 /* Foundation.framework */; };
 		CFDBF6D616B0C199009C3DA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFDBF6D516B0C199009C3DA4 /* CoreGraphics.framework */; };
@@ -76,10 +72,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		48190C8A16FA6E2D003BC4E4 /* board-new-resized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "board-new-resized.png"; sourceTree = "<group>"; };
-		48190C8B16FA6E2D003BC4E4 /* chip-14-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-14-gray.png"; sourceTree = "<group>"; };
-		48190C8C16FA6E2D003BC4E4 /* chip-16-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-16-gray.png"; sourceTree = "<group>"; };
-		48190C8D16FA6E2D003BC4E4 /* wire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wire.png; sourceTree = "<group>"; };
+		48190C8A16FA6E2D003BC4E4 /* board-new-resized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "board-new-resized.png"; path = "Chip and Breadboard Images/board-new-resized.png"; sourceTree = "<group>"; };
+		48190C8B16FA6E2D003BC4E4 /* chip-14-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chip-14-gray.png"; path = "Chip and Breadboard Images/chip-14-gray.png"; sourceTree = "<group>"; };
+		48190C8C16FA6E2D003BC4E4 /* chip-16-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chip-16-gray.png"; path = "Chip and Breadboard Images/chip-16-gray.png"; sourceTree = "<group>"; };
+		48190C8D16FA6E2D003BC4E4 /* wire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wire.png; path = "Chip and Breadboard Images/wire.png"; sourceTree = "<group>"; };
 		4836741E16CC56AC008B87E6 /* Lab1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab1.pdf; path = LabPdfs/Lab1.pdf; sourceTree = "<group>"; };
 		4836741F16CC56AC008B87E6 /* Lab2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab2.pdf; path = LabPdfs/Lab2.pdf; sourceTree = "<group>"; };
 		4836742016CC56AC008B87E6 /* Lab3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab3.pdf; path = LabPdfs/Lab3.pdf; sourceTree = "<group>"; };
@@ -97,9 +93,6 @@
 		4879503416CC6ED000D6DEFD /* DLLLabTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLLabTableViewController.m; sourceTree = "<group>"; };
 		4879503616CC6F2C00D6DEFD /* DLLPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLPDFViewController.h; sourceTree = "<group>"; };
 		4879503716CC6F2C00D6DEFD /* DLLPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLPDFViewController.m; sourceTree = "<group>"; };
-		48F0C61D16C32AF70035EBFC /* chip-14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-14.png"; sourceTree = "<group>"; };
-		48F0C61E16C32AF70035EBFC /* breadboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = breadboard.png; sourceTree = "<group>"; };
-		48F0C61F16C32AF70035EBFC /* chip-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-16.png"; sourceTree = "<group>"; };
 		CF0D2DAA16BAE12E00753DF9 /* DLLContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLContainerViewController.h; sourceTree = "<group>"; };
 		CF0D2DAB16BAE12E00753DF9 /* DLLContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLContainerViewController.m; sourceTree = "<group>"; };
 		CF0D2DAE16BAE20600753DF9 /* DLLDockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLDockViewController.h; sourceTree = "<group>"; };
@@ -123,7 +116,6 @@
 		CFB535B516E53E4A000DC011 /* DLLChipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLChipView.m; sourceTree = "<group>"; };
 		CFB535B716E5407F000DC011 /* DLLWireView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLWireView.h; sourceTree = "<group>"; };
 		CFB535B816E5407F000DC011 /* DLLWireView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLWireView.m; sourceTree = "<group>"; };
-		CFC8061716F2513900F446FC /* wire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wire.png; sourceTree = "<group>"; };
 		CFDBF6CD16B0C199009C3DA4 /* Digital Logic Labs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digital Logic Labs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFDBF6D116B0C199009C3DA4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CFDBF6D316B0C199009C3DA4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -201,10 +193,6 @@
 		486B08D516D58CD400F0E4B8 /* Chip and Breadboard Images */ = {
 			isa = PBXGroup;
 			children = (
-				48190C8A16FA6E2D003BC4E4 /* board-new-resized.png */,
-				48190C8B16FA6E2D003BC4E4 /* chip-14-gray.png */,
-				48190C8C16FA6E2D003BC4E4 /* chip-16-gray.png */,
-				48190C8D16FA6E2D003BC4E4 /* wire.png */,
 				486B08D916D58CD400F0E4B8 /* light-off.png */,
 				486B08DA16D58CD400F0E4B8 /* light-on.png */,
 			);
@@ -277,13 +265,13 @@
 		CF25D10C16EE6D2300720AF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				48F0C61D16C32AF70035EBFC /* chip-14.png */,
 				486B08D716D58CD400F0E4B8 /* chip-14_new.png */,
-				48F0C61F16C32AF70035EBFC /* chip-16.png */,
+				48190C8B16FA6E2D003BC4E4 /* chip-14-gray.png */,
 				486B08D816D58CD400F0E4B8 /* chip-16_new.png */,
+				48190C8C16FA6E2D003BC4E4 /* chip-16-gray.png */,
 				CF9CC4FF16BB041C0068A17D /* 200px-AND_ANSI.png */,
 				CF35B6FD16C5902500D6358E /* placeholder.png */,
-				CFC8061716F2513900F446FC /* wire.png */,
+				48190C8D16FA6E2D003BC4E4 /* wire.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -291,8 +279,8 @@
 		CF35B6FB16C589E700D6358E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				48F0C61E16C32AF70035EBFC /* breadboard.png */,
 				486B08D616D58CD400F0E4B8 /* breadboard-new.png */,
+				48190C8A16FA6E2D003BC4E4 /* board-new-resized.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -490,9 +478,6 @@
 				CFDBF70D16B0C1D9009C3DA4 /* MainStoryboard.storyboard in Resources */,
 				CF9CC50016BB041C0068A17D /* 200px-AND_ANSI.png in Resources */,
 				D8AB957616C025B00074ABEB /* inventory.xml in Resources */,
-				48F0C62016C32AF70035EBFC /* chip-14.png in Resources */,
-				48F0C62116C32AF70035EBFC /* breadboard.png in Resources */,
-				48F0C62216C32AF70035EBFC /* chip-16.png in Resources */,
 				CF35B6FE16C5902500D6358E /* placeholder.png in Resources */,
 				4836742416CC56AC008B87E6 /* Lab1.pdf in Resources */,
 				4836742516CC56AC008B87E6 /* Lab2.pdf in Resources */,
@@ -505,7 +490,6 @@
 				486B08DD16D58CD400F0E4B8 /* chip-16_new.png in Resources */,
 				486B08DE16D58CD400F0E4B8 /* light-off.png in Resources */,
 				486B08DF16D58CD400F0E4B8 /* light-on.png in Resources */,
-				CFC8061816F2513900F446FC /* wire.png in Resources */,
 				48190C8E16FA6E2D003BC4E4 /* board-new-resized.png in Resources */,
 				48190C8F16FA6E2D003BC4E4 /* chip-14-gray.png in Resources */,
 				48190C9016FA6E2D003BC4E4 /* chip-16-gray.png in Resources */,
