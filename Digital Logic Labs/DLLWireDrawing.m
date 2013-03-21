@@ -12,6 +12,7 @@
 
 #define LINE_WIDTH 2.0
 #define GHOST_TRANSPARENCY 0.5
+#define CIRCLE_DIAMETER 3
 
 @synthesize color = _color;
 @synthesize isGhost = _isGhost;
@@ -47,7 +48,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    // if only one point is valid, just draw that point as a dot
+    // if only start point is valid, just draw that point as a dot
     // if 2 points are valid, draw 2 dots and connect with a line
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -55,8 +56,33 @@
     const CGFloat *components = CGColorGetComponents(self.color.CGColor);
     CGFloat RGBA[] = {components[0], components[1], components[2], self.isGhost ? GHOST_TRANSPARENCY : 1.0};
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef color = CGColorCreate(colorspace, components);
+    CGColorRef color = CGColorCreate(colorspace, RGBA);
     CGContextSetStrokeColorWithColor(context, color);
+    CGContextSetFillColorWithColor(context, color);
+    // set line width
+    CGContextSetLineWidth(context, LINE_WIDTH);
+    // move to start if start is valid
+    if(self.start.x > 0 || self.start.y > 0){
+        CGContextMoveToPoint(context, self.start.x, self.start.y);
+    }else{
+        [NSException raise:NSInternalInconsistencyException format:@"Start point is invalid."];
+    }
+    // draw circle at start
+    CGRect startRect = CGRectMake(self.start.x, self.start.y, CIRCLE_DIAMETER, CIRCLE_DIAMETER);
+    CGContextAddEllipseInRect(context, startRect);
+    CGContextStrokePath(context);
+    CGContextFillEllipseInRect(context, startRect);
+    // draw line to end and circle at end if end is valid
+    if(self.end.x > 0 || self.end.y > 0){
+        CGContextAddLineToPoint(context, self.end.x, self.end.y);
+        CGRect endRect = CGRectMake(self.end.x, self.end.y, CIRCLE_DIAMETER, CIRCLE_DIAMETER);
+        CGContextAddEllipseInRect(context, endRect);
+        CGContextStrokePath(context);
+        CGContextFillEllipseInRect(context, endRect);
+    }
+    // release colorspace
+    CGColorSpaceRelease(colorspace);
+    CGColorRelease(color);
 }
 
 
