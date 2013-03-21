@@ -31,8 +31,6 @@
     return _breadboardStateArray;
 }
 
-#pragma mark -
-#pragma mark lazy instantiation methods
 - (NSMutableDictionary *)chipDictionary
 {
     if (!_chipDictionary){
@@ -41,8 +39,6 @@
     return _chipDictionary;
 }
 
-#pragma mark -
-#pragma mark lazy instantiation methods
 - (NSMutableDictionary *)electricalPointToBoardPointDictionary;
 {
     if (!_electricalPointToBoardPointDictionary){
@@ -51,8 +47,6 @@
     return _electricalPointToBoardPointDictionary;
 }
 
-#pragma mark -
-#pragma mark lazy instantiation methods
 - (NSMutableDictionary *)boardPointToElectricalPointDictionary
 {
     if (!_boardPointToElectricalPointDictionary){
