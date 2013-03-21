@@ -153,7 +153,7 @@
     for (int x = 0; x <= 62;x++)
     {
         groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 5];
-        groundArray[x + 63] = [[DLLPoint alloc] initWithIntX:x andY: 17];
+        groundArray[x + 63] = [[DLLPoint alloc] initWithIntX:x andY: 17]; // CRASH ON THIS LINE - Casey
         groundArray[x + 126] = [[DLLPoint alloc] initWithIntX:x andY: 29];
         powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 6];
         powerArray[x + 63] = [[DLLPoint alloc] initWithIntX:x andY: 18];
