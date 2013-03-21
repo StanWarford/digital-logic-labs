@@ -50,6 +50,10 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    // if start is invalid, throw an error
+    if(self.start.x <= 0 && self.start.y <= 0){
+        [NSException raise:NSInternalInconsistencyException format:@"Start point is invalid."];
+    }
     // if only start point is valid, just draw that point as a dot
     // if 2 points are valid, draw 2 dots and connect with a line
     
@@ -63,22 +67,17 @@
     CGContextSetFillColorWithColor(context, color);
     // set line width
     CGContextSetLineWidth(context, LINE_WIDTH);
-    // move to start if start is valid
-    if(self.start.x > 0 || self.start.y > 0){
-        CGContextMoveToPoint(context, self.start.x, self.start.y);
-    }else{
-        [NSException raise:NSInternalInconsistencyException format:@"Start point is invalid."];
-    }
     // draw circle at start
-    CGRect startRect = CGRectMake(self.start.x, self.start.y, CIRCLE_DIAMETER, CIRCLE_DIAMETER);
+    CGRect startRect = CGRectMake(self.start.x - CIRCLE_DIAMETER/2 , self.start.y - CIRCLE_DIAMETER/2, CIRCLE_DIAMETER, CIRCLE_DIAMETER);
     CGContextAddEllipseInRect(context, startRect);
     //CGContextStrokePath(context);
     CGContextFillEllipseInRect(context, startRect);
     // draw line to end and circle at end if end is valid
     if(self.end.x > 0 || self.end.y > 0){
+        CGContextMoveToPoint(context, self.start.x, self.start.y);
         CGContextAddLineToPoint(context, self.end.x, self.end.y);
         CGContextStrokePath(context);
-        CGRect endRect = CGRectMake(self.end.x, self.end.y, CIRCLE_DIAMETER, CIRCLE_DIAMETER);
+        CGRect endRect = CGRectMake(self.end.x - CIRCLE_DIAMETER/2, self.end.y - CIRCLE_DIAMETER/2, CIRCLE_DIAMETER, CIRCLE_DIAMETER);
         CGContextAddEllipseInRect(context, endRect);
         CGContextFillEllipseInRect(context, endRect);
     }

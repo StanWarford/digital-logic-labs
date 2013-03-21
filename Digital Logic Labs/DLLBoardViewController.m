@@ -117,8 +117,6 @@ typedef enum{
             // change state back to wireStart and edit the start position of the wire
         }else{
             [self.activeComponent translateEndTo:displayLoc withHoleAvailable:isAvailable];
-        
-            [self.activeComponent displayGhostWithHoleAvailable:isAvailable];
         }
     }
 }
@@ -155,7 +153,7 @@ typedef enum{
     BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
     NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
-    if(self.state = notWire){ // user is not placing a wire
+    if(self.state == notWire){ // user is not placing a wire
         if(isAvailable){
             // Tell the active component to display itself and notify model
             [self.activeComponent displayComponent];
