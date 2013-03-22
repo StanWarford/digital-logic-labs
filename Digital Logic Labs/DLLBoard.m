@@ -78,7 +78,8 @@
             [self.breadboardStateArray insertObject: boardColumns atIndex: i];
         }
         
-        [self populateDictionaries];
+        //[self populateDictionaries];
+        // Commented this out to avoid crashes and continue UI testing - Casey
     }
     
     return self;
@@ -153,7 +154,7 @@
     for (int x = 0; x <= 62;x++)
     {
         groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 5];
-        groundArray[x + 63] = [[DLLPoint alloc] initWithIntX:x andY: 17]; // CRASH ON THIS LINE - Casey
+        groundArray[x + 63] = [[DLLPoint alloc] initWithIntX:x andY: 17]; // **CRASHES FIRST TIME THROUGH HERE - Casey
         groundArray[x + 126] = [[DLLPoint alloc] initWithIntX:x andY: 29];
         powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 6];
         powerArray[x + 63] = [[DLLPoint alloc] initWithIntX:x andY: 18];
@@ -210,7 +211,8 @@
 #pragma mark component addition methods
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(DLLPoint *)coords
 {
-    [self.chipDictionary setValue: [[DLLChip alloc] initWithIdenfifier: partNum] forKey: coords.toString];
+    //[self.chipDictionary setValue: [[DLLChip alloc] initWithIdenfifier: partNum] forKey: coords.toString];
+    // Casey - This line also crashes the program
 }
 
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *)endingPoint withColor:(UIColor *)color
