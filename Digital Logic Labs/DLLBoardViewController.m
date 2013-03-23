@@ -19,12 +19,23 @@ typedef enum{
 @property (nonatomic, strong) NSDictionary *pointMap;
 @property (nonatomic, strong) DLLAComponentView *selection;
 @property (nonatomic, assign) placementState state;
-- (DLLPoint*)nearestBoardCoordinateTo:(CGPoint)loc;
-- (CGPoint)viewCoordinateFromBoardCoordinate:(DLLPoint*)loc;
+- (CGPoint)gridCoordinateFromViewCoordinate:(CGPoint)loc;
+- (CGPoint)viewCoordinateFromGridCoordinate:(CGPoint)loc;
+- (DLLPoint*)boardCoordinateFromGridCoordinate:(CGPoint)loc;
+- (CGPoint)gridCoordinateFromBoardCoordinate:(DLLPoint*)loc;
 - (void)removeComponentFromPointMap:(DLLAComponentView*)component;
 @end
 
 @implementation DLLBoardViewController
+
+#define HORIZONTAL_BOARD_SPACING 12.92
+#define VERTICAL_BOARD_SPACING 9.3
+
+#define HORIZONTAL_BOARD_OFFSET 8
+#define VERTICAL_BOARD_OFFSET 0
+
+#define VIEW_HEIGHT 634
+#define VIEW_WIDTH 1024
 
 @synthesize activeComponent = _activeComponent;
 @synthesize pointMap = _pointMap;
@@ -47,12 +58,7 @@ typedef enum{
 {
     [super viewWillAppear:animated];
     // set frame height to 634
-    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, 634);
-    
-    CGRect viewBounds = [self.view bounds];
-    CGFloat scale = [[UIScreen mainScreen] scale];
-    
-    NSLog([NSString stringWithFormat:@"%f x %f", viewBounds.size.width * scale, viewBounds.size.height * scale]);
+    self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, VIEW_HEIGHT);
     
     // set background image
     UIImage *sourceBG = [UIImage imageNamed:@"board-new-resized.png"]; // breadboard-new
@@ -84,8 +90,9 @@ typedef enum{
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled, this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
-    CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
+    CGPoint gridLoc = [self gridCoordinateFromViewCoordinate:loc];
+    CGPoint snapLoc = [self viewCoordinateFromGridCoordinate:gridLoc];
+    DLLPoint* boardLoc = [self boardCoordinateFromGridCoordinate:gridLoc];
     BOOL isEmpty = [self.boardModel boardStateAt:boardLoc] == nil;
     
     if(self.state == notWire){ // user has not placed a wire
@@ -99,15 +106,15 @@ typedef enum{
         }else{ // spot is not empty
             // Instantiate a new chip or wire based on dock selection
             if([self.selection isKindOfClass:[DLLChipView class]]){
-                self.activeComponent = [[[self.selection class] alloc] initChipOfSize:self.selection.size AtLocation:displayLoc inView:self.view];
+                self.activeComponent = [[[self.selection class] alloc] initChipOfSize:self.selection.size AtLocation:snapLoc inView:self.view];
             }else{
-                self.activeComponent = [[[self.selection class] alloc] initWireWithStartAt:displayLoc withColor:self.selection.color inView:self.view];
+                self.activeComponent = [[[self.selection class] alloc] initWireWithStartAt:snapLoc withColor:self.selection.color inView:self.view];
             }
         }
         self.state = [self.activeComponent isKindOfClass:[DLLWireView class]] ? wireStart : notWire;
         
         BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize:self.activeComponent.size];
-        NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+        //NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
         
         [self.activeComponent displayGhostWithHoleAvailable:isAvailable];
     }else{ // wireEnd - user is placing end of wire
@@ -116,7 +123,7 @@ typedef enum{
         if(didTouchStart){
             // change state back to wireStart and edit the start position of the wire
         }else{
-            [self.activeComponent translateEndTo:displayLoc withHoleAvailable:isAvailable];
+            [self.activeComponent translateEndTo:snapLoc withHoleAvailable:isAvailable];
         }
     }
 }
@@ -128,15 +135,18 @@ typedef enum{
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
-    CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
+    CGPoint gridLoc = [self gridCoordinateFromViewCoordinate:loc];
+    CGPoint snapLoc = [self viewCoordinateFromGridCoordinate:gridLoc];
+    DLLPoint *boardLoc = [self boardCoordinateFromGridCoordinate:gridLoc];
     BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
-    NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+    //NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+    
+    NSLog([NSString stringWithFormat:@"Grid: (%i, %i)", (NSInteger)gridLoc.x, (NSInteger)gridLoc.y]);
     
     if(self.state == wireEnd){ // user is placing end of wire
-        [self.activeComponent translateEndTo:displayLoc withHoleAvailable:isAvailable];
+        [self.activeComponent translateEndTo:snapLoc withHoleAvailable:isAvailable];
     }else{ // user is placing start of wire or not placing a wire
-        [self.activeComponent translateStartTo:displayLoc withHoleAvailable:isAvailable];
+        [self.activeComponent translateStartTo:snapLoc withHoleAvailable:isAvailable];
     }
 }
 
@@ -147,11 +157,12 @@ typedef enum{
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
     CGPoint loc = [touch locationInView:self.view];
-    DLLPoint *boardLoc = [self nearestBoardCoordinateTo:loc];
-    CGPoint displayLoc = [self viewCoordinateFromBoardCoordinate:boardLoc];
+    CGPoint gridLoc = [self gridCoordinateFromViewCoordinate:loc];
+    CGPoint snapLoc = [self viewCoordinateFromGridCoordinate:loc];
+    DLLPoint *boardLoc = [self boardCoordinateFromGridCoordinate:gridLoc];
 
     BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
-    NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+    //NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
     if(self.state == notWire){ // user is not placing a wire
         if(isAvailable){
@@ -214,22 +225,42 @@ typedef enum{
 
 #pragma mark -
 #pragma mark display methods
-- (DLLPoint*)nearestBoardCoordinateTo:(CGPoint)loc
+- (CGPoint)gridCoordinateFromViewCoordinate:(CGPoint)loc
 {
     NSInteger x = loc.x;
     NSInteger y = loc.y;
-    NSInteger calcX = (x*62)/1024;
-    NSInteger calcY = (y*62)/768;
-    return [[DLLPoint alloc] initWithCoords:CGPointMake(calcX, calcY)];
+    NSInteger calcX = abs(floor((x - HORIZONTAL_BOARD_OFFSET)/HORIZONTAL_BOARD_SPACING));
+    NSInteger calcY = abs(floor((y - VERTICAL_BOARD_OFFSET)/VERTICAL_BOARD_SPACING));
+    return CGPointMake(calcX, calcY);
 }
 
-- (CGPoint)viewCoordinateFromBoardCoordinate:(DLLPoint*)loc
+- (CGPoint)viewCoordinateFromGridCoordinate:(CGPoint)loc
 {
-    NSInteger x = loc.xCoord;
-    NSInteger y = loc.yCoord;
-    NSInteger calcX = (x*1024)/62;
-    NSInteger calcY = (y*768)/62;
+    NSInteger x = loc.x;
+    NSInteger y = loc.y;
+    NSInteger calcX = x*HORIZONTAL_BOARD_SPACING + HORIZONTAL_BOARD_OFFSET;
+    NSInteger calcY = y*VERTICAL_BOARD_SPACING + VERTICAL_BOARD_OFFSET;
     return CGPointMake(calcX, calcY);
+}
+
+- (DLLPoint*)boardCoordinateFromGridCoordinate:(CGPoint)loc
+{
+    NSInteger x = loc.x;
+    NSInteger y = loc.y;
+    NSInteger retX;
+    NSInteger retY;
+    if(x < 8 || x > 70 || y < 23 || y > 65){
+        retX = 0;
+        retY = 0;
+    }else{
+        
+    }
+    return [[DLLPoint alloc] initWithIntX:retX andY:retY];
+}
+
+- (CGPoint)gridCoordinateFromBoardCoordinate:(DLLPoint*)loc
+{
+    return [loc CGPointFromCoords];
 }
 
 #pragma mark -
