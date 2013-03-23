@@ -12,7 +12,7 @@
 
 #define LINE_WIDTH 2.0
 #define GHOST_TRANSPARENCY 0.5
-#define CIRCLE_DIAMETER 5
+#define CIRCLE_DIAMETER 12
 // original circle diameter = 12
 
 @synthesize color = _color;
