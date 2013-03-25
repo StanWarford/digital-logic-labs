@@ -67,6 +67,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.delegate selectionDidChangeTo:indexPath.row];
+    // thoughts: Tell model which Lab is selected now?
 }
 
 #pragma mark -

@@ -43,6 +43,7 @@
     NSURL *targetURL = [NSURL fileURLWithPath:path];
     NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
     [self.myWebView loadRequest:request];
+    [self.myWebView setScalesPageToFit:YES]; // enables zooming
 }
 
 #pragma mark -
