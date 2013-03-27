@@ -43,32 +43,70 @@
 
 #pragma mark -
 #pragma mark initialization methods
-- (id)initChipOfSize:(NSInteger)size AtLocation:(CGPoint)coords inView:(UIView *)view
+- (id)initChipAtLocation:(CGPoint)coords inView:(UIView *)view withID:(NSInteger)identifier
 {
     if((self = [super init])){
-        switch (size)
+        switch (identifier)
         {
-            case 14:
+            case 7400:
                 self.image = [UIImage imageNamed:@"chip-14-gray"];
+                self.size = 14;
                 break;
-            case 16:
+            case 7402:
                 self.image = [UIImage imageNamed:@"chip-16-gray"];
+                self.size = 14;
+                break;
+            case 7404:
+                self.size = 14;
+                break;
+            case 7408:
+                self.size = 14;
+                break;
+            case 7432:
+                self.size = 14;
+                break;
+            case 7447:
+                self.size = 16;
+                break;
+            case 7476:
+                self.size = 16;
+                break;
+            case 7485:
+                self.size = 16;
+                break;
+            case 7486:
+                self.size = 14;
+                break;
+            case 74151:
+                self.size = 16;
+                break;
+            case 74164:
+                self.size = 14;
+                break;
+            case 74176:
+                self.size = 14;
+                break;
+            case 74181:
+                self.size = 24;
+                break;
+            case 74711:
+                self.size = 14;
                 break;
             default:
                 self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
                 break;
         }
         self.start = coords;
-        self.size = size;
         self.targetView = view;
+        self.identifier = identifier;
     }
     return self;
 }
 
-- (id)initChipOfSize:(NSInteger)size
+- (id)initChipWithID:(NSInteger)identifier
 {
     if((self = [super init])){
-        switch (size)
+        switch (identifier)
         {
             case 14:
                 self.image = [UIImage imageNamed:@"chip-14-gray"];
@@ -81,7 +119,8 @@
                 break;
         }
         self.start = CGPointMake(0.0, 0.0);
-        self.size = size;
+        //self.size = size;
+        self.identifier = identifier;
     }
     return self;
 }

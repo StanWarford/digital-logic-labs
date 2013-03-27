@@ -258,7 +258,7 @@
 - (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger) size
 {
     // Uncomment for testing - Casey
-    //return YES;
+    return YES;
     /*
         Wire size = 1
         ALU size = 24

@@ -106,7 +106,7 @@ typedef enum{
         }else{ // spot is empty
             // Instantiate a new chip or wire based on dock selection
             if([self.selection isKindOfClass:[DLLChipView class]]){
-                self.activeComponent = [[[self.selection class] alloc] initChipOfSize:self.selection.size AtLocation:snapLoc inView:self.view];
+                self.activeComponent = [[[self.selection class] alloc] initChipAtLocation:snapLoc inView:self.view withID:[self.selection identifier]];
             }else{
                 self.activeComponent = [[[self.selection class] alloc] initWireWithStartAt:snapLoc withColor:self.selection.color inView:self.view];
             }

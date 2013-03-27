@@ -15,6 +15,7 @@
 @synthesize wireDrawing = _wireDrawing;
 @synthesize targetView = _targetView;
 @synthesize color = _color;
+@synthesize identifier = _identifier;
 @synthesize start = _start;
 @synthesize size = _size;
 @synthesize end = _end;

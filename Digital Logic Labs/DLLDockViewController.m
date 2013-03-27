@@ -38,14 +38,20 @@
     if(!_inventory){
         NSMutableArray* temp = [NSMutableArray array];
     
-        for(int i = 0; i < 5; i++){
-            [temp addObject:[[DLLChipView alloc] initChipOfSize:7]];
-        }
-        [temp addObject:[[DLLChipView alloc] initChipOfSize:14]];
-        [temp addObject:[[DLLChipView alloc] initChipOfSize:16]];
-        for(int i = 0; i < 5; i++){
-            [temp addObject:[[DLLChipView alloc] initChipOfSize:7]];
-        }
+        [temp addObject:[[DLLChipView alloc] initChipWithID:7400]];
+        [temp addObject:[[DLLChipView alloc] initChipWithID:7402]];
+        [temp addObject:[[DLLChipView alloc] initChipWithID:7404]];
+        [temp addObject:[[DLLChipView alloc] initChipWithID:7408]];
+        [temp addObject:[[DLLChipView alloc] initChipWithID:7432]];
+        [temp addObject:[[DLLChipView alloc] initChipWithID:7447]];
+        [temp addObject:[[DLLChipView alloc] initChipWithID:7476]];
+        [temp addObject:[[DLLChipView alloc] initChipWithID:7485]];
+        [temp addObject:[[DLLChipView alloc] initChipWithID:7486]];
+        [temp addObject:[[DLLChipView alloc] initChipWithID:74151]];
+        [temp addObject:[[DLLChipView alloc] initChipWithID:74164]];
+        [temp addObject:[[DLLChipView alloc] initChipWithID:74176]]; // 74176-177
+        [temp addObject:[[DLLChipView alloc] initChipWithID:74181]];
+        [temp addObject:[[DLLChipView alloc] initChipWithID:74711]]; // MAN71A
         [temp addObject:[[DLLWireView alloc] initWire]];
         _inventory = [NSArray arrayWithArray:temp];
     }

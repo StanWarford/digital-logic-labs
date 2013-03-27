@@ -10,8 +10,8 @@
 
 @interface DLLChipView : DLLAComponentView
 
-- (id)initChipOfSize:(NSInteger)size AtLocation:(CGPoint)coords inView:(UIView*)view;
-- (id)initChipOfSize:(NSInteger)size;
+- (id)initChipAtLocation:(CGPoint)coords inView:(UIView*)view withID:(NSInteger)identifier;
+- (id)initChipWithID:(NSInteger)identifier;
 
 - (void)displayComponent;
 - (void)displayGhostWithHoleAvailable:(BOOL)available;
