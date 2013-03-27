@@ -78,8 +78,7 @@
             [self.breadboardStateArray insertObject: boardColumns atIndex: i];
         }
         
-        //[self populateDictionaries];
-        // Commented this out to avoid crashes and continue UI testing - Casey
+        [self populateDictionaries];
     }
     
     return self;
@@ -147,27 +146,34 @@
         [self.electricalPointToBoardPointDictionary setValue: value3 forKey: key3];
     }
     
-    // ground = Electrical Point 252
-    // power = Electrical Point 253
+    // ground == Electrical Point 252
+    // power == Electrical Point 253
     NSMutableArray *groundArray = [[NSMutableArray alloc] initWithCapacity:189];
     NSMutableArray *powerArray = [[NSMutableArray alloc] initWithCapacity:189];
     for (int x = 0; x <= 62;x++)
     {
         groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 5];
-        groundArray[x + 63] = [[DLLPoint alloc] initWithIntX:x andY: 17]; // **CRASHES FIRST TIME THROUGH HERE - Casey
-        groundArray[x + 126] = [[DLLPoint alloc] initWithIntX:x andY: 29];
         powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 6];
-        powerArray[x + 63] = [[DLLPoint alloc] initWithIntX:x andY: 18];
-        powerArray[x + 126] = [[DLLPoint alloc] initWithIntX:x andY: 30];
     }
+    for (int x = 63; x <= 125; x++)
+    {
+        groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 17];
+        powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 18];
+    }
+    for (int x = 126; x <= 188; x++)
+    {
+        groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 29];
+        powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 30];
+    }
+    
     [self.electricalPointToBoardPointDictionary setValue: groundArray forKey: @"252"];
     [self.electricalPointToBoardPointDictionary setValue: powerArray forKey: @"253"];
     
-    // Switch X = Electrical Point 254
-    // Debounced Switch X = Electrical Point 255
-    // Switch Y = Electrical Point 256
-    // Debounced Switch Y = Electrical Point 257
-    // SW1-SW8 = Electrical Points 258-265
+    // Switch X == Electrical Point 254
+    // Debounced Switch X == Electrical Point 255
+    // Switch Y == Electrical Point 256
+    // Debounced Switch Y == Electrical Point 257
+    // SW1-SW8 == Electrical Points 258-265
     for (int x=0; x <= 11; x++) {
         DLLPoint *p1, *p2, *p3, *p4;
         p1 = [[DLLPoint alloc] initWithIntX:x*5 andY: 1];
@@ -179,7 +185,7 @@
         [self.electricalPointToBoardPointDictionary setValue:switchArray forKey: key];
     }
     
-    // Lights A-H = Electrical Points 266-273
+    // Lights A-H == Electrical Points 266-273
     DLLPoint *p1, *p2, *p3, *p4, *p5, *p6, *p7, *p8;
     p1 = [[DLLPoint alloc] initWithIntX:25 andY: 0];
     p2 = [[DLLPoint alloc] initWithIntX:26 andY: 0];
@@ -205,6 +211,7 @@
     [self.electricalPointToBoardPointDictionary setValue: lightArray6 forKey: @"271"];
     [self.electricalPointToBoardPointDictionary setValue: lightArray7 forKey: @"272"];
     [self.electricalPointToBoardPointDictionary setValue: lightArray8 forKey: @"273"];
+     
 }
 
 #pragma mark -
