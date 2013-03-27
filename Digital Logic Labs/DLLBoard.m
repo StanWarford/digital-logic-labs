@@ -86,6 +86,8 @@
 
 -(void)populateDictionaries
 {
+    // Set up electricalPointToBoardPointDictionary and boardPointToElectricalPointDictionary for Electrical Point Values 0 to 251 and Board Points of Main Board
+    // First for loop maps all Board Points except Power, Ground, All Switches, and Lights
     for (int x = 0; x <= 62; x++) {
         NSString * key0 = [[NSNumber numberWithInt: x * 4] stringValue];
         NSString * key1 = [[NSNumber numberWithInt: x * 4 + 1] stringValue];
@@ -154,20 +156,27 @@
     {
         groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 5];
         powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 6];
+        [self.boardPointToElectricalPointDictionary setValue: @"252" forKey: [groundArray[x] toString]];
+        [self.boardPointToElectricalPointDictionary setValue: @"253" forKey: [powerArray[x] toString]];
     }
     for (int x = 63; x <= 125; x++)
     {
         groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 17];
         powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 18];
+        [self.boardPointToElectricalPointDictionary setValue: @"252" forKey: [groundArray[x] toString]];
+        [self.boardPointToElectricalPointDictionary setValue: @"253" forKey: [powerArray[x] toString]];
     }
     for (int x = 126; x <= 188; x++)
     {
         groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 29];
         powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 30];
+        [self.boardPointToElectricalPointDictionary setValue: @"252" forKey: [groundArray[x] toString]];
+        [self.boardPointToElectricalPointDictionary setValue: @"253" forKey: [powerArray[x] toString]];
     }
     
     [self.electricalPointToBoardPointDictionary setValue: groundArray forKey: @"252"];
     [self.electricalPointToBoardPointDictionary setValue: powerArray forKey: @"253"];
+    
     
     // Switch X == Electrical Point 254
     // Debounced Switch X == Electrical Point 255
@@ -181,8 +190,12 @@
         p3 = [[DLLPoint alloc] initWithIntX:x*5 andY: 3];
         p4 = [[DLLPoint alloc] initWithIntX:x*5 andY: 4];
         NSArray *switchArray = @[p1, p2, p3, p4];
-        NSString *key = [[NSNumber numberWithInt: x + 254] stringValue];
-        [self.electricalPointToBoardPointDictionary setValue:switchArray forKey: key];
+        NSString *electricalPoint = [[NSNumber numberWithInt: x + 254] stringValue];
+        [self.boardPointToElectricalPointDictionary setValue: electricalPoint forKey: [p1 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: electricalPoint forKey: [p2 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: electricalPoint forKey: [p3 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: electricalPoint forKey: [p4 toString]];
+        [self.electricalPointToBoardPointDictionary setValue:switchArray forKey: electricalPoint];
     }
     
     // Lights A-H == Electrical Points 266-273
@@ -203,6 +216,14 @@
     NSArray *lightArray6 = @[p6];
     NSArray *lightArray7 = @[p7];
     NSArray *lightArray8 = @[p8];
+    [self.boardPointToElectricalPointDictionary setValue: @"266" forKey: [p1 toString]];
+    [self.boardPointToElectricalPointDictionary setValue: @"267" forKey: [p2 toString]];
+    [self.boardPointToElectricalPointDictionary setValue: @"268" forKey: [p3 toString]];
+    [self.boardPointToElectricalPointDictionary setValue: @"269" forKey: [p4 toString]];
+    [self.boardPointToElectricalPointDictionary setValue: @"270" forKey: [p5 toString]];
+    [self.boardPointToElectricalPointDictionary setValue: @"271" forKey: [p6 toString]];
+    [self.boardPointToElectricalPointDictionary setValue: @"272" forKey: [p7 toString]];
+    [self.boardPointToElectricalPointDictionary setValue: @"273" forKey: [p8 toString]];
     [self.electricalPointToBoardPointDictionary setValue: lightArray1 forKey: @"266"];
     [self.electricalPointToBoardPointDictionary setValue: lightArray2 forKey: @"267"];
     [self.electricalPointToBoardPointDictionary setValue: lightArray3 forKey: @"268"];
