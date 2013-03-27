@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		481867421703A5D1006EEE41 /* board-new-resized.png in Resources */ = {isa = PBXBuildFile; fileRef = 4818673F1703A5D1006EEE41 /* board-new-resized.png */; };
+		481867431703A5D1006EEE41 /* chip-14-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 481867401703A5D1006EEE41 /* chip-14-gray.png */; };
+		481867441703A5D1006EEE41 /* chip-16-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 481867411703A5D1006EEE41 /* chip-16-gray.png */; };
 		48190C8E16FA6E2D003BC4E4 /* board-new-resized.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8A16FA6E2D003BC4E4 /* board-new-resized.png */; };
 		48190C8F16FA6E2D003BC4E4 /* chip-14-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8B16FA6E2D003BC4E4 /* chip-14-gray.png */; };
 		48190C9016FA6E2D003BC4E4 /* chip-16-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8C16FA6E2D003BC4E4 /* chip-16-gray.png */; };
@@ -72,6 +75,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4818673F1703A5D1006EEE41 /* board-new-resized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "board-new-resized.png"; sourceTree = "<group>"; };
+		481867401703A5D1006EEE41 /* chip-14-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-14-gray.png"; sourceTree = "<group>"; };
+		481867411703A5D1006EEE41 /* chip-16-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-16-gray.png"; sourceTree = "<group>"; };
 		48190C8A16FA6E2D003BC4E4 /* board-new-resized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "board-new-resized.png"; path = "Chip and Breadboard Images/board-new-resized.png"; sourceTree = "<group>"; };
 		48190C8B16FA6E2D003BC4E4 /* chip-14-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chip-14-gray.png"; path = "Chip and Breadboard Images/chip-14-gray.png"; sourceTree = "<group>"; };
 		48190C8C16FA6E2D003BC4E4 /* chip-16-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chip-16-gray.png"; path = "Chip and Breadboard Images/chip-16-gray.png"; sourceTree = "<group>"; };
@@ -367,6 +373,9 @@
 		CFDBF6D816B0C199009C3DA4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4818673F1703A5D1006EEE41 /* board-new-resized.png */,
+				481867401703A5D1006EEE41 /* chip-14-gray.png */,
+				481867411703A5D1006EEE41 /* chip-16-gray.png */,
 				486B08D516D58CD400F0E4B8 /* Chip and Breadboard Images */,
 				D8AB957516C025B00074ABEB /* inventory.xml */,
 				CFDBF6D916B0C199009C3DA4 /* Digital Logic Labs-Info.plist */,
@@ -494,6 +503,9 @@
 				48190C8F16FA6E2D003BC4E4 /* chip-14-gray.png in Resources */,
 				48190C9016FA6E2D003BC4E4 /* chip-16-gray.png in Resources */,
 				48190C9116FA6E2D003BC4E4 /* wire.png in Resources */,
+				481867421703A5D1006EEE41 /* board-new-resized.png in Resources */,
+				481867431703A5D1006EEE41 /* chip-14-gray.png in Resources */,
+				481867441703A5D1006EEE41 /* chip-16-gray.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
