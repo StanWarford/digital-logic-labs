@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		481867431703A5D1006EEE41 /* chip-14-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 481867401703A5D1006EEE41 /* chip-14-gray.png */; };
-		481867441703A5D1006EEE41 /* chip-16-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 481867411703A5D1006EEE41 /* chip-16-gray.png */; };
 		48190C9116FA6E2D003BC4E4 /* wire.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8D16FA6E2D003BC4E4 /* wire.png */; };
 		4836742416CC56AC008B87E6 /* Lab1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836741E16CC56AC008B87E6 /* Lab1.pdf */; };
 		4836742516CC56AC008B87E6 /* Lab2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836741F16CC56AC008B87E6 /* Lab2.pdf */; };
@@ -75,8 +73,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		481867401703A5D1006EEE41 /* chip-14-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-14-gray.png"; sourceTree = "<group>"; };
-		481867411703A5D1006EEE41 /* chip-16-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-16-gray.png"; sourceTree = "<group>"; };
 		48190C8D16FA6E2D003BC4E4 /* wire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wire.png; path = "Chip and Breadboard Images/wire.png"; sourceTree = "<group>"; };
 		4836741E16CC56AC008B87E6 /* Lab1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab1.pdf; path = LabPdfs/Lab1.pdf; sourceTree = "<group>"; };
 		4836741F16CC56AC008B87E6 /* Lab2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab2.pdf; path = LabPdfs/Lab2.pdf; sourceTree = "<group>"; };
@@ -84,8 +80,8 @@
 		4836742116CC56AC008B87E6 /* Lab4.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab4.pdf; path = LabPdfs/Lab4.pdf; sourceTree = "<group>"; };
 		4836742216CC56AC008B87E6 /* Lab5.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab5.pdf; path = LabPdfs/Lab5.pdf; sourceTree = "<group>"; };
 		4836742316CC56AC008B87E6 /* Lab6.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab6.pdf; path = LabPdfs/Lab6.pdf; sourceTree = "<group>"; };
-		486B08D916D58CD400F0E4B8 /* light-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light-off.png"; sourceTree = "<group>"; };
-		486B08DA16D58CD400F0E4B8 /* light-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light-on.png"; sourceTree = "<group>"; };
+		486B08D916D58CD400F0E4B8 /* light-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "light-off.png"; path = "Chip and Breadboard Images/light-off.png"; sourceTree = "<group>"; };
+		486B08DA16D58CD400F0E4B8 /* light-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "light-on.png"; path = "Chip and Breadboard Images/light-on.png"; sourceTree = "<group>"; };
 		486B08E116D5948300F0E4B8 /* DLLSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLSplitViewController.h; sourceTree = "<group>"; };
 		486B08E216D5948300F0E4B8 /* DLLSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLSplitViewController.m; sourceTree = "<group>"; };
 		4879503316CC6ED000D6DEFD /* DLLLabTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLLabTableViewController.h; sourceTree = "<group>"; };
@@ -203,8 +199,6 @@
 		486B08D516D58CD400F0E4B8 /* Chip and Breadboard Images */ = {
 			isa = PBXGroup;
 			children = (
-				486B08D916D58CD400F0E4B8 /* light-off.png */,
-				486B08DA16D58CD400F0E4B8 /* light-on.png */,
 			);
 			path = "Chip and Breadboard Images";
 			sourceTree = "<group>";
@@ -295,6 +289,7 @@
 		CF45B2521703B152002A9658 /* TestView */ = {
 			isa = PBXGroup;
 			children = (
+				CF45B2631703BE5F002A9658 /* Resources */,
 				CF45B2541703B18B002A9658 /* DLLTestViewController.h */,
 				CF45B2551703B18B002A9658 /* DLLTestViewController.m */,
 				CF45B2571703BB95002A9658 /* DLLSwitch.h */,
@@ -305,6 +300,15 @@
 				CF45B2611703BCB2002A9658 /* DLLLightView.m */,
 			);
 			name = TestView;
+			sourceTree = "<group>";
+		};
+		CF45B2631703BE5F002A9658 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				486B08DA16D58CD400F0E4B8 /* light-on.png */,
+				486B08D916D58CD400F0E4B8 /* light-off.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		CF55D8E816CF003000D8949B /* DLLModel */ = {
@@ -390,8 +394,6 @@
 		CFDBF6D816B0C199009C3DA4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				481867401703A5D1006EEE41 /* chip-14-gray.png */,
-				481867411703A5D1006EEE41 /* chip-16-gray.png */,
 				486B08D516D58CD400F0E4B8 /* Chip and Breadboard Images */,
 				D8AB957516C025B00074ABEB /* inventory.xml */,
 				CFDBF6D916B0C199009C3DA4 /* Digital Logic Labs-Info.plist */,
@@ -512,8 +514,6 @@
 				486B08DE16D58CD400F0E4B8 /* light-off.png in Resources */,
 				486B08DF16D58CD400F0E4B8 /* light-on.png in Resources */,
 				48190C9116FA6E2D003BC4E4 /* wire.png in Resources */,
-				481867431703A5D1006EEE41 /* chip-14-gray.png in Resources */,
-				481867441703A5D1006EEE41 /* chip-16-gray.png in Resources */,
 				CF14819B1703AC23001DDD08 /* 200px-AND_ANSI.png in Resources */,
 				CF14819C1703AC23001DDD08 /* board-new-resized.png in Resources */,
 				CF14819D1703AC23001DDD08 /* chip-14-gray.png in Resources */,
