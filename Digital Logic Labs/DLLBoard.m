@@ -26,7 +26,7 @@
 - (NSMutableArray *)breadboardStateArray
 {
     if (!_breadboardStateArray){
-        _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 62];
+        _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 63];
     }
     return _breadboardStateArray;
 }
@@ -59,15 +59,15 @@
 #pragma mark initialization methods
 - (id)init
 {
-    // Creates 62 x 62 array w/ all values set to NSNull * myNull
-    // define overarching array as rows
+    // Creates an array w/ 63 columns and 31 rows w/ all values set to NSNull * myNull
+    // define overarching array as columns
     if((self = [super init])){
-        int numRows = 62;
+        int numRows = 31;
         NSNull * myNull = [NSNull null];
     
         NSMutableArray * boardColumns;
         
-        for(int i = 0; i < numRows; i++)
+        for(int i = 0; i < 63; i++)
         {
             boardColumns = [[NSMutableArray alloc] initWithCapacity: numRows];
             for(int j = 0; j < numRows; j++)
@@ -78,8 +78,7 @@
             [self.breadboardStateArray insertObject: boardColumns atIndex: i];
         }
         
-        //[self populateDictionaries];
-        // Commented this out to avoid crashes and continue UI testing - Casey
+        [self populateDictionaries];
     }
     
     return self;
@@ -87,6 +86,8 @@
 
 -(void)populateDictionaries
 {
+    // Set up electricalPointToBoardPointDictionary and boardPointToElectricalPointDictionary for Electrical Point Values 0 to 251 and Board Points of Main Board
+    // First for loop maps all Board Points except Power, Ground, All Switches, and Lights
     for (int x = 0; x <= 62; x++) {
         NSString * key0 = [[NSNumber numberWithInt: x * 4] stringValue];
         NSString * key1 = [[NSNumber numberWithInt: x * 4 + 1] stringValue];
@@ -147,27 +148,41 @@
         [self.electricalPointToBoardPointDictionary setValue: value3 forKey: key3];
     }
     
-    // ground = Electrical Point 252
-    // power = Electrical Point 253
+    // ground == Electrical Point 252
+    // power == Electrical Point 253
     NSMutableArray *groundArray = [[NSMutableArray alloc] initWithCapacity:189];
     NSMutableArray *powerArray = [[NSMutableArray alloc] initWithCapacity:189];
     for (int x = 0; x <= 62;x++)
     {
         groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 5];
-        groundArray[x + 63] = [[DLLPoint alloc] initWithIntX:x andY: 17]; // **CRASHES FIRST TIME THROUGH HERE - Casey
-        groundArray[x + 126] = [[DLLPoint alloc] initWithIntX:x andY: 29];
         powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 6];
-        powerArray[x + 63] = [[DLLPoint alloc] initWithIntX:x andY: 18];
-        powerArray[x + 126] = [[DLLPoint alloc] initWithIntX:x andY: 30];
+        [self.boardPointToElectricalPointDictionary setValue: @"252" forKey: [groundArray[x] toString]];
+        [self.boardPointToElectricalPointDictionary setValue: @"253" forKey: [powerArray[x] toString]];
     }
+    for (int x = 63; x <= 125; x++)
+    {
+        groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 17];
+        powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 18];
+        [self.boardPointToElectricalPointDictionary setValue: @"252" forKey: [groundArray[x] toString]];
+        [self.boardPointToElectricalPointDictionary setValue: @"253" forKey: [powerArray[x] toString]];
+    }
+    for (int x = 126; x <= 188; x++)
+    {
+        groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 29];
+        powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 30];
+        [self.boardPointToElectricalPointDictionary setValue: @"252" forKey: [groundArray[x] toString]];
+        [self.boardPointToElectricalPointDictionary setValue: @"253" forKey: [powerArray[x] toString]];
+    }
+    
     [self.electricalPointToBoardPointDictionary setValue: groundArray forKey: @"252"];
     [self.electricalPointToBoardPointDictionary setValue: powerArray forKey: @"253"];
     
-    // Switch X = Electrical Point 254
-    // Debounced Switch X = Electrical Point 255
-    // Switch Y = Electrical Point 256
-    // Debounced Switch Y = Electrical Point 257
-    // SW1-SW8 = Electrical Points 258-265
+    
+    // Switch X == Electrical Point 254
+    // Debounced Switch X == Electrical Point 255
+    // Switch Y == Electrical Point 256
+    // Debounced Switch Y == Electrical Point 257
+    // SW1-SW8 == Electrical Points 258-265
     for (int x=0; x <= 11; x++) {
         DLLPoint *p1, *p2, *p3, *p4;
         p1 = [[DLLPoint alloc] initWithIntX:x*5 andY: 1];
@@ -175,11 +190,15 @@
         p3 = [[DLLPoint alloc] initWithIntX:x*5 andY: 3];
         p4 = [[DLLPoint alloc] initWithIntX:x*5 andY: 4];
         NSArray *switchArray = @[p1, p2, p3, p4];
-        NSString *key = [[NSNumber numberWithInt: x + 254] stringValue];
-        [self.electricalPointToBoardPointDictionary setValue:switchArray forKey: key];
+        NSString *electricalPoint = [[NSNumber numberWithInt: x + 254] stringValue];
+        [self.boardPointToElectricalPointDictionary setValue: electricalPoint forKey: [p1 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: electricalPoint forKey: [p2 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: electricalPoint forKey: [p3 toString]];
+        [self.boardPointToElectricalPointDictionary setValue: electricalPoint forKey: [p4 toString]];
+        [self.electricalPointToBoardPointDictionary setValue:switchArray forKey: electricalPoint];
     }
     
-    // Lights A-H = Electrical Points 266-273
+    // Lights A-H == Electrical Points 266-273
     DLLPoint *p1, *p2, *p3, *p4, *p5, *p6, *p7, *p8;
     p1 = [[DLLPoint alloc] initWithIntX:25 andY: 0];
     p2 = [[DLLPoint alloc] initWithIntX:26 andY: 0];
@@ -197,6 +216,14 @@
     NSArray *lightArray6 = @[p6];
     NSArray *lightArray7 = @[p7];
     NSArray *lightArray8 = @[p8];
+    [self.boardPointToElectricalPointDictionary setValue: @"266" forKey: [p1 toString]];
+    [self.boardPointToElectricalPointDictionary setValue: @"267" forKey: [p2 toString]];
+    [self.boardPointToElectricalPointDictionary setValue: @"268" forKey: [p3 toString]];
+    [self.boardPointToElectricalPointDictionary setValue: @"269" forKey: [p4 toString]];
+    [self.boardPointToElectricalPointDictionary setValue: @"270" forKey: [p5 toString]];
+    [self.boardPointToElectricalPointDictionary setValue: @"271" forKey: [p6 toString]];
+    [self.boardPointToElectricalPointDictionary setValue: @"272" forKey: [p7 toString]];
+    [self.boardPointToElectricalPointDictionary setValue: @"273" forKey: [p8 toString]];
     [self.electricalPointToBoardPointDictionary setValue: lightArray1 forKey: @"266"];
     [self.electricalPointToBoardPointDictionary setValue: lightArray2 forKey: @"267"];
     [self.electricalPointToBoardPointDictionary setValue: lightArray3 forKey: @"268"];
@@ -205,14 +232,16 @@
     [self.electricalPointToBoardPointDictionary setValue: lightArray6 forKey: @"271"];
     [self.electricalPointToBoardPointDictionary setValue: lightArray7 forKey: @"272"];
     [self.electricalPointToBoardPointDictionary setValue: lightArray8 forKey: @"273"];
+     
 }
 
 #pragma mark -
 #pragma mark component addition methods
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(DLLPoint *)coords
 {
-    //[self.chipDictionary setValue: [[DLLChip alloc] initWithIdenfifier: partNum] forKey: coords.toString];
-    // Casey - This line also crashes the program
+    DLLChip *newChip = [[DLLChip alloc] initWithIdenfifier: partNum];
+    [self.chipDictionary setValue: newChip forKey: [coords toString]];
+    // add pointers to breadboardStateArray
 }
 
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *)endingPoint withColor:(UIColor *)color
@@ -229,12 +258,15 @@
 - (DLLAComponent*)removeComponentAtCoordinate:(DLLPoint *)coords //this will return component type -Casey
 {
     //not necessarily upper left-need to check 2D array
-    //remove an existing component from XML file
-    return [[DLLChip alloc] init];
+    // Code below is not quite right, but close
+    //[self.chipDictionary removeObjectForKey:[coords toString]];
+    //return [self.chipDictionary objectForKey:[coords toString]];
 }
 
 - (void)clearBoard
 {
+    [self.chipDictionary removeAllObjects];
+    // need to clear breadboardStateArray as well
     //reset XML to default, clear data structure, and set all cells in board array to NSNull
 }
 
