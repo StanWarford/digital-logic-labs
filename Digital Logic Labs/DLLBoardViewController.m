@@ -28,11 +28,11 @@ typedef enum{
 
 @implementation DLLBoardViewController
 
-#define HORIZONTAL_BOARD_SPACING 12.92
-#define VERTICAL_BOARD_SPACING 9.3
+#define HORIZONTAL_BOARD_SPACING 11.9
+#define VERTICAL_BOARD_SPACING 12.2
 
-#define HORIZONTAL_BOARD_OFFSET 8
-#define VERTICAL_BOARD_OFFSET 0
+#define HORIZONTAL_BOARD_OFFSET 6
+#define VERTICAL_BOARD_OFFSET 7
 
 #define VIEW_HEIGHT 634
 #define VIEW_WIDTH 1024
@@ -61,7 +61,7 @@ typedef enum{
     self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, VIEW_HEIGHT);
     
     // set background image
-    UIImage *sourceBG = [UIImage imageNamed:@"board-new-resized.png"]; // breadboard-new
+    UIImage *sourceBG = [UIImage imageNamed:@"board-new-resized.png"];
     CGSize bgSize = self.view.frame.size;
 
     UIGraphicsBeginImageContext(bgSize);
