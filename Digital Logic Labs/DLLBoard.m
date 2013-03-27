@@ -26,7 +26,7 @@
 - (NSMutableArray *)breadboardStateArray
 {
     if (!_breadboardStateArray){
-        _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 62];
+        _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 63];
     }
     return _breadboardStateArray;
 }
@@ -59,15 +59,15 @@
 #pragma mark initialization methods
 - (id)init
 {
-    // Creates 62 x 62 array w/ all values set to NSNull * myNull
-    // define overarching array as rows
+    // Creates an array w/ 63 columns and 31 rows w/ all values set to NSNull * myNull
+    // define overarching array as columns
     if((self = [super init])){
-        int numRows = 62;
+        int numRows = 31;
         NSNull * myNull = [NSNull null];
     
         NSMutableArray * boardColumns;
         
-        for(int i = 0; i < numRows; i++)
+        for(int i = 0; i < 63; i++)
         {
             boardColumns = [[NSMutableArray alloc] initWithCapacity: numRows];
             for(int j = 0; j < numRows; j++)
@@ -239,8 +239,9 @@
 #pragma mark component addition methods
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(DLLPoint *)coords
 {
-    //[self.chipDictionary setValue: [[DLLChip alloc] initWithIdenfifier: partNum] forKey: coords.toString];
-    // Casey - This line also crashes the program
+    DLLChip *newChip = [[DLLChip alloc] initWithIdenfifier: partNum];
+    [self.chipDictionary setValue: newChip forKey: [coords toString]];
+    // add pointers to breadboardStateArray
 }
 
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *)endingPoint withColor:(UIColor *)color
@@ -257,12 +258,15 @@
 - (DLLAComponent*)removeComponentAtCoordinate:(DLLPoint *)coords //this will return component type -Casey
 {
     //not necessarily upper left-need to check 2D array
-    //remove an existing component from XML file
-    return [[DLLChip alloc] init];
+    // Code below is not quite right, but close
+    //[self.chipDictionary removeObjectForKey:[coords toString]];
+    //return [self.chipDictionary objectForKey:[coords toString]];
 }
 
 - (void)clearBoard
 {
+    [self.chipDictionary removeAllObjects];
+    // need to clear breadboardStateArray as well
     //reset XML to default, clear data structure, and set all cells in board array to NSNull
 }
 
