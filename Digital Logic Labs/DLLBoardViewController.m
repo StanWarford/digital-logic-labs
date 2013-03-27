@@ -371,6 +371,16 @@ typedef enum{
 }
 
 #pragma mark -
+#pragma mark segue control methods
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"LabToBoardSegue"]){
+        DLLTestViewController *controller = (DLLTestViewController*)segue.destinationViewController;
+        controller.boardModel = self.boardModel;
+    }
+}
+
+#pragma mark -
 #pragma mark MISC
 - (void)didReceiveMemoryWarning
 {

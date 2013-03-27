@@ -10,6 +10,7 @@
 #import "DLLDockViewController.h"
 #import "DLLBoard.h"
 #import "DLLAComponentView.h"
+#import "DLLTestViewController.h"
 #import "DLLPoint.h"
 
 @interface DLLBoardViewController : UIViewController <DLLDockViewControllerDelegate>
