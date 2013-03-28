@@ -13,6 +13,7 @@
 @property (nonatomic, weak) UIImage* unavailableGhostImage;
 - (UIImage*)makeGhostWithHoleAvailable:(BOOL)available forImage:(UIImage*)image;
 - (UIImage*)convertImageToGrayScale:(UIImage*)image;
+- (void)setChipImageAndSize:(NSInteger)identifier;
 @end
 
 @implementation DLLChipView
@@ -46,68 +47,7 @@
 - (id)initChipAtLocation:(CGPoint)coords inView:(UIView *)view withID:(NSInteger)identifier
 {
     if((self = [super init])){
-        switch (identifier)
-        {
-            case 7400:
-                self.image = [UIImage imageNamed:@"7400"];
-                self.size = 14;
-                break;
-            case 7402:
-                self.image = [UIImage imageNamed:@"7402"];
-                self.size = 14;
-                break;
-            case 7404:
-                self.image = [UIImage imageNamed:@"7404"];
-                self.size = 14;
-                break;
-            case 7408:
-                self.image = [UIImage imageNamed:@"7408"];
-                self.size = 14;
-                break;
-            case 7432:
-                self.image = [UIImage imageNamed:@"7432"];
-                self.size = 14;
-                break;
-            case 7447:
-                self.image = [UIImage imageNamed:@"7447"];
-                self.size = 16;
-                break;
-            case 7476:
-                self.image = [UIImage imageNamed:@"7476"];
-                self.size = 16;
-                break;
-            case 7485:
-                self.image = [UIImage imageNamed:@"7485"];
-                self.size = 16;
-                break;
-            case 7486:
-                self.image = [UIImage imageNamed:@"7486"];
-                self.size = 14;
-                break;
-            case 74151:
-                self.image = [UIImage imageNamed:@"74151"];
-                self.size = 16;
-                break;
-            case 74164:
-                self.image = [UIImage imageNamed:@"74164"];
-                self.size = 14;
-                break;
-            case 74176:
-                self.image = [UIImage imageNamed:@"74176"];
-                self.size = 14;
-                break;
-            case 74181:
-                self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
-                self.size = 24;
-                break;
-            case 74711:
-                self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
-                self.size = 14;
-                break;
-            default:
-                self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
-                break;
-        }
+        [self setChipImageAndSize:identifier];
         self.start = coords;
         self.targetView = view;
         self.identifier = identifier;
@@ -118,20 +58,8 @@
 - (id)initChipWithID:(NSInteger)identifier
 {
     if((self = [super init])){
-        switch (identifier)
-        {
-            case 14:
-                self.image = [UIImage imageNamed:@"chip-14-gray"];
-                break;
-            case 16:
-                self.image = [UIImage imageNamed:@"chip-16-gray"];
-                break;
-            default:
-                self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
-                break;
-        }
+        [self setChipImageAndSize:identifier];
         self.start = CGPointMake(0.0, 0.0);
-        //self.size = size;
         self.identifier = identifier;
     }
     return self;
@@ -267,5 +195,73 @@
     
     // Return new grayscale image
     return grayScaleImage;
+}
+
+#pragma mark -
+#pragma mark uitility methods
+- (void)setChipImageAndSize:(NSInteger)identifier
+{
+    switch (identifier)
+    {
+        case 7400:
+            self.image = [UIImage imageNamed:@"7400"];
+            self.size = 14;
+            break;
+        case 7402:
+            self.image = [UIImage imageNamed:@"7402"];
+            self.size = 14;
+            break;
+        case 7404:
+            self.image = [UIImage imageNamed:@"7404"];
+            self.size = 14;
+            break;
+        case 7408:
+            self.image = [UIImage imageNamed:@"7408"];
+            self.size = 14;
+            break;
+        case 7432:
+            self.image = [UIImage imageNamed:@"7432"];
+            self.size = 14;
+            break;
+        case 7447:
+            self.image = [UIImage imageNamed:@"7447"];
+            self.size = 16;
+            break;
+        case 7476:
+            self.image = [UIImage imageNamed:@"7476"];
+            self.size = 16;
+            break;
+        case 7485:
+            self.image = [UIImage imageNamed:@"7485"];
+            self.size = 16;
+            break;
+        case 7486:
+            self.image = [UIImage imageNamed:@"7486"];
+            self.size = 14;
+            break;
+        case 74151:
+            self.image = [UIImage imageNamed:@"74151"];
+            self.size = 16;
+            break;
+        case 74164:
+            self.image = [UIImage imageNamed:@"74164"];
+            self.size = 14;
+            break;
+        case 74176:
+            self.image = [UIImage imageNamed:@"74176"];
+            self.size = 14;
+            break;
+        case 74181:
+            self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
+            self.size = 24;
+            break;
+        case 74711:
+            self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
+            self.size = 14;
+            break;
+        default:
+            self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
+            break;
+    }
 }
 @end

@@ -20,7 +20,7 @@
 #define ACTIVE_DISTANCE 100 // change to zoom cells outside of active frame
 #define ZOOM_FACTOR 0.7 // defines amount of zoom
 #define ITEM_SPACING 5000.0 // used to ensure items display in a single row
-#define LINE_SPACING 20.0 // defines minimum spacing between items
+#define LINE_SPACING 25.0 // defines minimum spacing between items
 
 @synthesize delegate = _delegate;
 

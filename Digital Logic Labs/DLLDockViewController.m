@@ -10,13 +10,13 @@
 
 @interface DLLDockViewController ()
 @property (nonatomic, strong) DLLDockViewLayout *dockLayout;
-- (void)selectCenterItem;
 @end
 
 @implementation DLLDockViewController
 
 #define NUMBER_OF_SECTIONS 1
 #define PADDING_CELL_COUNT 5 // number of invisible padding cells on either side of the dock
+#define VIEW_HEIGHT 70
 
 @synthesize delegate = _delegate;
 @synthesize boardModel = _boardModel;
@@ -75,14 +75,15 @@
 {
     [super viewWillAppear:animated];
     // set the height of the frame to 70
-    self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, self.collectionView.frame.origin.y, self.collectionView.frame.size.width, 70);
+    self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, self.collectionView.frame.origin.y, self.collectionView.frame.size.width, VIEW_HEIGHT);
 }
 
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self selectCenterItem];
+    // select first item at start
+    [self.delegate selectionDidChange:[self.inventory objectAtIndex:0]];
 }
 
 #pragma mark -
@@ -123,7 +124,6 @@
     
     backgroundView.backgroundColor = [UIColor colorWithPatternImage:resizedBG];
     cell.backgroundView = backgroundView;
-    //cell.backgroundColor = UIColor.whiteColor;
     
     // set autoresizing
     cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -171,25 +171,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-// calculates the location of the center visible item in the dock and notifies the delegate what it is
-- (void)selectCenterItem
-{
-    NSArray *visiblePaths = [NSArray array]; // returns a list of indexPaths for visible objects
-    visiblePaths = [self.collectionView indexPathsForVisibleItems];
-    // calculate the row number that would be the middle--required because visiblePaths not always in order
-    NSMutableArray *temp = [NSMutableArray array];
-    for(NSIndexPath *path in visiblePaths){
-        [temp addObject:[NSNumber numberWithInteger:path.row]];
-    }
-    NSInteger middleOffset = [visiblePaths count]/2;
-    NSNumber *targetRow = [NSNumber numberWithInteger:[[temp valueForKeyPath:@"@max.intValue"] intValue] - middleOffset];
-    // get the index of the middle element and notify delegate only if the middle cell is in the correct range
-    NSInteger targetIndex = [temp indexOfObject:targetRow];
-    if(targetIndex >= PADDING_CELL_COUNT && targetIndex < [self.inventory count] + PADDING_CELL_COUNT){
-        [self.delegate selectionDidChange:[self.inventory objectAtIndex:targetIndex]];
-    }
 }
 
 @end
