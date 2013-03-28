@@ -10,6 +10,8 @@
 		481867421703A5D1006EEE41 /* board-new-resized.png in Resources */ = {isa = PBXBuildFile; fileRef = 4818673F1703A5D1006EEE41 /* board-new-resized.png */; };
 		481867431703A5D1006EEE41 /* chip-14-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 481867401703A5D1006EEE41 /* chip-14-gray.png */; };
 		481867441703A5D1006EEE41 /* chip-16-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 481867411703A5D1006EEE41 /* chip-16-gray.png */; };
+		481867481703A9F2006EEE41 /* DLLElectricalPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 481867471703A9F2006EEE41 /* DLLElectricalPoint.m */; };
+		4818674F1703AF67006EEE41 /* DLLTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4818674E1703AF67006EEE41 /* DLLTest.m */; };
 		48190C8E16FA6E2D003BC4E4 /* board-new-resized.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8A16FA6E2D003BC4E4 /* board-new-resized.png */; };
 		48190C8F16FA6E2D003BC4E4 /* chip-14-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8B16FA6E2D003BC4E4 /* chip-14-gray.png */; };
 		48190C9016FA6E2D003BC4E4 /* chip-16-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8C16FA6E2D003BC4E4 /* chip-16-gray.png */; };
@@ -78,6 +80,10 @@
 		4818673F1703A5D1006EEE41 /* board-new-resized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "board-new-resized.png"; sourceTree = "<group>"; };
 		481867401703A5D1006EEE41 /* chip-14-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-14-gray.png"; sourceTree = "<group>"; };
 		481867411703A5D1006EEE41 /* chip-16-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chip-16-gray.png"; sourceTree = "<group>"; };
+		481867461703A9F2006EEE41 /* DLLElectricalPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLElectricalPoint.h; sourceTree = "<group>"; };
+		481867471703A9F2006EEE41 /* DLLElectricalPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLElectricalPoint.m; sourceTree = "<group>"; };
+		4818674D1703AF67006EEE41 /* DLLTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLTest.h; sourceTree = "<group>"; };
+		4818674E1703AF67006EEE41 /* DLLTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLTest.m; sourceTree = "<group>"; };
 		48190C8A16FA6E2D003BC4E4 /* board-new-resized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "board-new-resized.png"; path = "Chip and Breadboard Images/board-new-resized.png"; sourceTree = "<group>"; };
 		48190C8B16FA6E2D003BC4E4 /* chip-14-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chip-14-gray.png"; path = "Chip and Breadboard Images/chip-14-gray.png"; sourceTree = "<group>"; };
 		48190C8C16FA6E2D003BC4E4 /* chip-16-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chip-16-gray.png"; path = "Chip and Breadboard Images/chip-16-gray.png"; sourceTree = "<group>"; };
@@ -301,12 +307,16 @@
 				D8AB957916C027310074ABEB /* DLLBoard.m */,
 				D86C198816E5149100E4303B /* DLLPoint.h */,
 				D86C198916E5149100E4303B /* DLLPoint.m */,
+				481867461703A9F2006EEE41 /* DLLElectricalPoint.h */,
+				481867471703A9F2006EEE41 /* DLLElectricalPoint.m */,
 				CF55D8EC16CF055D00D8949B /* DLLChip.h */,
 				CF55D8ED16CF055D00D8949B /* DLLChip.m */,
 				D87DB90216F77434000C6CE4 /* DLL14PinDIP.h */,
 				D87DB90316F77434000C6CE4 /* DLL14PinDIP.m */,
 				CF55D8E916CF009700D8949B /* DLLAComponent.h */,
 				CF55D8EA16CF009700D8949B /* DLLAComponent.m */,
+				4818674D1703AF67006EEE41 /* DLLTest.h */,
+				4818674E1703AF67006EEE41 /* DLLTest.m */,
 			);
 			name = DLLModel;
 			sourceTree = "<group>";
@@ -559,6 +569,8 @@
 				CFB535B916E5407F000DC011 /* DLLWireView.m in Sources */,
 				D87DB90416F77434000C6CE4 /* DLL14PinDIP.m in Sources */,
 				CFE0830316FA84A800E77C35 /* DLLWireDrawing.m in Sources */,
+				481867481703A9F2006EEE41 /* DLLElectricalPoint.m in Sources */,
+				4818674F1703AF67006EEE41 /* DLLTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

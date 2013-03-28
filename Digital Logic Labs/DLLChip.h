@@ -12,6 +12,7 @@
 
 @property BOOL isFunctional;
 
+- (id)init;
 - (id)initWithIdenfifier:(NSInteger)identifier;
 
 @end
