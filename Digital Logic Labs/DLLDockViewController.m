@@ -151,11 +151,6 @@
     return NO;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self selectCenterItem];
-}
-
 #pragma mark -
 #pragma mark DLLDockViewLayoutDelegate methods
 - (void)selectionDidChange:(NSInteger)selection
