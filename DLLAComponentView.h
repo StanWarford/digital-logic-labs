@@ -16,6 +16,7 @@
 @property (nonatomic, strong) DLLWireDrawing *wireDrawing; // only used in wire
 @property (nonatomic, strong) UIView *targetView; // pointer to view where object should be displayed
 @property (nonatomic, strong) UIColor *color; // only used in wire
+@property (nonatomic, assign) NSInteger identifier;
 @property (nonatomic, assign) NSInteger size;
 @property (nonatomic, assign) CGPoint start;
 @property (nonatomic, assign) CGPoint end; // only used in wire

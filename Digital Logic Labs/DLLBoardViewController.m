@@ -28,11 +28,11 @@ typedef enum{
 
 @implementation DLLBoardViewController
 
-#define HORIZONTAL_BOARD_SPACING 12.92
-#define VERTICAL_BOARD_SPACING 9.3
+#define HORIZONTAL_BOARD_SPACING 11.9
+#define VERTICAL_BOARD_SPACING 12.2
 
-#define HORIZONTAL_BOARD_OFFSET 8
-#define VERTICAL_BOARD_OFFSET 0
+#define HORIZONTAL_BOARD_OFFSET 6
+#define VERTICAL_BOARD_OFFSET 7
 
 #define VIEW_HEIGHT 634
 #define VIEW_WIDTH 1024
@@ -61,7 +61,7 @@ typedef enum{
     self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, VIEW_HEIGHT);
     
     // set background image
-    UIImage *sourceBG = [UIImage imageNamed:@"board-new-resized.png"]; // breadboard-new
+    UIImage *sourceBG = [UIImage imageNamed:@"board-new-resized.png"];
     CGSize bgSize = self.view.frame.size;
 
     UIGraphicsBeginImageContext(bgSize);
@@ -106,7 +106,7 @@ typedef enum{
         }else{ // spot is empty
             // Instantiate a new chip or wire based on dock selection
             if([self.selection isKindOfClass:[DLLChipView class]]){
-                self.activeComponent = [[[self.selection class] alloc] initChipOfSize:self.selection.size AtLocation:snapLoc inView:self.view];
+                self.activeComponent = [[[self.selection class] alloc] initChipAtLocation:snapLoc inView:self.view withID:[self.selection identifier]];
             }else{
                 self.activeComponent = [[[self.selection class] alloc] initWireWithStartAt:snapLoc withColor:self.selection.color inView:self.view];
             }
@@ -114,7 +114,11 @@ typedef enum{
         self.state = [self.activeComponent isKindOfClass:[DLLWireView class]] ? wireStart : notWire;
         
         BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize:self.activeComponent.size];
-        //NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+        
+        // NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+        // NSLog([NSString stringWithFormat:@"grid loc x value = %d", gridLoc.x]);
+        // NSLog(@" ");
+        // NSLog([NSString stringWithFormat:@"grid loc y value = %d", gridLoc.y]);
         
         [self.activeComponent displayGhostWithHoleAvailable:isAvailable];
     }else{ // wireEnd - user is placing end of wire
@@ -368,6 +372,16 @@ typedef enum{
         [dict removeObjectForKey:value];
     }
     self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
+}
+
+#pragma mark -
+#pragma mark segue control methods
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"LabToBoardSegue"]){
+        DLLTestViewController *controller = (DLLTestViewController*)segue.destinationViewController;
+        controller.boardModel = self.boardModel;
+    }
 }
 
 #pragma mark -
