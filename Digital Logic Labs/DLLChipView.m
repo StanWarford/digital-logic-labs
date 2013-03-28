@@ -49,47 +49,59 @@
         switch (identifier)
         {
             case 7400:
-                self.image = [UIImage imageNamed:@"chip-14-gray"];
+                self.image = [UIImage imageNamed:@"7400"];
                 self.size = 14;
                 break;
             case 7402:
-                self.image = [UIImage imageNamed:@"chip-16-gray"];
+                self.image = [UIImage imageNamed:@"7402"];
                 self.size = 14;
                 break;
             case 7404:
+                self.image = [UIImage imageNamed:@"7404"];
                 self.size = 14;
                 break;
             case 7408:
+                self.image = [UIImage imageNamed:@"7408"];
                 self.size = 14;
                 break;
             case 7432:
+                self.image = [UIImage imageNamed:@"7432"];
                 self.size = 14;
                 break;
             case 7447:
+                self.image = [UIImage imageNamed:@"7447"];
                 self.size = 16;
                 break;
             case 7476:
+                self.image = [UIImage imageNamed:@"7476"];
                 self.size = 16;
                 break;
             case 7485:
+                self.image = [UIImage imageNamed:@"7485"];
                 self.size = 16;
                 break;
             case 7486:
+                self.image = [UIImage imageNamed:@"7486"];
                 self.size = 14;
                 break;
             case 74151:
+                self.image = [UIImage imageNamed:@"74151"];
                 self.size = 16;
                 break;
             case 74164:
+                self.image = [UIImage imageNamed:@"74164"];
                 self.size = 14;
                 break;
             case 74176:
+                self.image = [UIImage imageNamed:@"74176"];
                 self.size = 14;
                 break;
             case 74181:
+                self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
                 self.size = 24;
                 break;
             case 74711:
+                self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
                 self.size = 14;
                 break;
             default:
