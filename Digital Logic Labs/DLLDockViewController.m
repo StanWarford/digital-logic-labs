@@ -84,6 +84,8 @@
     [super viewDidAppear:animated];
     // select first item at start
     [self.delegate selectionDidChange:[self.inventory objectAtIndex:0]];
+    [self.dockLayout invalidateLayout];
+    [self.collectionView reloadData];
 }
 
 #pragma mark -
