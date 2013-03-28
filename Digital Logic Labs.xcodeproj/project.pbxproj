@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		48190C9116FA6E2D003BC4E4 /* wire.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8D16FA6E2D003BC4E4 /* wire.png */; };
+		4824E22C1703D0A7004DA6D4 /* DLLElectricalPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4824E2291703D0A7004DA6D4 /* DLLElectricalPoint.m */; };
+		4824E22D1703D0A7004DA6D4 /* DLLTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4824E22B1703D0A7004DA6D4 /* DLLTest.m */; };
 		4836742416CC56AC008B87E6 /* Lab1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836741E16CC56AC008B87E6 /* Lab1.pdf */; };
 		4836742516CC56AC008B87E6 /* Lab2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836741F16CC56AC008B87E6 /* Lab2.pdf */; };
 		4836742616CC56AC008B87E6 /* Lab3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836742016CC56AC008B87E6 /* Lab3.pdf */; };
@@ -88,6 +90,10 @@
 
 /* Begin PBXFileReference section */
 		48190C8D16FA6E2D003BC4E4 /* wire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wire.png; path = "Chip and Breadboard Images/wire.png"; sourceTree = "<group>"; };
+		4824E2281703D0A7004DA6D4 /* DLLElectricalPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLElectricalPoint.h; sourceTree = "<group>"; };
+		4824E2291703D0A7004DA6D4 /* DLLElectricalPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLElectricalPoint.m; sourceTree = "<group>"; };
+		4824E22A1703D0A7004DA6D4 /* DLLTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLTest.h; sourceTree = "<group>"; };
+		4824E22B1703D0A7004DA6D4 /* DLLTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLTest.m; sourceTree = "<group>"; };
 		4836741E16CC56AC008B87E6 /* Lab1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab1.pdf; path = LabPdfs/Lab1.pdf; sourceTree = "<group>"; };
 		4836741F16CC56AC008B87E6 /* Lab2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab2.pdf; path = LabPdfs/Lab2.pdf; sourceTree = "<group>"; };
 		4836742016CC56AC008B87E6 /* Lab3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab3.pdf; path = LabPdfs/Lab3.pdf; sourceTree = "<group>"; };
@@ -363,16 +369,16 @@
 				D8AB957916C027310074ABEB /* DLLBoard.m */,
 				D86C198816E5149100E4303B /* DLLPoint.h */,
 				D86C198916E5149100E4303B /* DLLPoint.m */,
-				481867461703A9F2006EEE41 /* DLLElectricalPoint.h */,
-				481867471703A9F2006EEE41 /* DLLElectricalPoint.m */,
 				CF55D8EC16CF055D00D8949B /* DLLChip.h */,
 				CF55D8ED16CF055D00D8949B /* DLLChip.m */,
 				D87DB90216F77434000C6CE4 /* DLL14PinDIP.h */,
 				D87DB90316F77434000C6CE4 /* DLL14PinDIP.m */,
 				CF55D8E916CF009700D8949B /* DLLAComponent.h */,
 				CF55D8EA16CF009700D8949B /* DLLAComponent.m */,
-				4818674D1703AF67006EEE41 /* DLLTest.h */,
-				4818674E1703AF67006EEE41 /* DLLTest.m */,
+				4824E2281703D0A7004DA6D4 /* DLLElectricalPoint.h */,
+				4824E2291703D0A7004DA6D4 /* DLLElectricalPoint.m */,
+				4824E22A1703D0A7004DA6D4 /* DLLTest.h */,
+				4824E22B1703D0A7004DA6D4 /* DLLTest.m */,
 			);
 			name = DLLModel;
 			sourceTree = "<group>";
@@ -631,8 +637,6 @@
 				CFB535B916E5407F000DC011 /* DLLWireView.m in Sources */,
 				D87DB90416F77434000C6CE4 /* DLL14PinDIP.m in Sources */,
 				CFE0830316FA84A800E77C35 /* DLLWireDrawing.m in Sources */,
-				481867481703A9F2006EEE41 /* DLLElectricalPoint.m in Sources */,
-				4818674F1703AF67006EEE41 /* DLLTest.m in Sources */,
 				CF45B2561703B18B002A9658 /* DLLTestViewController.m in Sources */,
 				CF45B2591703BB95002A9658 /* DLLSwitch.m in Sources */,
 				CF45B25C1703BBBD002A9658 /* DLLSevenSegmentView.m in Sources */,
@@ -646,6 +650,8 @@
 			files = (
 				CFDBF70316B0C19A009C3DA4 /* Digital_Logic_LabsTests.m in Sources */,
 				D87DB90016F772E5000C6CE4 /* DLLWire.m in Sources */,
+				4824E22C1703D0A7004DA6D4 /* DLLElectricalPoint.m in Sources */,
+				4824E22D1703D0A7004DA6D4 /* DLLTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
