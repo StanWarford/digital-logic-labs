@@ -15,6 +15,10 @@
 @implementation DLLTestViewController
 
 @synthesize boardModel = _boardModel;
+@synthesize light1 = _light1;
+@synthesize light2 = _light2;
+@synthesize light3 = _light3;
+@synthesize light4 = _light4;
 
 #pragma mark -
 #pragma mark initialization methods
@@ -25,11 +29,16 @@
 }
 
 #pragma mark -
+#pragma mark switch methods
+- (IBAction)switchStateChanged:(DLLSwitch *)sender {
+    NSLog([NSString stringWithFormat:@"%s", sender.on ? "ON" : "OFF"]);
+}
+
+#pragma mark -
 #pragma mark MISC
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 @end
