@@ -15,10 +15,6 @@
 @interface DLLTestViewController : UIViewController
 
 @property (weak, nonatomic) DLLBoard *boardModel;
-@property (weak, nonatomic) IBOutlet DLLLightView *light1;
-@property (weak, nonatomic) IBOutlet DLLLightView *light2;
-@property (weak, nonatomic) IBOutlet DLLLightView *light3;
-@property (weak, nonatomic) IBOutlet DLLLightView *light4;
-- (IBAction)switchStateChanged:(DLLSwitch *)sender;
-
+@property (strong, nonatomic) NSArray *lights;
+@property (strong, nonatomic) NSArray *switches;
 @end

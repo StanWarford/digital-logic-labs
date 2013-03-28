@@ -10,4 +10,10 @@
 
 @interface DLLLightView : UIImageView
 
+@property (nonatomic, assign) NSInteger identifier;
+@property (nonatomic, assign) BOOL on;
+
+- (id)initWithFrame:(CGRect)frame andID:(NSInteger)identifier;
+- (void)toggleState;
+
 @end

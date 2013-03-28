@@ -10,4 +10,7 @@
 
 @interface DLLSwitch : UISwitch
 
+@property (nonatomic, assign) NSInteger identifier;
+- (id)initWithFrame:(CGRect)frame andID:(NSInteger)identifier;
+
 @end

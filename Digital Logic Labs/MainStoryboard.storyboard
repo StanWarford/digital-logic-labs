@@ -155,151 +155,11 @@
                     <view key="view" contentMode="scaleToFill" id="4gv-Aq-1Xs">
                         <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m31-Qy-ea9" customClass="DLLSwitch">
-                                <connections>
-                                    <action selector="switchStateChanged:" destination="2tD-Wy-Jqa" eventType="valueChanged" id="wnl-rn-Ute"/>
-                                </connections>
-                            </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TGt-Ly-2hu" customClass="DLLSwitch">
-                                <connections>
-                                    <action selector="switchStateChanged:" destination="2tD-Wy-Jqa" eventType="valueChanged" id="sCd-Ug-7oB"/>
-                                </connections>
-                            </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9QS-bQ-jdO" customClass="DLLSwitch">
-                                <connections>
-                                    <action selector="switchStateChanged:" destination="2tD-Wy-Jqa" eventType="valueChanged" id="wEv-xi-gBj"/>
-                                </connections>
-                            </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mO9-bC-mWE" customClass="DLLSwitch">
-                                <connections>
-                                    <action selector="switchStateChanged:" destination="2tD-Wy-Jqa" eventType="valueChanged" id="Udj-BS-Oz8"/>
-                                </connections>
-                            </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aMy-N3-30b" customClass="DLLSwitch">
-                                <connections>
-                                    <action selector="switchStateChanged:" destination="2tD-Wy-Jqa" eventType="valueChanged" id="Gdo-ER-vkc"/>
-                                </connections>
-                            </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SW1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5x-gB-mtu">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SW2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8x-Fa-u53">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SW3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEi-ON-Dag">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SW4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F22-b2-1cp">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SW5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYy-BT-jfx">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JcU-4g-rmO" customClass="DLLLightView">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="82" id="d9k-7h-ZIW"/>
-                                    <constraint firstAttribute="width" constant="78" id="zPk-tq-iCI"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Jj-gf-A3X" customClass="DLLLightView">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="82" id="gvM-0Z-jz5"/>
-                                    <constraint firstAttribute="width" constant="78" id="j9M-eh-9p8"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SbS-6V-TJj" customClass="DLLLightView">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="78" id="obQ-45-dCe"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEl-wZ-eMC" customClass="DLLLightView">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="78" id="idS-RU-3Xf"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Light 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGy-3g-XK1">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Light 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovk-b9-dwC">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Light 3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efj-um-G3k">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Light 4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYy-l2-Wp3">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="c8x-Fa-u53" firstAttribute="baseline" secondItem="e5x-gB-mtu" secondAttribute="baseline" type="default" id="3PR-eN-qhC"/>
-                            <constraint firstItem="oYy-l2-Wp3" firstAttribute="centerX" secondItem="FEl-wZ-eMC" secondAttribute="centerX" type="default" id="3y5-HQ-bWx"/>
-                            <constraint firstItem="XEi-ON-Dag" firstAttribute="centerX" secondItem="9QS-bQ-jdO" secondAttribute="centerX" type="default" id="5By-EO-cB6"/>
-                            <constraint firstItem="GGy-3g-XK1" firstAttribute="centerX" secondItem="JcU-4g-rmO" secondAttribute="centerX" type="default" id="A0b-1C-OdD"/>
-                            <constraint firstItem="oYy-l2-Wp3" firstAttribute="top" secondItem="FEl-wZ-eMC" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Ae5-TG-pf5"/>
-                            <constraint firstItem="efj-um-G3k" firstAttribute="centerX" secondItem="4gv-Aq-1Xs" secondAttribute="centerX" type="default" id="BbR-Nx-73e"/>
-                            <constraint firstItem="e5x-gB-mtu" firstAttribute="top" secondItem="m31-Qy-ea9" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="FpZ-XB-6h2"/>
-                            <constraint firstItem="e5x-gB-mtu" firstAttribute="centerX" secondItem="m31-Qy-ea9" secondAttribute="centerX" type="default" id="JdA-lh-fNA"/>
-                            <constraint firstItem="Ovk-b9-dwC" firstAttribute="top" secondItem="8Jj-gf-A3X" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="KPV-Vw-mj9"/>
-                            <constraint firstAttribute="trailing" secondItem="aMy-N3-30b" secondAttribute="trailing" constant="157" id="O6Z-Vu-I2b"/>
-                            <constraint firstItem="c8x-Fa-u53" firstAttribute="top" secondItem="TGt-Ly-2hu" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="P6j-eo-EBB"/>
-                            <constraint firstItem="Ovk-b9-dwC" firstAttribute="centerX" secondItem="8Jj-gf-A3X" secondAttribute="centerX" type="default" id="TPq-IL-AUB"/>
-                            <constraint firstAttribute="bottom" secondItem="GGy-3g-XK1" secondAttribute="bottom" constant="165" id="Ti4-ic-RCN"/>
-                            <constraint firstItem="Ovk-b9-dwC" firstAttribute="baseline" secondItem="oYy-l2-Wp3" secondAttribute="baseline" type="default" id="VFE-Wm-b0d"/>
-                            <constraint firstItem="QYy-BT-jfx" firstAttribute="centerX" secondItem="aMy-N3-30b" secondAttribute="centerX" type="default" id="VUa-YR-q8L"/>
-                            <constraint firstItem="SbS-6V-TJj" firstAttribute="bottom" secondItem="8Jj-gf-A3X" secondAttribute="bottom" type="default" id="Vh4-Jc-VZC"/>
-                            <constraint firstItem="c8x-Fa-u53" firstAttribute="baseline" secondItem="XEi-ON-Dag" secondAttribute="baseline" type="default" id="WcV-by-6SH"/>
-                            <constraint firstItem="SbS-6V-TJj" firstAttribute="top" secondItem="FEl-wZ-eMC" secondAttribute="top" type="default" id="XI1-yt-KKG"/>
-                            <constraint firstItem="m31-Qy-ea9" firstAttribute="top" secondItem="4gv-Aq-1Xs" secondAttribute="top" constant="160" id="cRa-Li-8Js"/>
-                            <constraint firstItem="efj-um-G3k" firstAttribute="baseline" secondItem="GGy-3g-XK1" secondAttribute="baseline" type="default" id="dgr-x0-Pk8"/>
-                            <constraint firstAttribute="bottom" secondItem="Ovk-b9-dwC" secondAttribute="bottom" constant="166" id="ebe-wZ-Bqa"/>
-                            <constraint firstItem="JcU-4g-rmO" firstAttribute="leading" secondItem="4gv-Aq-1Xs" secondAttribute="leading" constant="131" id="gic-mt-8rR"/>
-                            <constraint firstItem="GGy-3g-XK1" firstAttribute="top" secondItem="JcU-4g-rmO" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="i4r-hU-goe"/>
-                            <constraint firstItem="XEi-ON-Dag" firstAttribute="top" secondItem="9QS-bQ-jdO" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="imN-JW-Fjq"/>
-                            <constraint firstItem="F22-b2-1cp" firstAttribute="top" secondItem="mO9-bC-mWE" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="jLe-Hc-71f"/>
-                            <constraint firstItem="9QS-bQ-jdO" firstAttribute="leading" secondItem="4gv-Aq-1Xs" secondAttribute="leading" constant="436" id="o2A-bD-XIY"/>
-                            <constraint firstAttribute="trailing" secondItem="FEl-wZ-eMC" secondAttribute="trailing" constant="278" id="oBu-Cy-0H1"/>
-                            <constraint firstItem="SbS-6V-TJj" firstAttribute="leading" secondItem="4gv-Aq-1Xs" secondAttribute="leading" constant="467" id="oYx-t2-kLO"/>
-                            <constraint firstAttribute="trailing" secondItem="mO9-bC-mWE" secondAttribute="trailing" constant="336" id="pMD-ID-IHN"/>
-                            <constraint firstItem="QYy-BT-jfx" firstAttribute="baseline" secondItem="F22-b2-1cp" secondAttribute="baseline" type="default" id="pV9-ga-IX7"/>
-                            <constraint firstItem="SbS-6V-TJj" firstAttribute="top" secondItem="8Jj-gf-A3X" secondAttribute="top" type="default" id="q1n-k4-mPL"/>
-                            <constraint firstItem="TGt-Ly-2hu" firstAttribute="leading" secondItem="4gv-Aq-1Xs" secondAttribute="leading" constant="283" id="rIO-M1-v9y"/>
-                            <constraint firstItem="8Jj-gf-A3X" firstAttribute="leading" secondItem="c8x-Fa-u53" secondAttribute="leading" type="default" id="rrZ-nQ-z8L"/>
-                            <constraint firstItem="QYy-BT-jfx" firstAttribute="top" secondItem="aMy-N3-30b" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="rzm-Mh-VoS"/>
-                            <constraint firstItem="c8x-Fa-u53" firstAttribute="centerX" secondItem="TGt-Ly-2hu" secondAttribute="centerX" type="default" id="tr5-J7-VfQ"/>
-                            <constraint firstItem="F22-b2-1cp" firstAttribute="baseline" secondItem="XEi-ON-Dag" secondAttribute="baseline" type="default" id="vcb-iv-Nm8"/>
-                            <constraint firstItem="F22-b2-1cp" firstAttribute="centerX" secondItem="mO9-bC-mWE" secondAttribute="centerX" type="default" id="wRa-Iu-oyt"/>
-                            <constraint firstItem="m31-Qy-ea9" firstAttribute="leading" secondItem="4gv-Aq-1Xs" secondAttribute="leading" constant="138" id="zwp-pi-m14"/>
-                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Test" id="1VT-ED-Axp"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <connections>
-                        <outlet property="Light1" destination="JcU-4g-rmO" id="vRv-ZY-qkw"/>
-                        <outlet property="Light2" destination="8Jj-gf-A3X" id="SAB-vE-51x"/>
-                        <outlet property="Light3" destination="SbS-6V-TJj" id="z1p-HP-Xlx"/>
-                        <outlet property="Light4" destination="FEl-wZ-eMC" id="BK6-hg-pZe"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wA4-Di-tnd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -343,6 +203,66 @@
             <point key="canvasLocation" x="2110" y="-561"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="DLLBoardViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLBoardViewController.h"/>
+        </class>
+        <class className="DLLContainerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLContainerViewController.h"/>
+        </class>
+        <class className="DLLDockViewCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLDockViewCell.h"/>
+        </class>
+        <class className="DLLDockViewController" superclassName="UICollectionViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLDockViewController.h"/>
+        </class>
+        <class className="DLLLabTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLLabTableViewController.h"/>
+        </class>
+        <class className="DLLLightView" superclassName="UIImageView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLLightView.h"/>
+        </class>
+        <class className="DLLPDFViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLPDFViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="myWebView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="DLLSplitViewController" superclassName="UISplitViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLSplitViewController.h"/>
+        </class>
+        <class className="DLLSwitch" superclassName="UISwitch">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLSwitch.h"/>
+        </class>
+        <class className="DLLTestViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLTestViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="switchStateChanged:" candidateClass="DLLSwitch"/>
+                <relationship kind="outlet" name="light1" candidateClass="DLLLightView"/>
+                <relationship kind="outlet" name="light2" candidateClass="DLLLightView"/>
+                <relationship kind="outlet" name="light3" candidateClass="DLLLightView"/>
+                <relationship kind="outlet" name="light4" candidateClass="DLLLightView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

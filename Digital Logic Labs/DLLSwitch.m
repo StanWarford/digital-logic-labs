@@ -10,22 +10,17 @@
 
 @implementation DLLSwitch
 
-- (id)initWithFrame:(CGRect)frame
+@synthesize identifier = _identifier;
+
+#pragma mark -
+#pragma mark initialization methods
+- (id)initWithFrame:(CGRect)frame andID:(NSInteger)identifier
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.identifier = identifier;
     }
     return self;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

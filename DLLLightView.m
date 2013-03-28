@@ -10,22 +10,32 @@
 
 @implementation DLLLightView
 
-- (id)initWithFrame:(CGRect)frame
+@synthesize identifier = _identifier;
+@synthesize on = _on;
+
+#pragma mark -
+#pragma mark initialization methods
+- (id)initWithFrame:(CGRect)frame andID:(NSInteger)identifier
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.identifier = identifier;
+        self.image = [UIImage imageNamed:@"light-off"];
+        self.on = NO;
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+#pragma mark -
+#pragma mark light control methods
+- (void)toggleState
 {
-    // Drawing code
+    self.on = !self.on;
+    if(self.on){
+        self.image = [UIImage imageNamed:@"light-on"];
+    }else{
+        self.image = [UIImage imageNamed:@"light-off"];
+    }
 }
-*/
 
 @end
