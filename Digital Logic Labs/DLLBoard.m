@@ -12,8 +12,9 @@
 @property (assign, nonatomic) NSInteger activeLab;
 @property (strong, nonatomic) NSMutableDictionary *chipDictionary;
 @property (strong, nonatomic) NSMutableArray *breadboardStateArray;
-@property (strong, nonatomic) NSMutableDictionary *electricalPointToBoardPointDictionary;
+@property (strong, nonatomic) NSMutableArray *electricalPointToBoardPointArray;
 @property (strong, nonatomic) NSMutableDictionary *boardPointToElectricalPointDictionary;
+
 @end
 
 @implementation DLLBoard
@@ -39,12 +40,12 @@
     return _chipDictionary;
 }
 
-- (NSMutableDictionary *)electricalPointToBoardPointDictionary;
+- (NSMutableArray *)electricalPointToBoardPointArray;
 {
-    if (!_electricalPointToBoardPointDictionary){
-        _electricalPointToBoardPointDictionary = [[NSMutableDictionary alloc] init];
+    if (!_electricalPointToBoardPointArray){
+        _electricalPointToBoardPointArray = [[NSMutableArray alloc] init];
     }
-    return _electricalPointToBoardPointDictionary;
+    return _electricalPointToBoardPointArray;
 }
 
 - (NSMutableDictionary *)boardPointToElectricalPointDictionary
@@ -78,13 +79,13 @@
             [self.breadboardStateArray insertObject: boardColumns atIndex: i];
         }
         
-        [self populateDictionaries];
+        [self populateDatastructures];
     }
     
     return self;
 }
 
--(void)populateDictionaries
+-(void)populateDatastructures
 {
     // Set up electricalPointToBoardPointDictionary and boardPointToElectricalPointDictionary for Electrical Point Values 0 to 251 and Board Points of Main Board
     // First for loop maps all Board Points except Power, Ground, All Switches, and Lights
@@ -142,10 +143,11 @@
         [self.boardPointToElectricalPointDictionary setValue: key3 forKey: [p17 toString]];
         [self.boardPointToElectricalPointDictionary setValue: key3 forKey: [p18 toString]];
         [self.boardPointToElectricalPointDictionary setValue: key3 forKey: [p19 toString]];
-        [self.electricalPointToBoardPointDictionary setValue: value0 forKey: key0];
-        [self.electricalPointToBoardPointDictionary setValue: value1 forKey: key1];
-        [self.electricalPointToBoardPointDictionary setValue: value2 forKey: key2];
-        [self.electricalPointToBoardPointDictionary setValue: value3 forKey: key3];
+        
+        [self.electricalPointToBoardPointArray insertObject:value0 atIndex:x * 4];
+        [self.electricalPointToBoardPointArray insertObject:value1 atIndex:x * 4 + 1];
+        [self.electricalPointToBoardPointArray insertObject:value2 atIndex:x * 4 + 2];
+        [self.electricalPointToBoardPointArray insertObject:value3 atIndex:x * 4 + 3];
     }
     
     // ground == Electrical Point 252
@@ -174,8 +176,8 @@
         [self.boardPointToElectricalPointDictionary setValue: @"253" forKey: [powerArray[x] toString]];
     }
     
-    [self.electricalPointToBoardPointDictionary setValue: groundArray forKey: @"252"];
-    [self.electricalPointToBoardPointDictionary setValue: powerArray forKey: @"253"];
+    [self.electricalPointToBoardPointArray insertObject:groundArray atIndex:252];
+    [self.electricalPointToBoardPointArray insertObject:powerArray atIndex:253];
     
     
     // Switch X == Electrical Point 254
@@ -195,7 +197,9 @@
         [self.boardPointToElectricalPointDictionary setValue: electricalPoint forKey: [p2 toString]];
         [self.boardPointToElectricalPointDictionary setValue: electricalPoint forKey: [p3 toString]];
         [self.boardPointToElectricalPointDictionary setValue: electricalPoint forKey: [p4 toString]];
-        [self.electricalPointToBoardPointDictionary setValue:switchArray forKey: electricalPoint];
+        
+        [self.electricalPointToBoardPointArray insertObject:switchArray atIndex:x + 254];
+
     }
     
     // Lights A-H == Electrical Points 266-273
@@ -224,14 +228,16 @@
     [self.boardPointToElectricalPointDictionary setValue: @"271" forKey: [p6 toString]];
     [self.boardPointToElectricalPointDictionary setValue: @"272" forKey: [p7 toString]];
     [self.boardPointToElectricalPointDictionary setValue: @"273" forKey: [p8 toString]];
-    [self.electricalPointToBoardPointDictionary setValue: lightArray1 forKey: @"266"];
-    [self.electricalPointToBoardPointDictionary setValue: lightArray2 forKey: @"267"];
-    [self.electricalPointToBoardPointDictionary setValue: lightArray3 forKey: @"268"];
-    [self.electricalPointToBoardPointDictionary setValue: lightArray4 forKey: @"269"];
-    [self.electricalPointToBoardPointDictionary setValue: lightArray5 forKey: @"270"];
-    [self.electricalPointToBoardPointDictionary setValue: lightArray6 forKey: @"271"];
-    [self.electricalPointToBoardPointDictionary setValue: lightArray7 forKey: @"272"];
-    [self.electricalPointToBoardPointDictionary setValue: lightArray8 forKey: @"273"];
+    
+    [self.electricalPointToBoardPointArray insertObject:lightArray1 atIndex:266];
+    [self.electricalPointToBoardPointArray insertObject:lightArray2 atIndex:267];
+    [self.electricalPointToBoardPointArray insertObject:lightArray3 atIndex:268];
+    [self.electricalPointToBoardPointArray insertObject:lightArray4 atIndex:269];
+    [self.electricalPointToBoardPointArray insertObject:lightArray5 atIndex:270];
+    [self.electricalPointToBoardPointArray insertObject:lightArray6 atIndex:271];
+    [self.electricalPointToBoardPointArray insertObject:lightArray7 atIndex:272];
+    [self.electricalPointToBoardPointArray insertObject:lightArray8 atIndex:273];
+
      
 }
 
@@ -259,8 +265,9 @@
 {
     //not necessarily upper left-need to check 2D array
     // Code below is not quite right, but close
-    //[self.chipDictionary removeObjectForKey:[coords toString]];
-    //return [self.chipDictionary objectForKey:[coords toString]];
+    DLLAComponent * tempComponent = [self.chipDictionary objectForKey:[coords toString]];
+    [self.chipDictionary removeObjectForKey:[coords toString]];
+    return tempComponent;
 }
 
 - (void)clearBoard

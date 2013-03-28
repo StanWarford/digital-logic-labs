@@ -114,7 +114,11 @@ typedef enum{
         self.state = [self.activeComponent isKindOfClass:[DLLWireView class]] ? wireStart : notWire;
         
         BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize:self.activeComponent.size];
-        //NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+        
+        // NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+        // NSLog([NSString stringWithFormat:@"grid loc x value = %d", gridLoc.x]);
+        // NSLog(@" ");
+        // NSLog([NSString stringWithFormat:@"grid loc y value = %d", gridLoc.y]);
         
         [self.activeComponent displayGhostWithHoleAvailable:isAvailable];
     }else{ // wireEnd - user is placing end of wire
