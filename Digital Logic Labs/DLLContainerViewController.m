@@ -35,11 +35,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // instantiate the two subviews to be added
+    // instantiate the subviews to be added
     self.boardView = [self.storyboard instantiateViewControllerWithIdentifier:@"UIBoardViewBoard"];
     self.boardView.boardModel = self.boardModel;
     self.dockView = [self.storyboard instantiateViewControllerWithIdentifier:@"UIDockViewDock"];
     self.dockView.boardModel = self.boardModel;
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Dock"]];
     
     // move the instantiated frames to their correct positions on screen
     CGRect initialBoardFrame = self.boardView.view.frame;
@@ -48,6 +49,7 @@
     CGAffineTransform moveDock = CGAffineTransformMakeTranslation(-20, 634);
     self.boardView.view.frame = CGRectApplyAffineTransform(initialBoardFrame, moveBoard);
     self.dockView.view.frame = CGRectApplyAffineTransform(initialDockFrame, moveDock);
+    imageView.frame = CGRectMake(0, 634, imageView.frame.size.width, imageView.frame.size.height);
     
     // set dockView delegate to be boardView
     self.dockView.delegate = self.boardView;
@@ -59,6 +61,7 @@
     // display the subviews
     [self.view addSubview:self.boardView.view];
     [self.view addSubview:self.dockView.view];
+    [self.view addSubview:imageView];
 }
 
 #pragma mark -

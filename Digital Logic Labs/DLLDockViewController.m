@@ -128,7 +128,7 @@
     cell.backgroundView = backgroundView;
     
     // set autoresizing
-    cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     return cell;
 }

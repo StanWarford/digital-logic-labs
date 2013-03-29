@@ -23,14 +23,14 @@
 #define SWITCH_SPACING 100
 #define SWITCH_SIZE_X 60
 #define SWITCH_SIZE_Y 26
-#define SWITCH_COUNT 5
+#define SWITCH_COUNT 10
 
 #define LIGHT_ROW 220
 #define LIGHT_COL_START 64
 #define LIGHT_SIZE_X 20
 #define LIGHT_SIZE_Y 20
 #define LIGHT_SPACING 50
-#define LIGHT_COUNT 5
+#define LIGHT_COUNT 8
 
 #pragma mark -
 #pragma mark lazy instantiation methods
