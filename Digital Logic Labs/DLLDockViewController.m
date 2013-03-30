@@ -84,8 +84,6 @@
     [super viewDidAppear:animated];
     // select first item at start
     [self.delegate selectionDidChange:[self.inventory objectAtIndex:0]];
-    [self.dockLayout invalidateLayout];
-    [self.collectionView reloadData];
 }
 
 #pragma mark -
@@ -117,7 +115,7 @@
         sourceBG = [UIImage imageNamed:@"placeholder"];
     }
     
-    CGSize bgSize = cell.frame.size;
+    CGSize bgSize = [[UIImage imageNamed:@"placeholder"] size];
     
     UIGraphicsBeginImageContext(bgSize);
     [sourceBG drawInRect:CGRectMake(0,0,bgSize.width,bgSize.height)];
@@ -128,18 +126,20 @@
     cell.backgroundView = backgroundView;
     
     // set autoresizing
-    //cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     return cell;
 }
+
 
 #pragma mark -
 #pragma mark UICollectionViewDelegateFlowLayout methods
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIImage *image = [UIImage imageNamed:@"200px-AND_ANSI"];
+    UIImage *image = [UIImage imageNamed:@"placeholder"];
     return image.size;
 }
+
 
 #pragma mark -
 #pragma mark UICollectionViewDelegate methods
