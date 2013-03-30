@@ -11,18 +11,26 @@
 @interface DLLChipView ()
 @property (nonatomic, weak) UIImage* availableGhostImage;
 @property (nonatomic, weak) UIImage* unavailableGhostImage;
+@property (nonatomic, assign) CGPoint center;
 - (UIImage*)makeGhostWithHoleAvailable:(BOOL)available forImage:(UIImage*)image;
 - (UIImage*)convertImageToGrayScale:(UIImage*)image;
 - (void)setChipImageAndSize:(NSInteger)identifier;
+- (CGPoint)calculateUpperLeftPinFromCenterPoint:(CGPoint)point;
 @end
 
 @implementation DLLChipView
 
 #define COLOR_INTENSITY 0.5 // 0 < n < 1, 1 = opaque 0 = transparent
 #define GHOST_TRANSPARENCY 0.5 // 0 < n < 1, 1 = opaque 0 = transparent
+#define X_OFFSET_14 33 // offset from middle to first pin for 14 pin chips
+#define X_OFFSET_16 43 // offset from middle to first pin for 16 pin chips
+#define X_OFFSET_ALU 66 // offset from middle to first pin for the ALU
+#define Y_OFFSET 14 // offset from middle to first pin for all chips except the ALU
+#define Y_OFFSET_ALU 15 // offset from middle to first pin for the ALU
 
 @synthesize availableGhostImage = _availableGhostImage;
 @synthesize unavailableGhostImage = _unavailableGhostImage;
+@synthesize center = _center;
 
 #pragma mark -
 #pragma mark property instantiation methods
@@ -48,7 +56,8 @@
 {
     if((self = [super init])){
         [self setChipImageAndSize:identifier];
-        self.start = coords;
+        self.center = coords;
+        self.start = [self calculateUpperLeftPinFromCenterPoint:self.center];
         self.targetView = view;
         self.identifier = identifier;
     }
@@ -89,11 +98,12 @@
 
 - (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
-    self.start = coords;
+    self.center = coords;
+    self.start = [self calculateUpperLeftPinFromCenterPoint:coords];
     self.imageView.image = available ? self.availableGhostImage :self.unavailableGhostImage;
     [UIView beginAnimations:@"UIImage Move" context:NULL];
     CGSize size = self.imageView.frame.size;
-    self.imageView.frame = CGRectMake(coords.x, coords.y, size.width, size.height);
+    self.imageView.frame = CGRectMake(self.start.x, self.start.y, size.width, size.height);
     [UIView commitAnimations];
 }
 
@@ -263,5 +273,33 @@
             self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
             break;
     }
+}
+
+- (CGPoint)calculateUpperLeftPinFromCenterPoint:(CGPoint)point
+{
+    NSInteger x = point.x;
+    NSInteger y = point.y;
+    NSInteger xOffset;
+    NSInteger yOffset;
+    switch(self.size)
+    {
+        case 14:
+            xOffset = X_OFFSET_14;
+            yOffset = Y_OFFSET;
+            break;
+        case 16:
+            xOffset = X_OFFSET_16;
+            yOffset = Y_OFFSET;
+            break;
+        case 24:
+            xOffset = X_OFFSET_ALU;
+            yOffset = Y_OFFSET_ALU;
+            break;
+        default:
+            xOffset = 0;
+            yOffset = 0;
+            break;
+    }
+    return CGPointMake(x-xOffset, y-yOffset);
 }
 @end
