@@ -32,3 +32,4 @@ typedef enum
 - (BOOL)isEqual:(id)otherPoint;
 
 @end
+

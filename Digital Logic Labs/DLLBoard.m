@@ -14,6 +14,13 @@
 @property (strong, nonatomic) NSMutableArray *breadboardStateArray;
 @property (strong, nonatomic) NSMutableArray *electricalPointToBoardPointArray;
 @property (strong, nonatomic) NSMutableDictionary *boardPointToElectricalPointDictionary;
+@property (strong, nonatomic) NSMutableArray *electricalPointArray;
+
+- (BOOL) illegalConnectionExists;
+- (void) determineChipFunctionality;
+- (void) simulateInitialState;
+- (void) simulateCombinational;
+- (void) populateDatastructures;
 
 @end
 
@@ -54,6 +61,14 @@
         _boardPointToElectricalPointDictionary = [[NSMutableDictionary alloc] init];
     }
     return _boardPointToElectricalPointDictionary;
+}
+
+- (NSMutableArray *)electricalPointArray
+{
+    if (!_electricalPointArray){
+        _electricalPointArray = [[NSMutableArray alloc] initWithCapacity:274];
+    }
+    return _electricalPointArray;
 }
 
 #pragma mark -
@@ -238,7 +253,35 @@
     [self.electricalPointToBoardPointArray insertObject:lightArray7 atIndex:272];
     [self.electricalPointToBoardPointArray insertObject:lightArray8 atIndex:273];
 
-     
+    // Initialize Electrical Point Array
+   DLLElectricalPoint *test = [[DLLElectricalPoint alloc] init];
+    /*for(int x = 0; x < 252; x++)
+    {
+        [self.electricalPointArray insertObject:test atIndex:x];
+    }*/
+    
+    /*[self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeGround] atIndex:252];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypePower] atIndex:253];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeSwitch] atIndex:254];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeDebouncedSwitch] atIndex:255];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeSwitch] atIndex:256];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeDebouncedSwitch] atIndex:257];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeSwitch] atIndex:258];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeSwitch] atIndex:259];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeSwitch] atIndex:260];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeSwitch] atIndex:261];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeSwitch] atIndex:262];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeSwitch] atIndex:263];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeSwitch] atIndex:264];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeSwitch] atIndex:265];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:266];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:267];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:268];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:269];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:270];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:271];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:272];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:273];*/
 }
 
 #pragma mark -
@@ -336,4 +379,48 @@
 }
 
 // 2D needs to be 63x25 w/ 63rd row as a 'trash' row, items put here will not be added-mark as always unavailable
+
+#pragma mark -
+#pragma mark test screen API
+
+- (void) runSimulation
+{
+    [self determineChipFunctionality];
+    if (![self illegalConnectionExists])
+    {
+        [self simulateInitialState];
+    }
+    
+    
+}
+
+- (void) determineChipFunctionality
+{
+    
+}
+
+- (BOOL) illegalConnectionExists
+{
+    return NO;
+}
+
+- (void) simulateInitialState
+{
+    // initialize value each electrical pt
+    // initialize previousvalue
+    // initialize internal state of FF to unknown
+    [self simulateCombinational];
+}
+
+- (void) simulateCombinational
+{
+    
+}
+
+- (void) simulateThrowOfSwitchLabeled:(int)switchID
+{
+    // more code necessary here
+    [self simulateCombinational];
+}
+
 @end

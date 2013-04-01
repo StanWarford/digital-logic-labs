@@ -32,7 +32,7 @@
 
 - (id)init
 {
-    if((self = [super init])){
+    if(self = [super init]){
         self.xCoord = 0;
         self.yCoord = 0;
     }

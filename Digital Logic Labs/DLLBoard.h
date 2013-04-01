@@ -1,7 +1,7 @@
 //
 //  DLLModel.h
 //  Digital Logic Labs
-//
+///Users/joe/Code/Digital Logic Labs/Digital Logic Labs/DLLBoard.m
 //  Created by Joe Scharnitzke on 2/4/13.
 //  Copyright (c) 2013 Pepperdine. All rights reserved.
 //
@@ -10,6 +10,8 @@
 #import "DLLAComponent.h"
 #import "DLLChip.h"
 #import "DLLPoint.h"
+#import "DLLElectricalPoint.h"
+
 
 @interface DLLBoard : NSObject
 
@@ -24,5 +26,11 @@
 
 - (DLLAComponent *)boardStateAt:(DLLPoint *)coords;
 - (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger)size;
+
+- (void) runSimulation;
+- (void) simulateThrowOfSwitchLabeled:(int)switchID;
+// function for which lights are lit
+// note: of light is "unknown" return off to Controller
+// function for 7-segment display value
 
 @end

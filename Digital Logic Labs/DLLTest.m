@@ -26,7 +26,7 @@
 }
 
 - (id) init
-{
+{/*
     for(int x = 0; x < 252; x++)
     {
         [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] init] atIndex:x];
@@ -53,7 +53,7 @@
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:271];
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:272];
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:273];
-    
+    */
     return self;
 }
 
