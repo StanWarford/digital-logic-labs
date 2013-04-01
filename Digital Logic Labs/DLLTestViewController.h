@@ -14,7 +14,7 @@
 
 @interface DLLTestViewController : UIViewController
 
-@property (weak, nonatomic) DLLBoard *boardModel;
-@property (strong, nonatomic) NSArray *lights;
-@property (strong, nonatomic) NSArray *switches;
+@property (nonatomic, weak) DLLBoard *boardModel;
+@property (nonatomic, strong) NSArray *lights;
+@property (nonatomic, strong) NSArray *switches;
 @end

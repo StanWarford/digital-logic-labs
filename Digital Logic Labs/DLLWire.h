@@ -11,8 +11,8 @@
 
 @interface DLLWire : DLLAComponent
 
-@property DLLPoint * startPoint;
-@property DLLPoint * endPoint;
+@property (nonatomic, strong) DLLPoint * startPoint;
+@property (nonatomic, strong) DLLPoint * endPoint;
 
 - (id)initWithStartPoint: (DLLPoint *)startPoint
              AndEndPoint: (DLLPoint *)endPoint;

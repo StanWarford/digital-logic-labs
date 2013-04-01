@@ -9,11 +9,11 @@
 #import "DLLBoard.h"
 
 @interface  DLLBoard()
-@property (assign, nonatomic) NSInteger activeLab;
-@property (strong, nonatomic) NSMutableDictionary *chipDictionary;
-@property (strong, nonatomic) NSMutableArray *breadboardStateArray;
-@property (strong, nonatomic) NSMutableArray *electricalPointToBoardPointArray;
-@property (strong, nonatomic) NSMutableDictionary *boardPointToElectricalPointDictionary;
+@property (nonatomic, assign) NSInteger activeLab;
+@property (nonatomic, strong) NSMutableDictionary *chipDictionary;
+@property (nonatomic, strong) NSMutableArray *breadboardStateArray;
+@property (nonatomic, strong) NSMutableArray *electricalPointToBoardPointArray;
+@property (nonatomic, strong) NSMutableDictionary *boardPointToElectricalPointDictionary;
 
 @end
 

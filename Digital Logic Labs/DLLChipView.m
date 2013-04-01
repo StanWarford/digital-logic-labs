@@ -9,8 +9,8 @@
 #import "DLLChipView.h"
 
 @interface DLLChipView ()
-@property (nonatomic, weak) UIImage* availableGhostImage;
-@property (nonatomic, weak) UIImage* unavailableGhostImage;
+@property (nonatomic, strong) UIImage* availableGhostImage;
+@property (nonatomic, strong) UIImage* unavailableGhostImage;
 @property (nonatomic, assign) CGPoint center;
 - (UIImage*)makeGhostWithHoleAvailable:(BOOL)available forImage:(UIImage*)image;
 - (UIImage*)convertImageToGrayScale:(UIImage*)image;

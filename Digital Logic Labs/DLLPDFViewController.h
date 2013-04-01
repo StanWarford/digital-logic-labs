@@ -11,8 +11,7 @@
 
 @interface DLLPDFViewController : UIViewController <DLLLabTableViewControllerDelegate>
 
+@property (nonatomic, strong) IBOutlet UIWebView *myWebView;
 - (void) selectionDidChangeTo:(NSInteger)selection;
-
-@property (strong, nonatomic) IBOutlet UIWebView *myWebView;
 
 @end
