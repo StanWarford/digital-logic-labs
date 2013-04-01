@@ -10,8 +10,8 @@
 
 @interface DLLPoint : NSObject
 
-@property (nonatomic)NSUInteger xCoord;
-@property (nonatomic)NSUInteger yCoord;
+@property (nonatomic, assign) NSUInteger xCoord;
+@property (nonatomic, assign) NSUInteger yCoord;
 
 - (id)initWithCoords:(CGPoint)coords;
 - (id)initWithIntX:(int)x andY:(int)y;

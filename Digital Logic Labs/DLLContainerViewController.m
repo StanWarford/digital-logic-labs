@@ -18,18 +18,6 @@
 @synthesize dockView = _dockView;
 @synthesize boardModel = _boardModel;
 
-/*
-#pragma mark -
-#pragma mark property instantiation
-- (DLLBoard*)boardModel
-{
-    if (!_boardModel){
-        _boardModel = [[DLLBoard alloc] init];
-    }
-    return _boardModel;
-}
-*/
-
 #pragma mark -
 #pragma mark view initialization methods
 - (void)viewDidLoad

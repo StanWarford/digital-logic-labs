@@ -11,7 +11,7 @@
 #import "DLLTest.h"
 
 @interface DLLTest()
-@property (strong, nonatomic) NSMutableArray *electricalPointArray;
+@property (nonatomic, strong) NSMutableArray *electricalPointArray;
 
 @end
 

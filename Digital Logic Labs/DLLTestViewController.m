@@ -19,8 +19,8 @@
 @synthesize switches = _switches;
 
 #define SWITCH_ROW 138
-#define SWITCH_COL_START 64
-#define SWITCH_SPACING 100
+#define SWITCH_COL_START 10
+#define SWITCH_SPACING 50
 #define SWITCH_SIZE_X 60
 #define SWITCH_SIZE_Y 26
 #define SWITCH_COUNT 10

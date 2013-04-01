@@ -14,7 +14,7 @@
 @interface DLLContainerViewController : UIViewController
 
 // pointers to the two subviews that will be added to this container
-@property (nonatomic, strong) DLLBoardViewController *boardView;
+@property (nonatomic, weak) DLLBoardViewController *boardView;
 @property (nonatomic, strong) DLLDockViewController *dockView;
 @property (nonatomic, strong) DLLBoard *boardModel;
 

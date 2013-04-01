@@ -15,6 +15,6 @@
 
 @interface DLLBoardViewController : UIViewController <DLLDockViewControllerDelegate>
 
-@property (weak, nonatomic) DLLBoard *boardModel;
+@property (nonatomic, weak) DLLBoard *boardModel;
 
 @end

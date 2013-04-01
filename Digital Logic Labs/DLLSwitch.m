@@ -19,6 +19,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.identifier = identifier;
+        
+        const CGFloat k90DegreeCounterClockwiseAngle = (CGFloat) -(90*M_PI/180.0);
+        self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, k90DegreeCounterClockwiseAngle);
     }
     return self;
 }
