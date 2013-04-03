@@ -331,18 +331,27 @@
 #pragma mark -
 #pragma mark board state methods
 
+- (BOOL)isOccupiedAt:(DLLPoint *)coords
+{
+    if(coords.xCoord > 63 && coords.yCoord > 31)
+        return NO;
+    
+    id component = [[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord];
+    NSNull * myNull = [NSNull null];
+    
+    return !(component == myNull);
+      // If a chip or a wire is at given coords return !NO
+}
+
 - (DLLAComponent *)boardStateAt:(DLLPoint *)coords
 {
-    return nil;
-    /*
     id component = [[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord];
     NSNull * myNull = [NSNull null];
     
     if(component == myNull)
         return nil;
     else return (DLLAComponent *)component;
-    */
-    // This code is crashing my tests - Casey
+    
 }
 
 - (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger) size

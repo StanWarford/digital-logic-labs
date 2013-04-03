@@ -93,7 +93,7 @@ typedef enum{
     CGPoint gridLoc = [self gridCoordinateFromViewCoordinate:loc];
     CGPoint snapLoc = [self viewCoordinateFromGridCoordinate:gridLoc];
     DLLPoint* boardLoc = [self boardCoordinateFromGridCoordinate:gridLoc];
-    BOOL isEmpty = [self.boardModel boardStateAt:boardLoc] == nil;
+    BOOL isEmpty = ![self.boardModel isOccupiedAt:boardLoc];
     
     if(self.state == notWire){ // user has not placed a wire
         // Remove any component the user touched, and assume the user wants to edit that component otherwise add a new component from the dock

@@ -24,6 +24,7 @@
 - (DLLAComponent *)removeComponentAtCoordinate:(DLLPoint *)coords;
 - (void)clearBoard;
 
+- (BOOL)isOccupiedAt:(DLLPoint *)coords;
 - (DLLAComponent *)boardStateAt:(DLLPoint *)coords;
 - (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger)size;
 

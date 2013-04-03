@@ -7,6 +7,7 @@
 //
 
 #import "DLLChip.h"
+#import "DLLPoint.h"
 
 @interface DLL14PinDIP : DLLChip
 
@@ -15,6 +16,7 @@
 @property (nonatomic, strong) NSMutableArray * inputPins;
 @property (nonatomic, assign) NSUInteger groundPin;
 @property (nonatomic, assign) NSUInteger powerPin;
+@property (nonatomic, assign) DLLPoint * loc;
 
 - (id)initWithIdentifier: (NSInteger)identifier
               OutputPins: (NSMutableArray *)outputPins
