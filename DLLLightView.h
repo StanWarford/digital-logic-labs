@@ -14,6 +14,7 @@
 @property (nonatomic, assign) BOOL on;
 
 - (id)initWithFrame:(CGRect)frame andID:(NSInteger)identifier;
-- (void)toggleState;
+- (void)toggleOnOff;
+- (void)toggleDimOff;
 
 @end

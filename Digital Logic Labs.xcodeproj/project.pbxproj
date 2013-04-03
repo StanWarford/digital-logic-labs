@@ -14,8 +14,6 @@
 		4836742716CC56AC008B87E6 /* Lab4.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836742116CC56AC008B87E6 /* Lab4.pdf */; };
 		4836742816CC56AC008B87E6 /* Lab5.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836742216CC56AC008B87E6 /* Lab5.pdf */; };
 		4836742916CC56AC008B87E6 /* Lab6.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836742316CC56AC008B87E6 /* Lab6.pdf */; };
-		486B08DE16D58CD400F0E4B8 /* light-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 486B08D916D58CD400F0E4B8 /* light-off.png */; };
-		486B08DF16D58CD400F0E4B8 /* light-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 486B08DA16D58CD400F0E4B8 /* light-on.png */; };
 		486B08E316D5948300F0E4B8 /* DLLSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B08E216D5948300F0E4B8 /* DLLSplitViewController.m */; };
 		4879503516CC6ED000D6DEFD /* DLLLabTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4879503416CC6ED000D6DEFD /* DLLLabTableViewController.m */; };
 		4879503816CC6F2C00D6DEFD /* DLLPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4879503716CC6F2C00D6DEFD /* DLLPDFViewController.m */; };
@@ -56,6 +54,19 @@
 		CFDBF70316B0C19A009C3DA4 /* Digital_Logic_LabsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDBF70216B0C19A009C3DA4 /* Digital_Logic_LabsTests.m */; };
 		CFDBF70D16B0C1D9009C3DA4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFDBF70C16B0C1D9009C3DA4 /* MainStoryboard.storyboard */; };
 		CFE0830316FA84A800E77C35 /* DLLWireDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE0830216FA84A800E77C35 /* DLLWireDrawing.m */; };
+		CFEE6720170CE38A0008870C /* test-light-dim.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE671D170CE38A0008870C /* test-light-dim.png */; };
+		CFEE6721170CE38A0008870C /* test-light-off.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE671E170CE38A0008870C /* test-light-off.png */; };
+		CFEE6722170CE38A0008870C /* test-light-on.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE671F170CE38A0008870C /* test-light-on.png */; };
+		CFEE6725170CE43E0008870C /* test-switch-1.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE6723170CE43E0008870C /* test-switch-1.png */; };
+		CFEE6726170CE43E0008870C /* test-switch-2.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE6724170CE43E0008870C /* test-switch-2.png */; };
+		CFEE672F170CE6960008870C /* test-7-seg-display-1.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE6727170CE6960008870C /* test-7-seg-display-1.png */; };
+		CFEE6730170CE6960008870C /* test-7-seg-display-2.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE6728170CE6960008870C /* test-7-seg-display-2.png */; };
+		CFEE6731170CE6960008870C /* test-7-seg-display-3.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE6729170CE6960008870C /* test-7-seg-display-3.png */; };
+		CFEE6732170CE6960008870C /* test-7-seg-display-4.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE672A170CE6960008870C /* test-7-seg-display-4.png */; };
+		CFEE6733170CE6960008870C /* test-7-seg-display-5.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE672B170CE6960008870C /* test-7-seg-display-5.png */; };
+		CFEE6734170CE6960008870C /* test-7-seg-display-6.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE672C170CE6960008870C /* test-7-seg-display-6.png */; };
+		CFEE6735170CE6960008870C /* test-7-seg-display-7.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE672D170CE6960008870C /* test-7-seg-display-7.png */; };
+		CFEE6736170CE6960008870C /* test-7-seg-display-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE672E170CE6960008870C /* test-7-seg-display-overlay.png */; };
 		D86C198A16E5149100E4303B /* DLLPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D86C198916E5149100E4303B /* DLLPoint.m */; };
 		D87DB90016F772E5000C6CE4 /* DLLWire.m in Sources */ = {isa = PBXBuildFile; fileRef = D87DB8FF16F772E5000C6CE4 /* DLLWire.m */; };
 		D87DB90416F77434000C6CE4 /* DLL14PinDIP.m in Sources */ = {isa = PBXBuildFile; fileRef = D87DB90316F77434000C6CE4 /* DLL14PinDIP.m */; };
@@ -96,8 +107,6 @@
 		4836742116CC56AC008B87E6 /* Lab4.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab4.pdf; path = LabPdfs/Lab4.pdf; sourceTree = "<group>"; };
 		4836742216CC56AC008B87E6 /* Lab5.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab5.pdf; path = LabPdfs/Lab5.pdf; sourceTree = "<group>"; };
 		4836742316CC56AC008B87E6 /* Lab6.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab6.pdf; path = LabPdfs/Lab6.pdf; sourceTree = "<group>"; };
-		486B08D916D58CD400F0E4B8 /* light-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "light-off.png"; path = "Chip and Breadboard Images/light-off.png"; sourceTree = "<group>"; };
-		486B08DA16D58CD400F0E4B8 /* light-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "light-on.png"; path = "Chip and Breadboard Images/light-on.png"; sourceTree = "<group>"; };
 		486B08E116D5948300F0E4B8 /* DLLSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLSplitViewController.h; sourceTree = "<group>"; };
 		486B08E216D5948300F0E4B8 /* DLLSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLSplitViewController.m; sourceTree = "<group>"; };
 		4879503316CC6ED000D6DEFD /* DLLLabTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLLabTableViewController.h; sourceTree = "<group>"; };
@@ -161,6 +170,19 @@
 		CFDBF70C16B0C1D9009C3DA4 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		CFE0830116FA84A800E77C35 /* DLLWireDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLWireDrawing.h; sourceTree = "<group>"; };
 		CFE0830216FA84A800E77C35 /* DLLWireDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLWireDrawing.m; sourceTree = "<group>"; };
+		CFEE671D170CE38A0008870C /* test-light-dim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-light-dim.png"; sourceTree = "<group>"; };
+		CFEE671E170CE38A0008870C /* test-light-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-light-off.png"; sourceTree = "<group>"; };
+		CFEE671F170CE38A0008870C /* test-light-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-light-on.png"; sourceTree = "<group>"; };
+		CFEE6723170CE43E0008870C /* test-switch-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-switch-1.png"; sourceTree = "<group>"; };
+		CFEE6724170CE43E0008870C /* test-switch-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-switch-2.png"; sourceTree = "<group>"; };
+		CFEE6727170CE6960008870C /* test-7-seg-display-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-7-seg-display-1.png"; sourceTree = "<group>"; };
+		CFEE6728170CE6960008870C /* test-7-seg-display-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-7-seg-display-2.png"; sourceTree = "<group>"; };
+		CFEE6729170CE6960008870C /* test-7-seg-display-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-7-seg-display-3.png"; sourceTree = "<group>"; };
+		CFEE672A170CE6960008870C /* test-7-seg-display-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-7-seg-display-4.png"; sourceTree = "<group>"; };
+		CFEE672B170CE6960008870C /* test-7-seg-display-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-7-seg-display-5.png"; sourceTree = "<group>"; };
+		CFEE672C170CE6960008870C /* test-7-seg-display-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-7-seg-display-6.png"; sourceTree = "<group>"; };
+		CFEE672D170CE6960008870C /* test-7-seg-display-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-7-seg-display-7.png"; sourceTree = "<group>"; };
+		CFEE672E170CE6960008870C /* test-7-seg-display-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-7-seg-display-overlay.png"; sourceTree = "<group>"; };
 		D86C198816E5149100E4303B /* DLLPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLPoint.h; sourceTree = "<group>"; };
 		D86C198916E5149100E4303B /* DLLPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLPoint.m; sourceTree = "<group>"; };
 		D87DB8FF16F772E5000C6CE4 /* DLLWire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DLLWire.m; path = "Digital Logic Labs/DLLWire.m"; sourceTree = SOURCE_ROOT; };
@@ -352,8 +374,19 @@
 		CF45B2631703BE5F002A9658 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				486B08DA16D58CD400F0E4B8 /* light-on.png */,
-				486B08D916D58CD400F0E4B8 /* light-off.png */,
+				CFEE6727170CE6960008870C /* test-7-seg-display-1.png */,
+				CFEE6728170CE6960008870C /* test-7-seg-display-2.png */,
+				CFEE6729170CE6960008870C /* test-7-seg-display-3.png */,
+				CFEE672A170CE6960008870C /* test-7-seg-display-4.png */,
+				CFEE672B170CE6960008870C /* test-7-seg-display-5.png */,
+				CFEE672C170CE6960008870C /* test-7-seg-display-6.png */,
+				CFEE672D170CE6960008870C /* test-7-seg-display-7.png */,
+				CFEE672E170CE6960008870C /* test-7-seg-display-overlay.png */,
+				CFEE6723170CE43E0008870C /* test-switch-1.png */,
+				CFEE6724170CE43E0008870C /* test-switch-2.png */,
+				CFEE671D170CE38A0008870C /* test-light-dim.png */,
+				CFEE671E170CE38A0008870C /* test-light-off.png */,
+				CFEE671F170CE38A0008870C /* test-light-on.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -566,8 +599,6 @@
 				4836742716CC56AC008B87E6 /* Lab4.pdf in Resources */,
 				4836742816CC56AC008B87E6 /* Lab5.pdf in Resources */,
 				4836742916CC56AC008B87E6 /* Lab6.pdf in Resources */,
-				486B08DE16D58CD400F0E4B8 /* light-off.png in Resources */,
-				486B08DF16D58CD400F0E4B8 /* light-on.png in Resources */,
 				48190C9116FA6E2D003BC4E4 /* wire.png in Resources */,
 				CF14819B1703AC23001DDD08 /* 200px-AND_ANSI.png in Resources */,
 				CF14819C1703AC23001DDD08 /* board-new-resized.png in Resources */,
@@ -588,6 +619,19 @@
 				D8FE3C981703C770003B25C2 /* 7485.png in Resources */,
 				D8FE3C991703C770003B25C2 /* 74151.png in Resources */,
 				CF8E9709170659E600BFE5FB /* Dock.png in Resources */,
+				CFEE6720170CE38A0008870C /* test-light-dim.png in Resources */,
+				CFEE6721170CE38A0008870C /* test-light-off.png in Resources */,
+				CFEE6722170CE38A0008870C /* test-light-on.png in Resources */,
+				CFEE6725170CE43E0008870C /* test-switch-1.png in Resources */,
+				CFEE6726170CE43E0008870C /* test-switch-2.png in Resources */,
+				CFEE672F170CE6960008870C /* test-7-seg-display-1.png in Resources */,
+				CFEE6730170CE6960008870C /* test-7-seg-display-2.png in Resources */,
+				CFEE6731170CE6960008870C /* test-7-seg-display-3.png in Resources */,
+				CFEE6732170CE6960008870C /* test-7-seg-display-4.png in Resources */,
+				CFEE6733170CE6960008870C /* test-7-seg-display-5.png in Resources */,
+				CFEE6734170CE6960008870C /* test-7-seg-display-6.png in Resources */,
+				CFEE6735170CE6960008870C /* test-7-seg-display-7.png in Resources */,
+				CFEE6736170CE6960008870C /* test-7-seg-display-overlay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
