@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		48190C9116FA6E2D003BC4E4 /* wire.png in Resources */ = {isa = PBXBuildFile; fileRef = 48190C8D16FA6E2D003BC4E4 /* wire.png */; };
-		4824E22C1703D0A7004DA6D4 /* DLLElectricalPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4824E2291703D0A7004DA6D4 /* DLLElectricalPoint.m */; };
 		4824E22D1703D0A7004DA6D4 /* DLLTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4824E22B1703D0A7004DA6D4 /* DLLTest.m */; };
 		4836742416CC56AC008B87E6 /* Lab1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836741E16CC56AC008B87E6 /* Lab1.pdf */; };
 		4836742516CC56AC008B87E6 /* Lab2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 4836741F16CC56AC008B87E6 /* Lab2.pdf */; };
@@ -74,6 +73,7 @@
 		D87DB90416F77434000C6CE4 /* DLL14PinDIP.m in Sources */ = {isa = PBXBuildFile; fileRef = D87DB90316F77434000C6CE4 /* DLL14PinDIP.m */; };
 		D8AB957616C025B00074ABEB /* inventory.xml in Resources */ = {isa = PBXBuildFile; fileRef = D8AB957516C025B00074ABEB /* inventory.xml */; };
 		D8AB957A16C027310074ABEB /* DLLBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = D8AB957916C027310074ABEB /* DLLBoard.m */; };
+		D8ACC6AF1709F322000EDDDD /* DLLElectricalPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D8ACC6AE1709F322000EDDDD /* DLLElectricalPoint.m */; };
 		D8FE3C851703C36D003B25C2 /* 7400.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C771703C36D003B25C2 /* 7400.png */; };
 		D8FE3C861703C36D003B25C2 /* 7402.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C781703C36D003B25C2 /* 7402.png */; };
 		D8FE3C871703C36D003B25C2 /* 7404.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C791703C36D003B25C2 /* 7404.png */; };
@@ -102,8 +102,6 @@
 
 /* Begin PBXFileReference section */
 		48190C8D16FA6E2D003BC4E4 /* wire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wire.png; path = "Chip and Breadboard Images/wire.png"; sourceTree = "<group>"; };
-		4824E2281703D0A7004DA6D4 /* DLLElectricalPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLElectricalPoint.h; sourceTree = "<group>"; };
-		4824E2291703D0A7004DA6D4 /* DLLElectricalPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLElectricalPoint.m; sourceTree = "<group>"; };
 		4824E22A1703D0A7004DA6D4 /* DLLTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLTest.h; sourceTree = "<group>"; };
 		4824E22B1703D0A7004DA6D4 /* DLLTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLTest.m; sourceTree = "<group>"; };
 		4836741E16CC56AC008B87E6 /* Lab1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Lab1.pdf; path = LabPdfs/Lab1.pdf; sourceTree = "<group>"; };
@@ -197,6 +195,8 @@
 		D8AB957516C025B00074ABEB /* inventory.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = inventory.xml; path = ../inventory.xml; sourceTree = "<group>"; };
 		D8AB957816C027310074ABEB /* DLLBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLBoard.h; sourceTree = "<group>"; };
 		D8AB957916C027310074ABEB /* DLLBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLBoard.m; sourceTree = "<group>"; };
+		D8ACC6AD1709F322000EDDDD /* DLLElectricalPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLElectricalPoint.h; sourceTree = "<group>"; };
+		D8ACC6AE1709F322000EDDDD /* DLLElectricalPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLElectricalPoint.m; sourceTree = "<group>"; };
 		D8FE3C771703C36D003B25C2 /* 7400.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7400.png; sourceTree = "<group>"; };
 		D8FE3C781703C36D003B25C2 /* 7402.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7402.png; sourceTree = "<group>"; };
 		D8FE3C791703C36D003B25C2 /* 7404.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7404.png; sourceTree = "<group>"; };
@@ -401,8 +401,8 @@
 				CF55D8EF16CF09E300D8949B /* Resources */,
 				D8AB957816C027310074ABEB /* DLLBoard.h */,
 				D8AB957916C027310074ABEB /* DLLBoard.m */,
-				D87DB8FE16F772E5000C6CE4 /* DLLWire.h */,
-				D87DB8FF16F772E5000C6CE4 /* DLLWire.m */,
+				D8ACC6AD1709F322000EDDDD /* DLLElectricalPoint.h */,
+				D8ACC6AE1709F322000EDDDD /* DLLElectricalPoint.m */,
 				D86C198816E5149100E4303B /* DLLPoint.h */,
 				D86C198916E5149100E4303B /* DLLPoint.m */,
 				CF55D8EC16CF055D00D8949B /* DLLChip.h */,
@@ -411,8 +411,6 @@
 				D87DB90316F77434000C6CE4 /* DLL14PinDIP.m */,
 				CF55D8E916CF009700D8949B /* DLLAComponent.h */,
 				CF55D8EA16CF009700D8949B /* DLLAComponent.m */,
-				4824E2281703D0A7004DA6D4 /* DLLElectricalPoint.h */,
-				4824E2291703D0A7004DA6D4 /* DLLElectricalPoint.m */,
 				4824E22A1703D0A7004DA6D4 /* DLLTest.h */,
 				4824E22B1703D0A7004DA6D4 /* DLLTest.m */,
 			);
@@ -697,6 +695,7 @@
 				CF45B2591703BB95002A9658 /* DLLSwitch.m in Sources */,
 				CF45B25C1703BBBD002A9658 /* DLLSevenSegmentView.m in Sources */,
 				CF45B2621703BCB2002A9658 /* DLLLightView.m in Sources */,
+				D8ACC6AF1709F322000EDDDD /* DLLElectricalPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,7 +705,6 @@
 			files = (
 				CFDBF70316B0C19A009C3DA4 /* Digital_Logic_LabsTests.m in Sources */,
 				D87DB90016F772E5000C6CE4 /* DLLWire.m in Sources */,
-				4824E22C1703D0A7004DA6D4 /* DLLElectricalPoint.m in Sources */,
 				4824E22D1703D0A7004DA6D4 /* DLLTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

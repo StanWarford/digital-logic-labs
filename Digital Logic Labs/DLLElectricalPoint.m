@@ -24,7 +24,7 @@
 
 - (id)init
 {
-    if((self = [super init])){
+    if(self = [super init]){
         self.electricalPointType = EPTypeOther;
         self.electricalPointValue = EPValueUnknown;
         self.electricalPointPreviousValue = EPValueUnknown;
@@ -37,7 +37,7 @@
 - (BOOL)isEqual:(id)otherPoint
 {
     DLLElectricalPoint * comparePoint = (DLLElectricalPoint *) otherPoint;
-    return self.setNumber == comparePoint.setNumber;
+    return self.electricalPointType == comparePoint.electricalPointType;
 }
 
 
