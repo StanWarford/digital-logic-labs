@@ -20,7 +20,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.identifier = identifier;
-        self.image = [UIImage imageNamed:@"light-off"];
+        self.image = [UIImage imageNamed:@"test-light-off"];
         self.on = NO;
     }
     return self;
@@ -28,13 +28,13 @@
 
 #pragma mark -
 #pragma mark light control methods
-- (void)toggleState
+- (void)toggleOnOff
 {
     self.on = !self.on;
     if(self.on){
-        self.image = [UIImage imageNamed:@"light-on"];
+        self.image = [UIImage imageNamed:@"test-light-on"];
     }else{
-        self.image = [UIImage imageNamed:@"light-off"];
+        self.image = [UIImage imageNamed:@"test-light-off"];
     }
 }
 

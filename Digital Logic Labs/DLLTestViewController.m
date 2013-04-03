@@ -86,7 +86,7 @@
 - (IBAction)switchStateChanged:(DLLSwitch *)sender {
     NSInteger i = sender.identifier - 1;
     DLLLightView *target = [self.lights objectAtIndex:i];
-    [target toggleState];
+    [target toggleOnOff];
     NSLog([NSString stringWithFormat:@"%d turned %s", sender.identifier, sender.on ? "ON" : "OFF"]);
 }
 
