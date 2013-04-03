@@ -26,15 +26,19 @@
 
 @implementation DLLBoard
 
+#define NUMROWS 31
+#define NUMCOLUMNS 63
+
 @synthesize breadboardStateArray = _breadboardStateArray;
 @synthesize activeLab = _activeLab;
+
 
 #pragma mark -
 #pragma mark lazy instantiation methods
 - (NSMutableArray *)breadboardStateArray
 {
     if (!_breadboardStateArray){
-        _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 63];
+        _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: NUMCOLUMNS];
     }
     return _breadboardStateArray;
 }
@@ -78,15 +82,14 @@
     // Creates an array w/ 63 columns and 31 rows w/ all values set to NSNull * myNull
     // define overarching array as columns
     if((self = [super init])){
-        int numRows = 31;
         NSNull * myNull = [NSNull null];
     
         NSMutableArray * boardColumns;
         
-        for(int i = 0; i < 63; i++)
+        for(int i = 0; i < NUMCOLUMNS; i++)
         {
-            boardColumns = [[NSMutableArray alloc] initWithCapacity: numRows];
-            for(int j = 0; j < numRows; j++)
+            boardColumns = [[NSMutableArray alloc] initWithCapacity: NUMROWS];
+            for(int j = 0; j < NUMROWS; j++)
             {
                 [boardColumns insertObject: myNull atIndex: j];
             }
@@ -254,13 +257,12 @@
     [self.electricalPointToBoardPointArray insertObject:lightArray8 atIndex:273];
 
     // Initialize Electrical Point Array
-   DLLElectricalPoint *test = [[DLLElectricalPoint alloc] init];
-    /*for(int x = 0; x < 252; x++)
+    for(int x = 0; x < 252; x++)
     {
-        [self.electricalPointArray insertObject:test atIndex:x];
-    }*/
+        [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] init] atIndex:x];
+    }
     
-    /*[self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeGround] atIndex:252];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeGround] atIndex:252];
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypePower] atIndex:253];
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeSwitch] atIndex:254];
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeDebouncedSwitch] atIndex:255];
@@ -281,7 +283,7 @@
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:270];
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:271];
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:272];
-    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:273];*/
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:273];
 }
 
 #pragma mark -
@@ -316,8 +318,14 @@
 - (void)clearBoard
 {
     [self.chipDictionary removeAllObjects];
-    // need to clear breadboardStateArray as well
-    //reset XML to default, clear data structure, and set all cells in board array to NSNull
+    for (int i = 0; i < NUMCOLUMNS; i++){
+        NSMutableArray * row = [self.breadboardStateArray objectAtIndex:i];
+        for(int j = 0; j < NUMROWS; j++){
+            NSNull * myNull = [NSNull null];
+            [row insertObject:myNull atIndex:j];
+        }
+    }
+    //clear chipDictionary, and set all cells in breadboardStateArray to NSNull
 }
 
 #pragma mark -
