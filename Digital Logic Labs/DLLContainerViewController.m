@@ -54,28 +54,39 @@
     
     
     
-    UIBarButtonItem* testButton = [[UIBarButtonItem alloc] initWithTitle:@"Test" style:UIBarButtonItemStyleBordered target:self action:@selector(goToTestScreen)];    
-    [testButton respondsToSelector:@selector(goToTestScreen:)];
+    UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(goToLabScreen)];
+    [backButton respondsToSelector:@selector(goToLabScreen:)];
     
     UIBarButtonItem* clearButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear Board" style:UIBarButtonItemStyleBordered target:self action:@selector(clearButton)];    
     [clearButton respondsToSelector:@selector(clearBoard)];
     
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:testButton, clearButton, nil];
+    UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace  target:nil action:nil];
+    fixedSpaceBarButtonItem.width = 170; // puts a 170-pixel gap in between "Back" and "Clear Board"
+    
+    self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:backButton, fixedSpaceBarButtonItem, clearButton, nil];
 }
 
 
 
-- (void) clearButton
+- (void) clearBoard
 {
     // tell boardviewcontroller to clear the board
 }
 
 
+- (void) goToLabScreen
+{
+    [[self navigationController] popToRootViewControllerAnimated:YES];
+}
+
+
+/*
 - (IBAction)goToTestScreen
 {
     DLLTestViewController *testView = [[DLLTestViewController alloc] init];
     [self performSegueWithIdentifier:@"BoardToTestSegue" sender:self];
 }
+ */
 
 
 #pragma mark -
