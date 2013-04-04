@@ -17,4 +17,6 @@
 @property (nonatomic, weak) DLLBoard *boardModel;
 @property (nonatomic, strong) NSArray *lights;
 @property (nonatomic, strong) NSArray *switches;
+@property (nonatomic, strong) DLLSevenSegmentView *segView;
+
 @end

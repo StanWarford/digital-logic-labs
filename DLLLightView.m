@@ -11,7 +11,7 @@
 @implementation DLLLightView
 
 @synthesize identifier = _identifier;
-@synthesize on = _on;
+@synthesize state = _state;
 
 #pragma mark -
 #pragma mark initialization methods
@@ -21,21 +21,30 @@
     if (self) {
         self.identifier = identifier;
         self.image = [UIImage imageNamed:@"test-light-off"];
-        self.on = NO;
+        self.state = off;
     }
     return self;
 }
 
 #pragma mark -
 #pragma mark light control methods
-- (void)toggleOnOff
+- (void)toggleOn
 {
-    self.on = !self.on;
-    if(self.on){
-        self.image = [UIImage imageNamed:@"test-light-on"];
-    }else{
-        self.image = [UIImage imageNamed:@"test-light-off"];
-    }
+    self.state = on;
+    self.image = [UIImage imageNamed:@"test-light-on"];
 }
+
+- (void)toggleOff
+{
+    self.state = off;
+    self.image = [UIImage imageNamed:@"test-light-off"];
+}
+
+- (void)toggleDim
+{
+    self.state = dim;
+    self.image = [UIImage imageNamed:@"test-light-dim"];
+}
+
 
 @end

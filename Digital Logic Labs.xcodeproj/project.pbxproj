@@ -68,6 +68,7 @@
 		CFEE6734170CE6960008870C /* test-7-seg-display-6.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE672C170CE6960008870C /* test-7-seg-display-6.png */; };
 		CFEE6735170CE6960008870C /* test-7-seg-display-7.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE672D170CE6960008870C /* test-7-seg-display-7.png */; };
 		CFEE6736170CE6960008870C /* test-7-seg-display-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE672E170CE6960008870C /* test-7-seg-display-overlay.png */; };
+		CFEE673C170CF07A0008870C /* test-7-seg-display-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE673B170CF07A0008870C /* test-7-seg-display-empty.png */; };
 		D86C198A16E5149100E4303B /* DLLPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D86C198916E5149100E4303B /* DLLPoint.m */; };
 		D87DB90016F772E5000C6CE4 /* DLLWire.m in Sources */ = {isa = PBXBuildFile; fileRef = D87DB8FF16F772E5000C6CE4 /* DLLWire.m */; };
 		D87DB90416F77434000C6CE4 /* DLL14PinDIP.m in Sources */ = {isa = PBXBuildFile; fileRef = D87DB90316F77434000C6CE4 /* DLL14PinDIP.m */; };
@@ -186,9 +187,9 @@
 		CFEE672C170CE6960008870C /* test-7-seg-display-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-7-seg-display-6.png"; sourceTree = "<group>"; };
 		CFEE672D170CE6960008870C /* test-7-seg-display-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-7-seg-display-7.png"; sourceTree = "<group>"; };
 		CFEE672E170CE6960008870C /* test-7-seg-display-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-7-seg-display-overlay.png"; sourceTree = "<group>"; };
+		CFEE673B170CF07A0008870C /* test-7-seg-display-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-7-seg-display-empty.png"; sourceTree = "<group>"; };
 		D86C198816E5149100E4303B /* DLLPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLPoint.h; sourceTree = "<group>"; };
 		D86C198916E5149100E4303B /* DLLPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLPoint.m; sourceTree = "<group>"; };
-		D87DB8FE16F772E5000C6CE4 /* DLLWire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DLLWire.h; path = "Digital Logic Labs/DLLWire.h"; sourceTree = SOURCE_ROOT; };
 		D87DB8FF16F772E5000C6CE4 /* DLLWire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DLLWire.m; path = "Digital Logic Labs/DLLWire.m"; sourceTree = SOURCE_ROOT; };
 		D87DB90216F77434000C6CE4 /* DLL14PinDIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL14PinDIP.h; sourceTree = "<group>"; };
 		D87DB90316F77434000C6CE4 /* DLL14PinDIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL14PinDIP.m; sourceTree = "<group>"; };
@@ -386,6 +387,7 @@
 				CFEE672C170CE6960008870C /* test-7-seg-display-6.png */,
 				CFEE672D170CE6960008870C /* test-7-seg-display-7.png */,
 				CFEE672E170CE6960008870C /* test-7-seg-display-overlay.png */,
+				CFEE673B170CF07A0008870C /* test-7-seg-display-empty.png */,
 				CFEE6723170CE43E0008870C /* test-switch-1.png */,
 				CFEE6724170CE43E0008870C /* test-switch-2.png */,
 				CFEE671D170CE38A0008870C /* test-light-dim.png */,
@@ -638,6 +640,7 @@
 				CFEE6734170CE6960008870C /* test-7-seg-display-6.png in Resources */,
 				CFEE6735170CE6960008870C /* test-7-seg-display-7.png in Resources */,
 				CFEE6736170CE6960008870C /* test-7-seg-display-overlay.png in Resources */,
+				CFEE673C170CF07A0008870C /* test-7-seg-display-empty.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
