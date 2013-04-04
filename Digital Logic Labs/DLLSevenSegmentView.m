@@ -139,10 +139,10 @@
 #pragma mark segment control methods
 - (void)toggleSegment:(NSInteger)number onOff:(BOOL)on
 {
-    if([[self.state objectAtIndex:number - 1] boolValue] != on){
-        NSMutableArray *temp = [NSMutableArray arrayWithArray:self.state];
+    if([[self.state objectAtIndex:(number - 1)] boolValue] != on){
+        NSMutableArray *temp = [NSMutableArray array];
         for(int i = 0; i < 7; i ++){
-            [temp addObject:[NSNumber numberWithBool:i == number - 1 ? on : [[self.state objectAtIndex:i] boolValue]]];
+            [temp addObject:[NSNumber numberWithBool:i == (number - 1) ? on : [[self.state objectAtIndex:i] boolValue]]];
         }
         self.state = [NSArray arrayWithArray:temp];
         [self updateImage];
@@ -187,10 +187,10 @@
     UIGraphicsBeginImageContextWithOptions(self.segEmpty.size, NO, 0.0);
     for(int i = 0; i < [self.state count]; i++){
         if([[self.state objectAtIndex:i] boolValue]){
-            [[self getSegmentImage:i] drawAtPoint:CGPointMake(0,0)];
+            [[self getSegmentImage:i+1] drawAtPoint:CGPointMake(0,0)];
         }
     }
-    //[self.segOverlay drawAtPoint:CGPointMake(0,0)];
+    [self.segOverlay drawAtPoint:CGPointMake(0,0)];
     UIImage *compiledImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.image = compiledImage;
