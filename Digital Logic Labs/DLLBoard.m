@@ -106,8 +106,9 @@
 
 -(void)populateDatastructures
 {
-    // Set up electricalPointToBoardPointDictionary and boardPointToElectricalPointDictionary for Electrical Point Values 0 to 251 and Board Points of Main Board
-    // First for loop maps all Board Points except Power, Ground, All Switches, and Lights
+    // Set up electricalPointToBoardPointDictionary and boardPointToElectricalPointDictionary for Electrical Point Values 0 to 251
+    // Board Points of Main Board (including Power and Ground) have Coordinates 0 < x < 62, 5 < y < 30 
+    // First 'for' loop maps all Board Points except Power, Ground, All Switches, and Lights
     for (int x = 0; x <= 62; x++) {
         NSString * key0 = [[NSNumber numberWithInt: x * 4] stringValue];
         NSString * key1 = [[NSNumber numberWithInt: x * 4 + 1] stringValue];
@@ -170,7 +171,10 @@
     }
     
     // ground == Electrical Point 252
+    // Board Coordinates: {(0-62, 5), (0-62, 17), (0-62, 29)}
+    
     // power == Electrical Point 253
+    // Board Coordinates: {(0-62, 6), (0-62, 18), (0-62, 30)}
     NSMutableArray *groundArray = [[NSMutableArray alloc] initWithCapacity:189];
     NSMutableArray *powerArray = [[NSMutableArray alloc] initWithCapacity:189];
     for (int x = 0; x <= 62;x++)
@@ -200,10 +204,19 @@
     
     
     // Switch X == Electrical Point 254
+    // Board Coordinates: {(0, 1-4)}
+    
     // Debounced Switch X == Electrical Point 255
+    // Board Coordinates: {(5, 1-4)}
+    
     // Switch Y == Electrical Point 256
+    // Board Coordinates: {(10, 1-4)}
+    
     // Debounced Switch Y == Electrical Point 257
+    // Board Coordinates: {(15, 1-4)}
+    
     // SW1-SW8 == Electrical Points 258-265
+    // Board Coordinates: {(20, 1-4), (25, 1-4), (30, 1-4), (35, 1-4), (40, 1-4), (45, 1-4), (50, 1-4), (55, 1-4)} 
     for (int x=0; x <= 11; x++) {
         DLLPoint *p1, *p2, *p3, *p4;
         p1 = [[DLLPoint alloc] initWithIntX:x*5 andY: 1];
@@ -222,6 +235,7 @@
     }
     
     // Lights A-H == Electrical Points 266-273
+    // Board Coordinates: {(25-28, 0), (50-53, 0)} 
     DLLPoint *p1, *p2, *p3, *p4, *p5, *p6, *p7, *p8;
     p1 = [[DLLPoint alloc] initWithIntX:25 andY: 0];
     p2 = [[DLLPoint alloc] initWithIntX:26 andY: 0];
