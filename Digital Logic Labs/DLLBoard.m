@@ -404,7 +404,8 @@
     
     if(size == 1) // wire
     {
-        if ([self boardStateAt: coords] || coords.xCoord == 99 || coords.yCoord == 99) return NO;
+//        if ([self boardStateAt: coords] || coords.xCoord == 99 || coords.yCoord == 99) return NO;   *********Casey - This is crashing for some reason*************
+        return YES;
         
     }
     if (size == 24){

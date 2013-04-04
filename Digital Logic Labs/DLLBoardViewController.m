@@ -92,46 +92,51 @@ typedef enum{
     [super touchesBegan:touches withEvent:event];
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled, this should only ever return a single touch
-    CGPoint loc = [touch locationInView:self.view];
-    CGPoint gridLoc = [self gridCoordinateFromViewCoordinate:loc];
-    CGPoint snapLoc = [self viewCoordinateFromGridCoordinate:gridLoc];
-    DLLPoint* boardLoc = [self boardCoordinateFromGridCoordinate:gridLoc];
-    BOOL isEmpty = ![self.boardModel isOccupiedAt:boardLoc];
+    CGPoint tLoc = [touch locationInView:self.view];
+    CGPoint tGridLoc = [self gridCoordinateFromViewCoordinate:tLoc];
+    CGPoint tSnapLoc = [self viewCoordinateFromGridCoordinate:tGridLoc];
+    DLLPoint* tBoardLoc = [self boardCoordinateFromGridCoordinate:tGridLoc];
+    BOOL isEmpty = ![self.boardModel isOccupiedAt:tBoardLoc];
     
     if(self.state == notWire){ // user has not placed a wire
-        // Remove any component the user touched, and assume the user wants to edit that component otherwise add a new component from the dock
-        if(!isEmpty){
-            // Query dictionary to find and remove correct chipview
-            [self.boardModel removeComponentAtCoordinate:boardLoc];
-            self.activeComponent = [self.pointMap objectForKey:boardLoc];
+        if(!isEmpty){ // user touched a component, remove that component from the board and make it the active component
+            [self.boardModel removeComponentAtCoordinate:tBoardLoc];
+            self.activeComponent = [self.pointMap objectForKey:tBoardLoc];
             [self removeComponentFromPointMap:self.activeComponent];
             [self.activeComponent removeGraphics];
-        }else{ // spot is empty
-            // Instantiate a new chip or wire based on dock selection
+        }else{ // user touched an empty spot, allocate a new chip or wire based on dock selection
             if([self.selection isKindOfClass:[DLLChipView class]]){
-                self.activeComponent = [[[self.selection class] alloc] initChipAtLocation:snapLoc inView:self.view withID:[self.selection identifier]];
+                self.activeComponent = [[[self.selection class] alloc] initChipAtLocation:tSnapLoc inView:self.view withID:[self.selection identifier]];
             }else{
-                self.activeComponent = [[[self.selection class] alloc] initWireWithStartAt:snapLoc withColor:self.selection.color inView:self.view];
+                self.activeComponent = [[[self.selection class] alloc] initWireWithStartAt:tSnapLoc withColor:self.selection.color inView:self.view];
             }
         }
         self.state = [self.activeComponent isKindOfClass:[DLLWireView class]] ? wireStart : notWire;
         
-        CGPoint chipLoc = [self gridCoordinateFromViewCoordinate:CGPointMake(self.activeComponent.start.x+CHIP_PIN_X_OFFSET, self.activeComponent.start.y+CHIP_PIN_Y_OFFSET)];
-        DLLPoint *chipStart = [self boardCoordinateFromGridCoordinate:chipLoc];
-        BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? chipStart : boardLoc IsAvailableForComponentOfSize:self.activeComponent.size];
+        CGPoint cLoc = [self gridCoordinateFromViewCoordinate:CGPointMake(self.activeComponent.start.x+CHIP_PIN_X_OFFSET, self.activeComponent.start.y+CHIP_PIN_Y_OFFSET)];
+        DLLPoint *cStart = [self boardCoordinateFromGridCoordinate:cLoc];
+        CGPoint wLoc = [self gridCoordinateFromViewCoordinate:self.activeComponent.start];
+        DLLPoint *wStart = [self boardCoordinateFromGridCoordinate:wLoc];
+        BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? cStart : wStart IsAvailableForComponentOfSize:self.activeComponent.size];
         
         // NSLog([NSString stringWithFormat:@"%@", isAvailable ? @"YES" : @"NO"]);
         // NSLog([NSString stringWithFormat:@"(%f, %f)", gridLoc.x, gridLoc.y]);
         // NSLog([NSString stringWithFormat:@"(%d, %d)", boardLoc.xCoord, boardLoc.yCoord]);
+        // NSLog([NSString stringWithFormat:@"(%d, %d)", chipStart.xCoord, chipStart.yCoord]);
         
         [self.activeComponent displayGhostWithHoleAvailable:isAvailable];
     }else{ // wireEnd - user is placing end of wire
-        BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize:self.activeComponent.size];
-        BOOL didTouchStart = NO; // True if user touched the start of the wire false otherwise
-        if(didTouchStart){
-            // change state back to wireStart and edit the start position of the wire
+        BOOL didTouchStart = self.activeComponent.start.x < tSnapLoc.x + 1 && self.activeComponent.start.x > tSnapLoc.x - 1 &&
+                             self.activeComponent.start.y < tSnapLoc.y + 1 && self.activeComponent.start.y > tSnapLoc.y - 1;
+        CGPoint wLoc = [self.activeComponent getOffsetPointFrom:tSnapLoc];
+        DLLPoint *wOffset = [self boardCoordinateFromGridCoordinate:wLoc];
+        BOOL isAvailable = [self.boardModel cellAt:wOffset IsAvailableForComponentOfSize:self.activeComponent.size];
+        
+        if(didTouchStart){ // user touched the start of the wire, edit the start
+            [self.activeComponent translateStartTo:tSnapLoc withHoleAvailable:isAvailable];
+            self.state = wireStart;
         }else{
-            [self.activeComponent translateEndTo:snapLoc withHoleAvailable:isAvailable];
+            [self.activeComponent translateEndTo:tSnapLoc withHoleAvailable:isAvailable];
         }
     }
 }
@@ -142,24 +147,29 @@ typedef enum{
     [super touchesMoved:touches withEvent:event];
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
-    CGPoint loc = [touch locationInView:self.view];
-    CGPoint gridLoc = [self gridCoordinateFromViewCoordinate:loc];
-    CGPoint snapLoc = [self viewCoordinateFromGridCoordinate:gridLoc];
-    DLLPoint *boardLoc = [self boardCoordinateFromGridCoordinate:gridLoc];
+    CGPoint tLoc = [touch locationInView:self.view];
+    CGPoint tGridLoc = [self gridCoordinateFromViewCoordinate:tLoc];
+    CGPoint tSnapLoc = [self viewCoordinateFromGridCoordinate:tGridLoc];
     
-    CGPoint chipLoc = [self gridCoordinateFromViewCoordinate:CGPointMake(self.activeComponent.start.x+CHIP_PIN_X_OFFSET, self.activeComponent.start.y+CHIP_PIN_Y_OFFSET)];
-    DLLPoint *chipStart = [self boardCoordinateFromGridCoordinate:chipLoc];
-    
-    BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? chipStart : boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
     // NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
-    
     // NSLog([NSString stringWithFormat:@"(%f, %f)", chipLoc.x, chipLoc.y]);
+    // NSLog([NSString stringWithFormat:@"(%d, %d)", chipStart.xCoord, chipStart.yCoord]);
     // NSLog([NSString stringWithFormat:@"(%d, %d)", boardLoc.xCoord, boardLoc.yCoord]);
     
     if(self.state == wireEnd){ // user is placing end of wire
-        [self.activeComponent translateEndTo:snapLoc withHoleAvailable:isAvailable];
+        CGPoint wLoc = [self.activeComponent getOffsetPointFrom:tSnapLoc];
+        DLLPoint *wOffset = [self boardCoordinateFromGridCoordinate:wLoc];
+        BOOL isAvailable = [self.boardModel cellAt:wOffset IsAvailableForComponentOfSize:self.activeComponent.size];
+        [self.activeComponent translateEndTo:tSnapLoc withHoleAvailable:isAvailable];
     }else{ // user is placing start of wire or not placing a wire
-        [self.activeComponent translateStartTo:snapLoc withHoleAvailable:isAvailable];
+        CGPoint cLoc = [self.activeComponent getOffsetPointFrom:tSnapLoc];
+        CGPoint cCalcPoint = [self gridCoordinateFromViewCoordinate:CGPointMake(cLoc.x+CHIP_PIN_X_OFFSET, cLoc.y+CHIP_PIN_Y_OFFSET)];
+        DLLPoint *cOffset = [self boardCoordinateFromGridCoordinate:cCalcPoint];
+        DLLPoint *wOffset = [self boardCoordinateFromGridCoordinate:cLoc];
+        
+        BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? cOffset : wOffset IsAvailableForComponentOfSize: self.activeComponent.size];
+        
+        [self.activeComponent translateStartTo:tSnapLoc withHoleAvailable:isAvailable];
     }
 }
 
@@ -169,38 +179,38 @@ typedef enum{
     [super touchesEnded:touches withEvent:event];
     
     if(self.state == notWire){ // user is not placing a wire
-        CGPoint gridLoc = [self gridCoordinateFromViewCoordinate:CGPointMake(self.activeComponent.start.x+CHIP_PIN_X_OFFSET, self.activeComponent.start.y+CHIP_PIN_Y_OFFSET)];
-        DLLPoint *chipStart = [self boardCoordinateFromGridCoordinate:gridLoc];
-        BOOL isAvailable = [self.boardModel cellAt:chipStart IsAvailableForComponentOfSize: self.activeComponent.size]; // isAvailable needs to be recomputed for chip start
+        CGPoint cGridLoc = [self gridCoordinateFromViewCoordinate:CGPointMake(self.activeComponent.start.x+CHIP_PIN_X_OFFSET, self.activeComponent.start.y+CHIP_PIN_Y_OFFSET)];
+        DLLPoint *cStart = [self boardCoordinateFromGridCoordinate:cGridLoc];
+        BOOL isAvailable = [self.boardModel cellAt:cStart IsAvailableForComponentOfSize: self.activeComponent.size];
         
         if(isAvailable){
             // Tell the active component to display itself and notify model
             [self.activeComponent displayComponent];
-            [self.boardModel addChipWithPartNum:self.activeComponent.size atUpperLeftCornerCoordinate:chipStart];
+            [self.boardModel addChipWithPartNum:self.activeComponent.identifier atUpperLeftCornerCoordinate:cStart];
             
             // Set pointers in dictionary to the displayed object
-            NSInteger x = self.activeComponent.start.x;
-            NSInteger y = self.activeComponent.start.y;
+            NSInteger x = cStart.xCoord;
+            NSInteger y = cStart.yCoord;
             NSMutableDictionary *dict = [self.pointMap mutableCopy];
             for(int i = 0; i < self.activeComponent.size; i++){
-                i < self.activeComponent.size/2 ? [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:CGPointMake(x+i, y)]] : [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:CGPointMake(x+i, y+1)]];
+                i < self.activeComponent.size/2 ? [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:CGPointMake(x+i, y)]] : [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:CGPointMake(x+i-self.activeComponent.size/2, y+1)]];
             }
             self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
         }else{
-            // User requested invalid object placement, remove activeComponent from view
+            // User requested invalid chip placement, remove activeComponent from view
             [self.activeComponent removeGraphics];
         }
         self.activeComponent = nil;
         
     }else if(self.state == wireStart){ // user is placing start of wire
-        CGPoint gridLoc = [self gridCoordinateFromViewCoordinate:self.activeComponent.start];
-        DLLPoint *boardLoc = [self boardCoordinateFromGridCoordinate:gridLoc];
-        BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
+        CGPoint wGridLoc = [self gridCoordinateFromViewCoordinate:self.activeComponent.start];
+        DLLPoint *wBoardLoc = [self boardCoordinateFromGridCoordinate:wGridLoc];
+        BOOL isAvailable = [self.boardModel cellAt:wBoardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
 
         if(isAvailable){
             // add start of wire to pointMap
             NSMutableDictionary *dict = [self.pointMap mutableCopy];
-            [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:self.activeComponent.start]];
+            [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:[wBoardLoc CGPointFromCoords]]];
             self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
             
             self.state = wireEnd;
@@ -211,9 +221,9 @@ typedef enum{
         }
         
     }else{ // user is placing end of wire
-        CGPoint gridLoc = [self gridCoordinateFromViewCoordinate:self.activeComponent.start];
-        DLLPoint *boardLoc = [self boardCoordinateFromGridCoordinate:gridLoc];
-        BOOL isAvailable = [self.boardModel cellAt:boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
+        CGPoint wGridLoc = [self gridCoordinateFromViewCoordinate:self.activeComponent.end];
+        DLLPoint *wBoardLoc = [self boardCoordinateFromGridCoordinate:wGridLoc];
+        BOOL isAvailable = [self.boardModel cellAt:wBoardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
 
         if(isAvailable){
             [self.activeComponent displayComponent];
@@ -221,13 +231,14 @@ typedef enum{
             
             // set pointers in dictionary to the displayed object
             NSMutableDictionary *dict = [self.pointMap mutableCopy];
-            [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:self.activeComponent.end]];
+            [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:[wBoardLoc CGPointFromCoords]]];
             self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
         }else{
             // user requested invalid object placement, remove activeComponent from view and dictionary
             [self.activeComponent removeGraphics];
             [self removeComponentFromPointMap:self.activeComponent];
         }
+        self.activeComponent = nil;
         self.state = notWire;
     }
 }

@@ -24,6 +24,7 @@
         self.start = CGPointMake(0, 0);
         self.end = CGPointMake(0, 0);
         self.color = [UIColor redColor];
+        self.size = 1;
         self.image = [UIImage imageNamed:@"wire"];
     }
     return self;
@@ -35,6 +36,7 @@
         self.start = CGPointMake(coords.x+WIRE_X_OFFSET, coords.y+WIRE_Y_OFFSET);
         self.end = CGPointMake(0, 0);
         self.color = color;
+        self.size = 1;
         self.image = [UIImage imageNamed:@"wire"];
         self.targetView = view;
     }
@@ -89,6 +91,11 @@
 {
     [self.wireDrawing removeFromSuperview];
     self.wireDrawing = nil;
+}
+
+- (CGPoint)getOffsetPointFrom:(CGPoint)coords
+{
+    return CGPointMake(coords.x+WIRE_X_OFFSET, coords.y+WIRE_Y_OFFSET);
 }
 
 @end

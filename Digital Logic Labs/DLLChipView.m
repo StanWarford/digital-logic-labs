@@ -118,6 +118,11 @@
     self.imageView = nil;
 }
 
+- (CGPoint)getOffsetPointFrom:(CGPoint)coords
+{
+    return [self calculateUpperLeftPointFromCenterPoint:coords];
+}
+
 #pragma mark -
 #pragma mark image manipulation methods
 - (UIImage*)makeGhostWithHoleAvailable:(BOOL)available forImage:(UIImage*)image

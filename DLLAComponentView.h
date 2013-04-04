@@ -26,5 +26,6 @@
 - (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available;
 - (void)translateEndTo:(CGPoint)coords withHoleAvailable:(BOOL)available; // only used by wire
 - (void)removeGraphics;
+- (CGPoint)getOffsetPointFrom:(CGPoint)coords;
 
 @end
