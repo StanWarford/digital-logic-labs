@@ -47,4 +47,10 @@
     [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
 }
 
+- (CGPoint)getOffsetPointFrom:(CGPoint)coords
+{
+    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
+    return CGPointMake(0, 0);
+}
+
 @end
