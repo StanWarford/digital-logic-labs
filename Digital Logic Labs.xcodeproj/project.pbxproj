@@ -526,6 +526,8 @@
 				D8DC9F9D170CF0E900EB8434 /* DLL7400DIP.m */,
 				CF55D8E916CF009700D8949B /* DLLAComponent.h */,
 				CF55D8EA16CF009700D8949B /* DLLAComponent.m */,
+				B4E3E813170E04FF00585379 /* DLLWire.h */,
+				B4E3E814170E04FF00585379 /* DLLWire.m */,
 			);
 			name = "Component Classes";
 			sourceTree = "<group>";
@@ -720,6 +722,7 @@
 				CF45B2621703BCB2002A9658 /* DLLLightView.m in Sources */,
 				D8ACC6AF1709F322000EDDDD /* DLLElectricalPoint.m in Sources */,
 				D8DC9F9E170CF0E900EB8434 /* DLL7400DIP.m in Sources */,
+				B4E3E815170E04FF00585379 /* DLLWire.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

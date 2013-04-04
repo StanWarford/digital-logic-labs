@@ -369,7 +369,6 @@
 #pragma mark -
 #pragma mark board state methods
 
-// (99,99) is a 'trash' point, items put here will not be added-mark as always unavailable
 - (BOOL)isOccupiedAt:(DLLPoint *)coords
 {
     if(coords.xCoord > 63 && coords.yCoord > 31)
@@ -379,7 +378,9 @@
     NSNull * myNull = [NSNull null];
     
     return !(component == myNull);
-      // If a chip or a wire is at given coords return !NO
+    
+    // If a chip or a wire is at given coords return !NO
+    // (99,99) is a 'trash' point, items put here will not be added-mark as always unavailable
 }
 
 - (DLLAComponent *)boardStateAt:(DLLPoint *)coords
@@ -390,6 +391,7 @@
     if(component == myNull)
         return nil;
     else return (DLLAComponent *)component;
+    
     // returning nil means the board is empty at given coords
 }
 
@@ -454,14 +456,24 @@
         DLLPoint *powerPinCoord = [chip powerPinCoordinate];
         NSNumber *electricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
         NSArray *electricalPointArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:electricalPoint];
+        
         for(int i = 0; i < [electricalPointArrayOfHoles count]; i++)
         {
             DLLPoint *currentBoardPoint = electricalPointArrayOfHoles[i];
-           /* if([[self boardStateAt:currentBoardPoint] isKindOfClass:[DLLWire class]])
+            
+            if([[[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
+                                            objectAtIndex: currentBoardPoint.yCoord]
+                                            isKindOfClass:[DLLWire class]])
             {
-                DLLWire *currentWire = [self boardStateAt:currentBoardPoint];
-                [currentBoardPoint ]
-            }*/
+                DLLWire *currentWire = [[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
+                                         objectAtIndex: currentBoardPoint.yCoord];
+                DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
+                NSNumber *otherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
+                DLLElectricalPoint *electricalPoint2 = [self.electricalPointArray objectAtIndex: otherElectricalPoint];
+                if(!(electricalPoint2.electricalPointType == EPTypePower)){
+                    chip.isFunctional = NO;
+                }
+            }
         }
         
         
