@@ -21,11 +21,10 @@
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(DLLPoint *)coords;
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *) endingPoint withColor:(UIColor *)color;
 
-- (DLLAComponent *)removeComponentAtCoordinate:(DLLPoint *)coords;
+- (void)removeComponentAtCoordinate:(DLLPoint *)coords;
 - (void)clearBoard;
 
 - (BOOL)isOccupiedAt:(DLLPoint *)coords;
-- (DLLAComponent *)boardStateAt:(DLLPoint *)coords;
 - (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger)size;
 
 - (void) runSimulation;

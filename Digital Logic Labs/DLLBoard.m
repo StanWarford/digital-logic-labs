@@ -21,6 +21,7 @@
 - (void) simulateInitialState;
 - (void) simulateCombinational;
 - (void) populateDatastructures;
+- (DLLAComponent *)boardStateAt:(DLLPoint *)coords;
 
 @end
 
@@ -292,12 +293,13 @@
 {
     DLLChip *newChip = [[DLLChip alloc] initWithIdenfifier: partNum];
     [self.chipDictionary setValue: newChip forKey: [coords toString]];
+    //TODO: for Joe to implement
     // add pointers to breadboardStateArray
 }
 
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *)endingPoint withColor:(UIColor *)color
 {
-    
+    //TODO: for Joe to implement
     //add a component to the XML file and to data structure for the active board
     // need internal safety w/ exceptions
 }
@@ -306,13 +308,13 @@
 
 #pragma mark -
 #pragma mark component removal methods
-- (DLLAComponent*)removeComponentAtCoordinate:(DLLPoint *)coords //this will return component type -Casey
+- (void)removeComponentAtCoordinate:(DLLPoint *)coords //this will return component type -Casey
 {
+    //TODO: for Joe to implement
     //not necessarily upper left-need to check 2D array
     // Code below is not quite right, but close
     DLLAComponent * tempComponent = [self.chipDictionary objectForKey:[coords toString]];
     [self.chipDictionary removeObjectForKey:[coords toString]];
-    return tempComponent;
 }
 
 - (void)clearBoard
@@ -396,6 +398,7 @@
 #pragma mark -
 #pragma mark test screen API
 
+//TODO: for Brooke to implement
 - (void) runSimulation
 {
     [self determineChipFunctionality];
