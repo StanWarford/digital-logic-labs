@@ -360,21 +360,15 @@
     //return YES;
     /*
         Wire size = 1
-        ALU size = 24
-        All other chips size = 14 or 16, respectively
+        All chips size = 14, 16, or 24, respectively
      */
     
     //reminder: ALU spans double the rows
-    NSArray * validChipRows = @[@11, @12, @23, @24];
+    NSArray * validChipRows = @[@11, @23];
     
     if(size == 1) // wire
     {
         if ([self boardStateAt: coords] || coords.xCoord == 99 || coords.yCoord == 99) return NO;
-        
-    } else if (size == 24) // ALU
-    {
-        if(![validChipRows containsObject: [NSNumber numberWithInt: coords.yCoord]])
-            return NO;
         
     } else // chip
     {
@@ -382,9 +376,12 @@
         if(![validChipRows containsObject: [NSNumber numberWithInt: coords.yCoord]])
             return NO;
         
-        for(int leftLimit = coords.xCoord; coords.xCoord <= leftLimit + size / 2; coords.xCoord++)
-        {
-            if([self boardStateAt: coords]) return NO;
+        DLLPoint * tempPoint = [[DLLPoint alloc] initWithIntX: coords.xCoord andY: coords.yCoord];
+        for(int i = coords.xCoord; i < coords.xCoord + size / 2; i++){
+            
+            if ([self boardStateAt: tempPoint]) return NO;
+            
+            tempPoint.xCoord++;
         }
     }
     
