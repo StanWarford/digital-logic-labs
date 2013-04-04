@@ -20,6 +20,7 @@
 
 - (BOOL) illegalConnectionExists;
 - (void) determineChipFunctionality;
+- (void) setUpElectricalPointStates;
 - (void) simulateInitialState;
 - (void) simulateCombinational;
 - (void) populateDatastructures;
@@ -294,7 +295,7 @@
     // Initialize Electrical Point Array
     for(int x = 0; x < 252; x++)
     {
-        [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] init] atIndex:x];
+        [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeOther] atIndex:x];
     }
     
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeGround] atIndex:252];
@@ -329,8 +330,6 @@
     [self.chipDictionary setValue: newChip forKey: [coords toString]];
     //TODO: for Joe to implement
     // add pointers to breadboardStateArray
-    // Joe, I think the breadboardStateArray needs to point to the same object that chipDictionary points to.  Is that possible?
-    //          -Brooke
 }
 
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *)endingPoint withColor:(UIColor *)color
@@ -407,7 +406,7 @@
     if(size == 1) // wire
     {
         //if (!([[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord] == nil) || coords.xCoord == 99 || coords.yCoord == 99) return NO; //  *********Casey - This is crashing for some reason*************
-        // Casey, if you see this, I think it's because we have not yet implemented chips in the breadboard logic yet
+        // Casey, if you see this, I think it's because we have not yet implemented wires in the breadboard logic yet
         return YES;
         
     }
@@ -442,6 +441,7 @@
 - (void) runSimulation
 {
     [self determineChipFunctionality];
+    [self setUpElectricalPointStates];
     if (![self illegalConnectionExists])
     {
         [self simulateInitialState];
@@ -502,8 +502,23 @@
     }
 }
 
+- (void) setUpElectricalPointStates
+{
+    NSArray *chipsOnBoard = [self.chipDictionary allValues];
+    for(int i = 0; i < [chipsOnBoard count]; i++)
+    {
+        DLLChip *chip = chipsOnBoard[i];
+        DLLPoint *powerPinCoord = [chip powerPinCoordinate];
+        DLLPoint *groundPinCoord = [chip groundPinCoordinate];
+        NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
+        NSNumber *groundElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[groundPinCoord toString]];
+        //[self.electricalPointArray] ADD function to DLLElectricalPoint to change type
+    }
+}
+
 - (BOOL) illegalConnectionExists
 {
+    
     return NO;
 }
 
