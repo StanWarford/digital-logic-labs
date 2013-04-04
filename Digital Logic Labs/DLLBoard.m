@@ -331,6 +331,7 @@
 #pragma mark -
 #pragma mark board state methods
 
+// (99,99) is a 'trash' point, items put here will not be added-mark as always unavailable
 - (BOOL)isOccupiedAt:(DLLPoint *)coords
 {
     if(coords.xCoord > 63 && coords.yCoord > 31)
@@ -356,39 +357,41 @@
 
 - (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger) size
 {
-    // Uncomment for testing - Casey
-    //return YES;
     /*
         Wire size = 1
         All chips size = 14, 16, or 24, respectively
      */
-    
-    //reminder: ALU spans double the rows
     NSArray * validChipRows = @[@11, @23];
+    NSInteger numRows = 0;
     
     if(size == 1) // wire
     {
         if ([self boardStateAt: coords] || coords.xCoord == 99 || coords.yCoord == 99) return NO;
         
-    } else // chip
+    }
+    if (size == 24){
+        numRows = 4;
+    }else // chip
     {
+        numRows = 2;
+    }
     
-        if(![validChipRows containsObject: [NSNumber numberWithInt: coords.yCoord]])
-            return NO;
-        
-        DLLPoint * tempPoint = [[DLLPoint alloc] initWithIntX: coords.xCoord andY: coords.yCoord];
+    if(![validChipRows containsObject: [NSNumber numberWithInt: coords.yCoord]])
+        return NO;
+    
+    DLLPoint * tempPoint = [[DLLPoint alloc] initWithIntX: coords.xCoord andY: coords.yCoord];
+    for(int j = 0; j < numRows; j++){
         for(int i = coords.xCoord; i < coords.xCoord + size / 2; i++){
             
             if ([self boardStateAt: tempPoint]) return NO;
             
             tempPoint.xCoord++;
         }
+        tempPoint.yCoord++;
     }
     
     return YES;
 }
-
-// 2D needs to be 63x25 w/ 63rd row as a 'trash' row, items put here will not be added-mark as always unavailable
 
 #pragma mark -
 #pragma mark test screen API
