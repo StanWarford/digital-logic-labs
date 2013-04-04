@@ -406,7 +406,8 @@
     
     if(size == 1) // wire
     {
-//        if ([self boardStateAt: coords] || coords.xCoord == 99 || coords.yCoord == 99) return NO;   *********Casey - This is crashing for some reason*************
+        //if (!([[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord] == nil) || coords.xCoord == 99 || coords.yCoord == 99) return NO; //  *********Casey - This is crashing for some reason*************
+        // Casey, if you see this, I think it's because we have not yet implemented chips in the breadboard logic yet
         return YES;
         
     }
