@@ -17,6 +17,7 @@
 @synthesize boardModel = _boardModel;
 @synthesize lights = _lights;
 @synthesize switches = _switches;
+@synthesize segView = _segView;
 
 #define SWITCH_ROW 138
 #define SWITCH_COL_START 10
@@ -31,6 +32,11 @@
 #define LIGHT_SIZE_Y 20
 #define LIGHT_SPACING 50
 #define LIGHT_COUNT 8
+
+#define SEG_ROW 500
+#define SEG_COL 10
+#define SEG_SIZE_X 115
+#define SEG_SIZE_Y 187
 
 #pragma mark -
 #pragma mark lazy instantiation methods
@@ -68,6 +74,15 @@
     return _lights;
 }
 
+- (DLLSevenSegmentView*)segView
+{
+    if(!_segView){
+        CGRect frame = CGRectMake(SEG_COL, SEG_ROW, SEG_SIZE_X, SEG_SIZE_Y);
+        _segView = [[DLLSevenSegmentView alloc] initWithFrame:frame];
+    }
+    return _segView;
+}
+
 #pragma mark -
 #pragma mark initialization methods
 - (void)viewDidLoad
@@ -79,14 +94,15 @@
     for(DLLLightView *lt in self.lights){
         [self.view addSubview:lt];
     }
+    [self.view addSubview:self.segView];
 }
 
 #pragma mark -
 #pragma mark switch methods
 - (IBAction)switchStateChanged:(DLLSwitch *)sender {
-    NSInteger i = sender.identifier - 1;
-    DLLLightView *target = [self.lights objectAtIndex:i];
-    [target toggleOnOff];
+    NSInteger i = sender.identifier;
+    //DLLLightView *target = [self.lights objectAtIndex:i];
+    [self.segView toggleSegment:i onOff:sender.on];
     NSLog([NSString stringWithFormat:@"%d turned %s", sender.identifier, sender.on ? "ON" : "OFF"]);
 }
 
