@@ -17,6 +17,7 @@
 		486B08E316D5948300F0E4B8 /* DLLSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B08E216D5948300F0E4B8 /* DLLSplitViewController.m */; };
 		4879503516CC6ED000D6DEFD /* DLLLabTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4879503416CC6ED000D6DEFD /* DLLLabTableViewController.m */; };
 		4879503816CC6F2C00D6DEFD /* DLLPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4879503716CC6F2C00D6DEFD /* DLLPDFViewController.m */; };
+		CF058002170E0CA000AB77CD /* test-screen.png in Resources */ = {isa = PBXBuildFile; fileRef = CF058001170E0CA000AB77CD /* test-screen.png */; };
 		CF0D2DAC16BAE12E00753DF9 /* DLLContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0D2DAB16BAE12E00753DF9 /* DLLContainerViewController.m */; };
 		CF0D2DB016BAE20600753DF9 /* DLLDockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0D2DAF16BAE20600753DF9 /* DLLDockViewController.m */; };
 		CF0D2DB416BAE2FB00753DF9 /* DLLBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0D2DB316BAE2FB00753DF9 /* DLLBoardViewController.m */; };
@@ -115,6 +116,7 @@
 		4879503416CC6ED000D6DEFD /* DLLLabTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLLabTableViewController.m; sourceTree = "<group>"; };
 		4879503616CC6F2C00D6DEFD /* DLLPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLPDFViewController.h; sourceTree = "<group>"; };
 		4879503716CC6F2C00D6DEFD /* DLLPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLPDFViewController.m; sourceTree = "<group>"; };
+		CF058001170E0CA000AB77CD /* test-screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-screen.png"; sourceTree = "<group>"; };
 		CF0D2DAA16BAE12E00753DF9 /* DLLContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLContainerViewController.h; sourceTree = "<group>"; };
 		CF0D2DAB16BAE12E00753DF9 /* DLLContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLContainerViewController.m; sourceTree = "<group>"; };
 		CF0D2DAE16BAE20600753DF9 /* DLLDockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLDockViewController.h; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				CFEE671D170CE38A0008870C /* test-light-dim.png */,
 				CFEE671E170CE38A0008870C /* test-light-off.png */,
 				CFEE671F170CE38A0008870C /* test-light-on.png */,
+				CF058001170E0CA000AB77CD /* test-screen.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				CFEE6735170CE6960008870C /* test-7-seg-display-7.png in Resources */,
 				CFEE6736170CE6960008870C /* test-7-seg-display-overlay.png in Resources */,
 				CFEE673C170CF07A0008870C /* test-7-seg-display-empty.png in Resources */,
+				CF058002170E0CA000AB77CD /* test-screen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
