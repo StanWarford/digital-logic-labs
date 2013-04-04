@@ -329,6 +329,8 @@
     [self.chipDictionary setValue: newChip forKey: [coords toString]];
     //TODO: for Joe to implement
     // add pointers to breadboardStateArray
+    // Joe, I think the breadboardStateArray needs to point to the same object that chipDictionary points to.  Is that possible?
+    //          -Brooke
 }
 
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *)endingPoint withColor:(UIColor *)color
@@ -388,7 +390,7 @@
     if(component == myNull)
         return nil;
     else return (DLLAComponent *)component;
-    
+    // returning nil means the board is empty at given coords
 }
 
 - (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger) size
@@ -447,8 +449,20 @@
     NSArray *chipsOnBoard = [self.chipDictionary allValues];
     for(int i = 0; i < [chipsOnBoard count]; i++){
         DLLChip *chip = chipsOnBoard[i];
+        
         DLLPoint *powerPinCoord = [chip powerPinCoordinate];
-        NSString *electricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
+        NSNumber *electricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
+        NSArray *electricalPointArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:electricalPoint];
+        for(int i = 0; i < [electricalPointArrayOfHoles count]; i++)
+        {
+            DLLPoint *currentBoardPoint = electricalPointArrayOfHoles[i];
+            if(!(([self boardStateAt: currentBoardPoint] == nil) || ([self boardStateAt: currentBoardPoint] == chip)))
+            {
+                // Need wire class 
+            }
+        }
+        
+        
     }
 }
 
