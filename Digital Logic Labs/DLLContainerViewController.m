@@ -7,6 +7,7 @@
 //
 
 #import "DLLContainerViewController.h"
+#import "DLLTestViewController.h"
 
 @interface DLLContainerViewController ()
 
@@ -50,10 +51,36 @@
     [self.view addSubview:self.boardView.view];
     [self.view addSubview:self.dockView.view];
     [self.view addSubview:imageView];
+    
+    
+    
+    UIBarButtonItem* testButton = [[UIBarButtonItem alloc] initWithTitle:@"Test" style:UIBarButtonItemStyleBordered target:self action:@selector(goToTestScreen)];    
+    [testButton respondsToSelector:@selector(goToTestScreen:)];
+    
+    UIBarButtonItem* clearButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear Board" style:UIBarButtonItemStyleBordered target:self action:@selector(clearButton)];    
+    [clearButton respondsToSelector:@selector(clearBoard)];
+    
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:testButton, clearButton, nil];
 }
+
+
+
+- (void) clearButton
+{
+    // tell boardviewcontroller to clear the board
+}
+
+
+- (IBAction)goToTestScreen
+{
+    DLLTestViewController *testView = [[DLLTestViewController alloc] init];
+    [self performSegueWithIdentifier:@"BoardToTestSegue" sender:self];
+}
+
 
 #pragma mark -
 #pragma mark MISC
+    
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
