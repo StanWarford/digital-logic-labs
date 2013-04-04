@@ -306,13 +306,12 @@
 
 #pragma mark -
 #pragma mark component removal methods
-- (DLLAComponent*)removeComponentAtCoordinate:(DLLPoint *)coords //this will return component type -Casey
+- (void)removeComponentAtCoordinate:(DLLPoint *)coords //this will return component type -Casey
 {
     //not necessarily upper left-need to check 2D array
     // Code below is not quite right, but close
     DLLAComponent * tempComponent = [self.chipDictionary objectForKey:[coords toString]];
     [self.chipDictionary removeObjectForKey:[coords toString]];
-    return tempComponent;
 }
 
 - (void)clearBoard
