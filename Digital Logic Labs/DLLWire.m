@@ -20,4 +20,12 @@
     return self;
 }
 
+- (DLLPoint *)otherBoardHole: (DLLPoint *)firstPoint
+{
+    if(firstPoint == self.startPoint)
+        return self.endPoint;
+    else
+        return self.startPoint;
+}
+
 @end

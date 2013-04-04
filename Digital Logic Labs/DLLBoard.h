@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "DLLAComponent.h"
 #import "DLLChip.h"
+#import "DLLWire.h"
 #import "DLLPoint.h"
 #import "DLLElectricalPoint.h"
 #import "DLL14PinDIP.h"
 #import "DLL7400DIP.h"
+
 
 
 @interface DLLBoard : NSObject

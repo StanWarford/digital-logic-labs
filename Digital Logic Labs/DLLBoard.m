@@ -456,10 +456,11 @@
         for(int i = 0; i < [electricalPointArrayOfHoles count]; i++)
         {
             DLLPoint *currentBoardPoint = electricalPointArrayOfHoles[i];
-            if(!(([self boardStateAt: currentBoardPoint] == nil) || ([self boardStateAt: currentBoardPoint] == chip)))
+           /* if([[self boardStateAt:currentBoardPoint] isKindOfClass:[DLLWire class]])
             {
-                // Need wire class 
-            }
+                DLLWire *currentWire = [self boardStateAt:currentBoardPoint];
+                [currentBoardPoint ]
+            }*/
         }
         
         

@@ -16,5 +16,6 @@
 
 - (id)initWithStartPoint: (DLLPoint *)startPoint
              AndEndPoint: (DLLPoint *)endPoint;
+- (DLLPoint *)otherBoardHole: (DLLPoint *)firstPoint;
 
 @end
