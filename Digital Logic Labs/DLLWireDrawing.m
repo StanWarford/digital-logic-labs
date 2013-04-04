@@ -12,7 +12,8 @@
 
 #define LINE_WIDTH 2.0
 #define GHOST_TRANSPARENCY 0.5
-#define CIRCLE_DIAMETER 12
+#define SOLID_CIRCLE_DIAMETER 12
+#define GHOST_CIRCLE_DIAMETER 20
 // original circle diameter = 12
 
 @synthesize color = _color;
@@ -69,7 +70,7 @@
     // set line width
     CGContextSetLineWidth(context, LINE_WIDTH);
     // draw circle at start
-    CGRect startRect = CGRectMake(self.start.x - CIRCLE_DIAMETER/2 , self.start.y - CIRCLE_DIAMETER/2, CIRCLE_DIAMETER, CIRCLE_DIAMETER);
+    CGRect startRect = CGRectMake(self.start.x - (self.isGhost ? GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER)/2 , self.start.y - (self.isGhost ? GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER)/2, self.isGhost ? GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER, self.isGhost ? GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER);
     CGContextAddEllipseInRect(context, startRect);
     //CGContextStrokePath(context);
     CGContextFillEllipseInRect(context, startRect);
@@ -78,7 +79,7 @@
         CGContextMoveToPoint(context, self.start.x, self.start.y);
         CGContextAddLineToPoint(context, self.end.x, self.end.y);
         CGContextStrokePath(context);
-        CGRect endRect = CGRectMake(self.end.x - CIRCLE_DIAMETER/2, self.end.y - CIRCLE_DIAMETER/2, CIRCLE_DIAMETER, CIRCLE_DIAMETER);
+        CGRect endRect = CGRectMake(self.end.x - (self.isGhost ? GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER)/2, self.end.y - (self.isGhost ?GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER)/2, self.isGhost ? GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER, self.isGhost ?GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER);
         CGContextAddEllipseInRect(context, endRect);
         CGContextFillEllipseInRect(context, endRect);
     }

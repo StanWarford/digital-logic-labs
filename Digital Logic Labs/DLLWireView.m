@@ -10,6 +10,9 @@
 
 @implementation DLLWireView
 
+#define WIRE_X_OFFSET -24.4
+#define WIRE_Y_OFFSET 0
+
 @synthesize end = _end;
 
 #pragma mark -
@@ -29,7 +32,7 @@
 -(id)initWireWithStartAt:(CGPoint)coords withColor:(UIColor *)color inView:(UIView *)view
 {
     if((self = [super init])){
-        self.start = coords;
+        self.start = CGPointMake(coords.x+WIRE_X_OFFSET, coords.y+WIRE_Y_OFFSET);
         self.end = CGPointMake(0, 0);
         self.color = color;
         self.image = [UIImage imageNamed:@"wire"];
@@ -69,7 +72,7 @@
 // called when touches moved
 - (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
-    self.start = coords;
+    self.start = CGPointMake(coords.x+WIRE_X_OFFSET, coords.y+WIRE_Y_OFFSET);
     self.wireDrawing.start = self.start;
     [self.wireDrawing setNeedsDisplay];
 }
@@ -77,7 +80,7 @@
 // called when touches moved
 - (void)translateEndTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
-    self.end = coords;
+    self.end = CGPointMake(coords.x+WIRE_X_OFFSET, coords.y+WIRE_Y_OFFSET);
     self.wireDrawing.end = self.end;
     [self.wireDrawing setNeedsDisplay];
 }
