@@ -406,7 +406,8 @@
     
     if(size == 1) // wire
     {
-//        if ([self boardStateAt: coords] || coords.xCoord == 99 || coords.yCoord == 99) return NO;   *********Casey - This is crashing for some reason*************
+        //if (!([[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord] == nil) || coords.xCoord == 99 || coords.yCoord == 99) return NO; //  *********Casey - This is crashing for some reason*************
+        // Casey, if you see this, I think it's because we have not yet implemented chips in the breadboard logic yet
         return YES;
         
     }
@@ -447,19 +448,20 @@
     }
 }
 
-- (void) determineChipFunctionality
+- (void) determineChipFunctionality // currently: chip is assumed functional, set to NO if not connected to power or ground
 {
     NSArray *chipsOnBoard = [self.chipDictionary allValues];
-    for(int i = 0; i < [chipsOnBoard count]; i++){
+    for(int i = 0; i < [chipsOnBoard count]; i++)
+    {
         DLLChip *chip = chipsOnBoard[i];
         
         DLLPoint *powerPinCoord = [chip powerPinCoordinate];
-        NSNumber *electricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
-        NSArray *electricalPointArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:electricalPoint];
+        NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
+        NSArray *powerElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:powerElectricalPoint];
         
-        for(int i = 0; i < [electricalPointArrayOfHoles count]; i++)
+        for(int i = 0; i < [powerElectricalArrayOfHoles count]; i++)
         {
-            DLLPoint *currentBoardPoint = electricalPointArrayOfHoles[i];
+            DLLPoint *currentBoardPoint = powerElectricalArrayOfHoles[i];
             
             if([[[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
                                             objectAtIndex: currentBoardPoint.yCoord]
@@ -469,14 +471,34 @@
                                          objectAtIndex: currentBoardPoint.yCoord];
                 DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
                 NSNumber *otherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
-                DLLElectricalPoint *electricalPoint2 = [self.electricalPointArray objectAtIndex: otherElectricalPoint];
-                if(!(electricalPoint2.electricalPointType == EPTypePower)){
+                DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: otherElectricalPoint];
+                if(!(electricalPoint.electricalPointType == EPTypePower)){
                     chip.isFunctional = NO;
                 }
             }
         }
+        DLLPoint *groundPinCoord = [chip groundPinCoordinate];
+        NSNumber *groundElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[groundPinCoord toString]];
+        NSArray *groundElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:groundElectricalPoint];
         
-        
+        for(int i = 0; i < [groundElectricalArrayOfHoles count]; i++)
+        {
+            DLLPoint *currentBoardPoint = groundElectricalArrayOfHoles[i];
+            
+            if([[[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
+                 objectAtIndex: currentBoardPoint.yCoord]
+                isKindOfClass:[DLLWire class]])
+            {
+                DLLWire *currentWire = [[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
+                                        objectAtIndex: currentBoardPoint.yCoord];
+                DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
+                NSNumber *otherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
+                DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: otherElectricalPoint];
+                if(!(electricalPoint.electricalPointType == EPTypeGround)){
+                    chip.isFunctional = NO;
+                }
+            }
+        }
     }
 }
 
