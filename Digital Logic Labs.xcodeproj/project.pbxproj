@@ -17,6 +17,7 @@
 		486B08E316D5948300F0E4B8 /* DLLSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 486B08E216D5948300F0E4B8 /* DLLSplitViewController.m */; };
 		4879503516CC6ED000D6DEFD /* DLLLabTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4879503416CC6ED000D6DEFD /* DLLLabTableViewController.m */; };
 		4879503816CC6F2C00D6DEFD /* DLLPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4879503716CC6F2C00D6DEFD /* DLLPDFViewController.m */; };
+		B4E3E815170E04FF00585379 /* DLLWire.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E3E814170E04FF00585379 /* DLLWire.m */; };
 		CF0D2DAC16BAE12E00753DF9 /* DLLContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0D2DAB16BAE12E00753DF9 /* DLLContainerViewController.m */; };
 		CF0D2DB016BAE20600753DF9 /* DLLDockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0D2DAF16BAE20600753DF9 /* DLLDockViewController.m */; };
 		CF0D2DB416BAE2FB00753DF9 /* DLLBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0D2DB316BAE2FB00753DF9 /* DLLBoardViewController.m */; };
@@ -115,6 +116,8 @@
 		4879503416CC6ED000D6DEFD /* DLLLabTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLLabTableViewController.m; sourceTree = "<group>"; };
 		4879503616CC6F2C00D6DEFD /* DLLPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLPDFViewController.h; sourceTree = "<group>"; };
 		4879503716CC6F2C00D6DEFD /* DLLPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLPDFViewController.m; sourceTree = "<group>"; };
+		B4E3E813170E04FF00585379 /* DLLWire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLWire.h; sourceTree = "<group>"; };
+		B4E3E814170E04FF00585379 /* DLLWire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLWire.m; sourceTree = "<group>"; };
 		CF0D2DAA16BAE12E00753DF9 /* DLLContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLContainerViewController.h; sourceTree = "<group>"; };
 		CF0D2DAB16BAE12E00753DF9 /* DLLContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLContainerViewController.m; sourceTree = "<group>"; };
 		CF0D2DAE16BAE20600753DF9 /* DLLDockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLDockViewController.h; sourceTree = "<group>"; };
@@ -523,6 +526,8 @@
 				D8DC9F9D170CF0E900EB8434 /* DLL7400DIP.m */,
 				CF55D8E916CF009700D8949B /* DLLAComponent.h */,
 				CF55D8EA16CF009700D8949B /* DLLAComponent.m */,
+				B4E3E813170E04FF00585379 /* DLLWire.h */,
+				B4E3E814170E04FF00585379 /* DLLWire.m */,
 			);
 			name = "Component Classes";
 			sourceTree = "<group>";
@@ -716,6 +721,7 @@
 				CF45B2621703BCB2002A9658 /* DLLLightView.m in Sources */,
 				D8ACC6AF1709F322000EDDDD /* DLLElectricalPoint.m in Sources */,
 				D8DC9F9E170CF0E900EB8434 /* DLL7400DIP.m in Sources */,
+				B4E3E815170E04FF00585379 /* DLLWire.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

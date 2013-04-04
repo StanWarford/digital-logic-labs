@@ -12,7 +12,7 @@
 
 - (id)init
 {
-    self.isFunctional = NO;
+    self.isFunctional = YES;
     
     return self;
 }
