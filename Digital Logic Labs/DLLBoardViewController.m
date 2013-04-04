@@ -117,10 +117,9 @@ typedef enum{
         DLLPoint *chipStart = [self boardCoordinateFromGridCoordinate:chipLoc];
         BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? chipStart : boardLoc IsAvailableForComponentOfSize:self.activeComponent.size];
         
-        // NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
-        // NSLog([NSString stringWithFormat:@"grid loc x value = %d", gridLoc.x]);
-        // NSLog(@" ");
-        // NSLog([NSString stringWithFormat:@"grid loc y value = %d", gridLoc.y]);
+        // NSLog([NSString stringWithFormat:@"%@", isAvailable ? @"YES" : @"NO"]);
+        // NSLog([NSString stringWithFormat:@"(%f, %f)", gridLoc.x, gridLoc.y]);
+        NSLog([NSString stringWithFormat:@"(%d, %d)", boardLoc.xCoord, boardLoc.yCoord]);
         
         [self.activeComponent displayGhostWithHoleAvailable:isAvailable];
     }else{ // wireEnd - user is placing end of wire
@@ -147,9 +146,10 @@ typedef enum{
     CGPoint chipLoc = [self gridCoordinateFromViewCoordinate:self.activeComponent.start];
     DLLPoint *chipStart = [self boardCoordinateFromGridCoordinate:chipLoc];
     BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? chipStart : boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
-    NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+    //NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
-    //NSLog([NSString stringWithFormat:@"Board: (%i, %i)", (NSInteger)boardLoc.xCoord, (NSInteger)boardLoc.yCoord]);
+    //NSLog([NSString stringWithFormat:@"(%f, %f)", chipLoc.x, chipLoc.y]);
+    NSLog([NSString stringWithFormat:@"(%d, %d)", boardLoc.xCoord, boardLoc.yCoord]);
     
     if(self.state == wireEnd){ // user is placing end of wire
         [self.activeComponent translateEndTo:snapLoc withHoleAvailable:isAvailable];
@@ -253,6 +253,15 @@ typedef enum{
     return CGPointMake(calcX, calcY);
 }
 
+// Vertical ranges of grid coordinates corresponding to holes on the board
+// 18, 19
+// 21-25
+// 27-31
+// 33, 34
+// 36-40
+// 42-46
+// 48, 49
+
 - (DLLPoint*)boardCoordinateFromGridCoordinate:(CGPoint)loc
 {
     NSInteger x = loc.x;
@@ -260,67 +269,60 @@ typedef enum{
     NSInteger retX;
     NSInteger retY;
     NSArray *yGridPoints = [[NSArray alloc] initWithObjects:
+                            [NSNumber numberWithInt:18],
+                            [NSNumber numberWithInt:19],
+                            
+                            [NSNumber numberWithInt:21],
+                            [NSNumber numberWithInt:22],
                             [NSNumber numberWithInt:23],
                             [NSNumber numberWithInt:24],
+                            [NSNumber numberWithInt:25],
+                            
+                            [NSNumber numberWithInt:27],
                             [NSNumber numberWithInt:28],
                             [NSNumber numberWithInt:29],
                             [NSNumber numberWithInt:30],
                             [NSNumber numberWithInt:31],
-                            [NSNumber numberWithInt:32],
-                            [NSNumber numberWithInt:35],
+                            
+                            [NSNumber numberWithInt:33],
+                            [NSNumber numberWithInt:34],
+                            
                             [NSNumber numberWithInt:36],
                             [NSNumber numberWithInt:37],
                             [NSNumber numberWithInt:38],
                             [NSNumber numberWithInt:39],
+                            [NSNumber numberWithInt:40],
+
+                            [NSNumber numberWithInt:42],
+                            [NSNumber numberWithInt:43],
                             [NSNumber numberWithInt:44],
                             [NSNumber numberWithInt:45],
+                            [NSNumber numberWithInt:46],
+                            
+                            [NSNumber numberWithInt:48],
                             [NSNumber numberWithInt:49],
-                            [NSNumber numberWithInt:50],
-                            [NSNumber numberWithInt:51],
-                            [NSNumber numberWithInt:52],
-                            [NSNumber numberWithInt:53],
-                            [NSNumber numberWithInt:56],
-                            [NSNumber numberWithInt:57],
-                            [NSNumber numberWithInt:58],
-                            [NSNumber numberWithInt:59],
-                            [NSNumber numberWithInt:60],
-                            [NSNumber numberWithInt:64],
-                            [NSNumber numberWithInt:65],
                             nil];
     NSMutableArray *temp = [NSMutableArray array];
     for(int i = 0; i < [yGridPoints count]; i++){
-        [temp addObject:[NSNumber numberWithInt:i]];
+        [temp addObject:[NSNumber numberWithInt:i+5]];
     }
     NSArray *yBoardPoints = [NSArray arrayWithArray:temp];
     NSDictionary *yGridToBoardPoints = [NSDictionary dictionaryWithObjects:yBoardPoints forKeys:yGridPoints];
-    if(x < 8 || x > 70 || y < 23 || y > 65){
+    
+    if(x < 11 || x > 73 || y < 18 || y > 49){
         retX = 99; // trash point
         retY = 99; // trash point
     }else{
-        if((y > 24 && y < 28) ||
-           (y > 32 && y < 35) ||
-           (y > 39 && y < 44) ||
-           (y > 45 && y < 49) ||
-           (y > 53 && y < 56) ||
-           (y > 60 && y < 64)){
+        if(y == 20 || y == 26 || y == 32 || y == 35 || y == 41 || y == 47){
             retX = 99; // trash point
             retY = 99; // trash point
         }else{
-            retX = x - 8;
+            retX = x - 11;
             retY = [[yGridToBoardPoints objectForKey:[NSNumber numberWithInt:y]] intValue];
         }
     }
     return [[DLLPoint alloc] initWithIntX:retX andY:retY];
 }
-
-// Vertical ranges of grid coordinates corresponding to holes on the board
-// 23, 24
-// 28-32
-// 35-39
-// 44, 45
-// 49-53
-// 56-60
-// 64, 65
 
 - (CGPoint)gridCoordinateFromBoardCoordinate:(DLLPoint*)loc
 {
@@ -329,32 +331,38 @@ typedef enum{
     NSInteger retX;
     NSInteger retY;
     NSArray *yGridPoints = [[NSArray alloc] initWithObjects:
+                            [NSNumber numberWithInt:18],
+                            [NSNumber numberWithInt:19],
+                            
+                            [NSNumber numberWithInt:21],
+                            [NSNumber numberWithInt:22],
                             [NSNumber numberWithInt:23],
                             [NSNumber numberWithInt:24],
+                            [NSNumber numberWithInt:25],
+                            
+                            [NSNumber numberWithInt:27],
                             [NSNumber numberWithInt:28],
                             [NSNumber numberWithInt:29],
                             [NSNumber numberWithInt:30],
                             [NSNumber numberWithInt:31],
-                            [NSNumber numberWithInt:32],
-                            [NSNumber numberWithInt:35],
+                            
+                            [NSNumber numberWithInt:33],
+                            [NSNumber numberWithInt:34],
+                            
                             [NSNumber numberWithInt:36],
                             [NSNumber numberWithInt:37],
                             [NSNumber numberWithInt:38],
                             [NSNumber numberWithInt:39],
+                            [NSNumber numberWithInt:40],
+                            
+                            [NSNumber numberWithInt:42],
+                            [NSNumber numberWithInt:43],
                             [NSNumber numberWithInt:44],
                             [NSNumber numberWithInt:45],
+                            [NSNumber numberWithInt:46],
+                            
+                            [NSNumber numberWithInt:48],
                             [NSNumber numberWithInt:49],
-                            [NSNumber numberWithInt:50],
-                            [NSNumber numberWithInt:51],
-                            [NSNumber numberWithInt:52],
-                            [NSNumber numberWithInt:53],
-                            [NSNumber numberWithInt:56],
-                            [NSNumber numberWithInt:57],
-                            [NSNumber numberWithInt:58],
-                            [NSNumber numberWithInt:59],
-                            [NSNumber numberWithInt:60],
-                            [NSNumber numberWithInt:64],
-                            [NSNumber numberWithInt:65],
                             nil];
     NSMutableArray *temp = [NSMutableArray array];
     for(int i = 0; i < [yGridPoints count]; i++){
