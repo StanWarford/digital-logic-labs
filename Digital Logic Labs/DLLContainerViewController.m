@@ -56,7 +56,7 @@
 #pragma mark segue control methods
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqualToString:@"LabToBoardSegue"]){
+    if([segue.identifier isEqualToString:@"BoardToTestSegue"]){
         DLLTestViewController *controller = (DLLTestViewController*)segue.destinationViewController;
         controller.boardModel = self.boardModel;
     }
