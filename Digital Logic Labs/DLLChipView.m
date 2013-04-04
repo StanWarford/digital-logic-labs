@@ -15,16 +15,16 @@
 - (UIImage*)makeGhostWithHoleAvailable:(BOOL)available forImage:(UIImage*)image;
 - (UIImage*)convertImageToGrayScale:(UIImage*)image;
 - (void)setChipImageAndSize:(NSInteger)identifier;
-- (CGPoint)calculateUpperLeftPinFromCenterPoint:(CGPoint)point;
+- (CGPoint)calculateUpperLeftPointFromCenterPoint:(CGPoint)point;
 @end
 
 @implementation DLLChipView
 
 #define COLOR_INTENSITY 0.5 // 0 < n < 1, 1 = opaque 0 = transparent
 #define GHOST_TRANSPARENCY 0.5 // 0 < n < 1, 1 = opaque 0 = transparent
-#define X_OFFSET_14 33 // offset from middle to first pin for 14 pin chips
-#define X_OFFSET_16 43 // offset from middle to first pin for 16 pin chips
-#define X_OFFSET_ALU 66 // offset from middle to first pin for the ALU
+#define X_OFFSET_14 94 // offset from middle to first pin for 14 pin chips
+#define X_OFFSET_16 104 // offset from middle to first pin for 16 pin chips
+#define X_OFFSET_ALU 127 // offset from middle to first pin for the ALU
 #define Y_OFFSET 14 // offset from middle to first pin for all chips except the ALU
 #define Y_OFFSET_ALU 15 // offset from middle to first pin for the ALU
 
@@ -57,7 +57,7 @@
     if((self = [super init])){
         [self setChipImageAndSize:identifier];
         self.center = coords;
-        self.start = [self calculateUpperLeftPinFromCenterPoint:self.center];
+        self.start = [self calculateUpperLeftPointFromCenterPoint:self.center];
         self.targetView = view;
         self.identifier = identifier;
     }
@@ -99,7 +99,7 @@
 - (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
     self.center = coords;
-    self.start = [self calculateUpperLeftPinFromCenterPoint:coords];
+    self.start = [self calculateUpperLeftPointFromCenterPoint:coords];
     self.imageView.image = available ? self.availableGhostImage :self.unavailableGhostImage;
     [UIView beginAnimations:@"UIImage Move" context:NULL];
     CGSize size = self.imageView.frame.size;
@@ -275,7 +275,7 @@
     }
 }
 
-- (CGPoint)calculateUpperLeftPinFromCenterPoint:(CGPoint)point
+- (CGPoint)calculateUpperLeftPointFromCenterPoint:(CGPoint)point
 {
     NSInteger x = point.x;
     NSInteger y = point.y;
