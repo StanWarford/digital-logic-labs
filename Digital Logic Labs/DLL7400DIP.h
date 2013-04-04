@@ -13,5 +13,6 @@
 
 - (id)initWithLocation: (DLLPoint *) loc;
 - (void)calculateOutputs;
+- (DLLPoint *)powerPinCoordinate; // does this need to be re-stated here?
 
 @end

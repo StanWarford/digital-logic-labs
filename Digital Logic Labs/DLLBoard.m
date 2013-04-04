@@ -424,7 +424,12 @@
 
 - (void) determineChipFunctionality
 {
-    
+    NSArray *chipsOnBoard = [self.chipDictionary allValues];
+    for(int i = 0; i < [chipsOnBoard count]; i++){
+        DLLChip *chip = chipsOnBoard[i];
+        DLLPoint *powerPinCoord = [chip powerPinCoordinate];
+        NSString *electricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
+    }
 }
 
 - (BOOL) illegalConnectionExists

@@ -7,13 +7,17 @@
 //
 
 #import "DLLAComponent.h"
+#import "DLLPoint.h"
 
 @interface DLLChip : DLLAComponent
 
 @property BOOL isFunctional;
+@property (nonatomic, assign) NSUInteger groundPin;
+@property (nonatomic, assign) NSUInteger powerPin;
 
 - (id)init;
 - (id)initWithIdenfifier:(NSInteger)identifier;
+- (DLLPoint *)powerPinCoordinate;
 
 typedef enum
 {

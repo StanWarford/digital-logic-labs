@@ -48,4 +48,8 @@
                      atIndex: 12];
 }
 
+- (DLLPoint *)powerPinCoordinate{
+    return self.loc;
+}
+
 @end
