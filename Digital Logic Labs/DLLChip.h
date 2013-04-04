@@ -18,6 +18,7 @@
 - (id)init;
 - (id)initWithIdenfifier:(NSInteger)identifier;
 - (DLLPoint *)powerPinCoordinate;
+- (DLLPoint *)groundPinCoordinate;
 
 typedef enum
 {

@@ -48,8 +48,14 @@
                      atIndex: 12];
 }
 
-- (DLLPoint *)powerPinCoordinate{
+- (DLLPoint *)powerPinCoordinate
+{
     return self.loc;
+}
+
+- (DLLPoint *)groundPinCoordinate
+{
+    return [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 6 andY:self.loc.yCoord + 1];
 }
 
 @end
