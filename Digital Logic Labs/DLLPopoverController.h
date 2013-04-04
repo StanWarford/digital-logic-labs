@@ -1,5 +1,5 @@
 //
-//  DLLDetailViewController.h
+//  DLLPopoverController.h
 //  Digital Logic Labs
 //
 //  Created by Casey Chock on 4/4/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DLLDetailViewController : UIViewController
+@interface DLLPopoverController : UIPopoverController
 
 @end
