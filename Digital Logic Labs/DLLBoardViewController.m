@@ -406,6 +406,16 @@ typedef enum{
     self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
 }
 
+- (void)clearBoard
+{
+    [self.boardModel clearBoard];
+    NSArray *components = [self.pointMap allValues];
+    for(DLLAComponentView *component in components){
+        [component removeGraphics];
+    }
+    self.pointMap = [NSDictionary dictionary];
+}
+
 #pragma mark -
 #pragma mark MISC
 - (void)didReceiveMemoryWarning

@@ -11,7 +11,7 @@
 #import "DLLDockViewController.h"
 #import "DLLBoard.h"
 
-@interface DLLContainerViewController : UIViewController
+@interface DLLContainerViewController : UIViewController <UIAlertViewDelegate>
 
 // pointers to the two subviews that will be added to this container
 @property (nonatomic, weak) DLLBoardViewController *boardView;
