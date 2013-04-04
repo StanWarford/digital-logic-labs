@@ -21,20 +21,25 @@
 - (void) simulateInitialState;
 - (void) simulateCombinational;
 - (void) populateDatastructures;
+- (DLLAComponent *)boardStateAt:(DLLPoint *)coords;
 
 @end
 
 @implementation DLLBoard
 
+#define NUMROWS 31
+#define NUMCOLUMNS 63
+
 @synthesize breadboardStateArray = _breadboardStateArray;
 @synthesize activeLab = _activeLab;
+
 
 #pragma mark -
 #pragma mark lazy instantiation methods
 - (NSMutableArray *)breadboardStateArray
 {
     if (!_breadboardStateArray){
-        _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: 63];
+        _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: NUMCOLUMNS];
     }
     return _breadboardStateArray;
 }
@@ -78,15 +83,14 @@
     // Creates an array w/ 63 columns and 31 rows w/ all values set to NSNull * myNull
     // define overarching array as columns
     if((self = [super init])){
-        int numRows = 31;
         NSNull * myNull = [NSNull null];
     
         NSMutableArray * boardColumns;
         
-        for(int i = 0; i < 63; i++)
+        for(int i = 0; i < NUMCOLUMNS; i++)
         {
-            boardColumns = [[NSMutableArray alloc] initWithCapacity: numRows];
-            for(int j = 0; j < numRows; j++)
+            boardColumns = [[NSMutableArray alloc] initWithCapacity: NUMROWS];
+            for(int j = 0; j < NUMROWS; j++)
             {
                 [boardColumns insertObject: myNull atIndex: j];
             }
@@ -254,13 +258,12 @@
     [self.electricalPointToBoardPointArray insertObject:lightArray8 atIndex:273];
 
     // Initialize Electrical Point Array
-   DLLElectricalPoint *test = [[DLLElectricalPoint alloc] init];
-    /*for(int x = 0; x < 252; x++)
+    for(int x = 0; x < 252; x++)
     {
-        [self.electricalPointArray insertObject:test atIndex:x];
-    }*/
+        [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] init] atIndex:x];
+    }
     
-    /*[self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeGround] atIndex:252];
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeGround] atIndex:252];
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypePower] atIndex:253];
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeSwitch] atIndex:254];
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeDebouncedSwitch] atIndex:255];
@@ -281,7 +284,7 @@
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:270];
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:271];
     [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:272];
-    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:273];*/
+    [self.electricalPointArray insertObject:[[DLLElectricalPoint alloc] initWithType:EPTypeLight] atIndex:273];
 }
 
 #pragma mark -
@@ -290,12 +293,13 @@
 {
     DLLChip *newChip = [[DLLChip alloc] initWithIdenfifier: partNum];
     [self.chipDictionary setValue: newChip forKey: [coords toString]];
+    //TODO: for Joe to implement
     // add pointers to breadboardStateArray
 }
 
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *)endingPoint withColor:(UIColor *)color
 {
-    
+    //TODO: for Joe to implement
     //add a component to the XML file and to data structure for the active board
     // need internal safety w/ exceptions
 }
@@ -304,85 +308,97 @@
 
 #pragma mark -
 #pragma mark component removal methods
-- (DLLAComponent*)removeComponentAtCoordinate:(DLLPoint *)coords //this will return component type -Casey
+- (void)removeComponentAtCoordinate:(DLLPoint *)coords //this will return component type -Casey
 {
+    //TODO: for Joe to implement
     //not necessarily upper left-need to check 2D array
     // Code below is not quite right, but close
     DLLAComponent * tempComponent = [self.chipDictionary objectForKey:[coords toString]];
     [self.chipDictionary removeObjectForKey:[coords toString]];
-    return tempComponent;
 }
 
 - (void)clearBoard
 {
     [self.chipDictionary removeAllObjects];
-    // need to clear breadboardStateArray as well
-    //reset XML to default, clear data structure, and set all cells in board array to NSNull
+    for (int i = 0; i < NUMCOLUMNS; i++){
+        NSMutableArray * row = [self.breadboardStateArray objectAtIndex:i];
+        for(int j = 0; j < NUMROWS; j++){
+            NSNull * myNull = [NSNull null];
+            [row insertObject:myNull atIndex:j];
+        }
+    }
+    //clear chipDictionary, and set all cells in breadboardStateArray to NSNull
 }
 
 #pragma mark -
 #pragma mark board state methods
 
+// (99,99) is a 'trash' point, items put here will not be added-mark as always unavailable
+- (BOOL)isOccupiedAt:(DLLPoint *)coords
+{
+    if(coords.xCoord > 63 && coords.yCoord > 31)
+        return NO;
+    
+    id component = [[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord];
+    NSNull * myNull = [NSNull null];
+    
+    return !(component == myNull);
+      // If a chip or a wire is at given coords return !NO
+}
+
 - (DLLAComponent *)boardStateAt:(DLLPoint *)coords
 {
-    return nil;
-    /*
     id component = [[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord];
     NSNull * myNull = [NSNull null];
     
     if(component == myNull)
         return nil;
     else return (DLLAComponent *)component;
-    */
-    // This code is crashing my tests - Casey
+    
 }
 
 - (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger) size
 {
-    // Uncomment for testing - Casey
-    //return YES;
     /*
         Wire size = 1
-        ALU size = 24
-        All other chips size = 14 or 16, respectively
+        All chips size = 14, 16, or 24, respectively
      */
-    
-    //reminder: ALU spans double the rows
-    NSArray * validChipRows = @[@39, @40, @49, @50];
-    // TODO: add correct coordinates for switch slots
-    //NSArray * validSwitchSlots  = @[
-    //                                [[DLLPoint(20, 10) alloc] init],
-    //                                [[DLLPoint(30, 10) alloc] init]
-    //                                ];
+    NSArray * validChipRows = @[@11, @23];
+    NSInteger numRows = 0;
     
     if(size == 1) // wire
     {
-        if ([self boardStateAt: coords]) return NO;
-    } else if (size == 24) // ALU
-    {
-        if(![validChipRows containsObject: [NSNumber numberWithInt: coords.yCoord]])
-            return NO;
+        if ([self boardStateAt: coords] || coords.xCoord == 99 || coords.yCoord == 99) return NO;
         
-    } else // chip
+    }
+    if (size == 24){
+        numRows = 4;
+    }else // chip
     {
+        numRows = 2;
+    }
     
-        if(![validChipRows containsObject: [NSNumber numberWithInt: coords.yCoord]])
-            return NO;
-        
-        for(int leftLimit = coords.xCoord; coords.xCoord <= leftLimit + size / 2; coords.xCoord++)
-        {
-            if([self boardStateAt: coords]) return NO;
+    if(![validChipRows containsObject: [NSNumber numberWithInt: coords.yCoord]])
+        return NO;
+    
+    DLLPoint * tempPoint = [[DLLPoint alloc] initWithIntX: coords.xCoord andY: coords.yCoord];
+    for(int j = 0; j < numRows; j++){
+        for(int i = coords.xCoord; i < coords.xCoord + size / 2; i++){
+            
+            if ([self boardStateAt: tempPoint]) return NO;
+            
+            tempPoint.xCoord++;
         }
+        tempPoint.yCoord++;
     }
     
     return YES;
 }
 
-// 2D needs to be 63x25 w/ 63rd row as a 'trash' row, items put here will not be added-mark as always unavailable
-
 #pragma mark -
 #pragma mark test screen API
 
+//TODO: for Brooke to implement
 - (void) runSimulation
 {
     [self determineChipFunctionality];
@@ -390,8 +406,6 @@
     {
         [self simulateInitialState];
     }
-    
-    
 }
 
 - (void) determineChipFunctionality

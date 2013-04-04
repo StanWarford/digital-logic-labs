@@ -15,4 +15,10 @@
 - (id)init;
 - (id)initWithIdenfifier:(NSInteger)identifier;
 
+typedef enum
+{
+    PinValueOne, PinValueZero, PinValueUnknown
+    
+} PinValue;
+
 @end

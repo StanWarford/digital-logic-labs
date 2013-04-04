@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DLLSevenSegmentView : UIView
+@interface DLLSevenSegmentView : UIImageView
+
+- (id)initWithFrame:(CGRect)frame;
+- (void)toggleSegment:(NSInteger)number onOff:(BOOL)on;
 
 @end

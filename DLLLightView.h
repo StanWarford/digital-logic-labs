@@ -10,10 +10,18 @@
 
 @interface DLLLightView : UIImageView
 
+typedef enum{
+    on,
+    off,
+    dim
+} lightState;
+
 @property (nonatomic, assign) NSInteger identifier;
-@property (nonatomic, assign) BOOL on;
+@property (nonatomic, assign) lightState state;
 
 - (id)initWithFrame:(CGRect)frame andID:(NSInteger)identifier;
-- (void)toggleState;
+- (void)toggleOn;
+- (void)toggleOff;
+- (void)toggleDim;
 
 @end
