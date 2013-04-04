@@ -149,7 +149,7 @@ typedef enum{
     //NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
     
     //NSLog([NSString stringWithFormat:@"(%f, %f)", chipLoc.x, chipLoc.y]);
-    NSLog([NSString stringWithFormat:@"(%d, %d)", boardLoc.xCoord, boardLoc.yCoord]);
+    NSLog([NSString stringWithFormat:@"(%d, %d)", chipStart.xCoord, chipStart.yCoord]);
     
     if(self.state == wireEnd){ // user is placing end of wire
         [self.activeComponent translateEndTo:snapLoc withHoleAvailable:isAvailable];
