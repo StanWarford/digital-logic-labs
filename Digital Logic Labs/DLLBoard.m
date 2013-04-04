@@ -365,16 +365,12 @@
      */
     
     //reminder: ALU spans double the rows
-    NSArray * validChipRows = @[@39, @40, @49, @50];
-    // TODO: add correct coordinates for switch slots
-    //NSArray * validSwitchSlots  = @[
-    //                                [[DLLPoint(20, 10) alloc] init],
-    //                                [[DLLPoint(30, 10) alloc] init]
-    //                                ];
+    NSArray * validChipRows = @[@11, @12, @23, @24];
     
     if(size == 1) // wire
     {
-        if ([self boardStateAt: coords]) return NO;
+        if ([self boardStateAt: coords] || coords.xCoord == 99 || coords.yCoord == 99) return NO;
+        
     } else if (size == 24) // ALU
     {
         if(![validChipRows containsObject: [NSNumber numberWithInt: coords.yCoord]])
@@ -407,8 +403,6 @@
     {
         [self simulateInitialState];
     }
-    
-    
 }
 
 - (void) determineChipFunctionality

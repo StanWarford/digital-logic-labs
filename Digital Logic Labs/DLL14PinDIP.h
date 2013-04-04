@@ -12,15 +12,17 @@
 @interface DLL14PinDIP : DLLChip
 
 @property (nonatomic, strong) NSMutableArray * pins;
-@property (nonatomic, strong) NSMutableArray * outputPins;
-@property (nonatomic, strong) NSMutableArray * inputPins;
+@property (nonatomic, strong) NSArray * outputPins;
+@property (nonatomic, strong) NSArray * inputPins;
 @property (nonatomic, assign) NSUInteger groundPin;
 @property (nonatomic, assign) NSUInteger powerPin;
 @property (nonatomic, assign) DLLPoint * loc;
+@property (nonatomic, assign) NSUInteger size;
 
 - (id)initWithIdentifier: (NSInteger)identifier
-              OutputPins: (NSMutableArray *)outputPins
-               InputPins: (NSMutableArray *)inputPins
+                Location: (DLLPoint *) loc
+              OutputPins: (NSArray *)outputPins
+               InputPins: (NSArray *)inputPins
                GroundPin: (NSUInteger)groundPin
              AndPowerPin: (NSUInteger)powerPin;
 
