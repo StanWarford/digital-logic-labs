@@ -22,6 +22,7 @@
 @synthesize boardModel = _boardModel;
 @synthesize dockLayout = _dockLayout;
 @synthesize inventory = _inventory;
+@synthesize parent = _parent;
 
 #pragma mark -
 #pragma mark property instantiation methods
@@ -67,8 +68,8 @@
     // Configure layout
     [self.collectionView setCollectionViewLayout:self.dockLayout];
     
-    // Disable manual selection
-    [self.collectionView setAllowsSelection:NO];
+    // Enable manual selection
+    [self.collectionView setAllowsSelection:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -143,6 +144,21 @@
 
 #pragma mark -
 #pragma mark UICollectionViewDelegate methods
+- (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    DLLAComponentView *selection = [self.inventory objectAtIndex:[indexPath row]];
+    if([selection isKindOfClass:[DLLWireView class]]){
+        DLLWireDetailPopover *detail = [[DLLWireDetailPopover alloc] init];
+        DLLPopoverController *popOver = [[DLLPopoverController alloc] initWithContentViewController:detail];
+        [popOver presentPopoverFromRect:CGRectMake(60, 50, 700, 500) inView:self.parent.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }else{
+        DLLChipDetailPopover *detail = [[DLLChipDetailPopover alloc] init];
+        DLLPopoverController *popOver = [[DLLPopoverController alloc] initWithContentViewController:detail];
+        [popOver presentPopoverFromRect:CGRectMake(60, 50, 700, 500) inView:self.parent.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
+}
+
+/*
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;
@@ -152,6 +168,7 @@
 {
     return NO;
 }
+*/
 
 #pragma mark -
 #pragma mark DLLDockViewLayoutDelegate methods

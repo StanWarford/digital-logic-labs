@@ -45,6 +45,7 @@ typedef enum{
 @synthesize selection = _selection;
 @synthesize boardModel = _boardModel;
 @synthesize state = _state;
+@synthesize parent = _parent;
 
 #pragma mark -
 #pragma mark Initialization Metods

@@ -40,6 +40,8 @@
 		CF31B633170F956100A500B4 /* 7408.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B625170F956100A500B4 /* 7408.pdf */; };
 		CF31B634170F956100A500B4 /* 7402.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B626170F956100A500B4 /* 7402.pdf */; };
 		CF31B635170F956100A500B4 /* 7400.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B627170F956100A500B4 /* 7400.pdf */; };
+		CF31B639170F95C600A500B4 /* DLLChipDetailPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = CF31B638170F95C600A500B4 /* DLLChipDetailPopover.m */; };
+		CF31B63C170F95DA00A500B4 /* DLLWireDetailPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = CF31B63B170F95DA00A500B4 /* DLLWireDetailPopover.m */; };
 		CF35B6FE16C5902500D6358E /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = CF35B6FD16C5902500D6358E /* placeholder.png */; };
 		CF43ADD5170E2CA300C823C0 /* DLLPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF43ADD4170E2CA200C823C0 /* DLLPopoverController.m */; };
 		CF45B2561703B18B002A9658 /* DLLTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF45B2551703B18B002A9658 /* DLLTestViewController.m */; };
@@ -157,6 +159,10 @@
 		CF31B625170F956100A500B4 /* 7408.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 7408.pdf; sourceTree = "<group>"; };
 		CF31B626170F956100A500B4 /* 7402.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 7402.pdf; sourceTree = "<group>"; };
 		CF31B627170F956100A500B4 /* 7400.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 7400.pdf; sourceTree = "<group>"; };
+		CF31B637170F95C600A500B4 /* DLLChipDetailPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLChipDetailPopover.h; sourceTree = "<group>"; };
+		CF31B638170F95C600A500B4 /* DLLChipDetailPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLChipDetailPopover.m; sourceTree = "<group>"; };
+		CF31B63A170F95DA00A500B4 /* DLLWireDetailPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLWireDetailPopover.h; sourceTree = "<group>"; };
+		CF31B63B170F95DA00A500B4 /* DLLWireDetailPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLWireDetailPopover.m; sourceTree = "<group>"; };
 		CF35B6FD16C5902500D6358E /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		CF43ADD3170E2CA200C823C0 /* DLLPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLPopoverController.h; sourceTree = "<group>"; };
 		CF43ADD4170E2CA200C823C0 /* DLLPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLPopoverController.m; sourceTree = "<group>"; };
@@ -327,8 +333,8 @@
 				CF8E970B17065C2D00BFE5FB /* Resources */,
 				CF0D2DAA16BAE12E00753DF9 /* DLLContainerViewController.h */,
 				CF0D2DAB16BAE12E00753DF9 /* DLLContainerViewController.m */,
-				CF43ADC8170E248900C823C0 /* PopOvers */,
 				CF0D2DB116BAE2C600753DF9 /* BoardView */,
+				CF43ADC8170E248900C823C0 /* PopOvers */,
 				CF0D2DAD16BAE1C000753DF9 /* DockView */,
 				3A9DFD6616E80FD200C58C4A /* Component View Objects */,
 			);
@@ -398,6 +404,10 @@
 			children = (
 				CF43ADD3170E2CA200C823C0 /* DLLPopoverController.h */,
 				CF43ADD4170E2CA200C823C0 /* DLLPopoverController.m */,
+				CF31B637170F95C600A500B4 /* DLLChipDetailPopover.h */,
+				CF31B638170F95C600A500B4 /* DLLChipDetailPopover.m */,
+				CF31B63A170F95DA00A500B4 /* DLLWireDetailPopover.h */,
+				CF31B63B170F95DA00A500B4 /* DLLWireDetailPopover.m */,
 			);
 			name = PopOvers;
 			sourceTree = "<group>";
@@ -788,6 +798,8 @@
 				D8DC9F9E170CF0E900EB8434 /* DLL7400DIP.m in Sources */,
 				B4E3E815170E04FF00585379 /* DLLWire.m in Sources */,
 				CF43ADD5170E2CA300C823C0 /* DLLPopoverController.m in Sources */,
+				CF31B639170F95C600A500B4 /* DLLChipDetailPopover.m in Sources */,
+				CF31B63C170F95DA00A500B4 /* DLLWireDetailPopover.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

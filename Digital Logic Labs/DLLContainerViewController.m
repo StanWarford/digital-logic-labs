@@ -27,8 +27,10 @@
     // instantiate the subviews to be added
     self.boardView = [self.storyboard instantiateViewControllerWithIdentifier:@"UIBoardViewBoard"];
     self.boardView.boardModel = self.boardModel;
+    self.boardView.parent = self;
     self.dockView = [self.storyboard instantiateViewControllerWithIdentifier:@"UIDockViewDock"];
     self.dockView.boardModel = self.boardModel;
+    self.dockView.parent = self;
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Dock"]];
     
     // move the instantiated frames to their correct positions on screen
