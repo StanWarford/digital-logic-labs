@@ -26,6 +26,20 @@
 		CF14819C1703AC23001DDD08 /* board-new-resized.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1481981703AC23001DDD08 /* board-new-resized.png */; };
 		CF14819D1703AC23001DDD08 /* chip-14-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1481991703AC23001DDD08 /* chip-14-gray.png */; };
 		CF14819E1703AC23001DDD08 /* chip-16-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = CF14819A1703AC23001DDD08 /* chip-16-gray.png */; };
+		CF31B628170F956100A500B4 /* MAN71A.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B61A170F956100A500B4 /* MAN71A.pdf */; };
+		CF31B629170F956100A500B4 /* 74181.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B61B170F956100A500B4 /* 74181.pdf */; };
+		CF31B62A170F956100A500B4 /* 74176-177.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B61C170F956100A500B4 /* 74176-177.pdf */; };
+		CF31B62B170F956100A500B4 /* 74164.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B61D170F956100A500B4 /* 74164.pdf */; };
+		CF31B62C170F956100A500B4 /* 74151.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B61E170F956100A500B4 /* 74151.pdf */; };
+		CF31B62D170F956100A500B4 /* 7486.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B61F170F956100A500B4 /* 7486.pdf */; };
+		CF31B62E170F956100A500B4 /* 7485.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B620170F956100A500B4 /* 7485.pdf */; };
+		CF31B62F170F956100A500B4 /* 7476.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B621170F956100A500B4 /* 7476.pdf */; };
+		CF31B630170F956100A500B4 /* 7447.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B622170F956100A500B4 /* 7447.pdf */; };
+		CF31B631170F956100A500B4 /* 7432.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B623170F956100A500B4 /* 7432.pdf */; };
+		CF31B632170F956100A500B4 /* 7404.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B624170F956100A500B4 /* 7404.pdf */; };
+		CF31B633170F956100A500B4 /* 7408.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B625170F956100A500B4 /* 7408.pdf */; };
+		CF31B634170F956100A500B4 /* 7402.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B626170F956100A500B4 /* 7402.pdf */; };
+		CF31B635170F956100A500B4 /* 7400.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B627170F956100A500B4 /* 7400.pdf */; };
 		CF35B6FE16C5902500D6358E /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = CF35B6FD16C5902500D6358E /* placeholder.png */; };
 		CF43ADD5170E2CA300C823C0 /* DLLPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF43ADD4170E2CA200C823C0 /* DLLPopoverController.m */; };
 		CF45B2561703B18B002A9658 /* DLLTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF45B2551703B18B002A9658 /* DLLTestViewController.m */; };
@@ -129,6 +143,20 @@
 		CF1481981703AC23001DDD08 /* board-new-resized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "board-new-resized.png"; path = "Chip and Breadboard Images/board-new-resized.png"; sourceTree = "<group>"; };
 		CF1481991703AC23001DDD08 /* chip-14-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chip-14-gray.png"; path = "Chip and Breadboard Images/chip-14-gray.png"; sourceTree = "<group>"; };
 		CF14819A1703AC23001DDD08 /* chip-16-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chip-16-gray.png"; path = "Chip and Breadboard Images/chip-16-gray.png"; sourceTree = "<group>"; };
+		CF31B61A170F956100A500B4 /* MAN71A.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = MAN71A.pdf; sourceTree = "<group>"; };
+		CF31B61B170F956100A500B4 /* 74181.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 74181.pdf; sourceTree = "<group>"; };
+		CF31B61C170F956100A500B4 /* 74176-177.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "74176-177.pdf"; sourceTree = "<group>"; };
+		CF31B61D170F956100A500B4 /* 74164.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 74164.pdf; sourceTree = "<group>"; };
+		CF31B61E170F956100A500B4 /* 74151.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 74151.pdf; sourceTree = "<group>"; };
+		CF31B61F170F956100A500B4 /* 7486.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 7486.pdf; sourceTree = "<group>"; };
+		CF31B620170F956100A500B4 /* 7485.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 7485.pdf; sourceTree = "<group>"; };
+		CF31B621170F956100A500B4 /* 7476.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 7476.pdf; sourceTree = "<group>"; };
+		CF31B622170F956100A500B4 /* 7447.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 7447.pdf; sourceTree = "<group>"; };
+		CF31B623170F956100A500B4 /* 7432.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 7432.pdf; sourceTree = "<group>"; };
+		CF31B624170F956100A500B4 /* 7404.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 7404.pdf; sourceTree = "<group>"; };
+		CF31B625170F956100A500B4 /* 7408.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 7408.pdf; sourceTree = "<group>"; };
+		CF31B626170F956100A500B4 /* 7402.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 7402.pdf; sourceTree = "<group>"; };
+		CF31B627170F956100A500B4 /* 7400.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 7400.pdf; sourceTree = "<group>"; };
 		CF35B6FD16C5902500D6358E /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		CF43ADD3170E2CA200C823C0 /* DLLPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLPopoverController.h; sourceTree = "<group>"; };
 		CF43ADD4170E2CA200C823C0 /* DLLPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLPopoverController.m; sourceTree = "<group>"; };
@@ -439,6 +467,20 @@
 		CF8E970B17065C2D00BFE5FB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CF31B61A170F956100A500B4 /* MAN71A.pdf */,
+				CF31B61B170F956100A500B4 /* 74181.pdf */,
+				CF31B61C170F956100A500B4 /* 74176-177.pdf */,
+				CF31B61D170F956100A500B4 /* 74164.pdf */,
+				CF31B61E170F956100A500B4 /* 74151.pdf */,
+				CF31B61F170F956100A500B4 /* 7486.pdf */,
+				CF31B620170F956100A500B4 /* 7485.pdf */,
+				CF31B621170F956100A500B4 /* 7476.pdf */,
+				CF31B622170F956100A500B4 /* 7447.pdf */,
+				CF31B623170F956100A500B4 /* 7432.pdf */,
+				CF31B624170F956100A500B4 /* 7404.pdf */,
+				CF31B625170F956100A500B4 /* 7408.pdf */,
+				CF31B626170F956100A500B4 /* 7402.pdf */,
+				CF31B627170F956100A500B4 /* 7400.pdf */,
 				CF8E9708170659E600BFE5FB /* Dock.png */,
 			);
 			name = Resources;
@@ -671,6 +713,20 @@
 				CF7B67DF170E193E00FC5474 /* test-7-seg-display-7.png in Resources */,
 				CF7B67E0170E193E00FC5474 /* test-7-seg-display-empty.png in Resources */,
 				CF7B67E1170E193E00FC5474 /* test-7-seg-display-overlay.png in Resources */,
+				CF31B628170F956100A500B4 /* MAN71A.pdf in Resources */,
+				CF31B629170F956100A500B4 /* 74181.pdf in Resources */,
+				CF31B62A170F956100A500B4 /* 74176-177.pdf in Resources */,
+				CF31B62B170F956100A500B4 /* 74164.pdf in Resources */,
+				CF31B62C170F956100A500B4 /* 74151.pdf in Resources */,
+				CF31B62D170F956100A500B4 /* 7486.pdf in Resources */,
+				CF31B62E170F956100A500B4 /* 7485.pdf in Resources */,
+				CF31B62F170F956100A500B4 /* 7476.pdf in Resources */,
+				CF31B630170F956100A500B4 /* 7447.pdf in Resources */,
+				CF31B631170F956100A500B4 /* 7432.pdf in Resources */,
+				CF31B632170F956100A500B4 /* 7404.pdf in Resources */,
+				CF31B633170F956100A500B4 /* 7408.pdf in Resources */,
+				CF31B634170F956100A500B4 /* 7402.pdf in Resources */,
+				CF31B635170F956100A500B4 /* 7400.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
