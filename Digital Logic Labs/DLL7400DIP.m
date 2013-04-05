@@ -17,12 +17,13 @@
     if(self = [super initWithIdentifier: 7400
                                Location: loc
                              OutputPins: @[@2, @5, @7, @10]
-                              InputPins: @[@0, @1, @3, @4, @8, @9, @12, @11]
+                              InputPins: @[@0, @1, @3, @4, @8, @9, @11, @12]
                               GroundPin: 6
                             AndPowerPin: 13])
     {
         self.loc = loc;
     }
+    return self;
 }
 
 - (void)calculateOutputs
@@ -56,6 +57,25 @@
 - (DLLPoint *)groundPinCoordinate
 {
     return [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 6 andY:self.loc.yCoord + 1];
+}
+
+- (NSArray *)coordinatesOfInputPins
+{
+    return [NSArray arrayWithObjects:[[DLLPoint alloc] initWithIntX:self.loc.xCoord andY:self.loc.yCoord + 1],
+                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 1 andY:self.loc.yCoord + 1],
+                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord + 1],
+                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 4 andY:self.loc.yCoord + 1],
+                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord],
+                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord],
+                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord],
+                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 1 andY:self.loc.yCoord], nil];
+}
+- (NSArray *)coordinatesOfOutputPins
+{
+    return [NSArray arrayWithObjects:[[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord + 1],
+                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord + 1],
+                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 6 andY:self.loc.yCoord],
+                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord], nil];
 }
 
 @end

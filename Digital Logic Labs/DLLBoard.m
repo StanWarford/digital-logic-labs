@@ -442,6 +442,7 @@
 {
     [self determineChipFunctionality];
     [self setUpElectricalPointStates];
+    
     if (![self illegalConnectionExists])
     {
         [self simulateInitialState];
@@ -502,24 +503,100 @@
     }
 }
 
+// implement CLOCK PINS
 - (void) setUpElectricalPointStates
 {
     NSArray *chipsOnBoard = [self.chipDictionary allValues];
     for(int i = 0; i < [chipsOnBoard count]; i++)
     {
         DLLChip *chip = chipsOnBoard[i];
+        
         DLLPoint *powerPinCoord = [chip powerPinCoordinate];
         DLLPoint *groundPinCoord = [chip groundPinCoordinate];
         NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
         NSNumber *groundElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[groundPinCoord toString]];
-        //[self.electricalPointArray] ADD function to DLLElectricalPoint to change type
+        [[self.electricalPointArray objectAtIndex:powerElectricalPoint] changePointTypeTo:EPTypePower];
+        [[self.electricalPointArray objectAtIndex:groundElectricalPoint] changePointTypeTo:EPTypeGround];
+        
+        NSArray *coordsOfInputPins = [chip coordinatesOfInputPins];
+        for(int i = 0; i < [coordsOfInputPins count]; i++){
+            NSNumber *electricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[coordsOfInputPins[i] toString]];
+            [[self.electricalPointArray objectAtIndex:electricalPoint] changePointTypeTo:EPTypeInput];
+        }
+        
+        NSArray *coordsOfOutputPins = [chip coordinatesOfOutputPins];
+        for(int i = 0; i < [coordsOfOutputPins count]; i++){
+            NSNumber *electricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[coordsOfOutputPins[i] toString]];
+            [[self.electricalPointArray objectAtIndex:electricalPoint] changePointTypeTo:EPTypeOutput];
+        }
     }
 }
 
 - (BOOL) illegalConnectionExists
 {
+    NSMutableArray *activeElectricalPoints = [[NSMutableArray alloc] init];
+    int count = 0;
+    for(int i = 0; i < [self.electricalPointArray count]; i++)
+    {
+        DLLElectricalPoint *currentPoint = [self.electricalPointArray objectAtIndex:i];
+        if(!([currentPoint electricalPointType] == EPTypeOther))
+        {
+            if([currentPoint electricalPointType] == EPTypeLight ||
+               [currentPoint electricalPointType] == EPTypeInput ||
+               [currentPoint electricalPointType] == EPTypeClockInput)
+            {
+                currentPoint.setNumber = -1;
+            }
+            else
+            {
+                currentPoint.setNumber = count;
+            }
+            [activeElectricalPoints insertObject:currentPoint atIndex:count];
+            count++;
+        }
+    }
     
-    return NO;
+    BOOL changed = NO;
+    do {
+        for(int i = 0; i < [activeElectricalPoints count]; i++){
+            
+            DLLElectricalPoint *currentElectricalPoint = [activeElectricalPoints objectAtIndex:i];
+            NSUInteger index = [self.electricalPointArray indexOfObject:currentElectricalPoint];
+            NSArray *electricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:index]; // I'm unsure of if this will work, do activeElectricalPoints and electricalPointArray point to the same DLLElectrical point object?
+            for(int j = 0; j < [electricalArrayOfHoles count]; j++)
+            {
+                DLLPoint *currentPhysicalPoint = electricalArrayOfHoles[i];
+                if([[[self.breadboardStateArray objectAtIndex: currentPhysicalPoint.xCoord]
+                                                objectAtIndex: currentPhysicalPoint.yCoord]
+                                                isKindOfClass:[DLLWire class]])
+                {
+                    DLLWire *currentWire = [[self.breadboardStateArray objectAtIndex: currentPhysicalPoint.xCoord]
+                                                                        objectAtIndex: currentPhysicalPoint.yCoord];
+                    DLLPoint *otherPhysicalPoint = [currentWire otherBoardHole: currentPhysicalPoint];
+                    NSNumber *indexOfOtherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPhysicalPoint toString]];
+                    DLLElectricalPoint *otherElectricalPoint = [self.electricalPointArray objectAtIndex: indexOfOtherElectricalPoint];
+                    if(currentElectricalPoint.setNumber == -1){
+                        if(otherElectricalPoint.setNumber != -1){
+                            currentElectricalPoint.setNumber = otherElectricalPoint.setNumber;
+                            changed = YES;
+                        }
+                    }
+                    else if(otherElectricalPoint.setNumber == -1){
+                        otherElectricalPoint.setNumber = currentElectricalPoint.setNumber;
+                        changed = YES;
+                    }
+                    else if(currentElectricalPoint.setNumber != otherElectricalPoint.setNumber)
+                    {
+                            // BAIL with ERROR
+                        return NO;
+                    }
+                }
+            }
+        }
+        
+    } while (changed);
+    
+    return YES;
 }
 
 - (void) simulateInitialState

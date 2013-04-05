@@ -15,6 +15,8 @@
 - (void)calculateOutputs;
 - (DLLPoint *)powerPinCoordinate;
 - (DLLPoint *)groundPinCoordinate;
+- (NSArray *)coordinatesOfInputPins;
+- (NSArray *)coordinatesOfOutputPins;
 // do these need to be re-stated here?
 
 @end

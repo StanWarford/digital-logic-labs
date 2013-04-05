@@ -29,6 +29,7 @@ typedef enum
 - (id)initWithType:(EPType)type;
 - (id)init;
 
+- (void)changePointTypeTo:(EPType)type;
 - (BOOL)isEqual:(id)otherPoint;
 
 @end

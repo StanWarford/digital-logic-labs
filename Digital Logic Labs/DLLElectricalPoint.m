@@ -34,6 +34,11 @@
 
 #pragma mark -
 #pragma mark Utility methods
+- (void)changePointTypeTo:(EPType)type
+{
+    self.electricalPointType = type;
+}
+
 - (BOOL)isEqual:(id)otherPoint
 {
     DLLElectricalPoint * comparePoint = (DLLElectricalPoint *) otherPoint;

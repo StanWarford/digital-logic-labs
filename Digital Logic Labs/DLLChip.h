@@ -12,13 +12,20 @@
 @interface DLLChip : DLLAComponent
 
 @property BOOL isFunctional;
+@property (nonatomic, strong) NSMutableArray * pins;
+@property (nonatomic, strong) NSArray * outputPins;
+@property (nonatomic, strong) NSArray * inputPins;
 @property (nonatomic, assign) NSUInteger groundPin;
 @property (nonatomic, assign) NSUInteger powerPin;
+@property (nonatomic, assign) DLLPoint * loc;
+@property (nonatomic, assign) NSUInteger size;
 
 - (id)init;
 - (id)initWithIdenfifier:(NSInteger)identifier;
 - (DLLPoint *)powerPinCoordinate;
 - (DLLPoint *)groundPinCoordinate;
+- (NSArray *)coordinatesOfInputPins;
+- (NSArray *)coordinatesOfOutputPins;
 
 typedef enum
 {
