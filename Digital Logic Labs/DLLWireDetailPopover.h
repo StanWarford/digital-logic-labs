@@ -13,5 +13,6 @@
 @interface DLLWireDetailPopover : UIViewController
 
 @property (nonatomic, strong) DLLWireView *wire;
+@property (weak, nonatomic) IBOutlet UILabel *messageBox;
 
 @end
