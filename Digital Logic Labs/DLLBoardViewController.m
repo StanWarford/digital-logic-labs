@@ -115,15 +115,18 @@ typedef enum{
         self.state = [self.activeComponent isKindOfClass:[DLLWireView class]] ? wireStart : notWire;
         
         CGPoint cLoc = [self gridCoordinateFromViewCoordinate:CGPointMake(self.activeComponent.start.x+CHIP_PIN_X_OFFSET, self.activeComponent.start.y+CHIP_PIN_Y_OFFSET)];
-        DLLPoint *cStart = [self boardCoordinateFromGridCoordinate:cLoc];
+        DLLPoint *cOffset = [self boardCoordinateFromGridCoordinate:cLoc];
         CGPoint wLoc = [self gridCoordinateFromViewCoordinate:self.activeComponent.start];
-        DLLPoint *wStart = [self boardCoordinateFromGridCoordinate:wLoc];
-        BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? cStart : wStart IsAvailableForComponentOfSize:self.activeComponent.size];
+        // location correction
+        wLoc.x++;
+        wLoc.y++;
+        DLLPoint *wOffset = [self boardCoordinateFromGridCoordinate:wLoc];
+        BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? cOffset : wOffset IsAvailableForComponentOfSize:self.activeComponent.size];
         
         // NSLog([NSString stringWithFormat:@"%@", isAvailable ? @"YES" : @"NO"]);
         // NSLog([NSString stringWithFormat:@"(%f, %f)", gridLoc.x, gridLoc.y]);
-        // NSLog([NSString stringWithFormat:@"(%d, %d)", boardLoc.xCoord, boardLoc.yCoord]);
-        // NSLog([NSString stringWithFormat:@"(%d, %d)", chipStart.xCoord, chipStart.yCoord]);
+        // NSLog([NSString stringWithFormat:@"(%d, %d)", wOffset.xCoord, wOffset.yCoord]);
+        // NSLog([NSString stringWithFormat:@"(%d, %d)", cOffset.xCoord, cOffset.yCoord]);
         
         [self.activeComponent displayGhostWithHoleAvailable:isAvailable];
     }else{ // wireEnd - user is placing end of wire
@@ -159,14 +162,25 @@ typedef enum{
     
     if(self.state == wireEnd){ // user is placing end of wire
         CGPoint wLoc = [self.activeComponent getOffsetPointFrom:tSnapLoc];
-        DLLPoint *wOffset = [self boardCoordinateFromGridCoordinate:wLoc];
+        CGPoint wCalcPoint = [self gridCoordinateFromViewCoordinate:wLoc];
+        wCalcPoint.x++;
+        wCalcPoint.y++;
+        DLLPoint *wOffset = [self boardCoordinateFromGridCoordinate:wCalcPoint];
+        
         BOOL isAvailable = [self.boardModel cellAt:wOffset IsAvailableForComponentOfSize:self.activeComponent.size];
         [self.activeComponent translateEndTo:tSnapLoc withHoleAvailable:isAvailable];
     }else{ // user is placing start of wire or not placing a wire
         CGPoint cLoc = [self.activeComponent getOffsetPointFrom:tSnapLoc];
         CGPoint cCalcPoint = [self gridCoordinateFromViewCoordinate:CGPointMake(cLoc.x+CHIP_PIN_X_OFFSET, cLoc.y+CHIP_PIN_Y_OFFSET)];
+        CGPoint wCalcPoint = [self gridCoordinateFromViewCoordinate:cLoc];
+        // location correction
+        wCalcPoint.x++;
+        wCalcPoint.y++;
         DLLPoint *cOffset = [self boardCoordinateFromGridCoordinate:cCalcPoint];
-        DLLPoint *wOffset = [self boardCoordinateFromGridCoordinate:cLoc];
+        DLLPoint *wOffset = [self boardCoordinateFromGridCoordinate:wCalcPoint];
+        
+        // NSLog([NSString stringWithFormat:@"(%u, %u)", wOffset.xCoord, wOffset.yCoord]);
+        // NSLog([NSString stringWithFormat:@"(%d, %d)", cOffset.xCoord, cOffset.yCoord]);
         
         BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? cOffset : wOffset IsAvailableForComponentOfSize: self.activeComponent.size];
         
@@ -205,7 +219,13 @@ typedef enum{
         
     }else if(self.state == wireStart){ // user is placing start of wire
         CGPoint wGridLoc = [self gridCoordinateFromViewCoordinate:self.activeComponent.start];
+        // location correction
+        wGridLoc.x++;
+        wGridLoc.y++;
         DLLPoint *wBoardLoc = [self boardCoordinateFromGridCoordinate:wGridLoc];
+        
+        NSLog([NSString stringWithFormat:@"(%u, %u)", wBoardLoc.xCoord, wBoardLoc.yCoord]);
+        
         BOOL isAvailable = [self.boardModel cellAt:wBoardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
 
         if(isAvailable){
@@ -223,6 +243,9 @@ typedef enum{
         
     }else{ // user is placing end of wire
         CGPoint wGridLoc = [self gridCoordinateFromViewCoordinate:self.activeComponent.end];
+        // location correction
+        wGridLoc.x++;
+        wGridLoc.y++;
         DLLPoint *wBoardLoc = [self boardCoordinateFromGridCoordinate:wGridLoc];
         BOOL isAvailable = [self.boardModel cellAt:wBoardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
 
