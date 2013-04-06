@@ -22,6 +22,8 @@
 
 - (id)init;
 
+- (void)labSelectionChangedTo:(NSInteger)labNum; // Casey - Added this function to complete the labs view
+
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(DLLPoint *)coords;
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *) endingPoint withColor:(UIColor *)color;
 

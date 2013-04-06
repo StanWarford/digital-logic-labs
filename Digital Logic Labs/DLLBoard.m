@@ -36,6 +36,12 @@
 @synthesize breadboardStateArray = _breadboardStateArray;
 @synthesize activeLab = _activeLab;
 
+#pragma mark -
+#pragma mark Lab View API
+- (void)labSelectionChangedTo:(NSInteger)labNum
+{
+    // Casey - added this to complete the lab view
+}
 
 #pragma mark -
 #pragma mark lazy instantiation methods

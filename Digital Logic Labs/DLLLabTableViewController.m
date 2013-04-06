@@ -14,9 +14,9 @@
 
 @implementation DLLLabTableViewController
 
-#define NUMBER_OF_SECTIONS 1
-#define NUMBER_OF_ROWS 6
-#define INNER_PADDING 12
+#define NUMBER_OF_SECTIONS 1 // number of sections in the table should always be 1
+#define NUMBER_OF_ROWS 6 // number of rows in the table should correspond to the number of labs
+#define INNER_PADDING 12 // amount of padding internal to each cell
 
 @synthesize delegate = _delegate;
 
@@ -41,11 +41,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Number of rows is the number of time zones in the region for the specified section.
     return NUMBER_OF_ROWS;
 }
 
-// Populate the table.
+// give each cell a label with the lab number in it
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
@@ -57,7 +56,7 @@
     return cell;
 }
 
-// Indents each label in the table to the center of the cell
+// indent each label in the table to the center of the cell
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath {
     return INNER_PADDING;
 }
@@ -67,7 +66,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.delegate selectionDidChangeTo:indexPath.row];
-    // thoughts: Tell model which Lab is selected now?
 }
 
 #pragma mark -
@@ -75,7 +73,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // Nothing to deallocate
 }
 
 @end
