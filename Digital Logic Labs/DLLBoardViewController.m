@@ -130,9 +130,9 @@ typedef enum{
         BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? cOffset : wOffset IsAvailableForComponentOfSize:self.activeComponent.size];
         
         // NSLog([NSString stringWithFormat:@"%@", isAvailable ? @"YES" : @"NO"]);
-        // NSLog([NSString stringWithFormat:@"(%f, %f)", wLoc.x, wLoc.y]);
+        NSLog([NSString stringWithFormat:@"(%f, %f)", wLoc.x, wLoc.y]);
         // NSLog([NSString stringWithFormat:@"(%f, %f)", cLoc.x, cLoc.y]);
-        NSLog([NSString stringWithFormat:@"(%d, %d)", wOffset.xCoord, wOffset.yCoord]);
+        // NSLog([NSString stringWithFormat:@"(%d, %d)", wOffset.xCoord, wOffset.yCoord]);
         // NSLog([NSString stringWithFormat:@"(%d, %d)", cOffset.xCoord, cOffset.yCoord]);
         
         [self.activeComponent displayGhostWithHoleAvailable:isAvailable];
@@ -181,9 +181,9 @@ typedef enum{
         DLLPoint *cOffset = [self boardCoordinateFromGridCoordinate:cCalcPoint];
         DLLPoint *wOffset = [self boardCoordinateFromGridCoordinate:wCalcPoint];
         
-        // NSLog([NSString stringWithFormat:@"(%f, %f)", wCalcPoint.x, wCalcPoint.y]);
+        NSLog([NSString stringWithFormat:@"(%f, %f)", wCalcPoint.x, wCalcPoint.y]);
         // NSLog([NSString stringWithFormat:@"(%f, %f)", cCalcPoint.x, cCalcPoint.y]);
-        NSLog([NSString stringWithFormat:@"(%u, %u)", wOffset.xCoord, wOffset.yCoord]);
+        // NSLog([NSString stringWithFormat:@"(%u, %u)", wOffset.xCoord, wOffset.yCoord]);
         // NSLog([NSString stringWithFormat:@"(%d, %d)", cOffset.xCoord, cOffset.yCoord]);
         
         BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? cOffset : wOffset IsAvailableForComponentOfSize: self.activeComponent.size];
@@ -454,12 +454,100 @@ Vertical ranges of grid coordinates corresponding to holes on the board
         retY = [[yBoardToGridPoints objectForKey:[NSNumber numberWithInt:y]] intValue];
     }else{
         // create hardcoded dictionary relating control item board points to view points
-        NSArray *boardControlPoints = [[NSArray alloc] initWithObjects:
-                                       [[DLLPoint alloc] initWithIntX:0 andY:0],
-                                       [[DLLPoint alloc] initWithIntX:1 andY:0],
-                                       nil];
+        NSMutableArray *boardControlPoints = [NSMutableArray array];
+        for(NSInteger x = 0; x < 12; x++){
+            for(NSInteger y = 0; y < 5; y++){
+                if(x < 8){
+                    [boardControlPoints addObject:[[DLLPoint alloc] initWithIntX:x andY:y]];
+                }else{
+                    if(y != 0){
+                        [boardControlPoints addObject:[[DLLPoint alloc] initWithIntX:x andY:y]];
+                    }
+                }
+            }
+        }
+        NSMutableArray *gridControlPoints = [NSMutableArray array];
+        // A
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(29, 3)]];
+        // X
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(17, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(17, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(17, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(17, 14)]];
+        // B
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(30, 3)]];
+        // XBar
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(18, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(18, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(18, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(18, 14)]];
+        // C
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(31, 3)]];
+        // Y
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(21, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(21, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(21, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(21, 14)]];
+        // D
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(32, 3)]];
+        // YBar
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(22, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(22, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(22, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(22, 14)]];
+        // E
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(55, 3)]];
+        // SW1
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(27, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(27, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(27, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(27, 14)]];
+        // F
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(56, 3)]];
+        // SW2
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(33, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(33, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(33, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(33, 14)]];
+        // G
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(57, 3)]];
+        // SW3
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(39, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(39, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(39, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(39, 14)]];
+        // H
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(58, 3)]];
+        // SW4
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(45, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(45, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(45, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(45, 14)]];
+        // SW5
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(51, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(51, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(51, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(51, 14)]];
+        // SW6
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(57, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(57, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(57, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(57, 14)]];
+        // SW7
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(63, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(63, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(63, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(63, 14)]];
+        // SW8
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(69, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(69, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(69, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(69, 14)]];
+
+        NSDictionary *boardControlToGrid = [NSDictionary dictionaryWithObjects:gridControlPoints forKeys:boardControlPoints];
+        return [(NSValue*)[boardControlToGrid objectForKey:loc] CGPointValue];
     }
-    
+
     return CGPointMake(retX, retY);
 }
 
