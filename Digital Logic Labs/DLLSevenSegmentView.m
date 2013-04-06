@@ -184,6 +184,8 @@
 
 - (void)updateImage
 {
+    // draw necessary segments on to the context then put the overlay on top and flatten
+    // then set new image
     UIGraphicsBeginImageContextWithOptions(self.segEmpty.size, NO, 0.0);
     for(int i = 0; i < [self.state count]; i++){
         if([[self.state objectAtIndex:i] boolValue]){

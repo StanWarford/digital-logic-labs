@@ -19,25 +19,25 @@
 @synthesize switches = _switches;
 @synthesize segView = _segView;
 
-#define SWITCH_ROW 450
-#define SWITCH_COL_START 290
-#define SWITCH_DEBOUNCED_SPACING 53
-#define SWITCH_SPACING 64
-#define SWITCH_SIZE_X 77
-#define SWITCH_SIZE_Y 27
-#define SWITCH_COUNT 10
+#define SWITCH_ROW 450 // down direction vertical y coordinate where switches begin appearing
+#define SWITCH_COL_START 290 // right direction horizontal x coordinate where switches begin appearing
+#define SWITCH_DEBOUNCED_SPACING 53 // horizontal spacing specific to debounced switches
+#define SWITCH_SPACING 64 // horizontal spacing for non-debounced switches
+#define SWITCH_SIZE_X 77 // length of switches
+#define SWITCH_SIZE_Y 27 // height of switches
+#define SWITCH_COUNT 10 // number of switches
 
-#define LIGHT_ROW 245
-#define LIGHT_COL_START 302
-#define LIGHT_SIZE_X 50
-#define LIGHT_SIZE_Y 50
-#define LIGHT_SPACING 83
-#define LIGHT_COUNT 8
+#define LIGHT_ROW 245 // down direction vertical y coordinate where lights begin appearing
+#define LIGHT_COL_START 302 // right direction horizontal x coordinate where lights begin appearing
+#define LIGHT_SIZE_X 50 // length of lights
+#define LIGHT_SIZE_Y 50 // width of lights
+#define LIGHT_SPACING 83 // horizontal spacing between lights
+#define LIGHT_COUNT 8 // number of lights
 
-#define SEG_ROW 270
-#define SEG_COL 95
-#define SEG_SIZE_X 115
-#define SEG_SIZE_Y 187
+#define SEG_ROW 270 // down direction vertical y coordinate where seven segment display begins appearing
+#define SEG_COL 95 // right direction horizontal x coordinate where seven segment display begins appearing
+#define SEG_SIZE_X 115 // length of seven segment display
+#define SEG_SIZE_Y 187 // width of seven segment display
 
 #pragma mark -
 #pragma mark lazy instantiation methods
@@ -100,6 +100,7 @@
 
 #pragma mark -
 #pragma mark initialization methods
+// display all the switches and lights
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -128,6 +129,8 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.switches = nil;
+    self.lights = nil;
+    self.segView = nil;
 }
 @end
