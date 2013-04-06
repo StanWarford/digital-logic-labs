@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DLLAComponentView.h"
+#import "DLLWireView.h"
 
 @interface DLLWireDetailPopover : UIViewController
+
+@property (nonatomic, strong) DLLWireView *wire;
 
 @end

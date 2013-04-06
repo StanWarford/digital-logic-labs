@@ -18,7 +18,6 @@
 
 #import "DLLChipDetailPopover.h"
 #import "DLLWireDetailPopover.h"
-#import "DLLPopoverController.h"
 
 @class DLLDockViewController;
 

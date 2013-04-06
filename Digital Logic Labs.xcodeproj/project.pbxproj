@@ -43,7 +43,6 @@
 		CF31B639170F95C600A500B4 /* DLLChipDetailPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = CF31B638170F95C600A500B4 /* DLLChipDetailPopover.m */; };
 		CF31B63C170F95DA00A500B4 /* DLLWireDetailPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = CF31B63B170F95DA00A500B4 /* DLLWireDetailPopover.m */; };
 		CF35B6FE16C5902500D6358E /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = CF35B6FD16C5902500D6358E /* placeholder.png */; };
-		CF43ADD5170E2CA300C823C0 /* DLLPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF43ADD4170E2CA200C823C0 /* DLLPopoverController.m */; };
 		CF45B2561703B18B002A9658 /* DLLTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF45B2551703B18B002A9658 /* DLLTestViewController.m */; };
 		CF45B2591703BB95002A9658 /* DLLSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = CF45B2581703BB95002A9658 /* DLLSwitch.m */; };
 		CF45B25C1703BBBD002A9658 /* DLLSevenSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF45B25B1703BBBD002A9658 /* DLLSevenSegmentView.m */; };
@@ -164,8 +163,6 @@
 		CF31B63A170F95DA00A500B4 /* DLLWireDetailPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLWireDetailPopover.h; sourceTree = "<group>"; };
 		CF31B63B170F95DA00A500B4 /* DLLWireDetailPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLWireDetailPopover.m; sourceTree = "<group>"; };
 		CF35B6FD16C5902500D6358E /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
-		CF43ADD3170E2CA200C823C0 /* DLLPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLPopoverController.h; sourceTree = "<group>"; };
-		CF43ADD4170E2CA200C823C0 /* DLLPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLPopoverController.m; sourceTree = "<group>"; };
 		CF45B2541703B18B002A9658 /* DLLTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLTestViewController.h; sourceTree = "<group>"; };
 		CF45B2551703B18B002A9658 /* DLLTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLTestViewController.m; sourceTree = "<group>"; };
 		CF45B2571703BB95002A9658 /* DLLSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLSwitch.h; sourceTree = "<group>"; };
@@ -402,8 +399,6 @@
 		CF43ADC8170E248900C823C0 /* PopOvers */ = {
 			isa = PBXGroup;
 			children = (
-				CF43ADD3170E2CA200C823C0 /* DLLPopoverController.h */,
-				CF43ADD4170E2CA200C823C0 /* DLLPopoverController.m */,
 				CF31B637170F95C600A500B4 /* DLLChipDetailPopover.h */,
 				CF31B638170F95C600A500B4 /* DLLChipDetailPopover.m */,
 				CF31B63A170F95DA00A500B4 /* DLLWireDetailPopover.h */,
@@ -797,7 +792,6 @@
 				D8ACC6AF1709F322000EDDDD /* DLLElectricalPoint.m in Sources */,
 				D8DC9F9E170CF0E900EB8434 /* DLL7400DIP.m in Sources */,
 				B4E3E815170E04FF00585379 /* DLLWire.m in Sources */,
-				CF43ADD5170E2CA300C823C0 /* DLLPopoverController.m in Sources */,
 				CF31B639170F95C600A500B4 /* DLLChipDetailPopover.m in Sources */,
 				CF31B63C170F95DA00A500B4 /* DLLWireDetailPopover.m in Sources */,
 			);

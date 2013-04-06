@@ -14,21 +14,17 @@
 
 @implementation DLLWireDetailPopover
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize wire = _wire;
 
+#pragma mark -
+#pragma mark initialization methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
+#pragma mark -
+#pragma mark MISC
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

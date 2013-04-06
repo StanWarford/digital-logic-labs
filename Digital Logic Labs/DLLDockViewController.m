@@ -10,6 +10,7 @@
 
 @interface DLLDockViewController ()
 @property (nonatomic, strong) DLLDockViewLayout *dockLayout;
+@property (nonatomic, strong) UIPopoverController *popOver;
 @end
 
 @implementation DLLDockViewController
@@ -23,6 +24,7 @@
 @synthesize dockLayout = _dockLayout;
 @synthesize inventory = _inventory;
 @synthesize parent = _parent;
+@synthesize popOver = _popOver;
 
 #pragma mark -
 #pragma mark property instantiation methods
@@ -146,15 +148,23 @@
 #pragma mark UICollectionViewDelegate methods
 - (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    DLLAComponentView *selection = [self.inventory objectAtIndex:[indexPath row]];
-    if([selection isKindOfClass:[DLLWireView class]]){
-        DLLWireDetailPopover *detail = [[DLLWireDetailPopover alloc] init];
-        DLLPopoverController *popOver = [[DLLPopoverController alloc] initWithContentViewController:detail];
-        [popOver presentPopoverFromRect:CGRectMake(60, 50, 700, 500) inView:self.parent.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    }else{
-        DLLChipDetailPopover *detail = [[DLLChipDetailPopover alloc] init];
-        DLLPopoverController *popOver = [[DLLPopoverController alloc] initWithContentViewController:detail];
-        [popOver presentPopoverFromRect:CGRectMake(60, 50, 700, 500) inView:self.parent.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    NSInteger row = [indexPath row];
+    if(row >= PADDING_CELL_COUNT && row < [self.inventory count] + PADDING_CELL_COUNT){
+        DLLAComponentView *selection = [self.inventory objectAtIndex:[indexPath row] - PADDING_CELL_COUNT];
+        CGRect presentFrame = CGRectMake(505, 8, 54, 108);
+        if([selection isKindOfClass:[DLLWireView class]]){
+            DLLWireDetailPopover *detail = [self.storyboard instantiateViewControllerWithIdentifier:@"WireDetailController"];
+            detail.wire = (DLLWireView*)selection;
+            self.popOver = [[UIPopoverController alloc] initWithContentViewController:detail];
+            [self.popOver setPopoverContentSize:CGSizeMake(800, 600)];
+            [self.popOver presentPopoverFromRect:presentFrame inView:self.view permittedArrowDirections:0 animated:YES];
+        }else{
+            DLLChipDetailPopover *detail = [self.storyboard instantiateViewControllerWithIdentifier:@"ChipDetailController"];
+            detail.identifier = selection.identifier;
+            self.popOver = [[UIPopoverController alloc] initWithContentViewController:detail];
+            [self.popOver setPopoverContentSize:CGSizeMake(800, 600)];
+            [self.popOver presentPopoverFromRect:presentFrame inView:self.view permittedArrowDirections:0 animated:YES];
+        }
     }
 }
 

@@ -10,4 +10,7 @@
 
 @interface DLLChipDetailPopover : UIViewController
 
+@property (nonatomic, weak) IBOutlet UIWebView *webView;
+@property (nonatomic, assign) NSInteger identifier;
+
 @end

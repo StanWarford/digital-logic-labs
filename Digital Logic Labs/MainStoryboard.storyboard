@@ -104,6 +104,52 @@
             </objects>
             <point key="canvasLocation" x="2131" y="396"/>
         </scene>
+        <!--Chip Detail Popover-->
+        <scene sceneID="Hny-if-CZl">
+            <objects>
+                <viewController storyboardIdentifier="ChipDetailController" id="fzu-XQ-MTp" customClass="DLLChipDetailPopover" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dG2-Yd-bMB">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZI-cx-NkY">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RZI-cx-NkY" firstAttribute="trailing" secondItem="dG2-Yd-bMB" secondAttribute="trailing" type="default" id="18g-jq-5mG"/>
+                            <constraint firstItem="RZI-cx-NkY" firstAttribute="bottom" secondItem="dG2-Yd-bMB" secondAttribute="bottom" type="default" id="Aaq-cq-W11"/>
+                            <constraint firstItem="RZI-cx-NkY" firstAttribute="top" secondItem="dG2-Yd-bMB" secondAttribute="top" type="default" id="EUd-Uo-95k"/>
+                            <constraint firstItem="RZI-cx-NkY" firstAttribute="leading" secondItem="dG2-Yd-bMB" secondAttribute="leading" type="default" id="U8R-ck-QpS"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="webView" destination="RZI-cx-NkY" id="yN9-Q1-VAQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sl5-7c-6Z6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2659" y="1291"/>
+        </scene>
+        <!--Wire Detail Popover-->
+        <scene sceneID="tuw-Of-Lb2">
+            <objects>
+                <viewController storyboardIdentifier="WireDetailController" id="CNo-Hr-NTm" customClass="DLLWireDetailPopover" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gbu-9b-eEg">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jto-AO-2pb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1523" y="1299"/>
+        </scene>
         <!--Container View Controller - Board-->
         <scene sceneID="iDC-cu-yxX">
             <objects>
@@ -207,6 +253,12 @@
         <class className="DLLBoardViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLBoardViewController.h"/>
         </class>
+        <class className="DLLChipDetailPopover" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLChipDetailPopover.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
         <class className="DLLContainerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLContainerViewController.h"/>
         </class>
@@ -228,14 +280,11 @@
         <class className="DLLSplitViewController" superclassName="UISplitViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLSplitViewController.h"/>
         </class>
-        <class className="DLLSwitch" superclassName="UISwitch">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLSwitch.h"/>
-        </class>
         <class className="DLLTestViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLTestViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="switchStateChanged:" candidateClass="DLLSwitch"/>
-            </relationships>
+        </class>
+        <class className="DLLWireDetailPopover" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DLLWireDetailPopover.h"/>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
