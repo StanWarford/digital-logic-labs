@@ -14,6 +14,7 @@
 #define GHOST_TRANSPARENCY 0.5
 #define SOLID_CIRCLE_DIAMETER 12
 #define GHOST_CIRCLE_DIAMETER 20
+// original ghost diameter = 20
 // original circle diameter = 12
 
 @synthesize color = _color;

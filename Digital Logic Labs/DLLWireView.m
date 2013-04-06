@@ -10,7 +10,8 @@
 
 @implementation DLLWireView
 
-#define WIRE_X_OFFSET -24.4
+#define WIRE_X_OFFSET -48.8
+// original x offset -48.8
 #define WIRE_Y_OFFSET 0
 
 @synthesize end = _end;

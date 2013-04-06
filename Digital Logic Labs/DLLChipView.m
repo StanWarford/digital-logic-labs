@@ -22,10 +22,10 @@
 
 #define COLOR_INTENSITY 0.5 // 0 < n < 1, 1 = opaque 0 = transparent
 #define GHOST_TRANSPARENCY 0.5 // 0 < n < 1, 1 = opaque 0 = transparent
-#define X_OFFSET_14 94 // offset from middle to first pin for 14 pin chips
-#define X_OFFSET_16 104 // offset from middle to first pin for 16 pin chips
+#define X_OFFSET_14 128 // offset from middle to first pin for 14 pin chips
+#define X_OFFSET_16 138 // offset from middle to first pin for 16 pin chips
 #define X_OFFSET_ALU 127 // offset from middle to first pin for the ALU
-#define Y_OFFSET 14 // offset from middle to first pin for all chips except the ALU
+#define Y_OFFSET 25 // offset from middle to first pin for all chips except the ALU
 #define Y_OFFSET_ALU 15 // offset from middle to first pin for the ALU
 
 @synthesize availableGhostImage = _availableGhostImage;
