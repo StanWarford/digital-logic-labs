@@ -382,7 +382,6 @@
 				CF1481971703AC23001DDD08 /* 200px-AND_ANSI.png */,
 				CF1481991703AC23001DDD08 /* chip-14-gray.png */,
 				CF14819A1703AC23001DDD08 /* chip-16-gray.png */,
-				CF35B6FD16C5902500D6358E /* placeholder.png */,
 				48190C8D16FA6E2D003BC4E4 /* wire.png */,
 			);
 			name = Resources;
@@ -465,6 +464,7 @@
 		CF80E86316D2CFA900DBA574 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CF35B6FD16C5902500D6358E /* placeholder.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

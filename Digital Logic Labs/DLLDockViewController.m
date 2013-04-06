@@ -11,6 +11,7 @@
 @interface DLLDockViewController ()
 @property (nonatomic, strong) DLLDockViewLayout *dockLayout;
 @property (nonatomic, strong) UIPopoverController *popOver;
+- (void)selectCenterItem;
 @end
 
 @implementation DLLDockViewController
@@ -86,7 +87,7 @@
 {
     [super viewDidAppear:animated];
     // select first item at start
-    [self.delegate selectionDidChange:[self.inventory objectAtIndex:0]];
+    [self selectCenterItem];
 }
 
 #pragma mark -
@@ -186,6 +187,27 @@
 {
     if(selection >= PADDING_CELL_COUNT && selection < [self.inventory count] + PADDING_CELL_COUNT){
         [self.delegate selectionDidChange:[self.inventory objectAtIndex:selection - PADDING_CELL_COUNT]];
+    }
+}
+
+#pragma mark -
+#pragma mark utility methods
+- (void)selectCenterItem
+{
+    NSArray *visiblePaths = [NSArray array];
+    visiblePaths = [self.collectionView indexPathsForVisibleItems];
+    // check required at start since visiblePaths when this is first called is empty
+    if([visiblePaths count] > 0){
+        // calculate the row number that would be the middle--required because visiblePaths not always in order
+        NSMutableArray *temp = [NSMutableArray array];
+        for(NSIndexPath *path in visiblePaths){
+            [temp addObject:[NSNumber numberWithInteger:path.row]];
+        }
+        NSInteger middleOffset = [visiblePaths count]/2;
+        NSNumber *targetRow = [NSNumber numberWithInteger:[[temp valueForKeyPath:@"@max.intValue"] intValue] - middleOffset];
+        // get the index of the middle element and select it
+        NSInteger targetIndex = [temp indexOfObject:targetRow];
+        [self.delegate selectionDidChange:[self.inventory objectAtIndex:[visiblePaths[targetIndex] row] - PADDING_CELL_COUNT]];
     }
 }
 
