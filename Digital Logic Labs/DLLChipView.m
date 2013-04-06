@@ -9,9 +9,9 @@
 #import "DLLChipView.h"
 
 @interface DLLChipView ()
-@property (nonatomic, strong) UIImage* availableGhostImage;
-@property (nonatomic, strong) UIImage* unavailableGhostImage;
-@property (nonatomic, assign) CGPoint center;
+@property (nonatomic, strong) UIImage* availableGhostImage; // premade unhighlighted ghost image
+@property (nonatomic, strong) UIImage* unavailableGhostImage; // premade highlighted ghost image
+@property (nonatomic, assign) CGPoint center; // center of the view
 - (UIImage*)makeGhostWithHoleAvailable:(BOOL)available forImage:(UIImage*)image;
 - (UIImage*)convertImageToGrayScale:(UIImage*)image;
 - (void)setChipImageAndSize:(NSInteger)identifier;
@@ -22,9 +22,11 @@
 
 #define COLOR_INTENSITY 0.5 // 0 < n < 1, 1 = opaque 0 = transparent
 #define GHOST_TRANSPARENCY 0.5 // 0 < n < 1, 1 = opaque 0 = transparent
+
 #define X_OFFSET_14 128 // offset from middle to first pin for 14 pin chips
 #define X_OFFSET_16 138 // offset from middle to first pin for 16 pin chips
 #define X_OFFSET_ALU 127 // offset from middle to first pin for the ALU
+
 #define Y_OFFSET 25 // offset from middle to first pin for all chips except the ALU
 #define Y_OFFSET_ALU 15 // offset from middle to first pin for the ALU
 

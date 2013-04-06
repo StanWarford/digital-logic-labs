@@ -9,6 +9,7 @@
 #import "DLLWireDetailPopover.h"
 
 @interface DLLWireDetailPopover ()
+
 @property (nonatomic, strong) NSArray *buttons;
 - (void)redPressed;
 - (void)orangePressed;
@@ -16,22 +17,26 @@
 - (void)bluePressed;
 - (void)greenPressed;
 - (void)greyPressed;
+
 @end
 
 @implementation DLLWireDetailPopover
 
-#define BUTTONS_X_START 280
-#define BUTTONS_X_SPACING 150
-#define BUTTONS_Y_START 100
-#define BUTTONS_Y_SPACING 150
-#define BUTTONS_LENGTH 100
-#define BUTTONS_WIDTH 100
+#define BUTTONS_X_START 280 // right direction horizontal location where buttons start appearing
+#define BUTTONS_X_SPACING 150 // spacing between columns of buttons
 
-@synthesize wire = _wire;
-@synthesize buttons = _buttons;
+#define BUTTONS_Y_START 100 // down direction vertical location where buttons start appearing
+#define BUTTONS_Y_SPACING 150 // spacing between rows of buttons
+
+#define BUTTONS_LENGTH 100 // length of buttons
+#define BUTTONS_WIDTH 100 // width of buttons
+
+@synthesize wire = _wire; // pointer to selected wire in dock
+@synthesize buttons = _buttons; // array of buttons to display
 
 #pragma mark -
 #pragma mark lazy instantiation methods
+// set up all buttons to display
 - (NSArray*)buttons
 {
     if(!_buttons){
@@ -80,6 +85,7 @@
 
 #pragma mark -
 #pragma mark initialization methods
+// display all buttons
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -132,7 +138,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.buttons = nil;
 }
 
 @end

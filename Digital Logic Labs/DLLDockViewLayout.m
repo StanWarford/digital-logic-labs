@@ -39,6 +39,7 @@
 
 #pragma mark -
 #pragma mark zoom methods
+// Defines view properties for visible elements.  Center element zoom performed here.
 - (NSArray*)layoutAttributesForElementsInRect:(CGRect)rect
 {
     NSArray *attributeList = [super layoutAttributesForElementsInRect:rect];
@@ -67,17 +68,17 @@
 
 #pragma mark -
 #pragma mark update forcing methods
+// set to true to refresh items while scrolling
 - (BOOL) shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
 {
-    // set to true to refresh items while scrolling
     return YES;
 }
 
 #pragma mark -
 #pragma mark center snapping methods
+// force scrolling to stop with items centered
 - (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity
 {
-    // Force scrolling to stop with items centered
     CGFloat offSetAdjustment = CGFLOAT_MAX;
     CGFloat horizontalCenter = (CGFloat)(proposedContentOffset.x + self.collectionView.bounds.size.width/2.0);
     CGRect targetRect = CGRectMake(proposedContentOffset.x, 0.0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
@@ -94,6 +95,7 @@
 
 #pragma mark -
 #pragma mark MISC
+// calculate the center item and send a message to the dock that it has been selected
 - (void)selectCenterItem
 {
     NSArray *visiblePaths = [NSArray array];

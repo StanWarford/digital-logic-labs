@@ -10,4 +10,6 @@
 
 @interface DLLDockViewCell : UICollectionViewCell
 
+// Casey - Empty class, kinda doesn't need to be here, but refactoring would be annoying so it stays
+
 @end

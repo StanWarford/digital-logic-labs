@@ -15,49 +15,53 @@ typedef enum{
 } placementState;
 
 @interface DLLBoardViewController ()
+
 @property (nonatomic, strong) DLLAComponentView *activeComponent;
 @property (nonatomic, strong) NSDictionary *pointMap;
 @property (nonatomic, strong) DLLAComponentView *selection;
 @property (nonatomic, assign) placementState state;
+
 - (CGPoint)gridCoordinateFromViewCoordinate:(CGPoint)loc;
 - (CGPoint)viewCoordinateFromGridCoordinate:(CGPoint)loc;
 - (DLLPoint*)boardCoordinateFromGridCoordinate:(CGPoint)loc;
 - (CGPoint)gridCoordinateFromBoardCoordinate:(DLLPoint*)loc;
 - (void)removeComponentFromPointMap:(DLLAComponentView*)component;
+
 @end
 
 @implementation DLLBoardViewController
 
-#define HORIZONTAL_BOARD_SPACING 11.9
-#define VERTICAL_BOARD_SPACING 12.2
+#define HORIZONTAL_BOARD_SPACING 11.9 // defines space between logical horizontal grid lines
+#define VERTICAL_BOARD_SPACING 12.2 // defines space between logical vertical grid lines
 
-#define HORIZONTAL_BOARD_OFFSET 6
-#define VERTICAL_BOARD_OFFSET 7
+#define HORIZONTAL_BOARD_OFFSET 6 // defines right direction horizontal offset for logical grid
+#define VERTICAL_BOARD_OFFSET 7 // defines down direction vertical offset for logical grid
 
-#define VIEW_HEIGHT 634
-#define VIEW_WIDTH 1024
+#define VIEW_HEIGHT 634 // defines height of view
+#define VIEW_WIDTH 1024 // defines width of view
 
-#define CHIP_PIN_X_OFFSET 12
-#define CHIP_PIN_Y_OFFSET 16
+#define CHIP_PIN_X_OFFSET 12 // defines right direction horizontal offset for upper left pin on a chipview
+#define CHIP_PIN_Y_OFFSET 16 // defines down direction vertical offset for upper left pin on a chipview
 
-@synthesize activeComponent = _activeComponent;
-@synthesize pointMap = _pointMap;
-@synthesize selection = _selection;
-@synthesize boardModel = _boardModel;
-@synthesize state = _state;
-@synthesize parent = _parent;
+@synthesize activeComponent = _activeComponent; // pointer to the component being actively edited
+@synthesize pointMap = _pointMap; // pointer to internal dictionary of DLLPoints and objects placed in the view
+@synthesize selection = _selection; // pointer to componentview that's selected in dock
+@synthesize boardModel = _boardModel; // pointer to model
+@synthesize state = _state; // variable representing the state of the board as defined by placement state enum
+@synthesize parent = _parent; // pointer to containerview
 
 #pragma mark -
 #pragma mark Initialization Metods
+// disable multitouch, reset activecomponent, and enter initial state
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     self.view.multipleTouchEnabled = NO;
     self.activeComponent = nil;
     self.state = notWire;
 }
 
+// setup visual elements of the view
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -79,6 +83,7 @@ typedef enum{
 
 #pragma mark -
 #pragma mark DLLDockViewControllerDelegate methods
+// called when dock changes selection
 - (void)selectionDidChange:(DLLAComponentView*)selection
 {
     self.selection = selection;
@@ -87,6 +92,7 @@ typedef enum{
 #pragma mark -
 #pragma mark Touch Recognition methods
 // if something is touched, assume the user wants to edit its position and remove it immediately
+// otherwise allocate a new component based on dock selection and 
 // then begin placing the ghost image on screen
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -185,7 +191,7 @@ typedef enum{
     }
 }
 
-// when the touch ends, query the model one more time before adding the element
+// when the touch ends, query the model one more time adding the component to both the model and the internal pointmap
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesEnded:touches withEvent:event];
@@ -261,15 +267,16 @@ typedef enum{
     }
 }
 
+// in case an error occurs, cancel out all touch info
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesCancelled:touches withEvent:event];
-    // in case an error occurs, cancel out all touch info
     self.activeComponent = nil;
 }
 
 #pragma mark -
-#pragma mark display methods
+#pragma mark display point translation methods
+// translate a view coordinate to coordinates on the logical grid
 - (CGPoint)gridCoordinateFromViewCoordinate:(CGPoint)loc
 {
     NSInteger x = loc.x;
@@ -279,6 +286,7 @@ typedef enum{
     return CGPointMake(calcX, calcY);
 }
 
+// translate a logical grid coordinate back to a coordinate in the view
 - (CGPoint)viewCoordinateFromGridCoordinate:(CGPoint)loc
 {
     NSInteger x = loc.x;
@@ -288,18 +296,21 @@ typedef enum{
     return CGPointMake(calcX, calcY);
 }
 
-// Vertical ranges of grid coordinates corresponding to holes on the board
-// 3
-// 11-14
+/*
+Vertical ranges of grid coordinates corresponding to holes on the board
+3
+11-14
 
-// 19, 20
-// 22-26
-// 28-32
-// 34, 35
-// 37-41
-// 43-47
-// 49, 50
+19, 20
+22-26
+28-32
+34, 35
+37-41
+43-47
+49, 50
+*/
 
+// Translate logical grid coordinates into coordinates used by the board model
 - (DLLPoint*)boardCoordinateFromGridCoordinate:(CGPoint)loc
 {
     NSInteger x = loc.x;
@@ -405,6 +416,7 @@ typedef enum{
     return [[DLLPoint alloc] initWithIntX:retX andY:retY];
 }
 
+// translate coordinates used by the board model into logical grid coordinates
 - (CGPoint)gridCoordinateFromBoardCoordinate:(DLLPoint*)loc
 {
     NSInteger x = loc.xCoord;
@@ -460,6 +472,7 @@ typedef enum{
 
 #pragma mark -
 #pragma mark utility methods
+// remove all references in pointmap to component
 - (void)removeComponentFromPointMap:(DLLAComponentView *)component
 {
     NSArray *temp = [self.pointMap allKeysForObject:component];
@@ -470,6 +483,7 @@ typedef enum{
     self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
 }
 
+// completely empty pointmap and tell all components to go out of the view
 - (void)clearBoard
 {
     [self.boardModel clearBoard];
@@ -485,7 +499,10 @@ typedef enum{
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.activeComponent = nil;
+    self.selection = nil;
+    // cannot deallocate pointmap since that holds information that can't be restored.
+    // cannot deallocate placementstate since that holds information that can't be restored.
 }
 
 @end
