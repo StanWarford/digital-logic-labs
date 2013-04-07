@@ -751,8 +751,36 @@
                 }
             }
         }
-        if (changed == YES) {
-          //  for // each functioning chip
+        if (changed == YES)
+        {
+            int count = 0;
+            NSMutableArray *activeChips = [[NSMutableArray alloc] init];
+            NSArray *chipsOnBoard = [self.chipDictionary allValues];
+            
+            for(int i = 0; i < [chipsOnBoard count]; i++)
+            {
+                DLLChip *currentChip = [chipsOnBoard objectAtIndex:i];
+                
+                if([currentChip isFunctional])
+                {
+                    [activeChips insertObject:currentChip atIndex:count];
+                    count++;
+                }
+            }
+            for(int i = 0; i < [activeChips count]; i++)
+            {
+                DLLChip *currentChip = [activeChips objectAtIndex:i];
+                [currentChip calculateOutputs];
+                NSArray *indexOfOutputPins = [currentChip outputPins];
+                NSMutableArray *chipPinValues = [currentChip pins];
+                NSMutableArray *newOutputPinValues = [[NSMutableArray alloc] init];  // TODO: question, i've alloc init these like this a couple times now, is this okay? (to not initialize a size?)
+                for(int i = 0; i < [indexOfOutputPins count]; i++)
+                {
+                     [newOutputPinValues insertObject:[chipPinValues objectAtIndex: indexOfOutputPins[i]] atIndex:i];
+                }
+                NSArray *outputPinCoords = [currentChip coordinatesOfOutputPins];
+                
+            }
         }
         
     } while (changed && clock < CLOCK_LIMIT);

@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Pepperdine. All rights reserved.
 //
 
+
+// Note: chips must be defined so that the outputPins array and the coordinatesOfOutputPins array return the output pins in the same order for each output pin location.  Define to always return from lower index to higher index
 #import "DLLAComponent.h"
 #import "DLLPoint.h"
 
@@ -22,6 +24,7 @@
 
 - (id)init;
 - (id)initWithIdenfifier:(NSInteger)identifier;
+- (void)calculateOutputs;
 - (DLLPoint *)powerPinCoordinate;
 - (DLLPoint *)groundPinCoordinate;
 - (NSArray *)coordinatesOfInputPins;
