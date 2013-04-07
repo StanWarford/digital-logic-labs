@@ -13,9 +13,8 @@
 
 @interface DLLContainerViewController : UIViewController <UIAlertViewDelegate>
 
-// pointers to the two subviews that will be added to this container
 @property (nonatomic, weak) DLLBoardViewController *boardView;
-@property (nonatomic, strong) DLLDockViewController *dockView;
-@property (nonatomic, strong) DLLBoard *boardModel;
+@property (nonatomic, weak) DLLDockViewController *dockView;
+@property (nonatomic, weak) DLLBoard *boardModel;
 
 @end

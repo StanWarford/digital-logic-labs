@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "DLLLabTableViewController.h"
+#import "DLLBoard.h"
 
 @interface DLLPDFViewController : UIViewController <DLLLabTableViewControllerDelegate>
 
-@property (nonatomic, strong) IBOutlet UIWebView *myWebView;
+@property (nonatomic, weak) DLLBoard *boardModel;
+@property (nonatomic, weak) IBOutlet UIWebView *myWebView;
 - (void) selectionDidChangeTo:(NSInteger)selection;
 
 @end

@@ -15,49 +15,54 @@ typedef enum{
 } placementState;
 
 @interface DLLBoardViewController ()
+
 @property (nonatomic, strong) DLLAComponentView *activeComponent;
 @property (nonatomic, strong) NSDictionary *pointMap;
 @property (nonatomic, strong) DLLAComponentView *selection;
 @property (nonatomic, assign) placementState state;
+
 - (CGPoint)gridCoordinateFromViewCoordinate:(CGPoint)loc;
 - (CGPoint)viewCoordinateFromGridCoordinate:(CGPoint)loc;
 - (DLLPoint*)boardCoordinateFromGridCoordinate:(CGPoint)loc;
 - (CGPoint)gridCoordinateFromBoardCoordinate:(DLLPoint*)loc;
+- (void)addComponentToPointMap:(DLLAComponentView*)component;
 - (void)removeComponentFromPointMap:(DLLAComponentView*)component;
+
 @end
 
 @implementation DLLBoardViewController
 
-#define HORIZONTAL_BOARD_SPACING 11.9
-#define VERTICAL_BOARD_SPACING 12.2
+#define HORIZONTAL_BOARD_SPACING 11.9 // defines space between logical horizontal grid lines
+#define VERTICAL_BOARD_SPACING 12.2 // defines space between logical vertical grid lines
 
-#define HORIZONTAL_BOARD_OFFSET 6
-#define VERTICAL_BOARD_OFFSET 7
+#define HORIZONTAL_BOARD_OFFSET 6 // defines right direction horizontal offset for logical grid
+#define VERTICAL_BOARD_OFFSET 7 // defines down direction vertical offset for logical grid
 
-#define VIEW_HEIGHT 634
-#define VIEW_WIDTH 1024
+#define VIEW_HEIGHT 634 // defines height of view
+#define VIEW_WIDTH 1024 // defines width of view
 
-#define CHIP_PIN_X_OFFSET 12
-#define CHIP_PIN_Y_OFFSET 16
+#define CHIP_PIN_X_OFFSET 12 // defines right direction horizontal offset for upper left pin on a chipview
+#define CHIP_PIN_Y_OFFSET 16 // defines down direction vertical offset for upper left pin on a chipview
 
-@synthesize activeComponent = _activeComponent;
-@synthesize pointMap = _pointMap;
-@synthesize selection = _selection;
-@synthesize boardModel = _boardModel;
-@synthesize state = _state;
-@synthesize parent = _parent;
+@synthesize activeComponent = _activeComponent; // pointer to the component being actively edited
+@synthesize pointMap = _pointMap; // pointer to internal dictionary of DLLPoints and objects placed in the view
+@synthesize selection = _selection; // pointer to componentview that's selected in dock
+@synthesize boardModel = _boardModel; // pointer to model
+@synthesize state = _state; // variable representing the state of the board as defined by placement state enum
+@synthesize parent = _parent; // pointer to containerview
 
 #pragma mark -
 #pragma mark Initialization Metods
+// disable multitouch, reset activecomponent, and enter initial state
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     self.view.multipleTouchEnabled = NO;
     self.activeComponent = nil;
     self.state = notWire;
 }
 
+// setup visual elements of the view
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -79,6 +84,7 @@ typedef enum{
 
 #pragma mark -
 #pragma mark DLLDockViewControllerDelegate methods
+// called when dock changes selection
 - (void)selectionDidChange:(DLLAComponentView*)selection
 {
     self.selection = selection;
@@ -87,6 +93,7 @@ typedef enum{
 #pragma mark -
 #pragma mark Touch Recognition methods
 // if something is touched, assume the user wants to edit its position and remove it immediately
+// otherwise allocate a new component based on dock selection and 
 // then begin placing the ghost image on screen
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -123,15 +130,15 @@ typedef enum{
         BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? cOffset : wOffset IsAvailableForComponentOfSize:self.activeComponent.size];
         
         // NSLog([NSString stringWithFormat:@"%@", isAvailable ? @"YES" : @"NO"]);
-        // NSLog([NSString stringWithFormat:@"(%f, %f)", wLoc.x, wLoc.y]);
+        NSLog([NSString stringWithFormat:@"(%f, %f)", wLoc.x, wLoc.y]);
         // NSLog([NSString stringWithFormat:@"(%f, %f)", cLoc.x, cLoc.y]);
-        NSLog([NSString stringWithFormat:@"(%d, %d)", wOffset.xCoord, wOffset.yCoord]);
+        // NSLog([NSString stringWithFormat:@"(%d, %d)", wOffset.xCoord, wOffset.yCoord]);
         // NSLog([NSString stringWithFormat:@"(%d, %d)", cOffset.xCoord, cOffset.yCoord]);
         
         [self.activeComponent displayGhostWithHoleAvailable:isAvailable];
     }else{ // wireEnd - user is placing end of wire
-        BOOL didTouchStart = self.activeComponent.start.x < tSnapLoc.x + 1 && self.activeComponent.start.x > tSnapLoc.x - 1 &&
-                             self.activeComponent.start.y < tSnapLoc.y + 1 && self.activeComponent.start.y > tSnapLoc.y - 1;
+        BOOL didTouchStart = self.activeComponent.start.x < tSnapLoc.x + 20 && self.activeComponent.start.x > tSnapLoc.x - 20 &&
+                             self.activeComponent.start.y < tSnapLoc.y + 20 && self.activeComponent.start.y > tSnapLoc.y - 20;
         CGPoint wLoc = [self.activeComponent getOffsetPointFrom:tSnapLoc];
         DLLPoint *wOffset = [self boardCoordinateFromGridCoordinate:wLoc];
         BOOL isAvailable = [self.boardModel cellAt:wOffset IsAvailableForComponentOfSize:self.activeComponent.size];
@@ -174,9 +181,9 @@ typedef enum{
         DLLPoint *cOffset = [self boardCoordinateFromGridCoordinate:cCalcPoint];
         DLLPoint *wOffset = [self boardCoordinateFromGridCoordinate:wCalcPoint];
         
-        // NSLog([NSString stringWithFormat:@"(%f, %f)", wCalcPoint.x, wCalcPoint.y]);
+        NSLog([NSString stringWithFormat:@"(%f, %f)", wCalcPoint.x, wCalcPoint.y]);
         // NSLog([NSString stringWithFormat:@"(%f, %f)", cCalcPoint.x, cCalcPoint.y]);
-        NSLog([NSString stringWithFormat:@"(%u, %u)", wOffset.xCoord, wOffset.yCoord]);
+        // NSLog([NSString stringWithFormat:@"(%u, %u)", wOffset.xCoord, wOffset.yCoord]);
         // NSLog([NSString stringWithFormat:@"(%d, %d)", cOffset.xCoord, cOffset.yCoord]);
         
         BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? cOffset : wOffset IsAvailableForComponentOfSize: self.activeComponent.size];
@@ -185,7 +192,7 @@ typedef enum{
     }
 }
 
-// when the touch ends, query the model one more time before adding the element
+// when the touch ends, query the model one more time adding the component to both the model and the internal pointmap
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesEnded:touches withEvent:event];
@@ -199,15 +206,7 @@ typedef enum{
             // Tell the active component to display itself and notify model
             [self.activeComponent displayComponent];
             [self.boardModel addChipWithPartNum:self.activeComponent.identifier atUpperLeftCornerCoordinate:cStart];
-            
-            // Set pointers in dictionary to the displayed object
-            NSInteger x = cStart.xCoord;
-            NSInteger y = cStart.yCoord;
-            NSMutableDictionary *dict = [self.pointMap mutableCopy];
-            for(int i = 0; i < self.activeComponent.size; i++){
-                i < self.activeComponent.size/2 ? [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:CGPointMake(x+i, y)]] : [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:CGPointMake(x+i-self.activeComponent.size/2, y+1)]];
-            }
-            self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
+            [self addComponentToPointMap:self.activeComponent];
         }else{
             // User requested invalid chip placement, remove activeComponent from view
             [self.activeComponent removeGraphics];
@@ -223,11 +222,7 @@ typedef enum{
         BOOL isAvailable = [self.boardModel cellAt:wBoardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
 
         if(isAvailable){
-            // add start of wire to pointMap
-            NSMutableDictionary *dict = [self.pointMap mutableCopy];
-            [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:[wBoardLoc CGPointFromCoords]]];
-            self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
-            
+            // start of wire placed in valid position, change state to wireEnd and proceed
             self.state = wireEnd;
         }else{
             [self.activeComponent removeGraphics];
@@ -246,11 +241,7 @@ typedef enum{
         if(isAvailable){
             [self.activeComponent displayComponent];
             [self.boardModel addWireFromPoint:[[DLLPoint alloc] initWithCoords:self.activeComponent.start] toPoint:[[DLLPoint alloc] initWithCoords:self.activeComponent.end] withColor:self.activeComponent.color];
-            
-            // set pointers in dictionary to the displayed object
-            NSMutableDictionary *dict = [self.pointMap mutableCopy];
-            [dict setObject:self.activeComponent forKey:[NSValue valueWithCGPoint:[wBoardLoc CGPointFromCoords]]];
-            self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
+            [self addComponentToPointMap:self.activeComponent];
         }else{
             // user requested invalid object placement, remove activeComponent from view and dictionary
             [self.activeComponent removeGraphics];
@@ -261,15 +252,16 @@ typedef enum{
     }
 }
 
+// in case an error occurs, cancel out all touch info
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesCancelled:touches withEvent:event];
-    // in case an error occurs, cancel out all touch info
     self.activeComponent = nil;
 }
 
 #pragma mark -
-#pragma mark display methods
+#pragma mark display point translation methods
+// translate a view coordinate to coordinates on the logical grid
 - (CGPoint)gridCoordinateFromViewCoordinate:(CGPoint)loc
 {
     NSInteger x = loc.x;
@@ -279,6 +271,7 @@ typedef enum{
     return CGPointMake(calcX, calcY);
 }
 
+// translate a logical grid coordinate back to a coordinate in the view
 - (CGPoint)viewCoordinateFromGridCoordinate:(CGPoint)loc
 {
     NSInteger x = loc.x;
@@ -288,18 +281,21 @@ typedef enum{
     return CGPointMake(calcX, calcY);
 }
 
-// Vertical ranges of grid coordinates corresponding to holes on the board
-// 3
-// 11-14
+/*
+Vertical ranges of grid coordinates corresponding to holes on the board
+3
+11-14
 
-// 19, 20
-// 22-26
-// 28-32
-// 34, 35
-// 37-41
-// 43-47
-// 49, 50
+19, 20
+22-26
+28-32
+34, 35
+37-41
+43-47
+49, 50
+*/
 
+// Translate logical grid coordinates into coordinates used by the board model
 - (DLLPoint*)boardCoordinateFromGridCoordinate:(CGPoint)loc
 {
     NSInteger x = loc.x;
@@ -405,6 +401,7 @@ typedef enum{
     return [[DLLPoint alloc] initWithIntX:retX andY:retY];
 }
 
+// translate coordinates used by the board model into logical grid coordinates
 - (CGPoint)gridCoordinateFromBoardCoordinate:(DLLPoint*)loc
 {
     NSInteger x = loc.xCoord;
@@ -447,20 +444,150 @@ typedef enum{
                             nil];
     NSMutableArray *temp = [NSMutableArray array];
     for(int i = 0; i < [yGridPoints count]; i++){
-        [temp addObject:[NSNumber numberWithInt:i]];
+        [temp addObject:[NSNumber numberWithInt:i+5]];
     }
     NSArray *yBoardPoints = [NSArray arrayWithArray:temp];
     NSDictionary *yBoardToGridPoints = [NSDictionary dictionaryWithObjects:yGridPoints forKeys:yBoardPoints];
     
-    retX = x + 8;
-    retY = [[yBoardToGridPoints objectForKey:[NSNumber numberWithInt:y]] intValue];
-    
+    if(y >= 5){
+        retX = x + 12;
+        retY = [[yBoardToGridPoints objectForKey:[NSNumber numberWithInt:y]] intValue];
+    }else{
+        // create hardcoded dictionary relating control item board points to view points
+        NSMutableArray *boardControlPoints = [NSMutableArray array];
+        for(NSInteger x = 0; x < 12; x++){
+            for(NSInteger y = 0; y < 5; y++){
+                if(x < 8){
+                    [boardControlPoints addObject:[[DLLPoint alloc] initWithIntX:x andY:y]];
+                }else{
+                    if(y != 0){
+                        [boardControlPoints addObject:[[DLLPoint alloc] initWithIntX:x andY:y]];
+                    }
+                }
+            }
+        }
+        NSMutableArray *gridControlPoints = [NSMutableArray array];
+        // A
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(29, 3)]];
+        // X
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(17, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(17, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(17, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(17, 14)]];
+        // B
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(30, 3)]];
+        // XBar
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(18, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(18, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(18, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(18, 14)]];
+        // C
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(31, 3)]];
+        // Y
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(21, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(21, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(21, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(21, 14)]];
+        // D
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(32, 3)]];
+        // YBar
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(22, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(22, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(22, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(22, 14)]];
+        // E
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(55, 3)]];
+        // SW1
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(27, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(27, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(27, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(27, 14)]];
+        // F
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(56, 3)]];
+        // SW2
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(33, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(33, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(33, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(33, 14)]];
+        // G
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(57, 3)]];
+        // SW3
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(39, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(39, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(39, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(39, 14)]];
+        // H
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(58, 3)]];
+        // SW4
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(45, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(45, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(45, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(45, 14)]];
+        // SW5
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(51, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(51, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(51, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(51, 14)]];
+        // SW6
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(57, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(57, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(57, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(57, 14)]];
+        // SW7
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(63, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(63, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(63, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(63, 14)]];
+        // SW8
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(69, 11)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(69, 12)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(69, 13)]];
+        [gridControlPoints addObject:[NSValue valueWithCGPoint:CGPointMake(69, 14)]];
+
+        NSDictionary *boardControlToGrid = [NSDictionary dictionaryWithObjects:gridControlPoints forKeys:boardControlPoints];
+        return [(NSValue*)[boardControlToGrid objectForKey:loc] CGPointValue];
+    }
+
     return CGPointMake(retX, retY);
 }
 
 #pragma mark -
 #pragma mark utility methods
-- (void)removeComponentFromPointMap:(DLLAComponentView *)component
+// add new component to pointmap
+- (void)addComponentToPointMap:(DLLAComponentView*)component
+{
+    NSMutableDictionary *dict = [self.pointMap mutableCopy];
+    if([component isKindOfClass:[DLLChipView class]]){ // component is a chip
+        CGPoint cGridLoc = [self gridCoordinateFromViewCoordinate:CGPointMake(component.start.x+CHIP_PIN_X_OFFSET, component.start.y+CHIP_PIN_Y_OFFSET)];
+        DLLPoint *cStart = [self boardCoordinateFromGridCoordinate:cGridLoc];
+        NSInteger x = cStart.xCoord;
+        NSInteger y = cStart.yCoord;
+        
+        for(int i = 0; i < component.size; i++){
+            i < component.size/2 ? [dict setObject:component forKey:[NSValue valueWithCGPoint:CGPointMake(x+i, y)]] : [dict setObject:component forKey:[NSValue valueWithCGPoint:CGPointMake(x+i-component.size/2, y+1)]];
+        }
+        self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
+    }else{ // component is a wire
+        CGPoint wStartGridLoc = [self gridCoordinateFromViewCoordinate:component.start];
+        // location correction
+        wStartGridLoc.x++;
+        wStartGridLoc.y++;
+        DLLPoint *wStartBoardLoc = [self boardCoordinateFromGridCoordinate:wStartGridLoc];
+        
+        CGPoint wEndGridLoc = [self gridCoordinateFromViewCoordinate:component.start];
+        // location correction
+        wEndGridLoc.x++;
+        wEndGridLoc.y++;
+        DLLPoint *wEndBoardLoc = [self boardCoordinateFromGridCoordinate:wEndGridLoc];
+        
+        [dict setObject:component forKey:[NSValue valueWithCGPoint:[wStartBoardLoc CGPointFromCoords]]];
+        [dict setObject:component forKey:[NSValue valueWithCGPoint:[wEndBoardLoc CGPointFromCoords]]];
+        self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
+    }
+}
+
+// remove all references in pointmap to component
+- (void)removeComponentFromPointMap:(DLLAComponentView*)component
 {
     NSArray *temp = [self.pointMap allKeysForObject:component];
     NSMutableDictionary *dict = [self.pointMap mutableCopy];
@@ -470,6 +597,7 @@ typedef enum{
     self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
 }
 
+// completely empty pointmap and tell all components to go out of the view
 - (void)clearBoard
 {
     [self.boardModel clearBoard];
@@ -485,7 +613,10 @@ typedef enum{
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.activeComponent = nil;
+    self.selection = nil;
+    // cannot deallocate pointmap since that holds information that can't be restored.
+    // cannot deallocate placementstate since that holds information that can't be restored.
 }
 
 @end

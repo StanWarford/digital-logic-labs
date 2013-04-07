@@ -8,7 +8,6 @@
 
 #import "DLLPDFViewController.h"
 
-
 @interface DLLPDFViewController ()
 - (void)displayPageNamed:(NSString*)title ofType:(NSString*)type;
 @end
@@ -21,6 +20,7 @@
 
 #pragma mark -
 #pragma mark view initialization methods
+// begin by displaying lab 1
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -29,14 +29,17 @@
 
 #pragma mark -
 #pragma mark DLLTableViewControllerDelegate methods
+// lab selection in tableview changed, update pdf viewer and model
 - (void)selectionDidChangeTo:(NSInteger)selection
 {
     NSInteger offsetSelection = selection + 1;
     [self displayPageNamed:[NSString stringWithFormat:@"Lab%d", offsetSelection] ofType:FILE_TYPE];
+    [self.boardModel labSelectionChangedTo:selection];
 }
 
 #pragma mark -
 #pragma mark page display methods
+// access webview and display given page
 - (void)displayPageNamed:(NSString *)title ofType:(NSString *)type
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:title ofType:type inDirectory:@""];
@@ -51,7 +54,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // Nothing to deallocate
 }
 
 @end

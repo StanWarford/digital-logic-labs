@@ -9,18 +9,22 @@
 #import "DLLChipDetailPopover.h"
 
 @interface DLLChipDetailPopover ()
+
 @property (nonatomic, strong) NSString *pdfPath;
 - (void)displayPage;
 - (void)setPDFPathByIdentifier:(NSInteger)identifier;
+
 @end
 
 @implementation DLLChipDetailPopover
 
-@synthesize webView = _webView;
-@synthesize identifier = _identifier;
+@synthesize webView = _webView; // pointer to webview to display pdfs
+@synthesize identifier = _identifier; // currently selected pdf to read
+@synthesize pdfPath = _pdfPath; // string for the path to pdf to read
 
 #pragma mark -
 #pragma mark initialization methods
+// set the path to the correct pdf to display and display it
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -29,10 +33,8 @@
 }
 
 #pragma mark -
-#pragma mark page display methods
-
-#pragma mark -
 #pragma mark uitility methods
+// get pdf to read and display it
 - (void)displayPage
 {
     NSURL *targetURL = [NSURL fileURLWithPath:self.pdfPath];
@@ -41,6 +43,7 @@
     [self.webView setScalesPageToFit:YES]; // enables zooming
 }
 
+// based on the identifier, set the global pdfPath variable
 - (void)setPDFPathByIdentifier:(NSInteger)identifier
 {
     switch (identifier)
@@ -98,7 +101,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.pdfPath = nil;
 }
 
 @end
