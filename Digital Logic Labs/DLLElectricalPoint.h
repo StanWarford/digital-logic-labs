@@ -17,7 +17,7 @@ typedef enum
 
 typedef enum
 {
-    EPValueOne, EPValueZero, EPValueUnknown
+    EPValueZero, EPValueOne, EPValueUnknown
     
 } EPValue;
 

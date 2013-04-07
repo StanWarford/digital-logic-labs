@@ -31,7 +31,9 @@
     if(!([self.pins objectAtIndex: 0] == [NSNumber numberWithInt: PinValueUnknown]
          || [self.pins objectAtIndex: 1] == [NSNumber numberWithInt: PinValueUnknown])){   // why the if statement here?
         
-        [self.pins  insertObject:[NSNumber numberWithInt:!((NSInteger)[self.pins objectAtIndex: 0] & (NSInteger)[self.pins objectAtIndex: 1])]
+        [self.pins  insertObject:[NSNumber numberWithInt:
+                                  !((NSInteger)[self.pins objectAtIndex: 0] &
+                                    (NSInteger)[self.pins objectAtIndex: 1])]
                                     atIndex: 2];
     }
         

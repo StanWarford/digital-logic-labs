@@ -32,7 +32,7 @@
 
 typedef enum
 {
-    PinValueOne, PinValueZero, PinValueUnknown
+     PinValueZero, PinValueOne, PinValueUnknown
     
 } PinValue;
 
