@@ -782,17 +782,19 @@
                 for(int j = 0; j < [outputPinCoords count]; j++)
                 {
                      NSNumber *electricalPointNum = [self.boardPointToElectricalPointDictionary valueForKey:[outputPinCoords[j] toString]];
-                    DLLElectricalPoint *oldElectricalPoint = [self.electricalPointArray objectAtIndex:electricalPointNum];
+                    DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex:electricalPointNum];
                    /* if ((NSNumber)[oldElectricalPoint electricalPointValue] != [newOutputPinValues objectAtIndex:j])
                     {
-                        
-                    }*/
-                //TODO: NEED TO DEFINE output and input pin value ENUMs. How do we want these to work?
+                    electricalPoint.electricalPointPreviousValue = electricalPoint.electricalPointValue;
+                    electricalPoint.electricalPointValue = [newOutputPinValues objectAtIndex:j];
+                    }
+                TODO: NEED TO DEFINE output and input pin value ENUMs. How do we want these to work? */
+                    
                 }
                 
             }
         }
-        
+        clock++;
     } while (changed && clock < CLOCK_LIMIT);
     
 }
