@@ -32,6 +32,7 @@
 
 #define NUMROWS 31
 #define NUMCOLUMNS 63
+#define CLOCK_LIMIT 100
 
 @synthesize breadboardStateArray = _breadboardStateArray;
 @synthesize activeLab = _activeLab;
@@ -562,7 +563,8 @@
             
             DLLElectricalPoint *currentElectricalPoint = [activeElectricalPoints objectAtIndex:i];
             NSUInteger index = [self.electricalPointArray indexOfObject:currentElectricalPoint];
-            NSArray *electricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:index]; // I'm unsure of if this will work, do activeElectricalPoints and electricalPointArray point to the same DLLElectrical point object?
+            NSArray *electricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:index];
+            // TODO: question-I'm unsure of if this will work, do activeElectricalPoints and electricalPointArray point to the same DLLElectrical point object?
             for(int j = 0; j < [electricalArrayOfHoles count]; j++)
             {
                 DLLPoint *currentPhysicalPoint = electricalArrayOfHoles[i];
@@ -587,7 +589,7 @@
                     }
                     else if(currentElectricalPoint.setNumber != otherElectricalPoint.setNumber)
                     {
-                            // BAIL with ERROR
+                            // TODO: BAIL with ERROR
                         return NO;
                     }
                 }
@@ -601,14 +603,153 @@
 
 - (void) simulateInitialState
 {
-    // initialize value each electrical pt
-    // initialize previousvalue
-    // initialize internal state of FF to unknown
+// initialize value and previousValue of each electrical point
+    
+    //main board: set electrical point value to unknown
+    for (int i = 0; i < 252; i++)
+    {
+        DLLElectricalPoint *currentElectricalPoint = [self.electricalPointArray objectAtIndex:i];
+        currentElectricalPoint.electricalPointValue = EPValueUnknown;
+        currentElectricalPoint.electricalPointPreviousValue = EPValueUnknown;
+    }
+    //power: set electrical point value to 1
+    DLLElectricalPoint *powerElectricalPoint = [self.electricalPointArray objectAtIndex:252];
+    powerElectricalPoint.electricalPointValue = EPValueOne;
+    powerElectricalPoint.electricalPointPreviousValue = EPValueOne;
+    
+    //ground: set electrical point value to 0
+    DLLElectricalPoint *groundElectricalPoint = [self.electricalPointArray objectAtIndex:253];
+    groundElectricalPoint.electricalPointValue = EPValueZero;
+    groundElectricalPoint.electricalPointPreviousValue = EPValueZero;
+    
+    //switches: set electrical point value to initial state of switches on swipe to test screen
+            //All switches initially 0 except for debouncedSwitches, which are initially 1
+    DLLElectricalPoint *switchXElectricalPoint = [self.electricalPointArray objectAtIndex:254];
+    DLLElectricalPoint *debouncedSwitchXElectricalPoint = [self.electricalPointArray objectAtIndex:255];
+    DLLElectricalPoint *switchYElectricalPoint = [self.electricalPointArray objectAtIndex:256];
+    DLLElectricalPoint *debouncedSwitchYElectricalPoint = [self.electricalPointArray objectAtIndex:257];
+    
+    switchXElectricalPoint.electricalPointValue = EPValueZero;
+    switchXElectricalPoint.electricalPointPreviousValue = EPValueZero;
+    
+    debouncedSwitchXElectricalPoint.electricalPointValue = EPValueOne;
+    debouncedSwitchXElectricalPoint.electricalPointPreviousValue = EPValueOne;
+    
+    switchYElectricalPoint.electricalPointValue = EPValueZero;
+    switchYElectricalPoint.electricalPointPreviousValue = EPValueZero;
+    
+    debouncedSwitchYElectricalPoint.electricalPointValue = EPValueOne;
+    debouncedSwitchYElectricalPoint.electricalPointPreviousValue = EPValueOne;
+    
+    for(int i = 258; i < 266; i++){
+        DLLElectricalPoint *currentElectricalPoint = [self.electricalPointArray objectAtIndex:i];
+        currentElectricalPoint.electricalPointValue = EPValueZero;
+        currentElectricalPoint.electricalPointPreviousValue = EPValueZero;
+    }
+    
+    //lights: set electrical point value to unknown
+    for(int i = 266; i < 274; i++){
+        DLLElectricalPoint *currentElectricalPoint = [self.electricalPointArray objectAtIndex:i];
+        currentElectricalPoint.electricalPointValue = EPValueUnknown;
+        currentElectricalPoint.electricalPointPreviousValue = EPValueUnknown;
+    }
+    
+//TODO: initialize internal state of Flip Flop to unknown?
+    
     [self simulateCombinational];
 }
 
 - (void) simulateCombinational
 {
+    int clock = 0;
+    BOOL changed = NO;
+    
+    // set up array of activeElectricalPoints
+    
+    int count = 0;
+    NSMutableArray *activeElectricalPoints = [[NSMutableArray alloc] init];
+    
+    for(int i = 0; i < [self.electricalPointArray count]; i++)
+    {
+        DLLElectricalPoint *currentPoint = [self.electricalPointArray objectAtIndex:i];
+        
+        if(([currentPoint electricalPointType] == EPTypeInput) ||
+           ([currentPoint electricalPointType] == EPTypeOutput) ||
+           ([currentPoint electricalPointType] == EPTypeClockInput))
+        {
+            [activeElectricalPoints insertObject:currentPoint atIndex:count];
+            count++;
+        }
+    }
+    
+    do {
+        for(int i =0; i < [activeElectricalPoints count]; i++)
+        {
+            DLLElectricalPoint *currentElectricalPoint = [activeElectricalPoints objectAtIndex:i];
+            NSUInteger index = [self.electricalPointArray indexOfObject:currentElectricalPoint];
+            NSArray *physicalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:index];
+            // TODO: same potential problem here-do these point to the same object?
+            for(int i = 0; i < [physicalArrayOfHoles count]; i++)
+            {
+                DLLPoint *currentBoardPoint = physicalArrayOfHoles[i];
+                
+                if([[[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
+                                                objectAtIndex: currentBoardPoint.yCoord]
+                                                isKindOfClass:[DLLWire class]])
+                {
+                    DLLWire *currentWire = [[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
+                                                                        objectAtIndex: currentBoardPoint.yCoord];
+                    DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
+                    NSNumber *otherElectricalPointIndex = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
+                    DLLElectricalPoint *otherElectricalPoint = [self.electricalPointArray objectAtIndex: otherElectricalPointIndex];
+                    if((currentElectricalPoint.electricalPointValue != otherElectricalPoint.electricalPointValue))
+                    {
+                        if ((currentElectricalPoint.electricalPointType == EPTypeInput) ||
+                            (currentElectricalPoint.electricalPointType == EPTypeClockInput))
+                        {
+                            changed = YES;
+                            switch (otherElectricalPoint.electricalPointType)
+                            {
+                                case EPTypePower:
+                                    currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
+                                    currentElectricalPoint.electricalPointValue = 1;
+                                    break;
+                                case EPTypeGround:
+                                    currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
+                                    currentElectricalPoint.electricalPointValue = 0;
+                                    break;
+                                case EPTypeSwitch:
+                                    currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
+                                    currentElectricalPoint.electricalPointValue = otherElectricalPoint.electricalPointValue;
+                                    break;
+                                case EPTypeDebouncedSwitch:
+                                    currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
+                                    currentElectricalPoint.electricalPointValue = otherElectricalPoint.electricalPointValue;
+                                    break;
+                                case (EPTypeInput | EPTypeClockInput): //TODO: question bitwise OR with switch?
+                                    if (otherElectricalPoint.electricalPointValue != EPValueUnknown)
+                                    {
+                                        currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
+                                        currentElectricalPoint.electricalPointValue = otherElectricalPoint.electricalPointValue;
+                                    }
+                                    break;
+                                case EPTypeOutput:
+                                    currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
+                                    currentElectricalPoint.electricalPointValue = otherElectricalPoint.electricalPointValue;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (changed == YES) {
+          //  for // each functioning chip
+        }
+        
+    } while (changed && clock < CLOCK_LIMIT);
     
 }
 
@@ -617,5 +758,5 @@
     // more code necessary here
     [self simulateCombinational];
 }
-
+// TODO: reminder-need to add functionality to wire classes as well as chips
 @end
