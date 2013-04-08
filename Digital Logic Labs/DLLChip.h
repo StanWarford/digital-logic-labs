@@ -30,5 +30,6 @@
 - (DLLPoint *)groundPinCoordinate;
 - (NSArray *)coordinatesOfInputPins;
 - (NSArray *)coordinatesOfOutputPins;
+- (void)setPin:(int)index to:(DLLElectricalPoint *)electricalPoint;  
 
 @end

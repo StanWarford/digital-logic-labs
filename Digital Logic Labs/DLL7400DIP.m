@@ -63,4 +63,16 @@
                                     [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord], nil];
 }
 
+- (void)setPin:(int)index to:(DLLElectricalPoint *)electricalPoint
+{
+    if ((index < [self.pins count]) && (index >= 0))
+    {
+        [self.pins insertObject:electricalPoint atIndex:index];
+    }
+    else
+    {
+    //TODO: some sort of error message here
+    }
+}
+
 @end

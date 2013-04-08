@@ -572,7 +572,7 @@
             NSArray *electricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:index];
             for(int j = 0; j < [electricalArrayOfHoles count]; j++)
             {
-                DLLPoint *currentPhysicalPoint = electricalArrayOfHoles[i];
+                DLLPoint *currentPhysicalPoint = electricalArrayOfHoles[j];
                 if([[[self.breadboardStateArray objectAtIndex: currentPhysicalPoint.xCoord]
                                                 objectAtIndex: currentPhysicalPoint.yCoord]
                                                 isKindOfClass:[DLLWire class]])
@@ -756,10 +756,13 @@
                 }
             }
         }
+        
         if (changed == YES)
         {
             int count = 0;
-            NSMutableArray *activeChips = [NSMutableArray array];
+            
+            // Create an array of active chips (chips that return isFunctional == YES)
+            NSMutableArray *activeChips = [NSMutableArray array];      
             NSArray *chipsOnBoard = [self.chipDictionary allValues];
             
             for(int i = 0; i < [chipsOnBoard count]; i++)
@@ -772,9 +775,22 @@
                     count++;
                 }
             }
+            
+            // Loop through array of active chips
             for(int i = 0; i < [activeChips count]; i++)
             {
                 DLLChip *currentChip = [activeChips objectAtIndex:i];
+                
+                // set input values for currentChip
+                NSArray *inputPinCoords = [currentChip coordinatesOfInputPins];
+                NSArray *inputPinIndices = currentChip.inputPins;
+                for(int j = 0; j < [inputPinCoords count]; j++)
+                {
+                    DLLPoint *currentPhysicalPoint = inputPinCoords[j];
+                    NSNumber *indexOfElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[currentPhysicalPoint toString]];
+                    DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: indexOfElectricalPoint];
+                    [currentChip setPin:inputPinIndices[j] to:electricalPoint];
+                }
                 [currentChip calculateOutputs];
                 NSArray *indexOfOutputPins = [currentChip outputPins];
                 NSMutableArray *chipPinValues = [currentChip pins];
