@@ -55,9 +55,22 @@
     return self.electricalPointType == comparePoint.electricalPointType;
 }
 
-- (DLLElectricalPoint *)NAND:(DLLElectricalPoint *)point withOtherPoint:(DLLElectricalPoint *)otherPoint
+- (DLLElectricalPoint *)NAND:(DLLElectricalPoint *)otherPoint
 {
-    DLLElectricalPoint *tempPoint = [[DLLElectricalPoint alloc] initWithValue:!(point.electricalPointValue & otherPoint.electricalPointValue)];
+    DLLElectricalPoint *tempPoint = [[DLLElectricalPoint alloc] init];
+    
+    if((self.electricalPointValue == EPValueZero) || (otherPoint.electricalPointValue == EPValueZero))
+    {
+        tempPoint.electricalPointValue = EPValueZero;
+    }
+    else if (self.electricalPointValue == EPValueUnknown || otherPoint.electricalPointValue == EPValueUnknown)
+    {
+        tempPoint.electricalPointValue = EPValueUnknown;
+    }
+    else
+    {
+        tempPoint.electricalPointValue = EPValueOne;
+    }
     return  tempPoint;
 }
 
