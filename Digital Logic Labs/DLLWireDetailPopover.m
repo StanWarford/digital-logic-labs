@@ -54,11 +54,11 @@
         [orangeButton setTitle:@"Orange" forState:UIControlStateNormal];
         [temp addObject:orangeButton];
         
-        UIButton *yellowButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [yellowButton addTarget:self action:@selector(yellowPressed) forControlEvents:UIControlEventTouchDown];
-        [yellowButton setTintColor:[UIColor yellowColor]];
-        [yellowButton setTitle:@"Yellow" forState:UIControlStateNormal];
-        [temp addObject:yellowButton];
+        UIButton *brownButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [brownButton addTarget:self action:@selector(brownPressed) forControlEvents:UIControlEventTouchDown];
+        [brownButton setTintColor:[UIColor brownColor]];
+        [brownButton setTitle:@"Brown" forState:UIControlStateNormal];
+        [temp addObject:brownButton];
         
         UIButton *blueButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [blueButton addTarget:self action:@selector(bluePressed) forControlEvents:UIControlEventTouchDown];
@@ -72,11 +72,11 @@
         [greenButton setTitle:@"Green" forState:UIControlStateNormal];
         [temp addObject:greenButton];
         
-        UIButton *greyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [greyButton addTarget:self action:@selector(greyPressed) forControlEvents:UIControlEventTouchDown];
-        [greyButton setTintColor:[UIColor grayColor]];
-        [greyButton setTitle:@"Grey" forState:UIControlStateNormal];
-        [temp addObject:greyButton];
+        UIButton *blackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [blackButton addTarget:self action:@selector(blackPressed) forControlEvents:UIControlEventTouchDown];
+        [blackButton setTintColor:[UIColor blackColor]];
+        [blackButton setTitle:@"Black" forState:UIControlStateNormal];
+        [temp addObject:blackButton];
         
         _buttons = [NSArray arrayWithArray:temp];
     }
@@ -106,31 +106,37 @@
 - (void)redPressed
 {
     self.messageBox.text = @"Color set to red";
+    self.wire.color = [UIColor redColor];
 }
 
 - (void)orangePressed
 {
-    self.messageBox.text = @"Color set to grey";
+    self.messageBox.text = @"Color set to orange";
+    self.wire.color = [UIColor orangeColor];
 }
 
-- (void)yellowPressed
+- (void)brownPressed
 {
-    self.messageBox.text = @"Color set to orange";
+    self.messageBox.text = @"Color set to brown";
+    self.wire.color = [UIColor brownColor];
 }
 
 - (void)bluePressed
 {
     self.messageBox.text = @"Color set to blue";
+    self.wire.color = [UIColor blueColor];
 }
 
 - (void)greenPressed
 {
     self.messageBox.text = @"Color set to green";
+    self.wire.color = [UIColor greenColor];
 }
 
-- (void)greyPressed
+- (void)blackPressed
 {
-    self.messageBox.text = @"Color set to grey";
+    self.messageBox.text = @"Color set to black";
+    self.wire.color = [UIColor colorWithRed:100/255 green:100/255 blue:100/255 alpha:1.0];
 }
 
 #pragma mark -
