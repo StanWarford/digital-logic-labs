@@ -8,6 +8,7 @@
 
 #import "DLLChip.h"
 #import "DLLPoint.h"
+#import "DLLElectricalPoint.h"
 
 @interface DLL14PinDIP : DLLChip
 

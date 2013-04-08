@@ -541,7 +541,7 @@
 
 - (BOOL) illegalConnectionExists
 {
-    NSMutableArray *activeElectricalPoints = [[NSMutableArray alloc] init];
+    NSMutableArray *activeElectricalPoints = [NSMutableArray array];
     int count = 0;
     for(int i = 0; i < [self.electricalPointArray count]; i++)
     {
@@ -570,7 +570,6 @@
             DLLElectricalPoint *currentElectricalPoint = [activeElectricalPoints objectAtIndex:i];
             NSUInteger index = [self.electricalPointArray indexOfObject:currentElectricalPoint];
             NSArray *electricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:index];
-            // TODO: question-I'm unsure of if this will work, do activeElectricalPoints and electricalPointArray point to the same DLLElectrical point object?
             for(int j = 0; j < [electricalArrayOfHoles count]; j++)
             {
                 DLLPoint *currentPhysicalPoint = electricalArrayOfHoles[i];
@@ -673,7 +672,7 @@
     // set up array of activeElectricalPoints
     
     int count = 0;
-    NSMutableArray *activeElectricalPoints = [[NSMutableArray alloc] init];
+    NSMutableArray *activeElectricalPoints = [NSMutableArray array];
     
     for(int i = 0; i < [self.electricalPointArray count]; i++)
     {
@@ -694,7 +693,6 @@
             DLLElectricalPoint *currentElectricalPoint = [activeElectricalPoints objectAtIndex:i];
             NSUInteger index = [self.electricalPointArray indexOfObject:currentElectricalPoint];
             NSArray *physicalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:index];
-            // TODO: same potential problem here-do these point to the same object?
             for(int i = 0; i < [physicalArrayOfHoles count]; i++)
             {
                 DLLPoint *currentBoardPoint = physicalArrayOfHoles[i];
@@ -732,7 +730,14 @@
                                     currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
                                     currentElectricalPoint.electricalPointValue = otherElectricalPoint.electricalPointValue;
                                     break;
-                                case (EPTypeInput | EPTypeClockInput): //TODO: question bitwise OR with switch?
+                                case EPTypeInput: 
+                                    if (otherElectricalPoint.electricalPointValue != EPValueUnknown)
+                                    {
+                                        currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
+                                        currentElectricalPoint.electricalPointValue = otherElectricalPoint.electricalPointValue;
+                                    }
+                                    break;
+                                case EPTypeClockInput: 
                                     if (otherElectricalPoint.electricalPointValue != EPValueUnknown)
                                     {
                                         currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
@@ -754,7 +759,7 @@
         if (changed == YES)
         {
             int count = 0;
-            NSMutableArray *activeChips = [[NSMutableArray alloc] init];
+            NSMutableArray *activeChips = [NSMutableArray array];
             NSArray *chipsOnBoard = [self.chipDictionary allValues];
             
             for(int i = 0; i < [chipsOnBoard count]; i++)
@@ -773,7 +778,7 @@
                 [currentChip calculateOutputs];
                 NSArray *indexOfOutputPins = [currentChip outputPins];
                 NSMutableArray *chipPinValues = [currentChip pins];
-                NSMutableArray *newOutputPinValues = [[NSMutableArray alloc] init];  // TODO: question, i've alloc init these like this a couple times now, is this okay? (to not initialize a size?)
+                NSMutableArray *newOutputPinValues = [NSMutableArray array];  
                 for(int i = 0; i < [indexOfOutputPins count]; i++)
                 {
                      [newOutputPinValues insertObject:[chipPinValues objectAtIndex: indexOfOutputPins[i]] atIndex:i];

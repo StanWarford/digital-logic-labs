@@ -8,6 +8,7 @@
 
 #import "DLL14PinDIP.h"
 #import "DLLPoint.h"
+#import "DLLElectricalPoint.h"
 
 @interface DLL7400DIP : DLL14PinDIP
 

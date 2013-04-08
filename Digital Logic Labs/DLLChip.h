@@ -10,11 +10,12 @@
 // Note: chips must be defined so that the outputPins array and the coordinatesOfOutputPins array return the output pins in the same order for each output pin location.  Define to always return from lower index to higher index
 #import "DLLAComponent.h"
 #import "DLLPoint.h"
+#import "DLLElectricalPoint.h"
 
 @interface DLLChip : DLLAComponent
 
 @property BOOL isFunctional;
-@property (nonatomic, strong) NSMutableArray * pins;
+@property (nonatomic, strong) NSMutableArray * pins; 
 @property (nonatomic, strong) NSArray * outputPins;
 @property (nonatomic, strong) NSArray * inputPins;
 @property (nonatomic, assign) NSUInteger groundPin;
@@ -29,11 +30,5 @@
 - (DLLPoint *)groundPinCoordinate;
 - (NSArray *)coordinatesOfInputPins;
 - (NSArray *)coordinatesOfOutputPins;
-
-typedef enum
-{
-     PinValueZero, PinValueOne, PinValueUnknown
-    
-} PinValue;
 
 @end
