@@ -412,10 +412,8 @@
     
     if(size == 1) // wire
     {
-        //if (!([[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord] == nil) || coords.xCoord == 99 || coords.yCoord == 99) return NO; //  *********Casey - This is crashing for some reason*************
-        // Casey, if you see this, I think it's because we have not yet implemented wires in the breadboard logic yet
-        return YES;
-        
+        return !((coords.xCoord > 63) || (coords.yCoord > 31));
+                 //([[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord] != nil) 
     }
     if (size == 24){
         numRows = 4;
