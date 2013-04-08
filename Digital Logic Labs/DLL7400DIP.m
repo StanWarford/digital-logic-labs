@@ -10,7 +10,7 @@
 
 @implementation DLL7400DIP
 
-// Quad Two-Input NAND Gate
+// Quad Two-Input NAND Gate need setPin: toValue: 
 
 - (id)initWithLocation: (DLLPoint *)loc
 {
@@ -36,8 +36,10 @@
                                   !((NSInteger)[self.pins objectAtIndex: 0] &
                                     (NSInteger)[self.pins objectAtIndex: 1])]
                                     atIndex: 2];
-    }
-        
+    }*/
+    DLLElectricalPoint *pin3 = [self.pins objectAtIndex:3];
+    DLLElectricalPoint *pin4 = [self.pins objectAtIndex:4];
+    
     [self.pins  insertObject:
      [NSNumber numberWithInt: !((NSInteger)[self.pins objectAtIndex: 3] & (NSInteger)[self.pins objectAtIndex: 4])]
                      atIndex: 5];
