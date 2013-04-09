@@ -32,7 +32,7 @@
     
     for(int i = 0; i < [self.pins count]; i++)
     {
-        DLLElectricalPoint *newElectricalPoint = [[DLLElectricalPoint alloc] initWithType:EPTypeOther andValue:EPValueUnknown];
+        DLLElectricalPoint *newElectricalPoint = [[DLLElectricalPoint alloc] initWithValue:EPValueUnknown];
         [self.pins insertObject: newElectricalPoint atIndex: i];
     }
     

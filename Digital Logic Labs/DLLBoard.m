@@ -812,9 +812,14 @@
     } while (changed && clock < CLOCK_LIMIT);
     
 }
+// switches start at 0 with the debounced x switch, followed by debounced y, then SW1... SW8. SW8 has switch id 9
 
-- (void) simulateThrowOfSwitchLabeled:(int)switchID  // switches start at 0 with the debounced x switch, followed by debounced y, then SW1... SW8. SW8 has switch id 9
+- (void) simulateThrowOfSwitchLabeled:(int)switchID
 {
+    // following code is simply for testing the circuit
+    DLLElectricalPoint *light = [[DLLElectricalPoint alloc] initWithValue:EPValueZero];
+    [self.electricalPointArray insertObject:light atIndex:switchID + 264];
+    
     // more code necessary here
     [self simulateCombinational];
 }
@@ -822,14 +827,37 @@
 
 - (NSArray*)newStateOfLights
 {
-    NSNumber *temp0 = [NSNumber numberWithInt:0];
+    NSMutableArray *stateOfLights = [NSMutableArray array];
+    for (int i = 266; i < 274; i++)
+    {
+        DLLElectricalPoint *light = [self.electricalPointArray objectAtIndex:i];
+        
+        if (light.electricalPointValue == EPValueOne)
+        {
+            [stateOfLights insertObject:[NSNumber numberWithInt:1] atIndex: i - 266];
+        }
+        else if (light.electricalPointValue == EPValueZero)
+        {
+            [stateOfLights insertObject:[NSNumber numberWithInt:0] atIndex: i - 266];
+        }
+        else
+        {
+            [stateOfLights insertObject:[NSNumber numberWithInt:2] atIndex: i - 266];
+        }
+    }
+    
+    NSArray *immutableStateOfLights = stateOfLights;
+    
+   /* NSNumber *temp0 = [NSNumber numberWithInt:1];
     NSNumber *temp1 = [NSNumber numberWithInt:1];
     NSNumber *temp2 = [NSNumber numberWithInt:1];
-    NSNumber *temp3 = [NSNumber numberWithInt:0];
-    NSNumber *temp4 = [NSNumber numberWithInt:2];
-    NSNumber *temp5 = [NSNumber numberWithInt:0];
+    NSNumber *temp3 = [NSNumber numberWithInt:1];
+    NSNumber *temp4 = [NSNumber numberWithInt:1];
+    NSNumber *temp5 = [NSNumber numberWithInt:1];
     NSNumber *temp6 = [NSNumber numberWithInt:1];
-    NSNumber *temp7 = [NSNumber numberWithInt:0];
-    return [NSArray arrayWithObjects:temp0, temp1, temp2, temp3, temp4, temp5, temp6, temp7, nil];
+    NSNumber *temp7 = [NSNumber numberWithInt:1];
+    return [NSArray arrayWithObjects:temp0, temp1, temp2, temp3, temp4, temp5, temp6, temp7, nil];*/
+    
+    return  immutableStateOfLights;
 }
 @end
