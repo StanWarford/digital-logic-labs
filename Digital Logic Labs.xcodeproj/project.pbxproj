@@ -26,6 +26,7 @@
 		CF14819C1703AC23001DDD08 /* board-new-resized.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1481981703AC23001DDD08 /* board-new-resized.png */; };
 		CF14819D1703AC23001DDD08 /* chip-14-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1481991703AC23001DDD08 /* chip-14-gray.png */; };
 		CF14819E1703AC23001DDD08 /* chip-16-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = CF14819A1703AC23001DDD08 /* chip-16-gray.png */; };
+		CF1805551713858C001C27D5 /* wire-large.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1805541713858C001C27D5 /* wire-large.png */; };
 		CF31B628170F956100A500B4 /* MAN71A.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B61A170F956100A500B4 /* MAN71A.pdf */; };
 		CF31B629170F956100A500B4 /* 74181.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B61B170F956100A500B4 /* 74181.pdf */; };
 		CF31B62A170F956100A500B4 /* 74176-177.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF31B61C170F956100A500B4 /* 74176-177.pdf */; };
@@ -144,6 +145,7 @@
 		CF1481981703AC23001DDD08 /* board-new-resized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "board-new-resized.png"; path = "Chip and Breadboard Images/board-new-resized.png"; sourceTree = "<group>"; };
 		CF1481991703AC23001DDD08 /* chip-14-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chip-14-gray.png"; path = "Chip and Breadboard Images/chip-14-gray.png"; sourceTree = "<group>"; };
 		CF14819A1703AC23001DDD08 /* chip-16-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chip-16-gray.png"; path = "Chip and Breadboard Images/chip-16-gray.png"; sourceTree = "<group>"; };
+		CF1805541713858C001C27D5 /* wire-large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wire-large.png"; sourceTree = "<group>"; };
 		CF31B61A170F956100A500B4 /* MAN71A.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = MAN71A.pdf; sourceTree = "<group>"; };
 		CF31B61B170F956100A500B4 /* 74181.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 74181.pdf; sourceTree = "<group>"; };
 		CF31B61C170F956100A500B4 /* 74176-177.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "74176-177.pdf"; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 				CF1481991703AC23001DDD08 /* chip-14-gray.png */,
 				CF14819A1703AC23001DDD08 /* chip-16-gray.png */,
 				48190C8D16FA6E2D003BC4E4 /* wire.png */,
+				CF1805541713858C001C27D5 /* wire-large.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -732,6 +735,7 @@
 				CF31B633170F956100A500B4 /* 7408.pdf in Resources */,
 				CF31B634170F956100A500B4 /* 7402.pdf in Resources */,
 				CF31B635170F956100A500B4 /* 7400.pdf in Resources */,
+				CF1805551713858C001C27D5 /* wire-large.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
