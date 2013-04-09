@@ -113,6 +113,8 @@
     [self.view addSubview:self.segView];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"test-screen"]];
+    
+    [self.boardModel runSimulation];
 }
 
 #pragma mark -
