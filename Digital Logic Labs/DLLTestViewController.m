@@ -50,20 +50,20 @@
         
         // Add first debounced switch
         frame = CGRectMake(SWITCH_COL_START, SWITCH_ROW, SWITCH_SIZE_X, SWITCH_SIZE_Y);
-        sw = [[DLLSwitch alloc] initWithFrame:frame andID:1];
+        sw = [[DLLSwitch alloc] initWithFrame:frame andID:0];
         [sw addTarget:self action:@selector(switchStateChanged:) forControlEvents:UIControlEventTouchUpInside];
         [temp addObject:sw];
         
         // Add second debounced switch
         frame = CGRectMake(SWITCH_COL_START + SWITCH_DEBOUNCED_SPACING, SWITCH_ROW, SWITCH_SIZE_X, SWITCH_SIZE_Y);
-        sw = [[DLLSwitch alloc] initWithFrame:frame andID:2];
+        sw = [[DLLSwitch alloc] initWithFrame:frame andID:1];
         [sw addTarget:self action:@selector(switchStateChanged:) forControlEvents:UIControlEventTouchUpInside];
         [temp addObject:sw];
         
         // Add other switches
         for(int i = 2; i < SWITCH_COUNT; i++){
             frame = CGRectMake(SWITCH_COL_START + SWITCH_SPACING*i, SWITCH_ROW, SWITCH_SIZE_X, SWITCH_SIZE_Y);
-            sw = [[DLLSwitch alloc] initWithFrame:frame andID:i+1];
+            sw = [[DLLSwitch alloc] initWithFrame:frame andID:i];
             [sw addTarget:self action:@selector(switchStateChanged:) forControlEvents:UIControlEventTouchUpInside];
             [temp addObject:sw];
             
@@ -81,7 +81,7 @@
         DLLLightView *lt;
         for(int i = 0; i < LIGHT_COUNT; i++){
             frame = CGRectMake(LIGHT_COL_START + i*LIGHT_SPACING, LIGHT_ROW, LIGHT_SIZE_X, LIGHT_SIZE_Y);
-            lt = [[DLLLightView alloc] initWithFrame:frame andID:i+1];
+            lt = [[DLLLightView alloc] initWithFrame:frame andID:i];
             [temp addObject:lt];
         }
         _lights = [NSArray arrayWithArray:temp];
@@ -119,8 +119,20 @@
 #pragma mark switch methods
 - (IBAction)switchStateChanged:(DLLSwitch *)sender {
     NSInteger i = sender.identifier;
-    //DLLLightView *target = [self.lights objectAtIndex:i];
-    [self.segView toggleSegment:i onOff:sender.on];
+    [self.boardModel simulateThrowOfSwitchLabeled:i];
+    NSArray *temp = [self.boardModel newStateOfLights];
+    for(NSInteger i = 0; i < [temp count]; i++){
+        NSNumber *number = [temp objectAtIndex:i];
+        if([number integerValue] == 0){
+            [[self.lights objectAtIndex:i] toggleOff];
+        }else if([number integerValue] == 1){
+            [[self.lights objectAtIndex:i] toggleOn];
+        }else{
+            [[self.lights objectAtIndex:i] toggleDim];
+        }
+    }
+    // DLLLightView *target = [self.lights objectAtIndex:i];
+    // [self.segView toggleSegment:i+1 onOff:sender.on];
     NSLog([NSString stringWithFormat:@"%d turned %s", sender.identifier, sender.on ? "ON" : "OFF"]);
 }
 
