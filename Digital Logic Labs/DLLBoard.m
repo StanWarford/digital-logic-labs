@@ -788,7 +788,10 @@
                     DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: [indexOfElectricalPoint integerValue]];
                     [currentChip setPin:[inputPinIndices[j] integerValue] to:electricalPoint];
                 }
+                
                 [currentChip calculateOutputs];
+                
+                // set electrical points to new output values for currentChip
                 NSArray *outputPinCoords = [currentChip coordinatesOfOutputPins];
                 NSArray *outputPinIndices = [currentChip outputPins];
                 for(int j = 0; j < [outputPinCoords count]; j++)
@@ -796,31 +799,13 @@
                     DLLPoint *currentPhysicalPoint = outputPinCoords[j];
                     NSNumber *indexOfElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[currentPhysicalPoint toString]];
                     DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: [indexOfElectricalPoint integerValue]];
-                    /*if (electricalPoint.electricalPointValue != [[currentChip pins] objectAtIndex: outputPinIndices[j]] ) {
-                        <#statements#>
-                    }*/
-                }
-                
-                NSMutableArray *chipPinValues = [currentChip pins];
-                NSMutableArray *newOutputPinValues = [NSMutableArray array];  
-                for(int i = 0; i < [outputPinIndices count]; i++)
-                {
-                     //[newOutputPinValues insertObject:[chipPinValues objectAtIndex: indexOfOutputPins[i] atIndex:i];
-                }
-                
-                for(int j = 0; j < [outputPinCoords count]; j++)
-                {
-                     NSNumber *electricalPointNum = [self.boardPointToElectricalPointDictionary valueForKey:[outputPinCoords[j] toString]];
-                    DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex:[electricalPointNum integerValue]];
-                   /* if ((NSNumber)[oldElectricalPoint electricalPointValue] != [newOutputPinValues objectAtIndex:j])
+                    DLLElectricalPoint *outputElectricalPoint = [currentChip.pins objectAtIndex: [outputPinIndices[j] integerValue]];
+                    if (electricalPoint.electricalPointValue != outputElectricalPoint.electricalPointValue)
                     {
-                    electricalPoint.electricalPointPreviousValue = electricalPoint.electricalPointValue;
-                    electricalPoint.electricalPointValue = [newOutputPinValues objectAtIndex:j];
+                        electricalPoint.electricalPointPreviousValue = electricalPoint.electricalPointValue;
+                        electricalPoint.electricalPointValue = outputElectricalPoint.electricalPointValue;
                     }
-                TODO: NEED TO DEFINE output and input pin value ENUMs. How do we want these to work? */
-                    
                 }
-                
             }
         }
         clock++;
