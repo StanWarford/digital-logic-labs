@@ -812,17 +812,78 @@
     } while (changed && clock < CLOCK_LIMIT);
     
 }
+
 // switches start at 0 with the debounced x switch, followed by debounced y, then SW1... SW8. SW8 has switch id 9
 
 - (void) simulateThrowOfSwitchLabeled:(int)switchID
 {
     // following code is simply for testing the circuit
-    DLLElectricalPoint *light = [[DLLElectricalPoint alloc] initWithValue:EPValueZero];
-    [self.electricalPointArray insertObject:light atIndex:switchID + 264];
+   /* DLLElectricalPoint *light = [[DLLElectricalPoint alloc] initWithValue:EPValueZero];
+    [self.electricalPointArray insertObject:light atIndex:switchID + 264];*/
+
     
-    // more code necessary here
+    /* TODO:
+     For each sequential chip!
+        Store the current states (Q values)!
+        Store the current Ck values! */
+    if(switchID == 0)
+    {
+        DLLElectricalPoint *switchX = [self.electricalPointArray objectAtIndex:254];
+        DLLElectricalPoint *debouncedSwitchX = [self.electricalPointArray objectAtIndex:255];
+        if (switchX.electricalPointValue == EPValueZero)
+        {
+            switchX.electricalPointValue = EPValueOne;
+          debouncedSwitchX.electricalPointValue = EPValueZero;
+        }
+        else
+        {
+            switchX.electricalPointValue = EPValueZero;
+            debouncedSwitchX.electricalPointValue = EPValueOne;
+        }
+    }
+    else if(switchID == 1)
+    {
+        DLLElectricalPoint *switchY = [self.electricalPointArray objectAtIndex:256];
+        DLLElectricalPoint *debouncedSwitchY = [self.electricalPointArray objectAtIndex:257];
+        if (switchY.electricalPointValue == EPValueZero)
+        {
+            switchY.electricalPointValue = EPValueOne;
+            debouncedSwitchY.electricalPointValue = EPValueZero;
+        }
+        else
+        {
+            switchY.electricalPointValue = EPValueZero;
+            debouncedSwitchY.electricalPointValue = EPValueOne;
+        }
+    }
+    else if (switchID > 1 && switchID < 10)
+    {
+        DLLElectricalPoint *currentSwitch = [self.electricalPointArray objectAtIndex:256 + switchID];
+        if (currentSwitch.electricalPointValue == EPValueZero)
+        {
+            currentSwitch.electricalPointValue = EPValueOne;
+        }
+        else
+        {
+            currentSwitch.electricalPointValue = EPValueZero;
+        }
+    }
     [self simulateCombinational];
+    BOOL stateChanged = NO;
+    
+    
+     /* TODO: For each sequential chip // This simulates Master-Slave behavior!
+        Compare Ck input value with stored Ck values!
+        If Ck transition causes a state change!
+        Set Q outputs accordingly!
+        stateChanged := YES!*/
+    
+    if(stateChanged)
+    {
+        [self simulateCombinational];
+    }
 }
+
 // TODO: reminder-need to add functionality to wire classes as well as chips
 
 - (NSArray*)newStateOfLights
@@ -846,8 +907,6 @@
         }
     }
     
-    NSArray *immutableStateOfLights = stateOfLights;
-    
    /* NSNumber *temp0 = [NSNumber numberWithInt:1];
     NSNumber *temp1 = [NSNumber numberWithInt:1];
     NSNumber *temp2 = [NSNumber numberWithInt:1];
@@ -858,6 +917,6 @@
     NSNumber *temp7 = [NSNumber numberWithInt:1];
     return [NSArray arrayWithObjects:temp0, temp1, temp2, temp3, temp4, temp5, temp6, temp7, nil];*/
     
-    return  immutableStateOfLights;
+    return  stateOfLights;
 }
 @end
