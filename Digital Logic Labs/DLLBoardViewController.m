@@ -94,7 +94,7 @@ typedef enum{
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:resizedBG];
     
-    // Add invisible wire layer on top
+    // Add invisible wire layer on bottom
     [self.view addSubview:self.chipLayer];
 }
 
