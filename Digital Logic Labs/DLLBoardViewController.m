@@ -130,7 +130,7 @@ typedef enum{
         BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? cOffset : wOffset IsAvailableForComponentOfSize:self.activeComponent.size];
         
         // NSLog([NSString stringWithFormat:@"%@", isAvailable ? @"YES" : @"NO"]);
-        NSLog([NSString stringWithFormat:@"(%f, %f)", wLoc.x, wLoc.y]);
+        // NSLog([NSString stringWithFormat:@"(%f, %f)", wLoc.x, wLoc.y]);
         // NSLog([NSString stringWithFormat:@"(%f, %f)", cLoc.x, cLoc.y]);
         // NSLog([NSString stringWithFormat:@"(%d, %d)", wOffset.xCoord, wOffset.yCoord]);
         // NSLog([NSString stringWithFormat:@"(%d, %d)", cOffset.xCoord, cOffset.yCoord]);
@@ -181,7 +181,7 @@ typedef enum{
         DLLPoint *cOffset = [self boardCoordinateFromGridCoordinate:cCalcPoint];
         DLLPoint *wOffset = [self boardCoordinateFromGridCoordinate:wCalcPoint];
         
-        NSLog([NSString stringWithFormat:@"(%f, %f)", wCalcPoint.x, wCalcPoint.y]);
+        // NSLog([NSString stringWithFormat:@"(%f, %f)", wCalcPoint.x, wCalcPoint.y]);
         // NSLog([NSString stringWithFormat:@"(%f, %f)", cCalcPoint.x, cCalcPoint.y]);
         // NSLog([NSString stringWithFormat:@"(%u, %u)", wOffset.xCoord, wOffset.yCoord]);
         // NSLog([NSString stringWithFormat:@"(%d, %d)", cOffset.xCoord, cOffset.yCoord]);
@@ -240,11 +240,17 @@ typedef enum{
 
         if(isAvailable){
             [self.activeComponent displayComponent];
-            [self.boardModel addWireFromPoint: [self boardCoordinateFromGridCoordinate:
-                                                [self gridCoordinateFromViewCoordinate: self.activeComponent.start]]
-                                      toPoint: [self boardCoordinateFromGridCoordinate:
-                 [self gridCoordinateFromViewCoordinate: self.activeComponent.end]]
-                                    withColor:self.activeComponent.color];
+            CGPoint wStartGrid = [self gridCoordinateFromViewCoordinate:self.activeComponent.start];
+            // location correction
+            wStartGrid.x++;
+            wStartGrid.y++;
+            DLLPoint *wStartBoard = [self boardCoordinateFromGridCoordinate:wStartGrid];
+            CGPoint wEndGrid = [self gridCoordinateFromViewCoordinate:self.activeComponent.end];
+            wEndGrid.x++;
+            wEndGrid.y++;
+            DLLPoint *wEndBoard = [self boardCoordinateFromGridCoordinate:wEndGrid];
+            
+            [self.boardModel addWireFromPoint:wStartBoard toPoint:wEndBoard withColor:self.activeComponent.color];
             [self addComponentToPointMap:self.activeComponent];
         }else{
             // user requested invalid object placement, remove activeComponent from view and dictionary
