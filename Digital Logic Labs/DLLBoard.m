@@ -780,7 +780,7 @@
                 
                 // set input values for currentChip
                 NSArray *inputPinCoords = [currentChip coordinatesOfInputPins];
-                NSArray *inputPinIndices = currentChip.inputPins;
+                NSArray *inputPinIndices = [currentChip inputPins];
                 for(int j = 0; j < [inputPinCoords count]; j++)
                 {
                     DLLPoint *currentPhysicalPoint = inputPinCoords[j];
@@ -789,14 +789,25 @@
                     [currentChip setPin:[inputPinIndices[j] integerValue] to:electricalPoint];
                 }
                 [currentChip calculateOutputs];
-                NSArray *indexOfOutputPins = [currentChip outputPins];
+                NSArray *outputPinCoords = [currentChip coordinatesOfOutputPins];
+                NSArray *outputPinIndices = [currentChip outputPins];
+                for(int j = 0; j < [outputPinCoords count]; j++)
+                {
+                    DLLPoint *currentPhysicalPoint = outputPinCoords[j];
+                    NSNumber *indexOfElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[currentPhysicalPoint toString]];
+                    DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: [indexOfElectricalPoint integerValue]];
+                    /*if (electricalPoint.electricalPointValue != [[currentChip pins] objectAtIndex: outputPinIndices[j]] ) {
+                        <#statements#>
+                    }*/
+                }
+                
                 NSMutableArray *chipPinValues = [currentChip pins];
                 NSMutableArray *newOutputPinValues = [NSMutableArray array];  
-                for(int i = 0; i < [indexOfOutputPins count]; i++)
+                for(int i = 0; i < [outputPinIndices count]; i++)
                 {
                      //[newOutputPinValues insertObject:[chipPinValues objectAtIndex: indexOfOutputPins[i] atIndex:i];
                 }
-                NSArray *outputPinCoords = [currentChip coordinatesOfOutputPins];
+                
                 for(int j = 0; j < [outputPinCoords count]; j++)
                 {
                      NSNumber *electricalPointNum = [self.boardPointToElectricalPointDictionary valueForKey:[outputPinCoords[j] toString]];

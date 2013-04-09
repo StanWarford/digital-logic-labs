@@ -57,7 +57,7 @@
     NSNumber * number = [NSNumber numberWithInt: self.xCoord * 100 + self.yCoord];
     NSString * stringVal = @"";
     
-    if(number <= @999)
+    if(number <= [NSNumber numberWithInt:999])
         [stringVal stringByAppendingString: @"0"];
     
     [stringVal stringByAppendingString: [number stringValue]];
