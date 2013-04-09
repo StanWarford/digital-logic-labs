@@ -817,11 +817,6 @@
 
 - (void) simulateThrowOfSwitchLabeled:(int)switchID
 {
-    // following code is simply for testing the circuit
-   /* DLLElectricalPoint *light = [[DLLElectricalPoint alloc] initWithValue:EPValueZero];
-    [self.electricalPointArray insertObject:light atIndex:switchID + 264];*/
-
-    
     /* TODO:
      For each sequential chip!
         Store the current states (Q values)!
