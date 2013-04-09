@@ -823,4 +823,17 @@
     [self simulateCombinational];
 }
 // TODO: reminder-need to add functionality to wire classes as well as chips
+
+- (NSArray*)newStateOfLights
+{
+    NSNumber *temp0 = [NSNumber numberWithInt:0];
+    NSNumber *temp1 = [NSNumber numberWithInt:1];
+    NSNumber *temp2 = [NSNumber numberWithInt:1];
+    NSNumber *temp3 = [NSNumber numberWithInt:0];
+    NSNumber *temp4 = [NSNumber numberWithInt:2];
+    NSNumber *temp5 = [NSNumber numberWithInt:0];
+    NSNumber *temp6 = [NSNumber numberWithInt:1];
+    NSNumber *temp7 = [NSNumber numberWithInt:0];
+    return [NSArray arrayWithObjects:temp0, temp1, temp2, temp3, temp4, temp5, temp6, temp7, nil];
+}
 @end
