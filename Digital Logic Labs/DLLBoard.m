@@ -412,10 +412,8 @@
     
     if(size == 1) // wire
     {
-        //if (!([[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord] == nil) || coords.xCoord == 99 || coords.yCoord == 99) return NO; //  *********Casey - This is crashing for some reason*************
-        // Casey, if you see this, I think it's because we have not yet implemented wires in the breadboard logic yet
-        return YES;
-        
+        return !((coords.xCoord > 63) || (coords.yCoord > 31));
+                 //([[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord] != nil) 
     }
     if (size == 24){
         numRows = 4;
@@ -541,7 +539,7 @@
 
 - (BOOL) illegalConnectionExists
 {
-    NSMutableArray *activeElectricalPoints = [[NSMutableArray alloc] init];
+    NSMutableArray *activeElectricalPoints = [NSMutableArray array];
     int count = 0;
     for(int i = 0; i < [self.electricalPointArray count]; i++)
     {
@@ -570,10 +568,9 @@
             DLLElectricalPoint *currentElectricalPoint = [activeElectricalPoints objectAtIndex:i];
             NSUInteger index = [self.electricalPointArray indexOfObject:currentElectricalPoint];
             NSArray *electricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:index];
-            // TODO: question-I'm unsure of if this will work, do activeElectricalPoints and electricalPointArray point to the same DLLElectrical point object?
             for(int j = 0; j < [electricalArrayOfHoles count]; j++)
             {
-                DLLPoint *currentPhysicalPoint = electricalArrayOfHoles[i];
+                DLLPoint *currentPhysicalPoint = electricalArrayOfHoles[j];
                 if([[[self.breadboardStateArray objectAtIndex: currentPhysicalPoint.xCoord]
                                                 objectAtIndex: currentPhysicalPoint.yCoord]
                                                 isKindOfClass:[DLLWire class]])
@@ -673,7 +670,7 @@
     // set up array of activeElectricalPoints
     
     int count = 0;
-    NSMutableArray *activeElectricalPoints = [[NSMutableArray alloc] init];
+    NSMutableArray *activeElectricalPoints = [NSMutableArray array];
     
     for(int i = 0; i < [self.electricalPointArray count]; i++)
     {
@@ -694,7 +691,6 @@
             DLLElectricalPoint *currentElectricalPoint = [activeElectricalPoints objectAtIndex:i];
             NSUInteger index = [self.electricalPointArray indexOfObject:currentElectricalPoint];
             NSArray *physicalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:index];
-            // TODO: same potential problem here-do these point to the same object?
             for(int i = 0; i < [physicalArrayOfHoles count]; i++)
             {
                 DLLPoint *currentBoardPoint = physicalArrayOfHoles[i];
@@ -732,7 +728,14 @@
                                     currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
                                     currentElectricalPoint.electricalPointValue = otherElectricalPoint.electricalPointValue;
                                     break;
-                                case (EPTypeInput | EPTypeClockInput): //TODO: question bitwise OR with switch?
+                                case EPTypeInput: 
+                                    if (otherElectricalPoint.electricalPointValue != EPValueUnknown)
+                                    {
+                                        currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
+                                        currentElectricalPoint.electricalPointValue = otherElectricalPoint.electricalPointValue;
+                                    }
+                                    break;
+                                case EPTypeClockInput: 
                                     if (otherElectricalPoint.electricalPointValue != EPValueUnknown)
                                     {
                                         currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
@@ -751,10 +754,13 @@
                 }
             }
         }
+        
         if (changed == YES)
         {
             int count = 0;
-            NSMutableArray *activeChips = [[NSMutableArray alloc] init];
+            
+            // Create an array of active chips (chips that return isFunctional == YES)
+            NSMutableArray *activeChips = [NSMutableArray array];      
             NSArray *chipsOnBoard = [self.chipDictionary allValues];
             
             for(int i = 0; i < [chipsOnBoard count]; i++)
@@ -767,13 +773,26 @@
                     count++;
                 }
             }
+            
+            // Loop through array of active chips
             for(int i = 0; i < [activeChips count]; i++)
             {
                 DLLChip *currentChip = [activeChips objectAtIndex:i];
+                
+                // set input values for currentChip
+                NSArray *inputPinCoords = [currentChip coordinatesOfInputPins];
+                NSArray *inputPinIndices = currentChip.inputPins;
+                for(int j = 0; j < [inputPinCoords count]; j++)
+                {
+                    DLLPoint *currentPhysicalPoint = inputPinCoords[j];
+                    NSNumber *indexOfElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[currentPhysicalPoint toString]];
+                    DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: indexOfElectricalPoint];
+                    [currentChip setPin:inputPinIndices[j] to:electricalPoint];
+                }
                 [currentChip calculateOutputs];
                 NSArray *indexOfOutputPins = [currentChip outputPins];
                 NSMutableArray *chipPinValues = [currentChip pins];
-                NSMutableArray *newOutputPinValues = [[NSMutableArray alloc] init];  // TODO: question, i've alloc init these like this a couple times now, is this okay? (to not initialize a size?)
+                NSMutableArray *newOutputPinValues = [NSMutableArray array];  
                 for(int i = 0; i < [indexOfOutputPins count]; i++)
                 {
                      [newOutputPinValues insertObject:[chipPinValues objectAtIndex: indexOfOutputPins[i]] atIndex:i];
@@ -782,17 +801,19 @@
                 for(int j = 0; j < [outputPinCoords count]; j++)
                 {
                      NSNumber *electricalPointNum = [self.boardPointToElectricalPointDictionary valueForKey:[outputPinCoords[j] toString]];
-                    DLLElectricalPoint *oldElectricalPoint = [self.electricalPointArray objectAtIndex:electricalPointNum];
+                    DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex:electricalPointNum];
                    /* if ((NSNumber)[oldElectricalPoint electricalPointValue] != [newOutputPinValues objectAtIndex:j])
                     {
-                        
-                    }*/
-                //TODO: NEED TO DEFINE output and input pin value ENUMs. How do we want these to work?
+                    electricalPoint.electricalPointPreviousValue = electricalPoint.electricalPointValue;
+                    electricalPoint.electricalPointValue = [newOutputPinValues objectAtIndex:j];
+                    }
+                TODO: NEED TO DEFINE output and input pin value ENUMs. How do we want these to work? */
+                    
                 }
                 
             }
         }
-        
+        clock++;
     } while (changed && clock < CLOCK_LIMIT);
     
 }

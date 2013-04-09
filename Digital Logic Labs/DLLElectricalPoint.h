@@ -27,10 +27,14 @@ typedef enum
 @property (nonatomic, assign) EPValue electricalPointPreviousValue;
 
 - (id)initWithType:(EPType)type;
+- (id)initWithType:(EPType)type andValue:(EPValue)value;
 - (id)init;
 
 - (void)changePointTypeTo:(EPType)type;
 - (BOOL)isEqual:(id)otherPoint;
+- (DLLElectricalPoint *)NAND:(DLLElectricalPoint *)otherPoint;
 
 @end
+
+//TODO: make an array of DLLElectricalPoints
 

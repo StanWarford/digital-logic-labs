@@ -32,7 +32,8 @@
     
     for(int i = 0; i < [self.pins count]; i++)
     {
-        [self.pins insertObject: [NSNumber numberWithInt: PinValueUnknown] atIndex: i];
+        DLLElectricalPoint *newElectricalPoint = [[DLLElectricalPoint alloc] initWithType:EPTypeOther andValue:EPValueUnknown];
+        [self.pins insertObject: newElectricalPoint atIndex: i];
     }
     
     return self;

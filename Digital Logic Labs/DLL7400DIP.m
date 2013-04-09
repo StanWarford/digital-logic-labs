@@ -10,7 +10,7 @@
 
 @implementation DLL7400DIP
 
-// Quad Two-Input NAND Gate
+// Quad Two-Input NAND Gate need setPin: toValue: 
 
 - (id)initWithLocation: (DLLPoint *)loc
 {
@@ -28,26 +28,10 @@
 
 - (void)calculateOutputs
 {
-    if(!([self.pins objectAtIndex: 0] == [NSNumber numberWithInt: PinValueUnknown]
-         || [self.pins objectAtIndex: 1] == [NSNumber numberWithInt: PinValueUnknown])){   // why the if statement here?
-        
-        [self.pins  insertObject:[NSNumber numberWithInt:
-                                  !((NSInteger)[self.pins objectAtIndex: 0] &
-                                    (NSInteger)[self.pins objectAtIndex: 1])]
-                                    atIndex: 2];
-    }
-        
-    [self.pins  insertObject:
-     [NSNumber numberWithInt: !((NSInteger)[self.pins objectAtIndex: 3] & (NSInteger)[self.pins objectAtIndex: 4])]
-                     atIndex: 5];
-    
-    [self.pins  insertObject:
-     [NSNumber numberWithInt: !((NSInteger)[self.pins objectAtIndex: 8] & (NSInteger)[self.pins objectAtIndex: 9])]
-                     atIndex: 7];
-    
-    [self.pins  insertObject:
-     [NSNumber numberWithInt: !((NSInteger)[self.pins objectAtIndex: 12] & (NSInteger)[self.pins objectAtIndex: 11])]
-                     atIndex: 10];
+    [self.pins insertObject: [[self.pins objectAtIndex:0] NAND:[self.pins objectAtIndex:1]] atIndex:2];
+    [self.pins insertObject: [[self.pins objectAtIndex:3] NAND:[self.pins objectAtIndex:4]] atIndex:5];
+    [self.pins insertObject: [[self.pins objectAtIndex:8] NAND:[self.pins objectAtIndex:9]] atIndex:7];
+    [self.pins insertObject: [[self.pins objectAtIndex:11] NAND:[self.pins objectAtIndex:12]] atIndex:10];
 }
 
 - (DLLPoint *)powerPinCoordinate
@@ -77,6 +61,18 @@
                                     [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord + 1],
                                     [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 6 andY:self.loc.yCoord],
                                     [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord], nil];
+}
+
+- (void)setPin:(int)index to:(DLLElectricalPoint *)electricalPoint
+{
+    if ((index < [self.pins count]) && (index >= 0))
+    {
+        [self.pins insertObject:electricalPoint atIndex:index];
+    }
+    else
+    {
+    //TODO: some sort of error message here
+    }
 }
 
 @end
