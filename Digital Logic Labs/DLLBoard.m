@@ -335,6 +335,7 @@
 {
     DLLChip *newChip = [[DLLChip alloc] initWithIdenfifier: partNum];
     [self.chipDictionary setValue: newChip forKey: [coords toString]];
+    // test
     //TODO: for Joe to implement
     // add pointers to breadboardStateArray
 }
