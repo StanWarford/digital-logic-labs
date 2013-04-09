@@ -20,6 +20,7 @@ typedef enum{
 @property (nonatomic, strong) NSDictionary *pointMap;
 @property (nonatomic, strong) DLLAComponentView *selection;
 @property (nonatomic, assign) placementState state;
+@property (nonatomic, strong) UIView *chipLayer;
 
 - (CGPoint)gridCoordinateFromViewCoordinate:(CGPoint)loc;
 - (CGPoint)viewCoordinateFromGridCoordinate:(CGPoint)loc;
@@ -50,6 +51,18 @@ typedef enum{
 @synthesize boardModel = _boardModel; // pointer to model
 @synthesize state = _state; // variable representing the state of the board as defined by placement state enum
 @synthesize parent = _parent; // pointer to containerview
+@synthesize chipLayer = _chipLayer;
+
+#pragma mark -
+#pragma mark lazy instantiation methods
+- (UIView*)chipLayer
+{
+    if(!_chipLayer){
+        CGRect viewRect = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, VIEW_HEIGHT);
+        _chipLayer = [[UIView alloc] initWithFrame:viewRect];
+    }
+    return _chipLayer;
+}
 
 #pragma mark -
 #pragma mark Initialization Metods
@@ -80,6 +93,9 @@ typedef enum{
     UIGraphicsEndImageContext();
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:resizedBG];
+    
+    // Add invisible wire layer on top
+    [self.view addSubview:self.chipLayer];
 }
 
 #pragma mark -
@@ -114,7 +130,7 @@ typedef enum{
             [self.activeComponent removeGraphics];
         }else{ // user touched an empty spot, allocate a new chip or wire based on dock selection
             if([self.selection isKindOfClass:[DLLChipView class]]){
-                self.activeComponent = [[[self.selection class] alloc] initChipAtLocation:tSnapLoc inView:self.view withID:[self.selection identifier]];
+                self.activeComponent = [[[self.selection class] alloc] initChipAtLocation:tSnapLoc inView:self.chipLayer withID:[self.selection identifier]];
             }else{
                 self.activeComponent = [[[self.selection class] alloc] initWireWithStartAt:tSnapLoc withColor:self.selection.color inView:self.view];
             }
@@ -625,6 +641,7 @@ Vertical ranges of grid coordinates corresponding to holes on the board
     [super didReceiveMemoryWarning];
     self.activeComponent = nil;
     self.selection = nil;
+    self.chipLayer = nil;
     // cannot deallocate pointmap since that holds information that can't be restored.
     // cannot deallocate placementstate since that holds information that can't be restored.
 }
