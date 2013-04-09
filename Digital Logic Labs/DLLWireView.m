@@ -26,7 +26,7 @@
         self.end = CGPointMake(0, 0);
         self.color = [UIColor redColor];
         self.size = 1;
-        self.image = [UIImage imageNamed:@"wire"];
+        self.image = [UIImage imageNamed:@"wire-large"];
     }
     return self;
 }
@@ -38,7 +38,7 @@
         self.end = CGPointMake(0, 0);
         self.color = color;
         self.size = 1;
-        self.image = [UIImage imageNamed:@"wire"];
+        self.image = [UIImage imageNamed:@"wire-large"];
         self.targetView = view;
     }
     return self;
