@@ -442,7 +442,6 @@
 #pragma mark -
 #pragma mark test screen API
 
-//TODO: for Brooke to implement
 - (void) runSimulation
 {
     [self determineChipFunctionality];
@@ -463,7 +462,7 @@
         
         DLLPoint *powerPinCoord = [chip powerPinCoordinate];
         NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
-        NSArray *powerElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:powerElectricalPoint];
+        NSArray *powerElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[powerElectricalPoint integerValue]];
         
         for(int i = 0; i < [powerElectricalArrayOfHoles count]; i++)
         {
@@ -477,7 +476,7 @@
                                          objectAtIndex: currentBoardPoint.yCoord];
                 DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
                 NSNumber *otherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
-                DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: otherElectricalPoint];
+                DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: [otherElectricalPoint integerValue]];
                 if(!(electricalPoint.electricalPointType == EPTypePower)){
                     chip.isFunctional = NO;
                 }
@@ -485,7 +484,7 @@
         }
         DLLPoint *groundPinCoord = [chip groundPinCoordinate];
         NSNumber *groundElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[groundPinCoord toString]];
-        NSArray *groundElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:groundElectricalPoint];
+        NSArray *groundElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[groundElectricalPoint integerValue]];
         
         for(int i = 0; i < [groundElectricalArrayOfHoles count]; i++)
         {
@@ -499,7 +498,7 @@
                                         objectAtIndex: currentBoardPoint.yCoord];
                 DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
                 NSNumber *otherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
-                DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: otherElectricalPoint];
+                DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: [otherElectricalPoint integerValue]];
                 if(!(electricalPoint.electricalPointType == EPTypeGround)){
                     chip.isFunctional = NO;
                 }
@@ -520,19 +519,19 @@
         DLLPoint *groundPinCoord = [chip groundPinCoordinate];
         NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
         NSNumber *groundElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[groundPinCoord toString]];
-        [[self.electricalPointArray objectAtIndex:powerElectricalPoint] changePointTypeTo:EPTypePower];
-        [[self.electricalPointArray objectAtIndex:groundElectricalPoint] changePointTypeTo:EPTypeGround];
+        [[self.electricalPointArray objectAtIndex:[powerElectricalPoint integerValue]] changePointTypeTo:EPTypePower];
+        [[self.electricalPointArray objectAtIndex:[groundElectricalPoint integerValue]] changePointTypeTo:EPTypeGround];
         
         NSArray *coordsOfInputPins = [chip coordinatesOfInputPins];
         for(int i = 0; i < [coordsOfInputPins count]; i++){
             NSNumber *electricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[coordsOfInputPins[i] toString]];
-            [[self.electricalPointArray objectAtIndex:electricalPoint] changePointTypeTo:EPTypeInput];
+            [[self.electricalPointArray objectAtIndex:[electricalPoint integerValue]] changePointTypeTo:EPTypeInput];
         }
         
         NSArray *coordsOfOutputPins = [chip coordinatesOfOutputPins];
         for(int i = 0; i < [coordsOfOutputPins count]; i++){
             NSNumber *electricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[coordsOfOutputPins[i] toString]];
-            [[self.electricalPointArray objectAtIndex:electricalPoint] changePointTypeTo:EPTypeOutput];
+            [[self.electricalPointArray objectAtIndex:[electricalPoint integerValue]] changePointTypeTo:EPTypeOutput];
         }
     }
 }
@@ -579,7 +578,7 @@
                                                                         objectAtIndex: currentPhysicalPoint.yCoord];
                     DLLPoint *otherPhysicalPoint = [currentWire otherBoardHole: currentPhysicalPoint];
                     NSNumber *indexOfOtherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPhysicalPoint toString]];
-                    DLLElectricalPoint *otherElectricalPoint = [self.electricalPointArray objectAtIndex: indexOfOtherElectricalPoint];
+                    DLLElectricalPoint *otherElectricalPoint = [self.electricalPointArray objectAtIndex: [indexOfOtherElectricalPoint integerValue]];
                     if(currentElectricalPoint.setNumber == -1){
                         if(otherElectricalPoint.setNumber != -1){
                             currentElectricalPoint.setNumber = otherElectricalPoint.setNumber;
@@ -703,7 +702,7 @@
                                                                         objectAtIndex: currentBoardPoint.yCoord];
                     DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
                     NSNumber *otherElectricalPointIndex = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
-                    DLLElectricalPoint *otherElectricalPoint = [self.electricalPointArray objectAtIndex: otherElectricalPointIndex];
+                    DLLElectricalPoint *otherElectricalPoint = [self.electricalPointArray objectAtIndex: [otherElectricalPointIndex integerValue]];
                     if((currentElectricalPoint.electricalPointValue != otherElectricalPoint.electricalPointValue))
                     {
                         if ((currentElectricalPoint.electricalPointType == EPTypeInput) ||
@@ -786,8 +785,8 @@
                 {
                     DLLPoint *currentPhysicalPoint = inputPinCoords[j];
                     NSNumber *indexOfElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[currentPhysicalPoint toString]];
-                    DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: indexOfElectricalPoint];
-                    [currentChip setPin:inputPinIndices[j] to:electricalPoint];
+                    DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: [indexOfElectricalPoint integerValue]];
+                    [currentChip setPin:[inputPinIndices[j] integerValue] to:electricalPoint];
                 }
                 [currentChip calculateOutputs];
                 NSArray *indexOfOutputPins = [currentChip outputPins];
@@ -795,13 +794,13 @@
                 NSMutableArray *newOutputPinValues = [NSMutableArray array];  
                 for(int i = 0; i < [indexOfOutputPins count]; i++)
                 {
-                     [newOutputPinValues insertObject:[chipPinValues objectAtIndex: indexOfOutputPins[i]] atIndex:i];
+                     //[newOutputPinValues insertObject:[chipPinValues objectAtIndex: indexOfOutputPins[i] atIndex:i];
                 }
                 NSArray *outputPinCoords = [currentChip coordinatesOfOutputPins];
                 for(int j = 0; j < [outputPinCoords count]; j++)
                 {
                      NSNumber *electricalPointNum = [self.boardPointToElectricalPointDictionary valueForKey:[outputPinCoords[j] toString]];
-                    DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex:electricalPointNum];
+                    DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex:[electricalPointNum integerValue]];
                    /* if ((NSNumber)[oldElectricalPoint electricalPointValue] != [newOutputPinValues objectAtIndex:j])
                     {
                     electricalPoint.electricalPointPreviousValue = electricalPoint.electricalPointValue;
@@ -818,7 +817,7 @@
     
 }
 
-- (void) simulateThrowOfSwitchLabeled:(int)switchID
+- (void) simulateThrowOfSwitchLabeled:(int)switchID  // switches start at 0 with the debounced x switch, followed by debounced y, then SW1... SW8. SW8 has switch id 9
 {
     // more code necessary here
     [self simulateCombinational];
