@@ -11,9 +11,10 @@
 @implementation DLLAComponent
 
 -(id)initWithIdentifier:(NSInteger)identifier
-{    
-    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
-    return nil;
+{
+    self.identifier = identifier;
+    
+    return self;
 }
 
 @end

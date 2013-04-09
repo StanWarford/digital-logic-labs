@@ -28,6 +28,7 @@
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *) endingPoint withColor:(UIColor *)color;
 
 - (void)removeComponentAtCoordinate:(DLLPoint *)coords;
+- (void)removeWireAtStartPoint: (DLLPoint *)startPoint AndEndPoint: (DLLPoint *)endPoint;
 - (void)clearBoard;
 
 - (BOOL)isOccupiedAt:(DLLPoint *)coords;

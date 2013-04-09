@@ -333,31 +333,76 @@
 #pragma mark component addition methods
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(DLLPoint *)coords
 {
-    DLLChip *newChip = [[DLLChip alloc] initWithIdenfifier: partNum];
-    [self.chipDictionary setValue: newChip forKey: [coords toString]];
-    // test
-    //TODO: for Joe to implement
-    // add pointers to breadboardStateArray
+    DLLChip * newChip;
+    //TODO: add cases for other chip numbers - Joe
+    switch(partNum)
+    {
+        case 7400: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+            break;
+        default: newChip = nil;
+            break;
+    }
+    
+    if(newChip)
+    {
+        [self.chipDictionary setValue: newChip forKey: [coords toString]];
+    
+        //add chip to breadboardStateArray
+        DLLPoint * current = [[DLLPoint alloc] initWithIntX: coords.xCoord andY: coords.yCoord];
+        
+        for(;current.xCoord < coords.xCoord + newChip.size / 2; current.xCoord++)
+        {
+            NSMutableArray * column = [self.breadboardStateArray objectAtIndex: current.xCoord];
+            [column insertObject: newChip atIndex: current.yCoord];
+            [column insertObject: newChip atIndex: current.yCoord + 1];
+        }
+    }
 }
 
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *)endingPoint withColor:(UIColor *)color
 {
-    //TODO: for Joe to implement
-    //add a component to the XML file and to data structure for the active board
-    // need internal safety w/ exceptions
+    DLLWire * newWire = [[DLLWire alloc] initWithStartPoint: startingPoint EndPoint:endingPoint AndColor: color];
+    
+    //add new wire to both start and end point in breadboardStateArray
+    NSMutableArray * startRow = [self.breadboardStateArray objectAtIndex: startingPoint.xCoord];
+    NSMutableArray * endRow = [self.breadboardStateArray objectAtIndex: endingPoint.xCoord];
+
+    [startRow insertObject: newWire atIndex: startingPoint.yCoord];
+    [endRow insertObject: newWire atIndex: endingPoint.yCoord];
 }
 
 
 
 #pragma mark -
 #pragma mark component removal methods
-- (void)removeComponentAtCoordinate:(DLLPoint *)coords //this will return component type -Casey
-{
-    //TODO: for Joe to implement
+- (void)removeComponentAtCoordinate:(DLLPoint *)coords {
+    //remove component from breadboardStateArray
     //not necessarily upper left-need to check 2D array
-    // Code below is not quite right, but close
-    DLLAComponent * tempComponent = [self.chipDictionary objectForKey:[coords toString]];
+    NSMutableArray * row = [self.breadboardStateArray objectAtIndex: coords.xCoord];
+    DLLChip * toRemove = [row objectAtIndex: coords.yCoord];
+    
+    DLLPoint * upperLeft = toRemove.loc;
+    NSUInteger chipWidth = toRemove.size / 2;
+    
+    DLLPoint * current = [[DLLPoint alloc] initWithIntX: upperLeft.xCoord andY: upperLeft.yCoord];
+    NSMutableArray * topRow = [self.breadboardStateArray objectAtIndex: upperLeft.yCoord];
+    NSMutableArray * bottomRow = [self.breadboardStateArray objectAtIndex: upperLeft.yCoord + 1];
+    
+    NSNull * myNull = [NSNull null];
+    
+    for(; current.xCoord < upperLeft.xCoord + chipWidth; current.xCoord++)
+    {
+        [topRow insertObject: myNull atIndex: current.xCoord];
+        [bottomRow insertObject: myNull atIndex: current.xCoord];
+    }
+    
+    //remove component from dictionary
     [self.chipDictionary removeObjectForKey:[coords toString]];
+}
+
+- (void)removeWireAtStartPoint: (DLLPoint *)startPoint AndEndPoint: (DLLPoint *)endPoint
+{
+    //TODO: implement this for wire removal - Joe
 }
 
 - (void)clearBoard

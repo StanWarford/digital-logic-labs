@@ -240,7 +240,11 @@ typedef enum{
 
         if(isAvailable){
             [self.activeComponent displayComponent];
-            [self.boardModel addWireFromPoint:[[DLLPoint alloc] initWithCoords:self.activeComponent.start] toPoint:[[DLLPoint alloc] initWithCoords:self.activeComponent.end] withColor:self.activeComponent.color];
+            [self.boardModel addWireFromPoint: [self boardCoordinateFromGridCoordinate:
+                                                [self gridCoordinateFromViewCoordinate: self.activeComponent.start]]
+                                      toPoint: [self boardCoordinateFromGridCoordinate:
+                 [self gridCoordinateFromViewCoordinate: self.activeComponent.end]]
+                                    withColor:self.activeComponent.color];
             [self addComponentToPointMap:self.activeComponent];
         }else{
             // user requested invalid object placement, remove activeComponent from view and dictionary

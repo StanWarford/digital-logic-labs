@@ -13,9 +13,11 @@
 
 @property (nonatomic, strong) DLLPoint * startPoint;
 @property (nonatomic, strong) DLLPoint * endPoint;
+@property (nonatomic, strong) UIColor * color;
 
 - (id)initWithStartPoint: (DLLPoint *)startPoint
-             AndEndPoint: (DLLPoint *)endPoint;
+                EndPoint: (DLLPoint *)endPoint
+                AndColor: (UIColor *)color;
 - (DLLPoint *)otherBoardHole: (DLLPoint *)firstPoint;
 
 @end

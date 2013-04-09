@@ -12,6 +12,9 @@
 
 @interface DLL7400DIP : DLL14PinDIP
 
+- (id)initWithLocation: (DLLPoint *)loc;
+
+
 @end
 
 

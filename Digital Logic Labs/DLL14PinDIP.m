@@ -12,13 +12,12 @@
 
 - (id)initWithIdentifier:(NSInteger)identifier
                 Location:(DLLPoint *) loc
-                    Size:(NSUInteger) size
               OutputPins:(NSArray *)outputPins
                InputPins:(NSArray *)inputPins
                GroundPin:(NSUInteger)groundPin
              AndPowerPin:(NSUInteger)powerPin
 {
-    if(self = [super initWithIdenfifier: identifier])
+    if(self = [super initWithIdentifier: identifier])
     {
         self.loc = loc;
         self.size = 14;

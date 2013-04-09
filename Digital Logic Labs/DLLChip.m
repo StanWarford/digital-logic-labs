@@ -19,8 +19,11 @@
 
 - (id)initWithIdentifier:(NSInteger)identifier
 {
-    self.identifier = identifier;
-    self.isFunctional = YES;
+    if(self = [super initWithIdentifier: identifier])
+    {
+        self.identifier = identifier;
+        self.isFunctional = YES;
+    }
     
     return self;
 }

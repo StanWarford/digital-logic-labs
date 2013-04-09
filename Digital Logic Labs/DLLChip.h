@@ -24,7 +24,7 @@
 @property (nonatomic, assign) NSUInteger size;
 
 - (id)init;
-- (id)initWithIdenfifier:(NSInteger)identifier;
+- (id)initWithIdentifier:(NSInteger)identifier;
 - (void)calculateOutputs;
 - (DLLPoint *)powerPinCoordinate;
 - (DLLPoint *)groundPinCoordinate;
