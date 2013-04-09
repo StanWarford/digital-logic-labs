@@ -400,6 +400,20 @@
     [self.chipDictionary removeObjectForKey:[coords toString]];
 }
 
+- (void)removeWireAtPoint: (DLLPoint *)startPoint
+{    
+    NSMutableArray * startColumn = [self.breadboardStateArray objectAtIndex: startPoint.xCoord];
+    
+    DLLPoint * endPoint = [(DLLWire *)[startColumn objectAtIndex: startPoint.yCoord] otherBoardHole: startPoint];
+    
+    NSMutableArray * endColumn = [self.breadboardStateArray objectAtIndex: endPoint.xCoord];
+    
+    NSNull * myNull = [NSNull null];
+    
+    [startColumn insertObject: myNull atIndex: startPoint.yCoord];
+    [endColumn insertObject: myNull atIndex: endPoint.yCoord];
+}
+
 - (void)removeWireAtStartPoint: (DLLPoint *)startPoint AndEndPoint: (DLLPoint *)endPoint
 {
     NSMutableArray * startColumn = [self.breadboardStateArray objectAtIndex: startPoint.xCoord];
