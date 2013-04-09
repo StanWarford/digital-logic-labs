@@ -415,9 +415,11 @@
         return !((coords.xCoord > 63) || (coords.yCoord > 31));
                  //([[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord] != nil) 
     }
-    if (size == 24){
+    
+    if (size == 24)     // ALU
+    {
         numRows = 4;
-    }else // chip
+    } else              // chip
     {
         numRows = 2;
     }
