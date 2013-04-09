@@ -378,8 +378,8 @@
 - (void)removeComponentAtCoordinate:(DLLPoint *)coords {
     //remove component from breadboardStateArray
     //not necessarily upper left-need to check 2D array
-    NSMutableArray * row = [self.breadboardStateArray objectAtIndex: coords.xCoord];
-    DLLChip * toRemove = [row objectAtIndex: coords.yCoord];
+    NSMutableArray * column = [self.breadboardStateArray objectAtIndex: coords.xCoord];
+    DLLChip * toRemove = [column objectAtIndex: coords.yCoord];
     
     DLLPoint * upperLeft = toRemove.loc;
     NSUInteger chipWidth = toRemove.size / 2;
@@ -402,7 +402,13 @@
 
 - (void)removeWireAtStartPoint: (DLLPoint *)startPoint AndEndPoint: (DLLPoint *)endPoint
 {
-    //TODO: implement this for wire removal - Joe
+    NSMutableArray * startColumn = [self.breadboardStateArray objectAtIndex: startPoint.xCoord];
+    NSMutableArray * endColumn = [self.breadboardStateArray objectAtIndex: endPoint.xCoord];
+    
+    NSNull * myNull = [NSNull null];
+    
+    [startColumn insertObject: myNull atIndex: startPoint.yCoord];
+    [endColumn insertObject: myNull atIndex: endPoint.yCoord];
 }
 
 - (void)clearBoard
