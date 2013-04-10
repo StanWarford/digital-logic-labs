@@ -15,9 +15,11 @@
 
 @implementation DLLContainerViewController
 
-@synthesize boardView = _boardView;
-@synthesize dockView = _dockView;
-@synthesize boardModel = _boardModel;
+#define NAV_BUTTON_SPACING 50 // defines pixel spacing between programatically added nav bar items
+
+@synthesize boardView = _boardView; // pointer to board subview
+@synthesize dockView = _dockView; // pointer to dock subview
+@synthesize boardModel = _boardModel; // pointer to model
 
 #pragma mark -
 #pragma mark view initialization methods
@@ -27,8 +29,10 @@
     // instantiate the subviews to be added
     self.boardView = [self.storyboard instantiateViewControllerWithIdentifier:@"UIBoardViewBoard"];
     self.boardView.boardModel = self.boardModel;
+    self.boardView.parent = self;
     self.dockView = [self.storyboard instantiateViewControllerWithIdentifier:@"UIDockViewDock"];
     self.dockView.boardModel = self.boardModel;
+    self.dockView.parent = self;
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Dock"]];
     
     // move the instantiated frames to their correct positions on screen
@@ -52,34 +56,39 @@
     [self.view addSubview:self.dockView.view];
     [self.view addSubview:imageView];
     
+    // add buttons to navigation bar
+    UIBarButtonItem *testButton = [[UIBarButtonItem alloc] initWithTitle:@"Test" style:UIBarButtonItemStyleBordered target:self action:@selector(goToTestScreen)];
+    UIBarButtonItem *clearButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear Board" style:UIBarButtonItemStyleBordered target:self action:@selector(clearBoard)];
+    UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace  target:nil action:nil];
+    fixedSpaceBarButtonItem.width = NAV_BUTTON_SPACING;
     
-    
-    UIBarButtonItem* testButton = [[UIBarButtonItem alloc] initWithTitle:@"Test" style:UIBarButtonItemStyleBordered target:self action:@selector(goToTestScreen)];    
-    [testButton respondsToSelector:@selector(goToTestScreen:)];
-    
-    UIBarButtonItem* clearButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear Board" style:UIBarButtonItemStyleBordered target:self action:@selector(clearButton)];    
-    [clearButton respondsToSelector:@selector(clearBoard)];
-    
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:testButton, clearButton, nil];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:testButton, fixedSpaceBarButtonItem, clearButton, nil];
 }
 
-
-
-- (void) clearButton
+#pragma mark -
+#pragma mark target action methods
+// called when user presses clear board
+- (void) clearBoard
 {
-    // tell boardviewcontroller to clear the board
+    // create and show an alert view
+    UIAlertView *alert = [[UIAlertView alloc]
+                           initWithTitle:@"Are you sure?"
+                           message:@"Are you sure that you want to clear the board?"
+                           delegate:self
+                           cancelButtonTitle:@"Cancel"
+                           otherButtonTitles:@"OK", nil];
+    [alert show];
 }
 
-
+// called when user presses test button
 - (IBAction)goToTestScreen
 {
-    DLLTestViewController *testView = [[DLLTestViewController alloc] init];
     [self performSegueWithIdentifier:@"BoardToTestSegue" sender:self];
 }
 
-
 #pragma mark -
 #pragma mark segue control methods
+// pass the board model on to the test screen
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"BoardToTestSegue"]){
@@ -89,12 +98,24 @@
 }
 
 #pragma mark -
+#pragma mark UIAlertViewDelegate protocol methods
+// responds to events in the alertview shown when user presses clear board
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1) { // User pressed OK
+        [self.boardView clearBoard];
+    }else{ // user pressed cancel
+        // do nothing
+    }
+}
+
+#pragma mark -
 #pragma mark MISC
     
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // nothing to deallocate
 }
 
 @end

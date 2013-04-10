@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+// Delegate protocol to tell the delegate to respond to changes in selection
 @protocol DLLLabTableViewControllerDelegate <NSObject>
 - (void) selectionDidChangeTo:(NSInteger)selection;
 @end

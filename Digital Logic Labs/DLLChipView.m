@@ -9,13 +9,13 @@
 #import "DLLChipView.h"
 
 @interface DLLChipView ()
-@property (nonatomic, strong) UIImage* availableGhostImage;
-@property (nonatomic, strong) UIImage* unavailableGhostImage;
-@property (nonatomic, assign) CGPoint center;
+@property (nonatomic, strong) UIImage* availableGhostImage; // premade unhighlighted ghost image
+@property (nonatomic, strong) UIImage* unavailableGhostImage; // premade highlighted ghost image
+@property (nonatomic, assign) CGPoint center; // center of the view
 - (UIImage*)makeGhostWithHoleAvailable:(BOOL)available forImage:(UIImage*)image;
 - (UIImage*)convertImageToGrayScale:(UIImage*)image;
 - (void)setChipImageAndSize:(NSInteger)identifier;
-- (CGPoint)calculateUpperLeftPinFromCenterPoint:(CGPoint)point;
+- (CGPoint)calculateUpperLeftPointFromCenterPoint:(CGPoint)point;
 @end
 
 @implementation DLLChipView
@@ -57,7 +57,7 @@
     if((self = [super init])){
         [self setChipImageAndSize:identifier];
         self.center = coords;
-        self.start = [self calculateUpperLeftPinFromCenterPoint:self.center];
+        self.start = [self calculateUpperLeftPointFromCenterPoint:self.center];
         self.targetView = view;
         self.identifier = identifier;
     }
@@ -99,7 +99,7 @@
 - (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
     self.center = coords;
-    self.start = [self calculateUpperLeftPinFromCenterPoint:coords];
+    self.start = [self calculateUpperLeftPointFromCenterPoint:coords];
     self.imageView.image = available ? self.availableGhostImage :self.unavailableGhostImage;
     [UIView beginAnimations:@"UIImage Move" context:NULL];
     CGSize size = self.imageView.frame.size;
@@ -116,6 +116,11 @@
 {
     [self.imageView removeFromSuperview];
     self.imageView = nil;
+}
+
+- (CGPoint)getOffsetPointFrom:(CGPoint)coords
+{
+    return [self calculateUpperLeftPointFromCenterPoint:coords];
 }
 
 #pragma mark -
@@ -275,7 +280,7 @@
     }
 }
 
-- (CGPoint)calculateUpperLeftPinFromCenterPoint:(CGPoint)point
+- (CGPoint)calculateUpperLeftPointFromCenterPoint:(CGPoint)point
 {
     NSInteger x = point.x;
     NSInteger y = point.y;

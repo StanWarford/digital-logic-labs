@@ -22,6 +22,16 @@
     return self;
 }
 
+- (id)initWithValue:(EPValue)value
+{
+    if((self = [super init])){
+        self.electricalPointType = EPTypeOther;
+        self.electricalPointValue = value;
+        self.electricalPointPreviousValue = EPValueUnknown;
+    }
+    return self;
+}
+
 - (id)init
 {
     if(self = [super init]){
@@ -34,10 +44,34 @@
 
 #pragma mark -
 #pragma mark Utility methods
+- (void)changePointTypeTo:(EPType)type
+{
+    self.electricalPointType = type;
+}
+
 - (BOOL)isEqual:(id)otherPoint
 {
     DLLElectricalPoint * comparePoint = (DLLElectricalPoint *) otherPoint;
     return self.electricalPointType == comparePoint.electricalPointType;
+}
+
+- (DLLElectricalPoint *)NAND:(DLLElectricalPoint *)otherPoint
+{
+    DLLElectricalPoint *tempPoint = [[DLLElectricalPoint alloc] init];
+    
+    if((self.electricalPointValue == EPValueZero) || (otherPoint.electricalPointValue == EPValueZero))
+    {
+        tempPoint.electricalPointValue = EPValueZero;
+    }
+    else if (self.electricalPointValue == EPValueUnknown || otherPoint.electricalPointValue == EPValueUnknown)
+    {
+        tempPoint.electricalPointValue = EPValueUnknown;
+    }
+    else
+    {
+        tempPoint.electricalPointValue = EPValueOne;
+    }
+    return  tempPoint;
 }
 
 

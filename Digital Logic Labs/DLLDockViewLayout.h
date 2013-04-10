@@ -12,16 +12,14 @@
 
 @class DLLDockViewLayout;
 
+// protocol allowing communication with dock when selection changes
 @protocol DLLDockViewLayoutDelegate <NSObject>
-
 - (void)selectionDidChange:(NSInteger)selection;
-
 @end
 
 @interface DLLDockViewLayout : UICollectionViewFlowLayout
 
 @property (nonatomic, weak) id <DLLDockViewLayoutDelegate> delegate;
-
 - (id)initWithDelegate:(id)delegate;
 
 @end

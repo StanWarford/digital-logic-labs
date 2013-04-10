@@ -11,13 +11,23 @@
 @implementation DLLWire
 
 - (id)initWithStartPoint: (DLLPoint *)startPoint
-             AndEndPoint: (DLLPoint *)endPoint
+                EndPoint: (DLLPoint *)endPoint
+                AndColor: (UIColor *)color
 {
     self.identifier = 9999; //unique number to differentiate a wire
     self.startPoint = startPoint;
     self.endPoint = endPoint;
+    self.color = color;
     
     return self;
+}
+
+- (DLLPoint *)otherBoardHole: (DLLPoint *)firstPoint
+{
+    if([firstPoint isEqual: self.startPoint])
+        return self.endPoint;
+    else
+        return self.startPoint;
 }
 
 @end

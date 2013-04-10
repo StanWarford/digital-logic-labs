@@ -17,7 +17,7 @@ typedef enum
 
 typedef enum
 {
-    EPValueOne, EPValueZero, EPValueUnknown
+    EPValueZero, EPValueOne, EPValueUnknown
     
 } EPValue;
 
@@ -27,9 +27,12 @@ typedef enum
 @property (nonatomic, assign) EPValue electricalPointPreviousValue;
 
 - (id)initWithType:(EPType)type;
+- (id)initWithValue:(EPValue)value;
 - (id)init;
 
+- (void)changePointTypeTo:(EPType)type;
 - (BOOL)isEqual:(id)otherPoint;
+- (DLLElectricalPoint *)NAND:(DLLElectricalPoint *)otherPoint;
 
 @end
 

@@ -10,15 +10,17 @@
 
 @implementation DLLWireDrawing
 
-#define LINE_WIDTH 2.0
-#define GHOST_TRANSPARENCY 0.5
-#define CIRCLE_DIAMETER 12
+#define LINE_WIDTH 2.0 // width of line drawn between circles
+#define GHOST_TRANSPARENCY 0.5 // transparency level for ghost objects
+#define SOLID_CIRCLE_DIAMETER 12 // diameter of finished circle
+#define GHOST_CIRCLE_DIAMETER 20 // diameter of ghost circle
+// original ghost diameter = 20
 // original circle diameter = 12
 
-@synthesize color = _color;
-@synthesize isGhost = _isGhost;
-@synthesize start = _start;
-@synthesize end = _end;
+@synthesize color = _color; // color of the wire
+@synthesize isGhost = _isGhost; // true if this is a ghost image
+@synthesize start = _start; // upper left corner coordinate for start circle
+@synthesize end = _end; // upper left corner coordinate for end circle
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -46,9 +48,6 @@
     return self;
 }
 
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
     // if start is invalid, throw an error
@@ -69,7 +68,7 @@
     // set line width
     CGContextSetLineWidth(context, LINE_WIDTH);
     // draw circle at start
-    CGRect startRect = CGRectMake(self.start.x - CIRCLE_DIAMETER/2 , self.start.y - CIRCLE_DIAMETER/2, CIRCLE_DIAMETER, CIRCLE_DIAMETER);
+    CGRect startRect = CGRectMake(self.start.x - (self.isGhost ? GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER)/2 , self.start.y - (self.isGhost ? GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER)/2, self.isGhost ? GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER, self.isGhost ? GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER);
     CGContextAddEllipseInRect(context, startRect);
     //CGContextStrokePath(context);
     CGContextFillEllipseInRect(context, startRect);
@@ -78,7 +77,7 @@
         CGContextMoveToPoint(context, self.start.x, self.start.y);
         CGContextAddLineToPoint(context, self.end.x, self.end.y);
         CGContextStrokePath(context);
-        CGRect endRect = CGRectMake(self.end.x - CIRCLE_DIAMETER/2, self.end.y - CIRCLE_DIAMETER/2, CIRCLE_DIAMETER, CIRCLE_DIAMETER);
+        CGRect endRect = CGRectMake(self.end.x - (self.isGhost ? GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER)/2, self.end.y - (self.isGhost ?GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER)/2, self.isGhost ? GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER, self.isGhost ?GHOST_CIRCLE_DIAMETER : SOLID_CIRCLE_DIAMETER);
         CGContextAddEllipseInRect(context, endRect);
         CGContextFillEllipseInRect(context, endRect);
     }
