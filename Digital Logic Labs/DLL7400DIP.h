@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Pepperdine. All rights reserved.
 //
 
-#import "DLL14PinDIP.h"
+#import "DLLChip.h"
 #import "DLLPoint.h"
 #import "DLLElectricalPoint.h"
 
-@interface DLL7400DIP : DLL14PinDIP
+@interface DLL7400DIP : DLLChip
 
 - (id)initWithLocation: (DLLPoint *)loc;
 

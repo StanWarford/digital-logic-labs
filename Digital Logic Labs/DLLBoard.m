@@ -119,6 +119,8 @@
     // Set up electricalPointToBoardPointDictionary and boardPointToElectricalPointDictionary for Electrical Point Values 0 to 251
     // Board Points of Main Board (including Power and Ground) have Coordinates 0 < x < 62, 5 < y < 30 
     // First 'for' loop maps all Board Points except Power, Ground, All Switches, and Lights
+    
+    
     for (int x = 0; x <= 62; x++) {
         NSNumber * key0 = [NSNumber numberWithInt: x * 4];
         NSNumber * key1 = [NSNumber numberWithInt: x * 4 + 1];
@@ -148,10 +150,6 @@
         p17 = [[DLLPoint alloc] initWithIntX:x andY: 26];
         p18 = [[DLLPoint alloc] initWithIntX:x andY: 27];
         p19 = [[DLLPoint alloc] initWithIntX:x andY: 28];
-        NSArray *value0 = @[p0, p1, p2, p3, p4];
-        NSArray *value1 = @[p5, p6, p7, p8, p9];
-        NSArray *value2 = @[p10, p1, p12, p13, p14];
-        NSArray *value3 = @[p15, p16, p17, p18, p19];
         
         [self.boardPointToElectricalPointDictionary setValue: key0 forKey: [p0 toString]];
         [self.boardPointToElectricalPointDictionary setValue: key0 forKey: [p1 toString]];
@@ -174,11 +172,44 @@
         [self.boardPointToElectricalPointDictionary setValue: key3 forKey: [p18 toString]];
         [self.boardPointToElectricalPointDictionary setValue: key3 forKey: [p19 toString]];
         
-        [self.electricalPointToBoardPointArray insertObject:value0 atIndex:x * 4];
-        [self.electricalPointToBoardPointArray insertObject:value1 atIndex:x * 4 + 1];
-        [self.electricalPointToBoardPointArray insertObject:value2 atIndex:x * 4 + 2];
-        [self.electricalPointToBoardPointArray insertObject:value3 atIndex:x * 4 + 3];
     }
+    
+     for (int x = 0; x <= 62; x++)
+     {
+
+         DLLPoint *p0, *p1, *p2, *p3, *p4,
+         *p5, *p6, *p7, *p8, *p9,
+         *p10, *p11, *p12, *p13, *p14,
+         *p15, *p16, *p17, *p18, *p19;
+         p0 = [[DLLPoint alloc] initWithIntX:x andY: 7];
+         p1 = [[DLLPoint alloc] initWithIntX:x andY: 8];
+         p2 = [[DLLPoint alloc] initWithIntX:x andY: 9];
+         p3 = [[DLLPoint alloc] initWithIntX:x andY: 10];
+         p4 = [[DLLPoint alloc] initWithIntX:x andY: 11];
+         p5 = [[DLLPoint alloc] initWithIntX:x andY: 12];
+         p6 = [[DLLPoint alloc] initWithIntX:x andY: 13];
+         p7 = [[DLLPoint alloc] initWithIntX:x andY: 14];
+         p8 = [[DLLPoint alloc] initWithIntX:x andY: 15];
+         p9 = [[DLLPoint alloc] initWithIntX:x andY: 16];
+         p10 = [[DLLPoint alloc] initWithIntX:x andY: 19];
+         p11 = [[DLLPoint alloc] initWithIntX:x andY: 20];
+         p12 = [[DLLPoint alloc] initWithIntX:x andY: 21];
+         p13 = [[DLLPoint alloc] initWithIntX:x andY: 22];
+         p14 = [[DLLPoint alloc] initWithIntX:x andY: 23];
+         p15 = [[DLLPoint alloc] initWithIntX:x andY: 24];
+         p16 = [[DLLPoint alloc] initWithIntX:x andY: 25];
+         p17 = [[DLLPoint alloc] initWithIntX:x andY: 26];
+         p18 = [[DLLPoint alloc] initWithIntX:x andY: 27];
+         p19 = [[DLLPoint alloc] initWithIntX:x andY: 28];
+         NSArray *value0 = [NSArray arrayWithObjects: p0, p1, p2, p3, p4, nil]; // if this works may need to change elsewhere
+         NSArray *value1 = [NSArray arrayWithObjects: p5, p6, p7, p8, p9, nil];
+         NSArray *value2 = [NSArray arrayWithObjects: p10, p1, p12, p13, p14, nil];
+         NSArray *value3 = [NSArray arrayWithObjects: p15, p16, p17, p18, p19, nil];
+         [self.electricalPointToBoardPointArray insertObject:value0 atIndex:x * 4];
+         [self.electricalPointToBoardPointArray insertObject:value1 atIndex:x * 4 + 1];
+         [self.electricalPointToBoardPointArray insertObject:value2 atIndex:x * 4 + 2];
+         [self.electricalPointToBoardPointArray insertObject:value3 atIndex:x * 4 + 3];
+     }
     
     // ground == Electrical Point 252
     // Board Coordinates: {(0-62, 5), (0-62, 17), (0-62, 29)}
@@ -263,14 +294,14 @@
     p7 = [[DLLPoint alloc] initWithIntX:52 andY: 0];
     p8 = [[DLLPoint alloc] initWithIntX:53 andY: 0];
     
-    NSArray *lightArray1 = @[p1];
-    NSArray *lightArray2 = @[p2];
-    NSArray *lightArray3 = @[p3];
-    NSArray *lightArray4 = @[p4];
-    NSArray *lightArray5 = @[p5];
-    NSArray *lightArray6 = @[p6];
-    NSArray *lightArray7 = @[p7];
-    NSArray *lightArray8 = @[p8];
+    NSArray *lightArray1 = [NSArray arrayWithObject:p1];
+    NSArray *lightArray2 = [NSArray arrayWithObject:p2];
+    NSArray *lightArray3 = [NSArray arrayWithObject:p3];
+    NSArray *lightArray4 = [NSArray arrayWithObject:p4];
+    NSArray *lightArray5 = [NSArray arrayWithObject:p5];
+    NSArray *lightArray6 = [NSArray arrayWithObject:p6];
+    NSArray *lightArray7 = [NSArray arrayWithObject:p7];
+    NSArray *lightArray8 = [NSArray arrayWithObject:p8];
     
     NSNumber *v1 = [NSNumber numberWithInteger: 266];
     NSNumber *v2 = [NSNumber numberWithInteger: 267];
@@ -523,18 +554,24 @@
 
 - (void) determineChipFunctionality // currently: chip is assumed functional, set to NO if not connected to power or ground
 {
-    NSArray *chipsOnBoard = [self.chipDictionary allValues];
-    for(int i = 0; i < [chipsOnBoard count]; i++)
-    {
-        DLLChip *chip = chipsOnBoard[i];
+   // NSEnumerator *enumerator = [self.chipDictionary objectEnumerator];
+   // DLLChip * chip;
+    
+   // while (chip = (DLLChip *)[enumerator nextObject]) //{
         
+   // }
+    NSArray *chipsOnBoard = [self.chipDictionary allValues];
+   for(int i = 0; i < [chipsOnBoard count]; i++)
+    {
+        DLL7400DIP *chip = [chipsOnBoard objectAtIndex:i];
         DLLPoint *powerPinCoord = [chip powerPinCoordinate];
+        // TODO: change bellow
         NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
         NSArray *powerElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[powerElectricalPoint integerValue]];
         
-        for(int i = 0; i < [powerElectricalArrayOfHoles count]; i++)
+        for(int j = 0; j < [powerElectricalArrayOfHoles count]; j++)
         {
-            DLLPoint *currentBoardPoint = powerElectricalArrayOfHoles[i];
+            DLLPoint *currentBoardPoint = powerElectricalArrayOfHoles[j];
             
             if([[[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
                                             objectAtIndex: currentBoardPoint.yCoord]

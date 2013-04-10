@@ -16,10 +16,11 @@
 
 
 #import <Foundation/Foundation.h>
+#import "DLLPoint.h"
 
 @interface DLLAComponent : NSObject
 
-@property (assign, nonatomic) NSInteger identifier;
+@property (assign, nonatomic) NSUInteger identifier;
 
 -(id)initWithIdentifier:(NSInteger)identifier;
 

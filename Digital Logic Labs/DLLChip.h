@@ -14,13 +14,13 @@
 
 @interface DLLChip : DLLAComponent
 
-@property BOOL isFunctional;
-@property (nonatomic, strong) NSMutableArray * pins; 
-@property (nonatomic, strong) NSArray * outputPins;
-@property (nonatomic, strong) NSArray * inputPins;
-@property (nonatomic, assign) NSUInteger groundPin;
-@property (nonatomic, assign) NSUInteger powerPin;
-@property (nonatomic, assign) DLLPoint * loc;
+@property (strong, nonatomic) DLLPoint * loc;
+@property (strong, nonatomic) NSArray * outputPins;
+@property (strong, nonatomic) NSArray * inputPins;
+@property (assign, nonatomic) NSUInteger powerPin;
+@property (assign, nonatomic) NSUInteger groundPin;
+@property (assign, nonatomic) BOOL isFunctional;
+@property (nonatomic, strong) NSMutableArray * pins;
 @property (nonatomic, assign) NSUInteger size;
 
 - (id)init;
