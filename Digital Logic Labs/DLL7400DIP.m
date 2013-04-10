@@ -14,14 +14,15 @@
 
 - (id)initWithLocation: (DLLPoint *)loc
 {
-    if(self = [super initWithIdentifier: 7400
-                               Location: loc
-                             OutputPins: @[@2, @5, @7, @10]
-                              InputPins: @[@0, @1, @3, @4, @8, @9, @11, @12]
-                              GroundPin: 6
-                            AndPowerPin: 13])
+    if(self = [super init])
     {
         self.loc = loc;
+        self.identifier = 7400;
+        self.outputPins = @[@2, @5, @7, @10];
+        self.inputPins = @[@0, @1, @3, @4, @8, @9, @11, @12];
+        self.groundPin = 6;
+        self.powerPin = 13;
+        
     }
     return self;
 }

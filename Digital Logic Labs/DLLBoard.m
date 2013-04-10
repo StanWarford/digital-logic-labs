@@ -523,11 +523,17 @@
 
 - (void) determineChipFunctionality // currently: chip is assumed functional, set to NO if not connected to power or ground
 {
-    NSArray *chipsOnBoard = [self.chipDictionary allValues];
-    for(int i = 0; i < [chipsOnBoard count]; i++)
-    {
-        DLLChip *chip = chipsOnBoard[i];
+   // NSEnumerator *enumerator = [self.chipDictionary objectEnumerator];
+   // DLLChip * chip;
+    
+   // while (chip = (DLLChip *)[enumerator nextObject]) //{
         
+   // }
+    NSArray *chipsOnBoard = [self.chipDictionary allValues];
+   for(int i = 0; i < [chipsOnBoard count]; i++)
+    {
+        DLL7400DIP *chip = [chipsOnBoard objectAtIndex:i];
+       // DLLPoint *chipLocation = [chip loc];
         DLLPoint *powerPinCoord = [chip powerPinCoordinate];
         NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
         NSArray *powerElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[powerElectricalPoint integerValue]];
