@@ -563,10 +563,10 @@
     NSArray *chipsOnBoard = [self.chipDictionary allValues];
    for(int i = 0; i < [chipsOnBoard count]; i++)
     {
-        DLL7400DIP *chip = [chipsOnBoard objectAtIndex:i];
+        DLLChip *chip = [chipsOnBoard objectAtIndex:i];
         DLLPoint *powerPinCoord = [chip powerPinCoordinate];
         // TODO: change bellow
-        NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
+        NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]]; 
         NSArray *powerElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[powerElectricalPoint integerValue]];
         
         for(int j = 0; j < [powerElectricalArrayOfHoles count]; j++)
