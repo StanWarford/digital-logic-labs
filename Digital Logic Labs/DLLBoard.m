@@ -394,14 +394,18 @@
 
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *)endingPoint withColor:(UIColor *)color
 {
-    DLLWire * newWire = [[DLLWire alloc] initWithStartPoint: startingPoint EndPoint:endingPoint AndColor: color];
+    
+    DLLWire * newWire = [[DLLWire alloc] initWithStartPoint: startingPoint EndPoint: endingPoint AndColor: color];
+    //Uncomment for debugging
+    //NSLog([NSString stringWithFormat:@"Start Point: %d, %d", newWire.startPoint.xCoord, newWire.startPoint.yCoord]);
+    //NSLog([NSString stringWithFormat:@"End Point: %d, %d", newWire.endPoint.xCoord, newWire.endPoint.yCoord]);
     
     //add new wire to both start and end point in breadboardStateArray
-    NSMutableArray * startRow = [self.breadboardStateArray objectAtIndex: startingPoint.xCoord];
-    NSMutableArray * endRow = [self.breadboardStateArray objectAtIndex: endingPoint.xCoord];
+    NSMutableArray * startColumn = [self.breadboardStateArray objectAtIndex: startingPoint.xCoord];
+    NSMutableArray * endColumn = [self.breadboardStateArray objectAtIndex: endingPoint.xCoord];
 
-    [startRow insertObject: newWire atIndex: startingPoint.yCoord];
-    [endRow insertObject: newWire atIndex: endingPoint.yCoord];
+    [startColumn insertObject: newWire atIndex: startingPoint.yCoord];
+    [endColumn insertObject: newWire atIndex: endingPoint.yCoord];
 }
 
 
@@ -1000,7 +1004,7 @@
         {
             [stateOfLights insertObject:[NSNumber numberWithInt:1] atIndex: i - 266];
         }
-        else if (light.electricalPointValue == EPValueZero)
+        else if (light.electricalPointValue == EPValueZero || light.electricalPointValue == EPValueUnknown)
         {
             [stateOfLights insertObject:[NSNumber numberWithInt:0] atIndex: i - 266];
         }
@@ -1022,4 +1026,29 @@
     
     return  stateOfLights;
 }
+
+- (void)dumpBreadBoardStateArray
+{
+    for(int i = 0; i < [self.breadboardStateArray count]; i++)
+    {
+        NSMutableArray * column = [self.breadboardStateArray objectAtIndex: i];
+        
+        for(int j = 0; j < [column count]; j++)
+        {
+            NSString * item = @"";
+            
+            if([[column objectAtIndex: j] isKindOfClass: [NSNull class]])
+               [item stringByAppendingString: @"0"];
+            else if([[column objectAtIndex: j] isKindOfClass: [DLLWire class]])
+                [item stringByAppendingString: @"W"];
+            else if([[column objectAtIndex: j] isKindOfClass: [DLLChip class]])
+                [item stringByAppendingString: @"C"];
+            
+            NSLog([NSString stringWithFormat:@"[%s]", item]);
+        }
+        
+        NSLog(@"\n");
+    }
+}
+
 @end

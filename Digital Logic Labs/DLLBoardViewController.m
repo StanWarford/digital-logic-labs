@@ -174,17 +174,12 @@ typedef enum{
     [super touchesMoved:touches withEvent:event];
     
     UITouch *touch = [touches anyObject]; // with multitouch disabled this should only ever return a single touch
-    CGPoint loc = [touch locationInView:self.view];
-    CGPoint gridLoc = [self gridCoordinateFromViewCoordinate:loc];
-    CGPoint snapLoc = [self viewCoordinateFromGridCoordinate:gridLoc];
-    DLLPoint *boardLoc = [self boardCoordinateFromGridCoordinate:gridLoc];
-    CGPoint chipLoc = [self gridCoordinateFromViewCoordinate:self.activeComponent.start];
-    DLLPoint *chipStart = [self boardCoordinateFromGridCoordinate:chipLoc];
-    BOOL isAvailable = [self.boardModel cellAt:self.state == notWire ? chipStart : boardLoc IsAvailableForComponentOfSize: self.activeComponent.size];
-    //NSLog([NSString stringWithFormat:@"%@", isAvailable? @"YES" : @"NO"]);
+    CGPoint tLoc = [touch locationInView:self.view];
+    CGPoint tGridLoc = [self gridCoordinateFromViewCoordinate:tLoc];
+    CGPoint tSnapLoc = [self viewCoordinateFromGridCoordinate:tGridLoc];
     
     //NSLog([NSString stringWithFormat:@"(%f, %f)", chipLoc.x, chipLoc.y]);
-    NSLog([NSString stringWithFormat:@"(%d, %d)", chipStart.xCoord, chipStart.yCoord]);
+    //NSLog([NSString stringWithFormat:@"(%d, %d)", chipStart.xCoord, chipStart.yCoord]);
     
     if(self.state == wireEnd){ // user is placing end of wire
         CGPoint wLoc = [self.activeComponent getOffsetPointFrom:tSnapLoc];
