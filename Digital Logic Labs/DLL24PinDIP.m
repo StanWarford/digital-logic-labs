@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Pepperdine. All rights reserved.
 //
 
-#import "DLL14PinDIP.h"
+#import "DLL24PinDIP.h"
 
-@implementation DLL14PinDIP
+@implementation DLL24PinDIP
 
 - (id)initWithIdentifier:(NSInteger)identifier
                 Location:(DLLPoint *) loc
@@ -20,13 +20,13 @@
     if(self = [super initWithIdentifier: identifier])
     {
         self.loc = loc;
-        self.size = 14;
+        self.size = 24;
         self.outputPins = outputPins;
         self.inputPins = inputPins;
         self.groundPin = groundPin;
         self.powerPin = powerPin;
         
-        [self.pins initWithCapacity: 14];
+        [self.pins initWithCapacity: 24];
     }
     
     for(int i = 0; i < [self.pins count]; i++)

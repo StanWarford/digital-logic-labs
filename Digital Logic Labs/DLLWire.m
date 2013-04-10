@@ -24,7 +24,7 @@
 
 - (DLLPoint *)otherBoardHole: (DLLPoint *)firstPoint
 {
-    if(firstPoint == self.startPoint)
+    if([firstPoint isEqual: self.startPoint])
         return self.endPoint;
     else
         return self.startPoint;

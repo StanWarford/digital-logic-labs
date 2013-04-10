@@ -10,7 +10,7 @@
 #import "DLLPoint.h"
 #import "DLLElectricalPoint.h"
 
-@interface DLL14PinDIP : DLLChip
+@interface DLL16PinDIP : DLLChip
 
 - (id)initWithIdentifier: (NSInteger)identifier
                 Location: (DLLPoint *) loc

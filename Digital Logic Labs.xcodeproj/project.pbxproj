@@ -89,7 +89,6 @@
 		CFF041A517162C1E00082C65 /* 74711.png in Resources */ = {isa = PBXBuildFile; fileRef = CFF041A417162C1E00082C65 /* 74711.png */; };
 		D86C198A16E5149100E4303B /* DLLPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D86C198916E5149100E4303B /* DLLPoint.m */; };
 		D87DB90016F772E5000C6CE4 /* DLLWire.m in Sources */ = {isa = PBXBuildFile; fileRef = D87DB8FF16F772E5000C6CE4 /* DLLWire.m */; };
-		D87DB90416F77434000C6CE4 /* DLL14PinDIP.m in Sources */ = {isa = PBXBuildFile; fileRef = D87DB90316F77434000C6CE4 /* DLL14PinDIP.m */; };
 		D8AB957616C025B00074ABEB /* inventory.xml in Resources */ = {isa = PBXBuildFile; fileRef = D8AB957516C025B00074ABEB /* inventory.xml */; };
 		D8AB957A16C027310074ABEB /* DLLBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = D8AB957916C027310074ABEB /* DLLBoard.m */; };
 		D8ACC6AF1709F322000EDDDD /* DLLElectricalPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D8ACC6AE1709F322000EDDDD /* DLLElectricalPoint.m */; };
@@ -106,6 +105,8 @@
 		D8FE3C971703C770003B25C2 /* 7476.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C931703C76F003B25C2 /* 7476.png */; };
 		D8FE3C981703C770003B25C2 /* 7485.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C941703C76F003B25C2 /* 7485.png */; };
 		D8FE3C991703C770003B25C2 /* 74151.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C951703C76F003B25C2 /* 74151.png */; };
+		F2D567881714AFBD00B6D7B4 /* DLL16PinDIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D567871714AFBD00B6D7B4 /* DLL16PinDIP.m */; };
+		F2D5678B1714B04600B6D7B4 /* DLL24PinDIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D5678A1714B04500B6D7B4 /* DLL24PinDIP.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,8 +229,6 @@
 		D86C198816E5149100E4303B /* DLLPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLPoint.h; sourceTree = "<group>"; };
 		D86C198916E5149100E4303B /* DLLPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLPoint.m; sourceTree = "<group>"; };
 		D87DB8FF16F772E5000C6CE4 /* DLLWire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DLLWire.m; path = "Digital Logic Labs/DLLWire.m"; sourceTree = SOURCE_ROOT; };
-		D87DB90216F77434000C6CE4 /* DLL14PinDIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL14PinDIP.h; sourceTree = "<group>"; };
-		D87DB90316F77434000C6CE4 /* DLL14PinDIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL14PinDIP.m; sourceTree = "<group>"; };
 		D8AB957516C025B00074ABEB /* inventory.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = inventory.xml; path = ../inventory.xml; sourceTree = "<group>"; };
 		D8AB957816C027310074ABEB /* DLLBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLBoard.h; sourceTree = "<group>"; };
 		D8AB957916C027310074ABEB /* DLLBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLBoard.m; sourceTree = "<group>"; };
@@ -249,6 +248,10 @@
 		D8FE3C931703C76F003B25C2 /* 7476.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7476.png; sourceTree = "<group>"; };
 		D8FE3C941703C76F003B25C2 /* 7485.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7485.png; sourceTree = "<group>"; };
 		D8FE3C951703C76F003B25C2 /* 74151.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 74151.png; sourceTree = "<group>"; };
+		F2D567861714AFBD00B6D7B4 /* DLL16PinDIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DLL16PinDIP.h; path = ../DLL16PinDIP.h; sourceTree = "<group>"; };
+		F2D567871714AFBD00B6D7B4 /* DLL16PinDIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DLL16PinDIP.m; path = ../DLL16PinDIP.m; sourceTree = "<group>"; };
+		F2D567891714B04500B6D7B4 /* DLL24PinDIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL24PinDIP.h; sourceTree = "<group>"; };
+		F2D5678A1714B04500B6D7B4 /* DLL24PinDIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL24PinDIP.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -578,10 +581,12 @@
 		D8DC9FA0170CF0F200EB8434 /* Component Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F2D567861714AFBD00B6D7B4 /* DLL16PinDIP.h */,
+				F2D567891714B04500B6D7B4 /* DLL24PinDIP.h */,
+				F2D5678A1714B04500B6D7B4 /* DLL24PinDIP.m */,
+				F2D567871714AFBD00B6D7B4 /* DLL16PinDIP.m */,
 				CF55D8EC16CF055D00D8949B /* DLLChip.h */,
 				CF55D8ED16CF055D00D8949B /* DLLChip.m */,
-				D87DB90216F77434000C6CE4 /* DLL14PinDIP.h */,
-				D87DB90316F77434000C6CE4 /* DLL14PinDIP.m */,
 				D8DC9F9C170CF0E900EB8434 /* DLL7400DIP.h */,
 				D8DC9F9D170CF0E900EB8434 /* DLL7400DIP.m */,
 				CF55D8E916CF009700D8949B /* DLLAComponent.h */,
@@ -787,7 +792,6 @@
 				CFB535B316E53E1D000DC011 /* DLLAComponentView.m in Sources */,
 				CFB535B616E53E4A000DC011 /* DLLChipView.m in Sources */,
 				CFB535B916E5407F000DC011 /* DLLWireView.m in Sources */,
-				D87DB90416F77434000C6CE4 /* DLL14PinDIP.m in Sources */,
 				CFE0830316FA84A800E77C35 /* DLLWireDrawing.m in Sources */,
 				CF45B2561703B18B002A9658 /* DLLTestViewController.m in Sources */,
 				CF45B2591703BB95002A9658 /* DLLSwitch.m in Sources */,
@@ -798,6 +802,8 @@
 				B4E3E815170E04FF00585379 /* DLLWire.m in Sources */,
 				CF31B639170F95C600A500B4 /* DLLChipDetailPopover.m in Sources */,
 				CF31B63C170F95DA00A500B4 /* DLLWireDetailPopover.m in Sources */,
+				F2D567881714AFBD00B6D7B4 /* DLL16PinDIP.m in Sources */,
+				F2D5678B1714B04600B6D7B4 /* DLL24PinDIP.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
