@@ -223,24 +223,26 @@
     
     for (int x = 0; x <= 62;x++)
     {
-        groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 5];
-        powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 6];
-        [self.boardPointToElectricalPointDictionary setValue: groundValue forKey: [groundArray[x] toString]];
-        [self.boardPointToElectricalPointDictionary setValue: powerValue forKey: [powerArray[x] toString]];
+        [groundArray insertObject:[[DLLPoint alloc] initWithIntX:x andY: 5] atIndex:x];
+        [powerArray insertObject:[[DLLPoint alloc] initWithIntX:x andY: 6] atIndex:x];
+        [self.boardPointToElectricalPointDictionary setValue: groundValue forKey: [[groundArray objectAtIndex:x] toString]];
+        [self.boardPointToElectricalPointDictionary setValue: powerValue forKey: [[powerArray objectAtIndex:x] toString]];
     }
     for (int x = 63; x <= 125; x++)
     {
-        groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 17];
-        powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 18];
-        [self.boardPointToElectricalPointDictionary setValue: groundValue forKey: [groundArray[x] toString]];
-        [self.boardPointToElectricalPointDictionary setValue: powerValue forKey: [powerArray[x] toString]];
+        [groundArray insertObject:[[DLLPoint alloc] initWithIntX:x-63 andY: 17] atIndex:x];
+        [powerArray insertObject:[[DLLPoint alloc] initWithIntX:x-63 andY: 18] atIndex:x];
+        [self.boardPointToElectricalPointDictionary setValue: groundValue forKey: [[groundArray objectAtIndex:x] toString]];
+        [self.boardPointToElectricalPointDictionary setValue: powerValue forKey: [[powerArray objectAtIndex:x] toString]];
+        
     }
     for (int x = 126; x <= 188; x++)
     {
-        groundArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 29];
-        powerArray[x] = [[DLLPoint alloc] initWithIntX:x andY: 30];
-        [self.boardPointToElectricalPointDictionary setValue: groundValue forKey: [groundArray[x] toString]];
-        [self.boardPointToElectricalPointDictionary setValue: powerValue forKey: [powerArray[x] toString]];
+        [groundArray insertObject:[[DLLPoint alloc] initWithIntX:x-126 andY: 29] atIndex:x];
+        [powerArray insertObject:[[DLLPoint alloc] initWithIntX:x-126 andY: 30] atIndex:x];
+        [self.boardPointToElectricalPointDictionary setValue: groundValue forKey: [[groundArray objectAtIndex:x] toString]];
+        [self.boardPointToElectricalPointDictionary setValue: powerValue forKey: [[powerArray objectAtIndex:x] toString]];
+        
     }
     
     [self.electricalPointToBoardPointArray insertObject:groundArray atIndex:252];
@@ -591,9 +593,9 @@
         NSNumber *groundElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[groundPinCoord toString]];
         NSArray *groundElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[groundElectricalPoint integerValue]];
         
-        for(int i = 0; i < [groundElectricalArrayOfHoles count]; i++)
+        for(int j = 0; j < [groundElectricalArrayOfHoles count]; j++)
         {
-            DLLPoint *currentBoardPoint = groundElectricalArrayOfHoles[i];
+            DLLPoint *currentBoardPoint = groundElectricalArrayOfHoles[j];
             
             if([[[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
                  objectAtIndex: currentBoardPoint.yCoord]
