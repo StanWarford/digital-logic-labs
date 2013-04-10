@@ -85,6 +85,8 @@
 		CFEE6720170CE38A0008870C /* test-light-dim.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE671D170CE38A0008870C /* test-light-dim.png */; };
 		CFEE6721170CE38A0008870C /* test-light-off.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE671E170CE38A0008870C /* test-light-off.png */; };
 		CFEE6722170CE38A0008870C /* test-light-on.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE671F170CE38A0008870C /* test-light-on.png */; };
+		CFF041A317162C0600082C65 /* 74181.png in Resources */ = {isa = PBXBuildFile; fileRef = CFF041A217162C0600082C65 /* 74181.png */; };
+		CFF041A517162C1E00082C65 /* 74711.png in Resources */ = {isa = PBXBuildFile; fileRef = CFF041A417162C1E00082C65 /* 74711.png */; };
 		D86C198A16E5149100E4303B /* DLLPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D86C198916E5149100E4303B /* DLLPoint.m */; };
 		D87DB90016F772E5000C6CE4 /* DLLWire.m in Sources */ = {isa = PBXBuildFile; fileRef = D87DB8FF16F772E5000C6CE4 /* DLLWire.m */; };
 		D87DB90416F77434000C6CE4 /* DLL14PinDIP.m in Sources */ = {isa = PBXBuildFile; fileRef = D87DB90316F77434000C6CE4 /* DLL14PinDIP.m */; };
@@ -99,8 +101,6 @@
 		D8FE3C8A1703C36D003B25C2 /* 7408.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C7C1703C36D003B25C2 /* 7408.png */; };
 		D8FE3C8B1703C36D003B25C2 /* 7486.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C7D1703C36D003B25C2 /* 7486.png */; };
 		D8FE3C8C1703C36D003B25C2 /* 74164.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C7E1703C36D003B25C2 /* 74164.png */; };
-		D8FE3C8D1703C36D003B25C2 /* 74177.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C7F1703C36D003B25C2 /* 74177.png */; };
-		D8FE3C8E1703C36D003B25C2 /* 74181.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C801703C36D003B25C2 /* 74181.png */; };
 		D8FE3C8F1703C36D003B25C2 /* 7432.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C811703C36D003B25C2 /* 7432.png */; };
 		D8FE3C961703C770003B25C2 /* 7447.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C921703C76F003B25C2 /* 7447.png */; };
 		D8FE3C971703C770003B25C2 /* 7476.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C931703C76F003B25C2 /* 7476.png */; };
@@ -223,6 +223,8 @@
 		CFEE671D170CE38A0008870C /* test-light-dim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-light-dim.png"; sourceTree = "<group>"; };
 		CFEE671E170CE38A0008870C /* test-light-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-light-off.png"; sourceTree = "<group>"; };
 		CFEE671F170CE38A0008870C /* test-light-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-light-on.png"; sourceTree = "<group>"; };
+		CFF041A217162C0600082C65 /* 74181.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 74181.png; sourceTree = "<group>"; };
+		CFF041A417162C1E00082C65 /* 74711.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 74711.png; sourceTree = "<group>"; };
 		D86C198816E5149100E4303B /* DLLPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLPoint.h; sourceTree = "<group>"; };
 		D86C198916E5149100E4303B /* DLLPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLPoint.m; sourceTree = "<group>"; };
 		D87DB8FF16F772E5000C6CE4 /* DLLWire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DLLWire.m; path = "Digital Logic Labs/DLLWire.m"; sourceTree = SOURCE_ROOT; };
@@ -242,8 +244,6 @@
 		D8FE3C7C1703C36D003B25C2 /* 7408.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7408.png; sourceTree = "<group>"; };
 		D8FE3C7D1703C36D003B25C2 /* 7486.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7486.png; sourceTree = "<group>"; };
 		D8FE3C7E1703C36D003B25C2 /* 74164.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 74164.png; sourceTree = "<group>"; };
-		D8FE3C7F1703C36D003B25C2 /* 74177.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 74177.png; sourceTree = "<group>"; };
-		D8FE3C801703C36D003B25C2 /* 74181.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 74181.png; sourceTree = "<group>"; };
 		D8FE3C811703C36D003B25C2 /* 7432.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7432.png; sourceTree = "<group>"; };
 		D8FE3C921703C76F003B25C2 /* 7447.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7447.png; sourceTree = "<group>"; };
 		D8FE3C931703C76F003B25C2 /* 7476.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7476.png; sourceTree = "<group>"; };
@@ -378,8 +378,8 @@
 				D8FE3C7C1703C36D003B25C2 /* 7408.png */,
 				D8FE3C7D1703C36D003B25C2 /* 7486.png */,
 				D8FE3C7E1703C36D003B25C2 /* 74164.png */,
-				D8FE3C7F1703C36D003B25C2 /* 74177.png */,
-				D8FE3C801703C36D003B25C2 /* 74181.png */,
+				CFF041A217162C0600082C65 /* 74181.png */,
+				CFF041A417162C1E00082C65 /* 74711.png */,
 				D8FE3C811703C36D003B25C2 /* 7432.png */,
 				CF1481971703AC23001DDD08 /* 200px-AND_ANSI.png */,
 				CF1481991703AC23001DDD08 /* chip-14-gray.png */,
@@ -700,8 +700,6 @@
 				D8FE3C8A1703C36D003B25C2 /* 7408.png in Resources */,
 				D8FE3C8B1703C36D003B25C2 /* 7486.png in Resources */,
 				D8FE3C8C1703C36D003B25C2 /* 74164.png in Resources */,
-				D8FE3C8D1703C36D003B25C2 /* 74177.png in Resources */,
-				D8FE3C8E1703C36D003B25C2 /* 74181.png in Resources */,
 				D8FE3C8F1703C36D003B25C2 /* 7432.png in Resources */,
 				D8FE3C961703C770003B25C2 /* 7447.png in Resources */,
 				D8FE3C971703C770003B25C2 /* 7476.png in Resources */,
@@ -736,6 +734,8 @@
 				CF31B634170F956100A500B4 /* 7402.pdf in Resources */,
 				CF31B635170F956100A500B4 /* 7400.pdf in Resources */,
 				CF1805551713858C001C27D5 /* wire-large.png in Resources */,
+				CFF041A317162C0600082C65 /* 74181.png in Resources */,
+				CFF041A517162C1E00082C65 /* 74711.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
