@@ -54,7 +54,7 @@
 
 - (NSString *)toString
 {
-    NSNumber * number = [NSNumber numberWithInt: self.xCoord * 100 + self.yCoord];
+    NSNumber * number = [NSNumber numberWithInt: ((self.xCoord * 100) + self.yCoord)];
     NSString *stringVal = [number stringValue];
     
   /*  if(number <= [NSNumber numberWithInt:999] && number >= [NSNumber numberWithInt:100])
@@ -74,5 +74,7 @@
     
     return stringVal;
 }
+
+
 
 @end
