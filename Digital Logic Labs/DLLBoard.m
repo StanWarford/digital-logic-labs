@@ -406,6 +406,7 @@
 
     [startColumn insertObject: newWire atIndex: startingPoint.yCoord];
     [endColumn insertObject: newWire atIndex: endingPoint.yCoord];
+    [self dumpBreadBoardStateArray];
 }
 
 
@@ -1035,19 +1036,17 @@
         
         for(int j = 0; j < [column count]; j++)
         {
-            NSString * item = @"";
+            NSString * item = [NSString stringWithFormat: @"%d, %d: ", i, j ];
             
             if([[column objectAtIndex: j] isKindOfClass: [NSNull class]])
-               [item stringByAppendingString: @"0"];
+               item = [item stringByAppendingString: @"0"];
             else if([[column objectAtIndex: j] isKindOfClass: [DLLWire class]])
-                [item stringByAppendingString: @"W"];
+                item = [item stringByAppendingString: @"W"];
             else if([[column objectAtIndex: j] isKindOfClass: [DLLChip class]])
-                [item stringByAppendingString: @"C"];
+                item = [item stringByAppendingString: @"C"];
             
-            NSLog([NSString stringWithFormat:@"[%s]", item]);
+            NSLog(item);
         }
-        
-        NSLog(@"\n");
     }
 }
 
