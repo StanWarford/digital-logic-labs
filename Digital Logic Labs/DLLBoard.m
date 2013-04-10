@@ -533,14 +533,13 @@
    for(int i = 0; i < [chipsOnBoard count]; i++)
     {
         DLL7400DIP *chip = [chipsOnBoard objectAtIndex:i];
-       // DLLPoint *chipLocation = [chip loc];
         DLLPoint *powerPinCoord = [chip powerPinCoordinate];
         NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
         NSArray *powerElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[powerElectricalPoint integerValue]];
         
-        for(int i = 0; i < [powerElectricalArrayOfHoles count]; i++)
+        for(int j = 0; j < [powerElectricalArrayOfHoles count]; j++)
         {
-            DLLPoint *currentBoardPoint = powerElectricalArrayOfHoles[i];
+            DLLPoint *currentBoardPoint = powerElectricalArrayOfHoles[j];
             
             if([[[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
                                             objectAtIndex: currentBoardPoint.yCoord]
