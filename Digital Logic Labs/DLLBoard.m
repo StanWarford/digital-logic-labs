@@ -270,14 +270,14 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     // Board Coordinates: {(25-28, 0), (50-53, 0)}
     
     DLLPoint *p1, *p2, *p3, *p4, *p5, *p6, *p7, *p8;
-    p1 = [[DLLPoint alloc] initWithIntX:25 andY: 0];
-    p2 = [[DLLPoint alloc] initWithIntX:26 andY: 0];
-    p3 = [[DLLPoint alloc] initWithIntX:27 andY: 0];
-    p4 = [[DLLPoint alloc] initWithIntX:28 andY: 0];
-    p5 = [[DLLPoint alloc] initWithIntX:50 andY: 0];
-    p6 = [[DLLPoint alloc] initWithIntX:51 andY: 0];
-    p7 = [[DLLPoint alloc] initWithIntX:52 andY: 0];
-    p8 = [[DLLPoint alloc] initWithIntX:53 andY: 0];
+    p1 = [[DLLPoint alloc] initWithIntX:0 andY: 0];
+    p2 = [[DLLPoint alloc] initWithIntX:1 andY: 0];
+    p3 = [[DLLPoint alloc] initWithIntX:2 andY: 0];
+    p4 = [[DLLPoint alloc] initWithIntX:3 andY: 0];
+    p5 = [[DLLPoint alloc] initWithIntX:4 andY: 0];
+    p6 = [[DLLPoint alloc] initWithIntX:5 andY: 0];
+    p7 = [[DLLPoint alloc] initWithIntX:6 andY: 0];
+    p8 = [[DLLPoint alloc] initWithIntX:7 andY: 0];
     
     NSArray *lightArray1 = [NSArray arrayWithObject:p1];
     NSArray *lightArray2 = [NSArray arrayWithObject:p2];
