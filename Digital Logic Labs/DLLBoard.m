@@ -387,7 +387,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     breadboardStateArray[endingPoint.xCoord][endingPoint.yCoord] = newWire;
 
     //DEBUG
-    [self dumpBreadBoardStateArray];
+    //[self dumpBreadBoardStateArray];
     //comment to check branch
 }
 
@@ -428,10 +428,11 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
         return NO;
     
     id component = breadboardStateArray[coords.xCoord][coords.yCoord];
+    BOOL occupied = (component != nil);
+
+    return occupied;
     
-    return !component;
-    
-    // If a chip or a wire is at given coords return !NO
+    // If a chip or a wire is at given coords return occupied (YES)
     // (99,99) is a 'trash' point, items put here will not be added-mark as always unavailable
 }
 
@@ -518,7 +519,8 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
             
             if([breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord] isKindOfClass:[DLLWire class]])
             {
-                DLLWire *currentWire = breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord];
+                DLLAComponent *currentComponent = breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord];
+                DLLWire *currentWire = (DLLWire *) currentComponent;
                 DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
                 NSNumber *otherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
                 DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: [otherElectricalPoint integerValue]];
@@ -537,7 +539,8 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
             
             if([breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord] isKindOfClass:[DLLWire class]])
             {
-                DLLWire *currentWire = breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord];
+                DLLAComponent *currentComponent = breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord];
+                DLLWire *currentWire = (DLLWire *) currentComponent;
                 DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
                 NSNumber *otherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
                 DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: [otherElectricalPoint integerValue]];
@@ -614,7 +617,8 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
                 DLLPoint *currentPhysicalPoint = electricalArrayOfHoles[j];
                 if([breadboardStateArray[currentPhysicalPoint.xCoord][currentPhysicalPoint.yCoord] isKindOfClass:[DLLWire class]])
                 {
-                    DLLWire *currentWire = breadboardStateArray[currentPhysicalPoint.xCoord][currentPhysicalPoint.yCoord];
+                    DLLAComponent *currentComponent = breadboardStateArray[currentPhysicalPoint.xCoord][currentPhysicalPoint.yCoord];
+                    DLLWire *currentWire = (DLLWire *) currentComponent;
                     DLLPoint *otherPhysicalPoint = [currentWire otherBoardHole: currentPhysicalPoint];
                     NSNumber *indexOfOtherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPhysicalPoint toString]];
                     DLLElectricalPoint *otherElectricalPoint = [self.electricalPointArray objectAtIndex: [indexOfOtherElectricalPoint integerValue]];
@@ -735,7 +739,8 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
                 
                 if([breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord] isKindOfClass:[DLLWire class]])
                 {
-                    DLLWire *currentWire = breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord];
+                    DLLAComponent *currentComponent = breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord];
+                    DLLWire *currentWire = (DLLWire *) currentComponent;
                     DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
                     NSNumber *otherElectricalPointIndex = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
                     DLLElectricalPoint *otherElectricalPoint = [self.electricalPointArray objectAtIndex: [otherElectricalPointIndex integerValue]];

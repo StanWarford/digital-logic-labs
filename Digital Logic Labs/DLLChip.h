@@ -25,6 +25,7 @@
 
 - (id)init;
 - (id)initWithIdentifier:(NSInteger)identifier;
+
 - (void)calculateOutputs;
 - (DLLPoint *)powerPinCoordinate;
 - (DLLPoint *)groundPinCoordinate;
