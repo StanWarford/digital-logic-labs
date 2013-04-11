@@ -87,6 +87,8 @@
 		CFEE6722170CE38A0008870C /* test-light-on.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEE671F170CE38A0008870C /* test-light-on.png */; };
 		CFF041A317162C0600082C65 /* 74181.png in Resources */ = {isa = PBXBuildFile; fileRef = CFF041A217162C0600082C65 /* 74181.png */; };
 		CFF041A517162C1E00082C65 /* 74711.png in Resources */ = {isa = PBXBuildFile; fileRef = CFF041A417162C1E00082C65 /* 74711.png */; };
+		CFF041AB17163FD000082C65 /* icon_72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = CFF041AA17163FD000082C65 /* icon_72x72.png */; };
+		CFF041AE17163FD500082C65 /* icon_144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = CFF041AD17163FD500082C65 /* icon_144x144.png */; };
 		D86C198A16E5149100E4303B /* DLLPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D86C198916E5149100E4303B /* DLLPoint.m */; };
 		D87DB90016F772E5000C6CE4 /* DLLWire.m in Sources */ = {isa = PBXBuildFile; fileRef = D87DB8FF16F772E5000C6CE4 /* DLLWire.m */; };
 		D8AB957616C025B00074ABEB /* inventory.xml in Resources */ = {isa = PBXBuildFile; fileRef = D8AB957516C025B00074ABEB /* inventory.xml */; };
@@ -226,6 +228,8 @@
 		CFEE671F170CE38A0008870C /* test-light-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-light-on.png"; sourceTree = "<group>"; };
 		CFF041A217162C0600082C65 /* 74181.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 74181.png; sourceTree = "<group>"; };
 		CFF041A417162C1E00082C65 /* 74711.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 74711.png; sourceTree = "<group>"; };
+		CFF041AA17163FD000082C65 /* icon_72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_72x72.png; sourceTree = "<group>"; };
+		CFF041AD17163FD500082C65 /* icon_144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_144x144.png; sourceTree = "<group>"; };
 		D86C198816E5149100E4303B /* DLLPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLLPoint.h; sourceTree = "<group>"; };
 		D86C198916E5149100E4303B /* DLLPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLLPoint.m; sourceTree = "<group>"; };
 		D87DB8FF16F772E5000C6CE4 /* DLLWire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DLLWire.m; path = "Digital Logic Labs/DLLWire.m"; sourceTree = SOURCE_ROOT; };
@@ -500,6 +504,8 @@
 		CFDBF6C216B0C199009C3DA4 = {
 			isa = PBXGroup;
 			children = (
+				CFF041AD17163FD500082C65 /* icon_144x144.png */,
+				CFF041AA17163FD000082C65 /* icon_72x72.png */,
 				CFDBF6D716B0C199009C3DA4 /* Digital Logic Labs */,
 				CFDBF6FB16B0C19A009C3DA4 /* Digital Logic LabsTests */,
 				CFDBF6D016B0C199009C3DA4 /* Frameworks */,
@@ -741,6 +747,8 @@
 				CF1805551713858C001C27D5 /* wire-large.png in Resources */,
 				CFF041A317162C0600082C65 /* 74181.png in Resources */,
 				CFF041A517162C1E00082C65 /* 74711.png in Resources */,
+				CFF041AB17163FD000082C65 /* icon_72x72.png in Resources */,
+				CFF041AE17163FD500082C65 /* icon_144x144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
