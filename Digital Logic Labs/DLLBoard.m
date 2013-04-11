@@ -455,40 +455,19 @@
 
 - (void)removeWireAtPoint: (DLLPoint *)startPoint
 {    
-    NSMutableArray * startColumn = [self.breadboardStateArray objectAtIndex: startPoint.xCoord];
-    
-    DLLPoint * endPoint = [(DLLWire *)[startColumn objectAtIndex: startPoint.yCoord] otherBoardHole: startPoint];
-    
-    NSMutableArray * endColumn = [self.breadboardStateArray objectAtIndex: endPoint.xCoord];
-    
-    NSNull * myNull = [NSNull null];
-    
-    [startColumn insertObject: myNull atIndex: startPoint.yCoord];
-    [endColumn insertObject: myNull atIndex: endPoint.yCoord];
-}
-
-- (void)removeWireAtStartPoint: (DLLPoint *)startPoint AndEndPoint: (DLLPoint *)endPoint
-{
-    NSMutableArray * startColumn = [self.breadboardStateArray objectAtIndex: startPoint.xCoord];
-    NSMutableArray * endColumn = [self.breadboardStateArray objectAtIndex: endPoint.xCoord];
-    
-    NSNull * myNull = [NSNull null];
-    
-    [startColumn insertObject: myNull atIndex: startPoint.yCoord];
-    [endColumn insertObject: myNull atIndex: endPoint.yCoord];
+    self.breadboardStateArray[startPoint.xCoord][startPoint.yCoord] = nil;
 }
 
 - (void)clearBoard
 {
     [self.chipDictionary removeAllObjects];
-    for (int i = 0; i < NUMCOLUMNS; i++){
-        NSMutableArray * row = [self.breadboardStateArray objectAtIndex:i];
-        for(int j = 0; j < NUMROWS; j++){
-            NSNull * myNull = [NSNull null];
-            [row insertObject:myNull atIndex:j];
+    for (int i = 0; i < NUMCOLUMNS; i++)
+    {
+        for(int j = 0; j < NUMROWS; j++)
+        {
+            self.breadboardStateArray[i][j] = nil;
         }
     }
-    //clear chipDictionary, and set all cells in breadboardStateArray to NSNull
 }
 
 #pragma mark -
@@ -499,7 +478,7 @@
     if(coords.xCoord > 63 && coords.yCoord > 31)
         return NO;
     
-    id component = [[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord];
+    id component = self.breadboardStateArray[coords.xCoord][coords.yCoord];
     NSNull * myNull = [NSNull null];
     
     return !(component == myNull);
@@ -510,7 +489,7 @@
 
 - (DLLAComponent *)boardStateAt:(DLLPoint *)coords
 {
-    id component = [[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord];
+    id component = self.breadboardStateArray[coords.xCoord][coords.yCoord];
     NSNull * myNull = [NSNull null];
     
     if(component == myNull)
@@ -595,12 +574,9 @@
         {
             DLLPoint *currentBoardPoint = powerElectricalArrayOfHoles[j];
             
-            if([[[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
-                                            objectAtIndex: currentBoardPoint.yCoord]
-                                            isKindOfClass:[DLLWire class]])
+            if([self.breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord] isKindOfClass:[DLLWire class]])
             {
-                DLLWire *currentWire = [[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
-                                         objectAtIndex: currentBoardPoint.yCoord];
+                DLLWire *currentWire = self.breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord];
                 DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
                 NSNumber *otherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
                 DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: [otherElectricalPoint integerValue]];
@@ -617,12 +593,9 @@
         {
             DLLPoint *currentBoardPoint = groundElectricalArrayOfHoles[j];
             
-            if([[[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
-                 objectAtIndex: currentBoardPoint.yCoord]
-                isKindOfClass:[DLLWire class]])
+            if([self.breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord] isKindOfClass:[DLLWire class]])
             {
-                DLLWire *currentWire = [[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
-                                        objectAtIndex: currentBoardPoint.yCoord];
+                DLLWire *currentWire = self.breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord];
                 DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
                 NSNumber *otherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
                 DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: [otherElectricalPoint integerValue]];
@@ -697,12 +670,9 @@
             for(int j = 0; j < [electricalArrayOfHoles count]; j++)
             {
                 DLLPoint *currentPhysicalPoint = electricalArrayOfHoles[j];
-                if([[[self.breadboardStateArray objectAtIndex: currentPhysicalPoint.xCoord]
-                                                objectAtIndex: currentPhysicalPoint.yCoord]
-                                                isKindOfClass:[DLLWire class]])
+                if([self.breadboardStateArray[currentPhysicalPoint.xCoord][currentPhysicalPoint.yCoord] isKindOfClass:[DLLWire class]])
                 {
-                    DLLWire *currentWire = [[self.breadboardStateArray objectAtIndex: currentPhysicalPoint.xCoord]
-                                                                        objectAtIndex: currentPhysicalPoint.yCoord];
+                    DLLWire *currentWire = self.breadboardStateArray[currentPhysicalPoint.xCoord][currentPhysicalPoint.yCoord];
                     DLLPoint *otherPhysicalPoint = [currentWire otherBoardHole: currentPhysicalPoint];
                     NSNumber *indexOfOtherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPhysicalPoint toString]];
                     DLLElectricalPoint *otherElectricalPoint = [self.electricalPointArray objectAtIndex: [indexOfOtherElectricalPoint integerValue]];
@@ -821,12 +791,9 @@
             {
                 DLLPoint *currentBoardPoint = physicalArrayOfHoles[i];
                 
-                if([[[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
-                                                objectAtIndex: currentBoardPoint.yCoord]
-                                                isKindOfClass:[DLLWire class]])
+                if([self.breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord] isKindOfClass:[DLLWire class]])
                 {
-                    DLLWire *currentWire = [[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
-                                                                        objectAtIndex: currentBoardPoint.yCoord];
+                    DLLWire *currentWire = self.breadboardStateArray[currentBoardPoint.xCoord][currentBoardPoint.yCoord];
                     DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
                     NSNumber *otherElectricalPointIndex = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
                     DLLElectricalPoint *otherElectricalPoint = [self.electricalPointArray objectAtIndex: [otherElectricalPointIndex integerValue]];

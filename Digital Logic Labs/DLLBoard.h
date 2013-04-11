@@ -28,7 +28,6 @@
 
 - (void)removeComponentAtCoordinate:(DLLPoint *)coords;
 - (void)removeWireAtPoint: (DLLPoint *) startPoint;
-- (void)removeWireAtStartPoint: (DLLPoint *)startPoint AndEndPoint: (DLLPoint *)endPoint;
 - (void)clearBoard;
 
 - (BOOL)isOccupiedAt:(DLLPoint *)coords;
