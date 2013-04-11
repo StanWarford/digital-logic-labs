@@ -22,7 +22,7 @@ typedef enum
 } EPValue;
 
 @property (nonatomic, assign) EPType electricalPointType;
-@property (nonatomic, assign) NSUInteger setNumber;
+@property (nonatomic, assign) NSInteger setNumber;
 @property (nonatomic, assign) EPValue electricalPointValue;
 @property (nonatomic, assign) EPValue electricalPointPreviousValue;
 
