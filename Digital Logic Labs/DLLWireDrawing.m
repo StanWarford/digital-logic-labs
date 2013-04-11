@@ -12,10 +12,8 @@
 
 #define LINE_WIDTH 2.0 // width of line drawn between circles
 #define GHOST_TRANSPARENCY 0.5 // transparency level for ghost objects
-#define SOLID_CIRCLE_DIAMETER 12 // diameter of finished circle
-#define GHOST_CIRCLE_DIAMETER 20 // diameter of ghost circle
-// original ghost diameter = 20
-// original circle diameter = 12
+#define SOLID_CIRCLE_DIAMETER 10 // diameter of finished circle
+#define GHOST_CIRCLE_DIAMETER 18 // diameter of ghost circle
 
 @synthesize color = _color; // color of the wire
 @synthesize isGhost = _isGhost; // true if this is a ghost image

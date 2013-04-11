@@ -24,13 +24,13 @@
 #define GHOST_TRANSPARENCY 0.5 // 0 < n < 1, 1 = opaque 0 = transparent
 
 // Increase these values to move the chip further left from the touch point
-#define X_OFFSET_14 128 // offset from middle to first pin for 14 pin chips
-#define X_OFFSET_16 138 // offset from middle to first pin for 16 pin chips
-#define X_OFFSET_ALU 153 // offset from middle to first pin for the ALU
+#define X_OFFSET_14 140 // offset from middle to first pin for 14 pin chips
+#define X_OFFSET_16 151 // offset from middle to first pin for 16 pin chips
+#define X_OFFSET_ALU 177 // offset from middle to first pin for the ALU
 
 // Increase these values to move the chip further up from the touch point
-#define Y_OFFSET 25 // offset from middle to first pin for all chips except the ALU
-#define Y_OFFSET_ALU 42 // offset from middle to first pin for the ALU
+#define Y_OFFSET 38// offset from middle to first pin for all chips except the ALU
+#define Y_OFFSET_ALU 43 // offset from middle to first pin for the ALU
 
 @synthesize availableGhostImage = _availableGhostImage;
 @synthesize unavailableGhostImage = _unavailableGhostImage;
