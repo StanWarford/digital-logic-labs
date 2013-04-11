@@ -11,7 +11,6 @@
 @interface  DLLBoard()
 @property (assign, nonatomic) NSInteger activeLab;
 @property (strong, nonatomic) NSMutableDictionary *chipDictionary;
-@property (strong, nonatomic) NSMutableArray *breadboardStateArray;
 @property (strong, nonatomic) NSMutableArray *electricalPointToBoardPointArray;
 @property (strong, nonatomic) NSMutableDictionary *boardPointToElectricalPointDictionary;
 @property (strong, nonatomic) NSMutableArray *electricalPointArray;
@@ -34,7 +33,8 @@
 #define NUMCOLUMNS 63
 #define CLOCK_LIMIT 100
 
-@synthesize breadboardStateArray = _breadboardStateArray;
+DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
+
 @synthesize activeLab = _activeLab;
 
 #pragma mark -
@@ -42,16 +42,6 @@
 - (void)labSelectionChangedTo:(NSInteger)labNum
 {
     // Casey - added this to complete the lab view
-}
-
-#pragma mark -
-#pragma mark lazy instantiation methods
-- (NSMutableArray *)breadboardStateArray
-{
-    if (!_breadboardStateArray){
-        _breadboardStateArray = [[NSMutableArray alloc] initWithCapacity: NUMCOLUMNS];
-    }
-    return _breadboardStateArray;
 }
 
 - (NSMutableDictionary *)chipDictionary
@@ -92,20 +82,13 @@
 {
     // Creates an array w/ 63 columns and 31 rows w/ all values set to NSNull * myNull
     // define overarching array as columns
-    if((self = [super init])){
-        NSNull * myNull = [NSNull null];
-    
-        NSMutableArray * boardColumns;
-        
-        for(int i = 0; i < NUMCOLUMNS; i++)
+    if((self = [super init])){        
+        for(int i = 0; i < NUMROWS; i++)
         {
-            boardColumns = [[NSMutableArray alloc] initWithCapacity: NUMROWS];
-            for(int j = 0; j < NUMROWS; j++)
+            for(int j = 0; j < NUMCOLUMNS; j++)
             {
-                [boardColumns insertObject: myNull atIndex: j];
+                breadboardStateArray[i][j] = nil;
             }
-            
-            [self.breadboardStateArray insertObject: boardColumns atIndex: i];
         }
         
         [self populateDatastructures];
@@ -385,9 +368,8 @@
         
         for(;current.xCoord < coords.xCoord + newChip.size / 2; current.xCoord++)
         {
-            NSMutableArray * column = [self.breadboardStateArray objectAtIndex: current.xCoord];
-            [column insertObject: newChip atIndex: current.yCoord];
-            [column insertObject: newChip atIndex: current.yCoord + 1];
+            breadboardStateArray[current.xCoord][current.yCoord] = newChip;
+            breadboardStateArray[current.xCoord][current.yCoord + 1] = newChip;
         }
     }
 }
@@ -401,23 +383,8 @@
     //NSLog([NSString stringWithFormat:@"End Point: %d, %d", newWire.endPoint.xCoord, newWire.endPoint.yCoord]);
     
     //add new wire to both start and end point in breadboardStateArray
-    NSMutableArray * startColumn = [self.breadboardStateArray objectAtIndex: startingPoint.xCoord];
-    NSMutableArray * endColumn = [self.breadboardStateArray objectAtIndex: endingPoint.xCoord];
-    
-    if(startingPoint.xCoord == endingPoint.xCoord)
-    {
-        if(startingPoint.yCoord > endingPoint.yCoord)
-        {
-            [startColumn insertObject: newWire atIndex: startingPoint.yCoord - 1];
-            [startColumn insertObject: newWire atIndex: endingPoint.yCoord];
-        } else {
-            [startColumn insertObject: newWire atIndex: startingPoint.yCoord];
-            [startColumn insertObject: newWire atIndex: endingPoint.yCoord];
-        }
-    } else {
-        [startColumn insertObject: newWire atIndex: startingPoint.yCoord];
-        [endColumn insertObject: newWire atIndex: endingPoint.yCoord];
-    }
+    breadboardStateArray[startingPoint.xCoord][startingPoint.yCoord] = newWire;
+    breadboardStateArray[endingPoint.xCoord][startingPoint.yCoord] = newWire;
 
     //DEBUG
     //[self dumpBreadBoardStateArray];
@@ -431,26 +398,8 @@
 - (void)removeComponentAtCoordinate:(DLLPoint *)coords {
     //remove component from breadboardStateArray
     //not necessarily upper left-need to check 2D array
-    NSMutableArray * column = [self.breadboardStateArray objectAtIndex: coords.xCoord];
-    DLLChip * toRemove = [column objectAtIndex: coords.yCoord];
+    DLLAComponent * toRemove = breadboardStateArray[coords.xCoord][coords.yCoord];
     
-    DLLPoint * upperLeft = toRemove.loc;
-    NSUInteger chipWidth = toRemove.size / 2;
-    
-    DLLPoint * current = [[DLLPoint alloc] initWithIntX: upperLeft.xCoord andY: upperLeft.yCoord];
-    NSMutableArray * topRow = [self.breadboardStateArray objectAtIndex: upperLeft.yCoord];
-    NSMutableArray * bottomRow = [self.breadboardStateArray objectAtIndex: upperLeft.yCoord + 1];
-    
-    NSNull * myNull = [NSNull null];
-    
-    for(; current.xCoord < upperLeft.xCoord + chipWidth; current.xCoord++)
-    {
-        [topRow insertObject: myNull atIndex: current.xCoord];
-        [bottomRow insertObject: myNull atIndex: current.xCoord];
-    }
-    
-    //remove component from dictionary
-    [self.chipDictionary removeObjectForKey:[coords toString]];
 }
 
 - (void)removeWireAtPoint: (DLLPoint *)startPoint
@@ -1044,19 +993,17 @@
 
 - (void)dumpBreadBoardStateArray
 {
-    for(int i = 0; i < [self.breadboardStateArray count]; i++)
+    for(int i = 0; i < NUMCOLUMNS; i++)
     {
-        NSMutableArray * column = [self.breadboardStateArray objectAtIndex: i];
+        NSString * item = [NSString stringWithFormat: @"%d, %d: ", i, j];
         
-        for(int j = 0; j < [column count]; j++)
+        for(int j = 0; j < NUMROWS; j++)
         {
-            NSString * item = [NSString stringWithFormat: @"%d, %d: ", i, j ];
-            
-            if([[column objectAtIndex: j] isKindOfClass: [NSNull class]])
-               item = [item stringByAppendingString: @"0"];
-            else if([[column objectAtIndex: j] isKindOfClass: [DLLWire class]])
+            if(!breadboardStateArray[i][j])
+                item = [item stringByAppendingString: @"0"];
+            else if([breadboardStateArray[i][j] isKindOfClass: [DLLWire class]])
                 item = [item stringByAppendingString: @"W"];
-            else if([[column objectAtIndex: j] isKindOfClass: [DLLChip class]])
+            else
                 item = [item stringByAppendingString: @"C"];
             
             NSLog(item);

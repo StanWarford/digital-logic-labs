@@ -18,7 +18,6 @@
 
 @interface DLLBoard : NSObject
 
-
 - (id)init;
 
 - (void)labSelectionChangedTo:(NSInteger)labNum; // Casey - Added this function to complete the labs view
