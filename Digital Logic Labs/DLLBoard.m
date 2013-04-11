@@ -604,7 +604,6 @@
                 DLLWire *currentWire = [[self.breadboardStateArray objectAtIndex: currentBoardPoint.xCoord]
                                         objectAtIndex: currentBoardPoint.yCoord];
                 DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
-                // TODO: change this
                 NSNumber *otherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
                 DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: [otherElectricalPoint integerValue]];
                 if(!(electricalPoint.electricalPointType == EPTypeGround)){
@@ -615,7 +614,7 @@
     }
 }
 
-// implement CLOCK PINS
+// TODO: implement CLOCK PINS
 - (void) setUpElectricalPointStates
 {
     NSArray *chipsOnBoard = [self.chipDictionary allValues];
@@ -627,8 +626,8 @@
         DLLPoint *groundPinCoord = [chip groundPinCoordinate];
         NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
         NSNumber *groundElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[groundPinCoord toString]];
-        [[self.electricalPointArray objectAtIndex:[powerElectricalPoint integerValue]] changePointTypeTo:EPTypePower];
-        [[self.electricalPointArray objectAtIndex:[groundElectricalPoint integerValue]] changePointTypeTo:EPTypeGround];
+        [[self.electricalPointArray objectAtIndex:[powerElectricalPoint integerValue]] changePointTypeTo:EPTypeInput];
+        [[self.electricalPointArray objectAtIndex:[groundElectricalPoint integerValue]] changePointTypeTo:EPTypeInput];
         
         NSArray *coordsOfInputPins = [chip coordinatesOfInputPins];
         for(int i = 0; i < [coordsOfInputPins count]; i++){
@@ -673,7 +672,7 @@
         for(int i = 0; i < [activeElectricalPoints count]; i++){
             
             DLLElectricalPoint *currentElectricalPoint = [activeElectricalPoints objectAtIndex:i];
-            NSUInteger index = [self.electricalPointArray indexOfObject:currentElectricalPoint];
+            NSInteger index = [self.electricalPointArray indexOfObject:currentElectricalPoint];
             NSArray *electricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:index];
             for(int j = 0; j < [electricalArrayOfHoles count]; j++)
             {
@@ -796,7 +795,7 @@
         for(int i =0; i < [activeElectricalPoints count]; i++)
         {
             DLLElectricalPoint *currentElectricalPoint = [activeElectricalPoints objectAtIndex:i];
-            NSUInteger index = [self.electricalPointArray indexOfObject:currentElectricalPoint];
+            NSInteger index = [self.electricalPointArray indexOfObject:currentElectricalPoint];
             NSArray *physicalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:index];
             for(int i = 0; i < [physicalArrayOfHoles count]; i++)
             {
