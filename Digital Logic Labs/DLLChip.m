@@ -28,4 +28,38 @@
     return self;
 }
 
+- (void)calculateOutputs
+{
+    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
+}
+
+- (DLLPoint *)powerPinCoordinate
+{
+    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
+    return [[DLLPoint alloc] initWithIntX:0 andY:0];
+}
+
+- (DLLPoint *)groundPinCoordinate
+{
+    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
+    return [[DLLPoint alloc] initWithIntX:0 andY:0];
+}
+
+- (NSArray *)coordinatesOfInputPins
+{
+    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
+    return [NSArray array];
+}
+
+- (NSArray *)coordinatesOfOutputPins
+{
+    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
+    return [NSArray array];
+}
+
+- (void)setPin:(int)index to:(DLLElectricalPoint *)electricalPoint
+{
+    [NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass.", NSStringFromSelector(_cmd)];
+}
+
 @end
