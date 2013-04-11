@@ -178,6 +178,9 @@ typedef enum{
     CGPoint tGridLoc = [self gridCoordinateFromViewCoordinate:tLoc];
     CGPoint tSnapLoc = [self viewCoordinateFromGridCoordinate:tGridLoc];
     
+    //NSLog([NSString stringWithFormat:@"(%f, %f)", chipLoc.x, chipLoc.y]);
+    //NSLog([NSString stringWithFormat:@"(%d, %d)", chipStart.xCoord, chipStart.yCoord]);
+    
     if(self.state == wireEnd){ // user is placing end of wire
         CGPoint wLoc = [self.activeComponent getOffsetPointFrom:tSnapLoc];
         CGPoint wCalcPoint = [self gridCoordinateFromViewCoordinate:wLoc];

@@ -23,12 +23,14 @@
 #define COLOR_INTENSITY 0.5 // 0 < n < 1, 1 = opaque 0 = transparent
 #define GHOST_TRANSPARENCY 0.5 // 0 < n < 1, 1 = opaque 0 = transparent
 
+// Increase these values to move the chip further left from the touch point
 #define X_OFFSET_14 128 // offset from middle to first pin for 14 pin chips
 #define X_OFFSET_16 138 // offset from middle to first pin for 16 pin chips
-#define X_OFFSET_ALU 127 // offset from middle to first pin for the ALU
+#define X_OFFSET_ALU 153 // offset from middle to first pin for the ALU
 
+// Increase these values to move the chip further up from the touch point
 #define Y_OFFSET 25 // offset from middle to first pin for all chips except the ALU
-#define Y_OFFSET_ALU 15 // offset from middle to first pin for the ALU
+#define Y_OFFSET_ALU 42 // offset from middle to first pin for the ALU
 
 @synthesize availableGhostImage = _availableGhostImage;
 @synthesize unavailableGhostImage = _unavailableGhostImage;
@@ -269,11 +271,11 @@
             self.size = 14;
             break;
         case 74181:
-            self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
+            self.image = [UIImage imageNamed:@"74181"];
             self.size = 24;
             break;
         case 74711:
-            self.image = [UIImage imageNamed:@"200px-AND_ANSI"];
+            self.image = [UIImage imageNamed:@"74711"];
             self.size = 14;
             break;
         default:
