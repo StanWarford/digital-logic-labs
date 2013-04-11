@@ -403,10 +403,24 @@
     //add new wire to both start and end point in breadboardStateArray
     NSMutableArray * startColumn = [self.breadboardStateArray objectAtIndex: startingPoint.xCoord];
     NSMutableArray * endColumn = [self.breadboardStateArray objectAtIndex: endingPoint.xCoord];
+    
+    if(startingPoint.xCoord == endingPoint.xCoord)
+    {
+        if(startingPoint.yCoord > endingPoint.yCoord)
+        {
+            [startColumn insertObject: newWire atIndex: startingPoint.yCoord - 1];
+            [startColumn insertObject: newWire atIndex: endingPoint.yCoord];
+        } else {
+            [startColumn insertObject: newWire atIndex: startingPoint.yCoord];
+            [startColumn insertObject: newWire atIndex: endingPoint.yCoord];
+        }
+    } else {
+        [startColumn insertObject: newWire atIndex: startingPoint.yCoord];
+        [endColumn insertObject: newWire atIndex: endingPoint.yCoord];
+    }
 
-    [startColumn insertObject: newWire atIndex: startingPoint.yCoord];
-    [endColumn insertObject: newWire atIndex: endingPoint.yCoord];
-    [self dumpBreadBoardStateArray];
+    //DEBUG
+    //[self dumpBreadBoardStateArray];
 }
 
 
