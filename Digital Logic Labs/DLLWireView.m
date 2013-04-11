@@ -10,9 +10,10 @@
 
 @implementation DLLWireView
 
-#define WIRE_X_OFFSET -48.8
-// original x offset -48.8
-#define WIRE_Y_OFFSET 0
+// increase to move wire image more right
+#define WIRE_X_OFFSET -96
+// increase to move wire image more down
+#define WIRE_Y_OFFSET -11.9
 
 @synthesize end = _end;
 
