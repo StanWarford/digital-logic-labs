@@ -13,7 +13,7 @@
 // increase to move wire image more right
 #define WIRE_X_OFFSET -96
 // increase to move wire image more down
-#define WIRE_Y_OFFSET -11.9
+#define WIRE_Y_OFFSET 0  // changed by Brooke to fix power point problem
 
 @synthesize end = _end;
 

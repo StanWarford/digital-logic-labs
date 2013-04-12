@@ -568,14 +568,16 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
         [[self.electricalPointArray objectAtIndex:[groundElectricalPoint integerValue]] changePointTypeTo:EPTypeInput];
         
         NSArray *coordsOfInputPins = [chip coordinatesOfInputPins];
-        for(int i = 0; i < [coordsOfInputPins count]; i++){
-            NSNumber *electricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[coordsOfInputPins[i] toString]];
+        for(int j = 0; j < [coordsOfInputPins count]; j++)
+        {
+            NSNumber *electricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[[coordsOfInputPins objectAtIndex:j] toString]];
             [[self.electricalPointArray objectAtIndex:[electricalPoint integerValue]] changePointTypeTo:EPTypeInput];
         }
         
         NSArray *coordsOfOutputPins = [chip coordinatesOfOutputPins];
-        for(int i = 0; i < [coordsOfOutputPins count]; i++){
-            NSNumber *electricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[coordsOfOutputPins[i] toString]];
+        for(int j = 0; j < [coordsOfOutputPins count]; j++)
+        {
+            NSNumber *electricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[[coordsOfOutputPins objectAtIndex:j] toString]];
             [[self.electricalPointArray objectAtIndex:[electricalPoint integerValue]] changePointTypeTo:EPTypeOutput];
         }
     }
@@ -585,6 +587,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
 {
     NSMutableArray *activeElectricalPoints = [NSMutableArray array];
     int count = 0;
+    int count2 = 0;
     for(int i = 0; i < [self.electricalPointArray count]; i++)
     {
         DLLElectricalPoint *currentPoint = [self.electricalPointArray objectAtIndex:i];
@@ -599,9 +602,11 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
             else
             {
                 currentPoint.setNumber = count;
+                count++;
             }
-            [activeElectricalPoints insertObject:currentPoint atIndex:count];
-            count++;
+            [activeElectricalPoints insertObject:currentPoint atIndex:count2];
+            count2++;
+            
         }
     }
     

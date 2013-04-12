@@ -22,6 +22,7 @@
         self.inputPins = @[@0, @1, @3, @4, @8, @9, @11, @12];
         self.groundPin = 6;
         self.powerPin = 13;
+        self.size = 14;
         
     }
     return self;
