@@ -13,10 +13,10 @@
 @property (nonatomic, strong) NSArray *buttons;
 - (void)redPressed;
 - (void)orangePressed;
-- (void)yellowPressed;
+- (void)brownPressed;
 - (void)bluePressed;
 - (void)greenPressed;
-- (void)greyPressed;
+- (void)blackPressed;
 
 @end
 
