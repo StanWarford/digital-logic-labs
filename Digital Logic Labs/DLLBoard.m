@@ -707,12 +707,12 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
         currentElectricalPoint.electricalPointPreviousValue = EPValueUnknown;
     }
     //power: set electrical point value to 1
-    DLLElectricalPoint *powerElectricalPoint = [self.electricalPointArray objectAtIndex:252];
+    DLLElectricalPoint *powerElectricalPoint = [self.electricalPointArray objectAtIndex:253];
     powerElectricalPoint.electricalPointValue = EPValueOne;
     powerElectricalPoint.electricalPointPreviousValue = EPValueOne;
     
     //ground: set electrical point value to 0
-    DLLElectricalPoint *groundElectricalPoint = [self.electricalPointArray objectAtIndex:253];
+    DLLElectricalPoint *groundElectricalPoint = [self.electricalPointArray objectAtIndex:252];
     groundElectricalPoint.electricalPointValue = EPValueZero;
     groundElectricalPoint.electricalPointPreviousValue = EPValueZero;
     
@@ -770,7 +770,8 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
         
         if(([currentPoint electricalPointType] == EPTypeInput) ||
            ([currentPoint electricalPointType] == EPTypeOutput) ||
-           ([currentPoint electricalPointType] == EPTypeClockInput))
+           ([currentPoint electricalPointType] == EPTypeClockInput) ||
+           ([currentPoint electricalPointType] == EPTypeLight))
         {
             [activeElectricalPoints insertObject:currentPoint atIndex:count];
             
@@ -893,10 +894,10 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
                 NSArray *outputPinIndices = [currentChip outputPins];
                 for(int j = 0; j < [outputPinCoords count]; j++)
                 {
-                    DLLPoint *currentPhysicalPoint = outputPinCoords[j];
+                    DLLPoint *currentPhysicalPoint = [outputPinCoords objectAtIndex:j];
                     NSNumber *indexOfElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[currentPhysicalPoint toString]];
                     DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: [indexOfElectricalPoint integerValue]];
-                    DLLElectricalPoint *outputElectricalPoint = [currentChip.pins objectAtIndex: [outputPinIndices[j] integerValue]];
+                    DLLElectricalPoint *outputElectricalPoint = [currentChip.pins objectAtIndex: [[outputPinIndices objectAtIndex:j] integerValue]];
                     if (electricalPoint.electricalPointValue != outputElectricalPoint.electricalPointValue)
                     {
                         electricalPoint.electricalPointPreviousValue = electricalPoint.electricalPointValue;
