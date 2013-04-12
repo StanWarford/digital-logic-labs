@@ -355,6 +355,32 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     {
         case 7400: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
             break;
+        case 7402: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+            break;
+        case 7404: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+            break;
+        case 7408: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+            break;
+        case 7432: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+            break;
+        case 7447: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+            break;
+        case 7476: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+            break;
+        case 7485: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+            break;
+        case 7486: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+            break;
+        case 74151: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+            break;
+        case 74164: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+            break;
+        case 74176: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+            break;
+        case 74181: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+            break;
+        case 74711: newChip = [[DLL7400DIP alloc] initWithLocation: coords];   // MAN 
+            break; 
         default: newChip = nil;
             break;
     }
@@ -398,7 +424,22 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
 - (void)removeComponentAtCoordinate:(DLLPoint *)coords {
     //remove component from breadboardStateArray
     //not necessarily upper left-need to check 2D array
-    //DLLAComponent * toRemove = breadboardStateArray[coords.xCoord][coords.yCoord];
+    
+  /*  if([breadboardStateArray[coords.xCoord][coords.yCoord] isKindOfClass: [DLLWire class]])
+    {
+        
+    }
+    else
+    {
+        DLLChip *currentChip = breadboardStateArray[coords.xCoord][coords.yCoord];
+        for(;currentChip.xCoord < coords.xCoord + newChip.size / 2; current.xCoord++)
+        {
+            breadboardStateArray[current.xCoord][current.yCoord] = newChip;
+            breadboardStateArray[current.xCoord][current.yCoord + 1] = newChip;
+        }
+    }
+    
+    breadboardStateArray[coords.xCoord][coords.yCoord] = nil;*/
     
 }
 
@@ -651,7 +692,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
         
     } while (changed);
     
-    return YES;
+    return NO;
 }
 
 - (void) simulateInitialState
@@ -693,7 +734,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     
     debouncedSwitchYElectricalPoint.electricalPointValue = EPValueOne;
     debouncedSwitchYElectricalPoint.electricalPointPreviousValue = EPValueOne;
-    
+    // rest of switches
     for(int i = 258; i < 266; i++){
         DLLElectricalPoint *currentElectricalPoint = [self.electricalPointArray objectAtIndex:i];
         currentElectricalPoint.electricalPointValue = EPValueZero;
@@ -721,6 +762,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     
     int count = 0;
     NSMutableArray *activeElectricalPoints = [NSMutableArray array];
+    NSMutableArray *activeElectricalPointIndices = [NSMutableArray array];
     
     for(int i = 0; i < [self.electricalPointArray count]; i++)
     {
@@ -731,16 +773,21 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
            ([currentPoint electricalPointType] == EPTypeClockInput))
         {
             [activeElectricalPoints insertObject:currentPoint atIndex:count];
+            
+            NSNumber *currentIndex = [NSNumber numberWithInt:i];
+            [activeElectricalPointIndices insertObject:currentIndex atIndex:count];
+            
             count++;
         }
     }
     
     do {
+        changed = NO;
         for(int i =0; i < [activeElectricalPoints count]; i++)
         {
             DLLElectricalPoint *currentElectricalPoint = [activeElectricalPoints objectAtIndex:i];
-            NSInteger index = [self.electricalPointArray indexOfObject:currentElectricalPoint];
-            NSArray *physicalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:index];
+            NSNumber *electricalIndex = [activeElectricalPointIndices objectAtIndex:i];
+            NSArray *physicalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[electricalIndex integerValue]];
             for(int i = 0; i < [physicalArrayOfHoles count]; i++)
             {
                 DLLPoint *currentBoardPoint = physicalArrayOfHoles[i];
@@ -939,15 +986,15 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
         
         if (light.electricalPointValue == EPValueOne)
         {
-            [stateOfLights insertObject:[NSNumber numberWithInt:1] atIndex: i - 266];
+            [stateOfLights insertObject:[NSNumber numberWithInt:1] atIndex: i - 266]; // ON
         }
         else if (light.electricalPointValue == EPValueZero || light.electricalPointValue == EPValueUnknown)
         {
-            [stateOfLights insertObject:[NSNumber numberWithInt:0] atIndex: i - 266];
+            [stateOfLights insertObject:[NSNumber numberWithInt:0] atIndex: i - 266];  // OFF
         }
         else
         {
-            [stateOfLights insertObject:[NSNumber numberWithInt:2] atIndex: i - 266];
+            [stateOfLights insertObject:[NSNumber numberWithInt:2] atIndex: i - 266];  // DIM
         }
     }
     
