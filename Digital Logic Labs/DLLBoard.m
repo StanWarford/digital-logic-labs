@@ -783,10 +783,10 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     
     do {
         changed = NO;
-        for(int i =0; i < [activeElectricalPoints count]; i++)
+        for(int j =0; j < [activeElectricalPoints count]; j++)
         {
-            DLLElectricalPoint *currentElectricalPoint = [activeElectricalPoints objectAtIndex:i];
-            NSNumber *electricalIndex = [activeElectricalPointIndices objectAtIndex:i];
+            DLLElectricalPoint *currentElectricalPoint = [activeElectricalPoints objectAtIndex:j];
+            NSNumber *electricalIndex = [activeElectricalPointIndices objectAtIndex:j];
             NSArray *physicalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[electricalIndex integerValue]];
             for(int i = 0; i < [physicalArrayOfHoles count]; i++)
             {
@@ -809,11 +809,11 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
                             {
                                 case EPTypePower:
                                     currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
-                                    currentElectricalPoint.electricalPointValue = 1;
+                                    currentElectricalPoint.electricalPointValue = EPValueOne;
                                     break;
                                 case EPTypeGround:
                                     currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
-                                    currentElectricalPoint.electricalPointValue = 0;
+                                    currentElectricalPoint.electricalPointValue = EPValueZero;
                                     break;
                                 case EPTypeSwitch:
                                     currentElectricalPoint.electricalPointPreviousValue = currentElectricalPoint.electricalPointValue;
@@ -882,7 +882,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
                     DLLPoint *currentPhysicalPoint = inputPinCoords[j];
                     NSNumber *indexOfElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[currentPhysicalPoint toString]];
                     DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: [indexOfElectricalPoint integerValue]];
-                    [currentChip setPin:[inputPinIndices[j] integerValue] to:electricalPoint];
+                    [currentChip setPin:[[inputPinIndices objectAtIndex:j] integerValue] to:electricalPoint];
                 }
                 
                 [currentChip calculateOutputs];

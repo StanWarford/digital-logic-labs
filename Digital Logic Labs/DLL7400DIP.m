@@ -23,6 +23,13 @@
         self.groundPin = 6;
         self.powerPin = 13;
         self.size = 14;
+        self.pins = [[NSMutableArray alloc] initWithObjects:[[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
+                                                            [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
+                                                            [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
+                                                            [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
+                                                            [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
+                                                            [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
+                                                            [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init], nil];
         
     }
     return self;
@@ -30,10 +37,10 @@
 
 - (void)calculateOutputs
 {
-    [self.pins insertObject: [[self.pins objectAtIndex:0] NAND:[self.pins objectAtIndex:1]] atIndex:2];
-    [self.pins insertObject: [[self.pins objectAtIndex:3] NAND:[self.pins objectAtIndex:4]] atIndex:5];
-    [self.pins insertObject: [[self.pins objectAtIndex:8] NAND:[self.pins objectAtIndex:9]] atIndex:7];
-    [self.pins insertObject: [[self.pins objectAtIndex:11] NAND:[self.pins objectAtIndex:12]] atIndex:10];
+    [self.pins replaceObjectAtIndex:2 withObject: [[self.pins objectAtIndex:0] NAND:[self.pins objectAtIndex:1]]];
+    [self.pins replaceObjectAtIndex:5 withObject: [[self.pins objectAtIndex:3] NAND:[self.pins objectAtIndex:4]]];
+    [self.pins replaceObjectAtIndex:7 withObject: [[self.pins objectAtIndex:8] NAND:[self.pins objectAtIndex:9]]];
+    [self.pins replaceObjectAtIndex:10 withObject: [[self.pins objectAtIndex:11] NAND:[self.pins objectAtIndex:12]]];
 }
 
 - (DLLPoint *)powerPinCoordinate
@@ -69,7 +76,7 @@
 {
     if ((index < [self.pins count]) && (index >= 0))
     {
-        [self.pins insertObject:electricalPoint atIndex:index];
+        [self.pins replaceObjectAtIndex:index withObject:electricalPoint];
     }
     else
     {
