@@ -19,6 +19,7 @@
 
 - (BOOL)isEqual:(id)otherPoint;
 - (CGPoint)CGPointFromCoords;
+- (NSValue*)NSValueFromCoords;
 - (NSString *)toString;
 
 

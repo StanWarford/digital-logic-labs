@@ -52,6 +52,11 @@
     return CGPointMake((CGFloat)self.xCoord, (CGFloat)self.yCoord);
 }
 
+- (NSValue*)NSValueFromCoords
+{
+    return [NSValue valueWithCGPoint:[self CGPointFromCoords]];
+}
+
 - (NSString *)toString
 {
     NSNumber * number = [NSNumber numberWithInt: ((self.xCoord * 100) + self.yCoord)];
