@@ -83,9 +83,9 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     // Creates an array w/ 63 columns and 31 rows w/ all values set to NSNull * myNull
     // define overarching array as columns
     if((self = [super init])){        
-        for(int i = 0; i < NUMROWS; i++)
+        for(int i = 0; i < NUMCOLUMNS; i++)
         {
-            for(int j = 0; j < NUMCOLUMNS; j++)
+            for(int j = 0; j < NUMROWS; j++)
             {
                 breadboardStateArray[i][j] = nil;
             }
@@ -249,10 +249,10 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     for (int x=0; x <= 11; x++)
     {
         DLLPoint *p1, *p2, *p3, *p4;
-        p1 = [[DLLPoint alloc] initWithIntX:x*5 andY: 1];
-        p2 = [[DLLPoint alloc] initWithIntX:x*5 andY: 2];
-        p3 = [[DLLPoint alloc] initWithIntX:x*5 andY: 3];
-        p4 = [[DLLPoint alloc] initWithIntX:x*5 andY: 4];
+        p1 = [[DLLPoint alloc] initWithIntX:x andY: 1];
+        p2 = [[DLLPoint alloc] initWithIntX:x andY: 2];
+        p3 = [[DLLPoint alloc] initWithIntX:x andY: 3];
+        p4 = [[DLLPoint alloc] initWithIntX:x andY: 4];
         
         NSArray *switchArray = @[p1, p2, p3, p4];
         NSNumber *electricalPoint = [NSNumber numberWithInt: x + 254];
