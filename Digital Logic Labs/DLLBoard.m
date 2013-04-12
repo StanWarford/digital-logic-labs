@@ -31,7 +31,7 @@
 
 #define NUMROWS 31
 #define NUMCOLUMNS 63
-#define CLOCK_LIMIT 10
+#define CLOCK_LIMIT 100
 
 DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
 
@@ -802,7 +802,8 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
                     if((currentElectricalPoint.electricalPointValue != otherElectricalPoint.electricalPointValue))
                     {
                         if ((currentElectricalPoint.electricalPointType == EPTypeInput) ||
-                            (currentElectricalPoint.electricalPointType == EPTypeClockInput))
+                            (currentElectricalPoint.electricalPointType == EPTypeClockInput) ||
+                            (currentElectricalPoint.electricalPointType == EPTypeLight))
                         {
                             changed = YES;
                             switch (otherElectricalPoint.electricalPointType)
