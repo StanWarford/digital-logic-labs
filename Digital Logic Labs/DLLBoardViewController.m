@@ -64,6 +64,14 @@ typedef enum{
     return _chipLayer;
 }
 
+- (NSDictionary*)pointMap
+{
+    if(!_pointMap){
+        _pointMap = [NSDictionary dictionary];
+    }
+    return _pointMap;
+}
+
 #pragma mark -
 #pragma mark Initialization Metods
 // disable multitouch, reset activecomponent, and enter initial state
@@ -125,7 +133,7 @@ typedef enum{
     if(self.state == notWire){ // user has not placed a wire
         if(!isEmpty){ // user touched a component, remove that component from the board and make it the active component
             [self.boardModel removeComponentAtCoordinate:tBoardLoc];
-            self.activeComponent = [self.pointMap objectForKey:tBoardLoc];
+            self.activeComponent = [self.pointMap objectForKey:[tBoardLoc NSValueFromCoords]];
             [self removeComponentFromPointMap:self.activeComponent];
             [self.activeComponent removeGraphics];
         }else{ // user touched an empty spot, allocate a new chip or wire based on dock selection
@@ -609,8 +617,8 @@ Vertical ranges of grid coordinates corresponding to holes on the board
         wEndGridLoc.y++;
         DLLPoint *wEndBoardLoc = [self boardCoordinateFromGridCoordinate:wEndGridLoc];
         
-        [dict setObject:component forKey:[NSValue valueWithCGPoint:[wStartBoardLoc CGPointFromCoords]]];
-        [dict setObject:component forKey:[NSValue valueWithCGPoint:[wEndBoardLoc CGPointFromCoords]]];
+        [dict setObject:component forKey:[wStartBoardLoc NSValueFromCoords]];
+        [dict setObject:component forKey:[wEndBoardLoc NSValueFromCoords]];
         self.pointMap = [NSDictionary dictionaryWithDictionary:dict];
     }
 }
