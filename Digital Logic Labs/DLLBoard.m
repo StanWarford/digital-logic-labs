@@ -31,7 +31,7 @@
 
 #define NUMROWS 31
 #define NUMCOLUMNS 63
-#define CLOCK_LIMIT 100
+#define CLOCK_LIMIT 10
 
 DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
 
@@ -586,6 +586,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
 - (BOOL) illegalConnectionExists
 {
     NSMutableArray *activeElectricalPoints = [NSMutableArray array];
+    NSMutableArray *activeElectricalPointIndices = [NSMutableArray array];
     int count = 0;
     int count2 = 0;
     for(int i = 0; i < [self.electricalPointArray count]; i++)
@@ -604,19 +605,21 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
                 currentPoint.setNumber = count;
                 count++;
             }
+            NSNumber *electricalIndex = [NSNumber numberWithInt:i];
             [activeElectricalPoints insertObject:currentPoint atIndex:count2];
+            [activeElectricalPointIndices insertObject:electricalIndex atIndex:count2];
             count2++;
             
         }
     }
-    
     BOOL changed = NO;
     do {
+        changed = NO;
         for(int i = 0; i < [activeElectricalPoints count]; i++){
             
             DLLElectricalPoint *currentElectricalPoint = [activeElectricalPoints objectAtIndex:i];
-            NSInteger index = [self.electricalPointArray indexOfObject:currentElectricalPoint];
-            NSArray *electricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:index];
+            NSNumber *currentIndex = [activeElectricalPointIndices objectAtIndex:i];
+            NSArray *electricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[currentIndex integerValue]];
             for(int j = 0; j < [electricalArrayOfHoles count]; j++)
             {
                 DLLPoint *currentPhysicalPoint = electricalArrayOfHoles[j];
