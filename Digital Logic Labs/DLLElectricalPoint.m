@@ -69,7 +69,7 @@
     }
     else
     {
-        tempPoint.electricalPointValue = EPValueOne;
+        tempPoint.electricalPointValue = EPValueZero;
     }
     return  tempPoint;
 }
