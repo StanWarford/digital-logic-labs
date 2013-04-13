@@ -367,7 +367,9 @@ typedef enum{
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesCancelled:touches withEvent:event];
+    [self.activeComponent removeGraphics];
     self.activeComponent = nil;
+    self.state = notWire;
 }
 
 #pragma mark -
