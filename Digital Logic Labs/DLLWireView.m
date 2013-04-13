@@ -15,8 +15,6 @@
 // increase to move wire image more down
 #define WIRE_Y_OFFSET 0  // changed by Brooke to fix power point problem
 
-@synthesize end = _end;
-
 #pragma mark -
 #pragma mark initialization methods
 // initialize a wire with default values to be used in dock
@@ -32,11 +30,24 @@
     return self;
 }
 
--(id)initWireWithStartAt:(CGPoint)coords withColor:(UIColor *)color inView:(UIView *)view
+- (id)initWireWithStartAt:(CGPoint)coords withColor:(UIColor *)color inView:(UIView *)view
 {
     if((self = [super init])){
         self.start = CGPointMake(coords.x+WIRE_X_OFFSET, coords.y+WIRE_Y_OFFSET);
         self.end = CGPointMake(0, 0);
+        self.color = color;
+        self.size = 1;
+        self.image = [UIImage imageNamed:@"wire-large"];
+        self.targetView = view;
+    }
+    return self;
+}
+
+- (id)initWireWithStartAt:(CGPoint)sCoords andEndAt:(CGPoint)eCoords withColor:(UIColor *)color inView:(UIView *)view
+{
+    if((self = [super init])){
+        self.start = CGPointMake(sCoords.x+WIRE_X_OFFSET, sCoords.y+WIRE_Y_OFFSET);
+        self.end = CGPointMake(eCoords.x+WIRE_X_OFFSET, eCoords.y+WIRE_Y_OFFSET);
         self.color = color;
         self.size = 1;
         self.image = [UIImage imageNamed:@"wire-large"];
@@ -55,9 +66,9 @@
     }
     
     self.wireDrawing = [[DLLWireDrawing alloc] initWithFrame:self.targetView.frame fromStart:self.start toEnd:self.end asGhost:NO withColor:self.color];
-    //[self.wireDrawing setNeedsDisplay];
     
     [self.targetView addSubview:self.wireDrawing];
+    [self.wireDrawing setNeedsDisplay];
 }
 
 // called when touches began
@@ -68,9 +79,9 @@
     }
     
     self.wireDrawing = [[DLLWireDrawing alloc] initWithFrame:self.targetView.frame fromStart:self.start toEnd:self.end asGhost:YES withColor:self.color];
-    //[self.wireDrawing setNeedsDisplay];
     
     [self.targetView addSubview:self.wireDrawing];
+    [self.wireDrawing setNeedsDisplay];
 }
 
 // called when touches moved

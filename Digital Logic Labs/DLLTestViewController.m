@@ -9,7 +9,7 @@
 #import "DLLTestViewController.h"
 
 @interface DLLTestViewController ()
-
+- (void)updateLightState:(NSArray*)lights;
 @end
 
 @implementation DLLTestViewController
@@ -115,6 +115,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"test-screen"]];
     
     [self.boardModel runSimulation];
+    [self updateLightState:[self.boardModel newStateOfLights]];
 }
 
 #pragma mark -
@@ -122,9 +123,18 @@
 - (IBAction)switchStateChanged:(DLLSwitch *)sender {
     NSInteger i = sender.identifier;
     [self.boardModel simulateThrowOfSwitchLabeled:i];
-    NSArray *temp = [self.boardModel newStateOfLights];
-    for(NSInteger i = 0; i < [temp count]; i++){
-        NSNumber *number = [temp objectAtIndex:i];
+    [self updateLightState:[self.boardModel newStateOfLights]];
+    // DLLLightView *target = [self.lights objectAtIndex:i];
+    // [self.segView toggleSegment:i+1 onOff:sender.on];
+    NSLog([NSString stringWithFormat:@"%d turned %s", sender.identifier, sender.on ? "ON" : "OFF"]);
+}
+
+#pragma mark -
+#pragma mark light methods
+- (void)updateLightState:(NSArray *)lights
+{
+    for(NSInteger i = 0; i < [lights count]; i++){
+        NSNumber *number = [lights objectAtIndex:i];
         if([number integerValue] == 0){
             [[self.lights objectAtIndex:i] toggleOff];
         }else if([number integerValue] == 1){
@@ -133,9 +143,6 @@
             [[self.lights objectAtIndex:i] toggleDim];
         }
     }
-    // DLLLightView *target = [self.lights objectAtIndex:i];
-    // [self.segView toggleSegment:i+1 onOff:sender.on];
-    NSLog([NSString stringWithFormat:@"%d turned %s", sender.identifier, sender.on ? "ON" : "OFF"]);
 }
 
 #pragma mark -

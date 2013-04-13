@@ -12,6 +12,7 @@
 
 - (id)initWire;
 - (id)initWireWithStartAt:(CGPoint)coords withColor:(UIColor*)color inView:(UIView*)view;
+- (id)initWireWithStartAt:(CGPoint)sCoords andEndAt:(CGPoint)eCoords withColor:(UIColor *)color inView:(UIView *)view;
 
 - (void)displayComponent;
 - (void)displayGhostWithHoleAvailable:(BOOL)available;
