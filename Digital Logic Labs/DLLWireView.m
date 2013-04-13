@@ -88,16 +88,20 @@
 - (void)translateStartTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
     self.start = CGPointMake(coords.x+WIRE_X_OFFSET, coords.y+WIRE_Y_OFFSET);
+    [UIView beginAnimations:@"WireStartMove Move" context:NULL];
     self.wireDrawing.start = self.start;
     [self.wireDrawing setNeedsDisplay];
+    [UIView commitAnimations];
 }
 
 // called when touches moved
 - (void)translateEndTo:(CGPoint)coords withHoleAvailable:(BOOL)available
 {
     self.end = CGPointMake(coords.x+WIRE_X_OFFSET, coords.y+WIRE_Y_OFFSET);
+    [UIView beginAnimations:@"WireEndMove Move" context:NULL];
     self.wireDrawing.end = self.end;
     [self.wireDrawing setNeedsDisplay];
+    [UIView commitAnimations];
 }
 
 - (void)removeGraphics
