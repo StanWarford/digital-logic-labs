@@ -154,6 +154,7 @@ typedef enum{
                 DLLPoint *cOffset = [self boardCoordinateFromGridCoordinate:cLoc];
                 BOOL isAvailable = [self.boardModel cellAt:cOffset IsAvailableForComponentOfSize:self.activeComponent.size];
                 
+                [self.activeComponent translateStartTo:tSnapLoc withHoleAvailable:isAvailable];
                 [self.activeComponent displayGhostWithHoleAvailable:isAvailable];
             }else if(self.state == wireStartEdit){
                 CGPoint wLoc = [self gridCoordinateFromViewCoordinate:self.activeComponent.start];
