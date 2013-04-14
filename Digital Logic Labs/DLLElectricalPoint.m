@@ -74,5 +74,88 @@
     return  tempPoint;
 }
 
+- (DLLElectricalPoint *)NOR:(DLLElectricalPoint *)otherPoint
+{
+    DLLElectricalPoint *tempPoint = [[DLLElectricalPoint alloc] init];
+    
+    if(self.electricalPointValue == EPValueUnknown || otherPoint.electricalPointValue == EPValueUnknown)
+    {
+        tempPoint.electricalPointValue = EPValueUnknown;
+    }
+    else if ((self.electricalPointValue == EPValueOne) || (otherPoint.electricalPointValue == EPValueOne))
+    {
+        tempPoint.electricalPointValue = EPValueZero;
+    }
+    else
+    {
+        tempPoint.electricalPointValue = EPValueOne;
+    }
+    
+    return tempPoint;
+}
+
+- (DLLElectricalPoint *)NOT
+{
+    DLLElectricalPoint *tempPoint = [[DLLElectricalPoint alloc] init];
+    
+    if(self.electricalPointValue == EPValueUnknown)
+    {
+        tempPoint.electricalPointValue = EPValueUnknown;
+    }
+    else if (self.electricalPointValue == EPValueOne)
+    {
+        tempPoint.electricalPointValue = EPValueZero;
+    }
+    else
+    {
+        tempPoint.electricalPointValue = EPValueOne;
+    }
+    
+    return tempPoint;
+
+}
+
+- (DLLElectricalPoint *)AND:(DLLElectricalPoint *)otherPoint
+{
+    DLLElectricalPoint *tempPoint = [[DLLElectricalPoint alloc] init];
+    
+    if(self.electricalPointValue == EPValueUnknown)
+    {
+        tempPoint.electricalPointValue = EPValueUnknown;
+    }
+    else if (self.electricalPointValue == EPValueZero || otherPoint.electricalPointValue == EPValueZero)
+    {
+        tempPoint.electricalPointValue = EPValueZero;
+    }
+    else
+    {
+        tempPoint.electricalPointValue = EPValueOne;
+    }
+    
+    return tempPoint;
+    
+}
+
+- (DLLElectricalPoint *)OR:(DLLElectricalPoint *)otherPoint
+{
+    DLLElectricalPoint *tempPoint = [[DLLElectricalPoint alloc] init];
+    
+    if(self.electricalPointValue == EPValueUnknown)
+    {
+        tempPoint.electricalPointValue = EPValueUnknown;
+    }
+    else if (self.electricalPointValue == EPValueOne || otherPoint.electricalPointValue == EPValueOne)
+    {
+        tempPoint.electricalPointValue = EPValueOne;
+    }
+    else
+    {
+        tempPoint.electricalPointValue = EPValueZero;
+    }
+    
+    return tempPoint;
+    
+}
+
 
 @end

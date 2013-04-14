@@ -565,30 +565,30 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
                 DLLPoint *otherPoint = [currentWire otherBoardHole: currentBoardPoint];
                 NSNumber *otherElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[otherPoint toString]];
                 DLLElectricalPoint *electricalPoint = [self.electricalPointArray objectAtIndex: [otherElectricalPoint integerValue]];
-                if(electricalPoint.electricalPointType == EPTypePower){
-                    chip.isFunctional = YES;
-                }
-            }
-        
-            DLLPoint *groundPinCoord = [chip groundPinCoordinate];
-            NSNumber *groundElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[groundPinCoord toString]];
-            NSArray *groundElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[groundElectricalPoint integerValue]];
-        
-            for(int k = 0; k < [groundElectricalArrayOfHoles count]; k++)
-            {
-                DLLPoint *currentBoardPointGround = groundElectricalArrayOfHoles[k];
-            
-                if([breadboardStateArray[currentBoardPointGround.xCoord][currentBoardPointGround.yCoord] isKindOfClass:[DLLWire class]])
+                if(electricalPoint.electricalPointType == EPTypePower)
                 {
-                    DLLAComponent *currentComponentGround = breadboardStateArray[currentBoardPointGround.xCoord][currentBoardPointGround.yCoord];
-                    DLLWire *currentWireGround = (DLLWire *) currentComponentGround;
-                    DLLPoint *otherPointGround = [currentWireGround otherBoardHole: currentBoardPointGround];
-                    NSNumber *otherElectricalPointGround = [self.boardPointToElectricalPointDictionary valueForKey:[otherPointGround toString]];
-                    DLLElectricalPoint *electricalPointGround = [self.electricalPointArray objectAtIndex: [otherElectricalPointGround integerValue]];
-                    if(electricalPointGround.electricalPointType == EPTypeGround)
+                    DLLPoint *groundPinCoord = [chip groundPinCoordinate];
+                    NSNumber *groundElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[groundPinCoord toString]];
+                    NSArray *groundElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[groundElectricalPoint integerValue]];
+                    
+                    for(int k = 0; k < [groundElectricalArrayOfHoles count]; k++)
                     {
-                        chip.isFunctional = YES;
+                        DLLPoint *currentBoardPointGround = groundElectricalArrayOfHoles[k];
+                        
+                        if([breadboardStateArray[currentBoardPointGround.xCoord][currentBoardPointGround.yCoord] isKindOfClass:[DLLWire class]])
+                        {
+                            DLLAComponent *currentComponentGround = breadboardStateArray[currentBoardPointGround.xCoord][currentBoardPointGround.yCoord];
+                            DLLWire *currentWireGround = (DLLWire *) currentComponentGround;
+                            DLLPoint *otherPointGround = [currentWireGround otherBoardHole: currentBoardPointGround];
+                            NSNumber *otherElectricalPointGround = [self.boardPointToElectricalPointDictionary valueForKey:[otherPointGround toString]];
+                            DLLElectricalPoint *electricalPointGround = [self.electricalPointArray objectAtIndex: [otherElectricalPointGround integerValue]];
+                            if(electricalPointGround.electricalPointType == EPTypeGround)
+                            {
+                                chip.isFunctional = YES;
+                            }
+                        }
                     }
+                    
                 }
             }
         }
