@@ -355,7 +355,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     {
         case 7400: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
             break;
-        case 7402: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+        case 7402: newChip = [[DLL7402DIP alloc] initWithLocation: coords];
             break;
         case 7404: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
             break;

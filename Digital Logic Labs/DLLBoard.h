@@ -13,6 +13,9 @@
 #import "DLLPoint.h"
 #import "DLLElectricalPoint.h"
 #import "DLL7400DIP.h"
+#import "DLL7402DIP.h"
+#import "DLL7404DIP.h"
+#import "DLL7408DIP.h"
 
 
 
