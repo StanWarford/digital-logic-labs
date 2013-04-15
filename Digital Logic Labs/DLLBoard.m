@@ -425,7 +425,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     //remove component from breadboardStateArray
     //not necessarily upper left-need to check 2D array
     
-  /*  leaving this commented for compile testing tomorrow - Joe
+  //  leaving this commented for compile testing tomorrow - Joe
     DLLAComponent * component = breadboardStateArray[coords.xCoord][coords.yCoord];
     
     if(component)
@@ -433,10 +433,10 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
       if([component isKindOfClass: [DLLWire class]])
       {
         breadboardStateArray[coords.xCoord][coords.yCoord] = nil;
-      } else if((DLLChip *)component.size == 24){
-        int startingX = (DLLChip *)component.loc.xCoord;
-        int startingY = (DLLChip *)component.loc.yCoord;
-        int endingX = coords.xCoord + component.size / 2;
+      } else if(((DLLChip *)component).size == 24){
+        int startingX = ((DLLChip *)component).loc.xCoord;
+        int startingY = ((DLLChip *)component).loc.yCoord;
+        int endingX = coords.xCoord + ((DLLChip *)component).size / 2;
         
         for(int i = startingX; i < endingX; i++)
         {
@@ -446,9 +446,9 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
           breadboardStateArray[i][startingY + 3] = nil;
         }
       } else {
-        int startingX = (DLLChip *)component.loc.xCoord;
-        int startingY = (DLLChip *)component.loc.yCoord;
-        int endingX = coords.xCoord + component.size / 2;
+        int startingX = ((DLLChip *)component).loc.xCoord;
+        int startingY = ((DLLChip *)component).loc.yCoord;
+        int endingX = coords.xCoord + ((DLLChip *)component).size / 2;
         
         for(int i = startingX; i < endingX; i++)
         {
@@ -458,8 +458,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
       }
     }
     
-    need to add 7-segment display case
-  */
+    // need to add 7-segment display case
     
 }
 
