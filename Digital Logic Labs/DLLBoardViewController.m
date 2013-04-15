@@ -719,6 +719,9 @@ Vertical ranges of grid coordinates corresponding to holes on the board
         [component removeGraphics];
     }
     self.pointMap = [NSDictionary dictionary];
+    [self.activeComponent removeGraphics];
+    self.activeComponent = nil;
+    self.state = notWire;
 }
 
 #pragma mark -

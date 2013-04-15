@@ -107,6 +107,7 @@
 - (void)removeGraphics
 {
     [self.wireDrawing removeFromSuperview];
+    [self.wireDrawing setNeedsDisplay];
     self.wireDrawing = nil;
 }
 
