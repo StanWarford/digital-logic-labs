@@ -433,6 +433,18 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
       if([component isKindOfClass: [DLLWire class]])
       {
         breadboardStateArray[coords.xCoord][coords.yCoord] = nil;
+      } else if((DLLChip *)component.size == 24){
+        int startingX = (DLLChip *)component.loc.xCoord;
+        int startingY = (DLLChip *)component.loc.yCoord;
+        int endingX = coords.xCoord + component.size / 2;
+        
+        for(int i = startingX; i < endingX; i++)
+        {
+          breadboardStateArray[i][startingY] = nil;
+          breadboardStateArray[i][startingY + 1] = nil;
+          breadboardStateArray[i][startingY + 2] = nil;
+          breadboardStateArray[i][startingY + 3] = nil;
+        }
       } else {
         int startingX = (DLLChip *)component.loc.xCoord;
         int startingY = (DLLChip *)component.loc.yCoord;
@@ -446,7 +458,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
       }
     }
     
-    need to add ALU case
+    need to add 7-segment display case
   */
     
 }
