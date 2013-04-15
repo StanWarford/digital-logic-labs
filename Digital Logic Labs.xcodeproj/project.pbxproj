@@ -107,6 +107,19 @@
 		D8FE3C971703C770003B25C2 /* 7476.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C931703C76F003B25C2 /* 7476.png */; };
 		D8FE3C981703C770003B25C2 /* 7485.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C941703C76F003B25C2 /* 7485.png */; };
 		D8FE3C991703C770003B25C2 /* 74151.png in Resources */ = {isa = PBXBuildFile; fileRef = D8FE3C951703C76F003B25C2 /* 74151.png */; };
+		F2D07CD5171C586800F68523 /* DLL7402DIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D07CD4171C586800F68523 /* DLL7402DIP.m */; };
+		F2D07CD8171C58BC00F68523 /* DLL7404DIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D07CD7171C58BC00F68523 /* DLL7404DIP.m */; };
+		F2D07CDB171C58CF00F68523 /* DLL7408DIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D07CDA171C58CF00F68523 /* DLL7408DIP.m */; };
+		F2D07CDE171C58DB00F68523 /* DLL7432DIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D07CDD171C58DB00F68523 /* DLL7432DIP.m */; };
+		F2D07CE1171C590600F68523 /* DLL7447DIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D07CE0171C590600F68523 /* DLL7447DIP.m */; };
+		F2D07CE4171C591300F68523 /* DLL7476DIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D07CE3171C591200F68523 /* DLL7476DIP.m */; };
+		F2D07CE7171C591900F68523 /* DLL7485DIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D07CE6171C591900F68523 /* DLL7485DIP.m */; };
+		F2D07CEA171C592100F68523 /* DLL7486DIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D07CE9171C592100F68523 /* DLL7486DIP.m */; };
+		F2D07CED171C592A00F68523 /* DLL74151DIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D07CEC171C592A00F68523 /* DLL74151DIP.m */; };
+		F2D07CF0171C593500F68523 /* DLL74164DIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D07CEF171C593500F68523 /* DLL74164DIP.m */; };
+		F2D07CF3171C593F00F68523 /* DLL74176DIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D07CF2171C593F00F68523 /* DLL74176DIP.m */; };
+		F2D07CF6171C594700F68523 /* DLL74181DIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D07CF5171C594600F68523 /* DLL74181DIP.m */; };
+		F2D07CF9171C594E00F68523 /* DLL74711DIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D07CF8171C594E00F68523 /* DLL74711DIP.m */; };
 		F2D567881714AFBD00B6D7B4 /* DLL16PinDIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D567871714AFBD00B6D7B4 /* DLL16PinDIP.m */; };
 		F2D5678B1714B04600B6D7B4 /* DLL24PinDIP.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D5678A1714B04500B6D7B4 /* DLL24PinDIP.m */; };
 /* End PBXBuildFile section */
@@ -252,6 +265,32 @@
 		D8FE3C931703C76F003B25C2 /* 7476.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7476.png; sourceTree = "<group>"; };
 		D8FE3C941703C76F003B25C2 /* 7485.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7485.png; sourceTree = "<group>"; };
 		D8FE3C951703C76F003B25C2 /* 74151.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 74151.png; sourceTree = "<group>"; };
+		F2D07CD3171C586800F68523 /* DLL7402DIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL7402DIP.h; sourceTree = "<group>"; };
+		F2D07CD4171C586800F68523 /* DLL7402DIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL7402DIP.m; sourceTree = "<group>"; };
+		F2D07CD6171C58BC00F68523 /* DLL7404DIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL7404DIP.h; sourceTree = "<group>"; };
+		F2D07CD7171C58BC00F68523 /* DLL7404DIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL7404DIP.m; sourceTree = "<group>"; };
+		F2D07CD9171C58CF00F68523 /* DLL7408DIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL7408DIP.h; sourceTree = "<group>"; };
+		F2D07CDA171C58CF00F68523 /* DLL7408DIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL7408DIP.m; sourceTree = "<group>"; };
+		F2D07CDC171C58DB00F68523 /* DLL7432DIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL7432DIP.h; sourceTree = "<group>"; };
+		F2D07CDD171C58DB00F68523 /* DLL7432DIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL7432DIP.m; sourceTree = "<group>"; };
+		F2D07CDF171C590600F68523 /* DLL7447DIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL7447DIP.h; sourceTree = "<group>"; };
+		F2D07CE0171C590600F68523 /* DLL7447DIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL7447DIP.m; sourceTree = "<group>"; };
+		F2D07CE2171C591200F68523 /* DLL7476DIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL7476DIP.h; sourceTree = "<group>"; };
+		F2D07CE3171C591200F68523 /* DLL7476DIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL7476DIP.m; sourceTree = "<group>"; };
+		F2D07CE5171C591900F68523 /* DLL7485DIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL7485DIP.h; sourceTree = "<group>"; };
+		F2D07CE6171C591900F68523 /* DLL7485DIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL7485DIP.m; sourceTree = "<group>"; };
+		F2D07CE8171C592100F68523 /* DLL7486DIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL7486DIP.h; sourceTree = "<group>"; };
+		F2D07CE9171C592100F68523 /* DLL7486DIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL7486DIP.m; sourceTree = "<group>"; };
+		F2D07CEB171C592A00F68523 /* DLL74151DIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL74151DIP.h; sourceTree = "<group>"; };
+		F2D07CEC171C592A00F68523 /* DLL74151DIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL74151DIP.m; sourceTree = "<group>"; };
+		F2D07CEE171C593500F68523 /* DLL74164DIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL74164DIP.h; sourceTree = "<group>"; };
+		F2D07CEF171C593500F68523 /* DLL74164DIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL74164DIP.m; sourceTree = "<group>"; };
+		F2D07CF1171C593E00F68523 /* DLL74176DIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL74176DIP.h; sourceTree = "<group>"; };
+		F2D07CF2171C593F00F68523 /* DLL74176DIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL74176DIP.m; sourceTree = "<group>"; };
+		F2D07CF4171C594600F68523 /* DLL74181DIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL74181DIP.h; sourceTree = "<group>"; };
+		F2D07CF5171C594600F68523 /* DLL74181DIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL74181DIP.m; sourceTree = "<group>"; };
+		F2D07CF7171C594E00F68523 /* DLL74711DIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL74711DIP.h; sourceTree = "<group>"; };
+		F2D07CF8171C594E00F68523 /* DLL74711DIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLL74711DIP.m; sourceTree = "<group>"; };
 		F2D567861714AFBD00B6D7B4 /* DLL16PinDIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DLL16PinDIP.h; path = ../DLL16PinDIP.h; sourceTree = "<group>"; };
 		F2D567871714AFBD00B6D7B4 /* DLL16PinDIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DLL16PinDIP.m; path = ../DLL16PinDIP.m; sourceTree = "<group>"; };
 		F2D567891714B04500B6D7B4 /* DLL24PinDIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLL24PinDIP.h; sourceTree = "<group>"; };
@@ -595,6 +634,32 @@
 				CF55D8ED16CF055D00D8949B /* DLLChip.m */,
 				D8DC9F9C170CF0E900EB8434 /* DLL7400DIP.h */,
 				D8DC9F9D170CF0E900EB8434 /* DLL7400DIP.m */,
+				F2D07CD3171C586800F68523 /* DLL7402DIP.h */,
+				F2D07CD4171C586800F68523 /* DLL7402DIP.m */,
+				F2D07CD6171C58BC00F68523 /* DLL7404DIP.h */,
+				F2D07CD7171C58BC00F68523 /* DLL7404DIP.m */,
+				F2D07CD9171C58CF00F68523 /* DLL7408DIP.h */,
+				F2D07CDA171C58CF00F68523 /* DLL7408DIP.m */,
+				F2D07CDC171C58DB00F68523 /* DLL7432DIP.h */,
+				F2D07CDD171C58DB00F68523 /* DLL7432DIP.m */,
+				F2D07CDF171C590600F68523 /* DLL7447DIP.h */,
+				F2D07CE0171C590600F68523 /* DLL7447DIP.m */,
+				F2D07CE2171C591200F68523 /* DLL7476DIP.h */,
+				F2D07CE3171C591200F68523 /* DLL7476DIP.m */,
+				F2D07CE5171C591900F68523 /* DLL7485DIP.h */,
+				F2D07CE6171C591900F68523 /* DLL7485DIP.m */,
+				F2D07CE8171C592100F68523 /* DLL7486DIP.h */,
+				F2D07CE9171C592100F68523 /* DLL7486DIP.m */,
+				F2D07CEB171C592A00F68523 /* DLL74151DIP.h */,
+				F2D07CEC171C592A00F68523 /* DLL74151DIP.m */,
+				F2D07CEE171C593500F68523 /* DLL74164DIP.h */,
+				F2D07CEF171C593500F68523 /* DLL74164DIP.m */,
+				F2D07CF1171C593E00F68523 /* DLL74176DIP.h */,
+				F2D07CF2171C593F00F68523 /* DLL74176DIP.m */,
+				F2D07CF4171C594600F68523 /* DLL74181DIP.h */,
+				F2D07CF5171C594600F68523 /* DLL74181DIP.m */,
+				F2D07CF7171C594E00F68523 /* DLL74711DIP.h */,
+				F2D07CF8171C594E00F68523 /* DLL74711DIP.m */,
 				CF55D8E916CF009700D8949B /* DLLAComponent.h */,
 				CF55D8EA16CF009700D8949B /* DLLAComponent.m */,
 				B4E3E813170E04FF00585379 /* DLLWire.h */,
@@ -812,6 +877,19 @@
 				CF31B63C170F95DA00A500B4 /* DLLWireDetailPopover.m in Sources */,
 				F2D567881714AFBD00B6D7B4 /* DLL16PinDIP.m in Sources */,
 				F2D5678B1714B04600B6D7B4 /* DLL24PinDIP.m in Sources */,
+				F2D07CD5171C586800F68523 /* DLL7402DIP.m in Sources */,
+				F2D07CD8171C58BC00F68523 /* DLL7404DIP.m in Sources */,
+				F2D07CDB171C58CF00F68523 /* DLL7408DIP.m in Sources */,
+				F2D07CDE171C58DB00F68523 /* DLL7432DIP.m in Sources */,
+				F2D07CE1171C590600F68523 /* DLL7447DIP.m in Sources */,
+				F2D07CE4171C591300F68523 /* DLL7476DIP.m in Sources */,
+				F2D07CE7171C591900F68523 /* DLL7485DIP.m in Sources */,
+				F2D07CEA171C592100F68523 /* DLL7486DIP.m in Sources */,
+				F2D07CED171C592A00F68523 /* DLL74151DIP.m in Sources */,
+				F2D07CF0171C593500F68523 /* DLL74164DIP.m in Sources */,
+				F2D07CF3171C593F00F68523 /* DLL74176DIP.m in Sources */,
+				F2D07CF6171C594700F68523 /* DLL74181DIP.m in Sources */,
+				F2D07CF9171C594E00F68523 /* DLL74711DIP.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
