@@ -78,9 +78,285 @@
             DLLElectricalPoint *newPoint = [[DLLElectricalPoint alloc] initWithValue:EPValueOne];
             [self.pins replaceObjectAtIndex:13 withObject: newPoint];
         }
-        else
-        {
-            // HERE WE GO!!
+        else if (pin5.electricalPointValue == EPValueZero)
+        {//A3-ZERO
+            if(pin1.electricalPointValue == EPValueZero)
+            {//A2-ZERO
+                if(pin0.electricalPointValue == EPValueZero)
+                {//A1-ZERO
+                    if(pin6.electricalPointValue == EPValueOne) 
+                    {//A0-ONE
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                    }
+                }
+                else if (pin0.electricalPointValue == EPValueOne)  
+                {//A1-ONE
+                    if(pin6.electricalPointValue == EPValueZero)  
+                    {//A0-ZERO
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                    else if(pin6.electricalPointValue == EPValueOne)  
+                    {//A0-ONE
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                }
+            }
+            else if (pin1.electricalPointValue == EPValueOne)
+            {//A2-ONE
+                if(pin0.electricalPointValue == EPValueZero)
+                {//A1-ZERO
+                    if(pin6.electricalPointValue == EPValueZero)
+                    {//A0-ZERO
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                    else if(pin6.electricalPointValue == EPValueOne)
+                    {//A0-ONE
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                }
+                else if (pin0.electricalPointValue == EPValueOne)
+                {//A1-ONE
+                    if(pin6.electricalPointValue == EPValueZero)
+                    {//A0-ZERO
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                    else if(pin6.electricalPointValue == EPValueOne)
+                    {//A0-ONE
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                    }
+                }
+            }
+            if(pin1.electricalPointValue == EPValueZero)
+            {//A2-ZERO
+                if(pin0.electricalPointValue == EPValueZero)
+                {//A1-ZERO
+                    if(pin6.electricalPointValue == EPValueOne)
+                    {//A0-ONE
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                    }
+                }
+                else if (pin0.electricalPointValue == EPValueOne)
+                {//A1-ONE
+                    if(pin6.electricalPointValue == EPValueZero)
+                    {//A0-ZERO
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                    else if(pin6.electricalPointValue == EPValueOne)
+                    {//A0-ONE
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                }
+            }
+            else if (pin1.electricalPointValue == EPValueOne)
+            {//A2-ONE
+                if(pin0.electricalPointValue == EPValueZero)
+                {//A1-ZERO
+                    if(pin6.electricalPointValue == EPValueZero)
+                    {//A0-ZERO
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                    else if(pin6.electricalPointValue == EPValueOne)
+                    {//A0-ONE
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                }
+                else if (pin0.electricalPointValue == EPValueOne)
+                {//A1-ONE
+                    if(pin6.electricalPointValue == EPValueZero)
+                    {//A0-ZERO
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                    else if(pin6.electricalPointValue == EPValueOne)
+                    {//A0-ONE
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                    }
+                }
+            }
+
+        } else if (pin5.electricalPointValue == EPValueOne)
+        {//A3-ONE
+            if(pin1.electricalPointValue == EPValueZero)
+            {//A2-ZERO
+                if(pin0.electricalPointValue == EPValueZero)
+                {//A1-ZERO
+                    if(pin6.electricalPointValue == EPValueZero)
+                    {//A0-ZERO
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                    else if(pin6.electricalPointValue == EPValueOne)
+                    {//A0-ONE
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                }
+                else if (pin0.electricalPointValue == EPValueOne)
+                {//A1-ONE
+                    if(pin6.electricalPointValue == EPValueZero)
+                    {//A0-ZERO
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                    else if(pin6.electricalPointValue == EPValueOne)
+                    {//A0-ONE
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                }
+            }
+            else if (pin1.electricalPointValue == EPValueOne)
+            {//A2-ONE
+                if(pin0.electricalPointValue == EPValueZero)
+                {//A1-ZERO
+                    if(pin6.electricalPointValue == EPValueZero)
+                    {//A0-ZERO
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                    else if(pin6.electricalPointValue == EPValueOne)
+                    {//A0-ONE
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                }
+                else if (pin0.electricalPointValue == EPValueOne)
+                {//A1-ONE
+                    if(pin6.electricalPointValue == EPValueZero)
+                    {//A0-ZERO
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueZero]];
+                    }
+                    else if(pin6.electricalPointValue == EPValueOne)
+                    {//A0-ONE
+                        [self.pins replaceObjectAtIndex:12 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:11 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:10 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:9 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:8 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:14 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                        [self.pins replaceObjectAtIndex:13 withObject:[[DLLElectricalPoint alloc] initWithValue:EPValueOne]];
+                    }
+                }
+            }
         }
     }
 }
