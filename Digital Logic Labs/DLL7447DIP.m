@@ -20,13 +20,14 @@
     if(self = [super init])
     {
         self.loc = loc;
-        self.identifier = 7400;
-        self.outputPins = @[@2, @5, @7, @10];
-        self.inputPins = @[@0, @1, @3, @4, @8, @9, @11, @12];
-        self.groundPin = 6;
-        self.powerPin = 13;
-        self.size = 14;
+        self.identifier = 7447;
+        self.outputPins = @[@8, @9, @10, @11, @12, @13, @14];
+        self.inputPins = @[@0, @1, @2, @3, @4, @5, @6];
+        self.groundPin = 7;
+        self.powerPin = 15;
+        self.size = 16;
         self.pins = [[NSMutableArray alloc] initWithObjects:[[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
+                     [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
                      [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
                      [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
                      [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
@@ -40,10 +41,48 @@
 
 - (void)calculateOutputs
 {
-    [self.pins replaceObjectAtIndex:2 withObject: [[self.pins objectAtIndex:0] NAND:[self.pins objectAtIndex:1]]];
-    [self.pins replaceObjectAtIndex:5 withObject: [[self.pins objectAtIndex:3] NAND:[self.pins objectAtIndex:4]]];
-    [self.pins replaceObjectAtIndex:7 withObject: [[self.pins objectAtIndex:8] NAND:[self.pins objectAtIndex:9]]];
-    [self.pins replaceObjectAtIndex:10 withObject: [[self.pins objectAtIndex:11] NAND:[self.pins objectAtIndex:12]]];
+    DLLElectricalPoint * pin0 = [self.pins objectAtIndex:0];
+    DLLElectricalPoint * pin1 = [self.pins objectAtIndex:1];
+    DLLElectricalPoint * pin2 = [self.pins objectAtIndex:2];
+    DLLElectricalPoint * pin3 = [self.pins objectAtIndex:3];
+    DLLElectricalPoint * pin4 = [self.pins objectAtIndex:4];
+    DLLElectricalPoint * pin5 = [self.pins objectAtIndex:5];
+    DLLElectricalPoint * pin6 = [self.pins objectAtIndex:6];
+    
+    if(pin3.electricalPointValue == EPValueZero)
+    {
+        for(int i = 8; i < 15; i++)
+        {
+            DLLElectricalPoint *newPoint = [[DLLElectricalPoint alloc] initWithValue:EPValueOne];
+            [self.pins replaceObjectAtIndex:i withObject: newPoint];
+        }
+    } else if (pin3.electricalPointValue == EPValueOne)
+    {
+        if(pin2.electricalPointValue == EPValueZero)
+        {
+            for(int i = 8; i < 15; i++)
+            {
+                DLLElectricalPoint *newPoint = [[DLLElectricalPoint alloc] initWithValue:EPValueZero];
+                [self.pins replaceObjectAtIndex:i withObject: newPoint];
+            }
+        }
+        else if (pin4.electricalPointValue == EPValueOne && pin0.electricalPointValue == EPValueZero &&
+                 pin1.electricalPointValue == EPValueZero && pin5.electricalPointValue == EPValueZero &&
+                 pin6.electricalPointValue == EPValueZero)
+        {
+            for(int i = 8; i < 15; i++)
+            {
+                DLLElectricalPoint *newPoint = [[DLLElectricalPoint alloc] initWithValue:EPValueZero];
+                [self.pins replaceObjectAtIndex:i withObject: newPoint];
+            }
+            DLLElectricalPoint *newPoint = [[DLLElectricalPoint alloc] initWithValue:EPValueOne];
+            [self.pins replaceObjectAtIndex:13 withObject: newPoint];
+        }
+        else
+        {
+            // HERE WE GO!!
+        }
+    }
 }
 
 - (DLLPoint *)powerPinCoordinate
@@ -53,26 +92,28 @@
 
 - (DLLPoint *)groundPinCoordinate
 {
-    return [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 6 andY:self.loc.yCoord + 1];
+    return [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 7 andY:self.loc.yCoord + 1];
 }
 
 - (NSArray *)coordinatesOfInputPins
 {
     return [NSArray arrayWithObjects:[[DLLPoint alloc] initWithIntX:self.loc.xCoord andY:self.loc.yCoord + 1],
             [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 1 andY:self.loc.yCoord + 1],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord + 1],
             [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord + 1],
             [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 4 andY:self.loc.yCoord + 1],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 4 andY:self.loc.yCoord],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 1 andY:self.loc.yCoord], nil];
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord + 1],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 6 andY:self.loc.yCoord + 1], nil];
 }
 - (NSArray *)coordinatesOfOutputPins
 {
-    return [NSArray arrayWithObjects:[[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord + 1],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord + 1],
+    return [NSArray arrayWithObjects:[[DLLPoint alloc] initWithIntX:self.loc.xCoord + 1 andY:self.loc.yCoord],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 4 andY:self.loc.yCoord],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord],
             [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 6 andY:self.loc.yCoord],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord], nil];
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 7 andY:self.loc.yCoord], nil];
 }
 
 - (void)setPin:(int)index to:(DLLElectricalPoint *)electricalPoint

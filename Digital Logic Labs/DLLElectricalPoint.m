@@ -119,13 +119,13 @@
 {
     DLLElectricalPoint *tempPoint = [[DLLElectricalPoint alloc] init];
     
-    if(self.electricalPointValue == EPValueUnknown)
-    {
-        tempPoint.electricalPointValue = EPValueUnknown;
-    }
-    else if (self.electricalPointValue == EPValueZero || otherPoint.electricalPointValue == EPValueZero)
+    if (self.electricalPointValue == EPValueZero || otherPoint.electricalPointValue == EPValueZero)
     {
         tempPoint.electricalPointValue = EPValueZero;
+    }
+    else if(self.electricalPointValue == EPValueUnknown && otherPoint.electricalPointValue == EPValueUnknown)
+    {
+        tempPoint.electricalPointValue = EPValueUnknown;
     }
     else
     {
@@ -140,13 +140,13 @@
 {
     DLLElectricalPoint *tempPoint = [[DLLElectricalPoint alloc] init];
     
-    if(self.electricalPointValue == EPValueUnknown)
-    {
-        tempPoint.electricalPointValue = EPValueUnknown;
-    }
-    else if (self.electricalPointValue == EPValueOne || otherPoint.electricalPointValue == EPValueOne)
+    if (self.electricalPointValue == EPValueOne || otherPoint.electricalPointValue == EPValueOne)
     {
         tempPoint.electricalPointValue = EPValueOne;
+    }
+    else if(self.electricalPointValue == EPValueUnknown && otherPoint.electricalPointValue == EPValueUnknown)
+    {
+        tempPoint.electricalPointValue = EPValueUnknown;
     }
     else
     {

@@ -20,7 +20,7 @@
     if(self = [super init])
     {
         self.loc = loc;
-        self.identifier = 7400;
+        self.identifier = 7408;
         self.outputPins = @[@2, @5, @7, @10];
         self.inputPins = @[@0, @1, @3, @4, @8, @9, @11, @12];
         self.groundPin = 6;
@@ -40,10 +40,10 @@
 
 - (void)calculateOutputs
 {
-    [self.pins replaceObjectAtIndex:2 withObject: [[self.pins objectAtIndex:0] NAND:[self.pins objectAtIndex:1]]];
-    [self.pins replaceObjectAtIndex:5 withObject: [[self.pins objectAtIndex:3] NAND:[self.pins objectAtIndex:4]]];
-    [self.pins replaceObjectAtIndex:7 withObject: [[self.pins objectAtIndex:8] NAND:[self.pins objectAtIndex:9]]];
-    [self.pins replaceObjectAtIndex:10 withObject: [[self.pins objectAtIndex:11] NAND:[self.pins objectAtIndex:12]]];
+    [self.pins replaceObjectAtIndex:2 withObject: [[self.pins objectAtIndex:0] AND:[self.pins objectAtIndex:1]]];
+    [self.pins replaceObjectAtIndex:5 withObject: [[self.pins objectAtIndex:3] AND:[self.pins objectAtIndex:4]]];
+    [self.pins replaceObjectAtIndex:7 withObject: [[self.pins objectAtIndex:8] AND:[self.pins objectAtIndex:9]]];
+    [self.pins replaceObjectAtIndex:10 withObject: [[self.pins objectAtIndex:11] AND:[self.pins objectAtIndex:12]]];
 }
 
 - (DLLPoint *)powerPinCoordinate

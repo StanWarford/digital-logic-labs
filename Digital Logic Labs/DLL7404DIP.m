@@ -10,7 +10,6 @@
 
 @implementation DLL7404DIP
 
-// Quad Two-Input NAND Gate need setPin: toValue:
 
 
 // Note: chips must be defined so that the outputPins array and the coordinatesOfOutputPins array return the output pins in the same order for each output pin location.  Define to always return from lower index to higher index
@@ -20,9 +19,9 @@
     if(self = [super init])
     {
         self.loc = loc;
-        self.identifier = 7400;
-        self.outputPins = @[@2, @5, @7, @10];
-        self.inputPins = @[@0, @1, @3, @4, @8, @9, @11, @12];
+        self.identifier = 7404;
+        self.outputPins = @[@1, @3, @5, @7, @9, @11];
+        self.inputPins = @[@0, @2, @4, @8, @10, @12];
         self.groundPin = 6;
         self.powerPin = 13;
         self.size = 14;
@@ -40,10 +39,12 @@
 
 - (void)calculateOutputs
 {
-    [self.pins replaceObjectAtIndex:2 withObject: [[self.pins objectAtIndex:0] NAND:[self.pins objectAtIndex:1]]];
-    [self.pins replaceObjectAtIndex:5 withObject: [[self.pins objectAtIndex:3] NAND:[self.pins objectAtIndex:4]]];
-    [self.pins replaceObjectAtIndex:7 withObject: [[self.pins objectAtIndex:8] NAND:[self.pins objectAtIndex:9]]];
-    [self.pins replaceObjectAtIndex:10 withObject: [[self.pins objectAtIndex:11] NAND:[self.pins objectAtIndex:12]]];
+    [self.pins replaceObjectAtIndex:1 withObject: [[self.pins objectAtIndex:0] NOT]];
+    [self.pins replaceObjectAtIndex:3 withObject: [[self.pins objectAtIndex:2] NOT]];
+    [self.pins replaceObjectAtIndex:5 withObject: [[self.pins objectAtIndex:4] NOT]];
+    [self.pins replaceObjectAtIndex:7 withObject: [[self.pins objectAtIndex:8] NOT]];
+	[self.pins replaceObjectAtIndex:9 withObject: [[self.pins objectAtIndex:10] NOT]];
+	[self.pins replaceObjectAtIndex:11 withObject: [[self.pins objectAtIndex:12] NOT]];
 }
 
 - (DLLPoint *)powerPinCoordinate
@@ -59,20 +60,20 @@
 - (NSArray *)coordinatesOfInputPins
 {
     return [NSArray arrayWithObjects:[[DLLPoint alloc] initWithIntX:self.loc.xCoord andY:self.loc.yCoord + 1],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 1 andY:self.loc.yCoord + 1],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord + 1],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord + 1],
             [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 4 andY:self.loc.yCoord + 1],
             [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 4 andY:self.loc.yCoord],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord],
             [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 1 andY:self.loc.yCoord], nil];
 }
 - (NSArray *)coordinatesOfOutputPins
 {
-    return [NSArray arrayWithObjects:[[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord + 1],
+    return [NSArray arrayWithObjects:[[DLLPoint alloc] initWithIntX:self.loc.xCoord + 1 andY:self.loc.yCoord + 1],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord + 1],
             [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord + 1],
             [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 6 andY:self.loc.yCoord],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord], nil];
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 4 andY:self.loc.yCoord],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord], nil];
 }
 
 - (void)setPin:(int)index to:(DLLElectricalPoint *)electricalPoint
