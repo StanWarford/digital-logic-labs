@@ -425,7 +425,6 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     //remove component from breadboardStateArray
     //not necessarily upper left-need to check 2D array
     
-  //  leaving this commented for compile testing tomorrow - Joe
     DLLAComponent * component = breadboardStateArray[coords.xCoord][coords.yCoord];
     
     if(component)
@@ -460,12 +459,6 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     
     // need to add 7-segment display case
     
-}
-
-//DEPRECATED: use removeComponentAtCoordinate
-- (void)removeWireAtPoint: (DLLPoint *)startPoint
-{    
-    breadboardStateArray[startPoint.xCoord][startPoint.yCoord] = nil;
 }
 
 - (void)clearBoard
