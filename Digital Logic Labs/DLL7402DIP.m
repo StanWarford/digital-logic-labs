@@ -10,7 +10,7 @@
 
 @implementation DLL7402DIP
 
-// Quad Two-Input NAND Gate need setPin: toValue:
+// Quad Two-Input NOR Gate
 
 
 // Note: chips must be defined so that the outputPins array and the coordinatesOfOutputPins array return the output pins in the same order for each output pin location.  Define to always return from lower index to higher index
