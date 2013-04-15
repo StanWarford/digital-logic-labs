@@ -33,6 +33,11 @@ typedef enum
 - (void)changePointTypeTo:(EPType)type;
 - (BOOL)isEqual:(id)otherPoint;
 - (DLLElectricalPoint *)NAND:(DLLElectricalPoint *)otherPoint;
+- (DLLElectricalPoint *)NOR:(DLLElectricalPoint *)otherPoint;
+- (DLLElectricalPoint *)NOT;
+- (DLLElectricalPoint *)AND:(DLLElectricalPoint *)otherPoint;
+- (DLLElectricalPoint *)OR:(DLLElectricalPoint *)otherPoint;
+
 
 @end
 

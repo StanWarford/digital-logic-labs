@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Pepperdine. All rights reserved.
 //
 
-#import "DLL7400DIP.h"
+#import "DLL7402DIP.h"
 
-@implementation DLL7400DIP
+@implementation DLL7402DIP
 
 // Quad Two-Input NAND Gate need setPin: toValue:
 
@@ -20,19 +20,19 @@
     if(self = [super init])
     {
         self.loc = loc;
-        self.identifier = 7400;
+        self.identifier = 7402;
         self.outputPins = @[@2, @5, @7, @10];
         self.inputPins = @[@0, @1, @3, @4, @8, @9, @11, @12];
         self.groundPin = 6;
         self.powerPin = 13;
         self.size = 14;
         self.pins = [[NSMutableArray alloc] initWithObjects:[[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
-                                                            [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
-                                                            [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
-                                                            [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
-                                                            [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
-                                                            [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
-                                                            [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init], nil];
+                     [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
+                     [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
+                     [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
+                     [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
+                     [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
+                     [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init], nil];
         
     }
     return self;
@@ -59,20 +59,20 @@
 - (NSArray *)coordinatesOfInputPins
 {
     return [NSArray arrayWithObjects:[[DLLPoint alloc] initWithIntX:self.loc.xCoord andY:self.loc.yCoord + 1],
-                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 1 andY:self.loc.yCoord + 1],
-                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord + 1],
-                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 4 andY:self.loc.yCoord + 1],
-                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord],
-                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 4 andY:self.loc.yCoord],
-                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord],
-                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 1 andY:self.loc.yCoord], nil];
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 1 andY:self.loc.yCoord + 1],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord + 1],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 4 andY:self.loc.yCoord + 1],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 4 andY:self.loc.yCoord],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 1 andY:self.loc.yCoord], nil];
 }
 - (NSArray *)coordinatesOfOutputPins
 {
     return [NSArray arrayWithObjects:[[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord + 1],
-                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord + 1],
-                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 6 andY:self.loc.yCoord],
-                                    [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord], nil];
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord + 1],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 6 andY:self.loc.yCoord],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord], nil];
 }
 
 - (void)setPin:(int)index to:(DLLElectricalPoint *)electricalPoint
@@ -83,7 +83,7 @@
     }
     else
     {
-    //TODO: some sort of error message here
+        //TODO: some sort of error message here
     }
 }
 

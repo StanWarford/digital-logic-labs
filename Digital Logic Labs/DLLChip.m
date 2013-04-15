@@ -12,7 +12,7 @@
 
 - (id)init
 {
-    self.isFunctional = YES;
+    self.isFunctional = NO;
     
     return self;
 }
@@ -22,7 +22,7 @@
     if(self = [super initWithIdentifier: identifier])
     {
         self.identifier = identifier;
-        self.isFunctional = YES;
+        self.isFunctional = NO;
     }
     
     return self;
