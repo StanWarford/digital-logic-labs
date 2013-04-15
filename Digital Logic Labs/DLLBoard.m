@@ -425,24 +425,45 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     //remove component from breadboardStateArray
     //not necessarily upper left-need to check 2D array
     
-  /*  if([breadboardStateArray[coords.xCoord][coords.yCoord] isKindOfClass: [DLLWire class]])
+  /*  leaving this commented for compile testing tomorrow - Joe
+    DLLAComponent * component = breadboardStateArray[coords.xCoord][coords.yCoord];
+    
+    if(component)
     {
+      if([component isKindOfClass: [DLLWire class]])
+      {
+        breadboardStateArray[coords.xCoord][coords.yCoord] = nil;
+      } else if((DLLChip *)component.size == 24){
+        int startingX = (DLLChip *)component.loc.xCoord;
+        int startingY = (DLLChip *)component.loc.yCoord;
+        int endingX = coords.xCoord + component.size / 2;
         
-    }
-    else
-    {
-        DLLChip *currentChip = breadboardStateArray[coords.xCoord][coords.yCoord];
-        for(;currentChip.xCoord < coords.xCoord + newChip.size / 2; current.xCoord++)
+        for(int i = startingX; i < endingX; i++)
         {
-            breadboardStateArray[current.xCoord][current.yCoord] = newChip;
-            breadboardStateArray[current.xCoord][current.yCoord + 1] = newChip;
+          breadboardStateArray[i][startingY] = nil;
+          breadboardStateArray[i][startingY + 1] = nil;
+          breadboardStateArray[i][startingY + 2] = nil;
+          breadboardStateArray[i][startingY + 3] = nil;
         }
+      } else {
+        int startingX = (DLLChip *)component.loc.xCoord;
+        int startingY = (DLLChip *)component.loc.yCoord;
+        int endingX = coords.xCoord + component.size / 2;
+        
+        for(int i = startingX; i < endingX; i++)
+        {
+          breadboardStateArray[i][startingY] = nil;
+          breadboardStateArray[i][startingY + 1] = nil;
+        }
+      }
     }
     
-    breadboardStateArray[coords.xCoord][coords.yCoord] = nil;*/
+    need to add 7-segment display case
+  */
     
 }
 
+//DEPRECATED: use removeComponentAtCoordinate
 - (void)removeWireAtPoint: (DLLPoint *)startPoint
 {    
     breadboardStateArray[startPoint.xCoord][startPoint.yCoord] = nil;
