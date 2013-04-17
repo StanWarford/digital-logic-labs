@@ -522,6 +522,9 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     if(![validChipRows containsObject: [NSNumber numberWithInt: coords.yCoord]])
         return NO;
     
+    if(NUMCOLUMNS < coords.xCoord + size / 2 || NUMROWS < coords.yCoord + numRows)
+        return NO;
+    
     DLLPoint * tempPoint = [[DLLPoint alloc] initWithIntX: coords.xCoord andY: coords.yCoord];
     for(int j = 0; j < numRows; j++){
         for(int i = coords.xCoord; i < coords.xCoord + size / 2; i++){
