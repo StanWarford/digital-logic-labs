@@ -487,7 +487,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     return occupied;
     
     // If a chip or a wire is at given coords return occupied (YES)
-    // (99,99) is a 'trash' point, items put here will not be added-mark as always unavailable
+    // (99,99) is a 'trash' point, items put here will not be added-mark as always available
 }
 
 - (DLLAComponent *)boardStateAt:(DLLPoint *)coords
@@ -520,6 +520,9 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     }
     
     if(![validChipRows containsObject: [NSNumber numberWithInt: coords.yCoord]])
+        return NO;
+    
+    if(NUMCOLUMNS < coords.xCoord + size / 2 || NUMROWS < coords.yCoord + numRows)
         return NO;
     
     DLLPoint * tempPoint = [[DLLPoint alloc] initWithIntX: coords.xCoord andY: coords.yCoord];
