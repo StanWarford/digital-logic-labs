@@ -548,7 +548,6 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     while (chip = (DLLChip *)[enumerator nextObject])
     {
         DLLPoint *powerPinCoord = [chip powerPinCoordinate];
-        // TODO: change bellow
         NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]]; 
         NSArray *powerElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[powerElectricalPoint integerValue]];
         
@@ -632,6 +631,8 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     }
 }
 
+//do not simulate if an illegal connection exists
+//this is meant to prevent the user from creating a state that will freeze or crash the app
 - (BOOL) illegalConnectionExists
 {
     NSMutableArray *activeElectricalPoints = [NSMutableArray array];
