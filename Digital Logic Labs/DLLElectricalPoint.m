@@ -63,7 +63,7 @@
     {
         tempPoint.electricalPointValue = EPValueOne;
     }
-    else if ((self.electricalPointValue == EPValueUnknown) && (otherPoint.electricalPointValue == EPValueUnknown))
+    else if ((self.electricalPointValue == EPValueUnknown) || (otherPoint.electricalPointValue == EPValueUnknown))
     {
         tempPoint.electricalPointValue = EPValueUnknown;
     }
@@ -82,7 +82,7 @@
     {
         tempPoint.electricalPointValue = EPValueZero;
     }
-    else if(self.electricalPointValue == EPValueUnknown && otherPoint.electricalPointValue == EPValueUnknown)
+    else if(self.electricalPointValue == EPValueUnknown || otherPoint.electricalPointValue == EPValueUnknown)
     {
         tempPoint.electricalPointValue = EPValueUnknown;
     }

@@ -23,14 +23,13 @@
 - (void) simulateInitialState;
 - (void) simulateCombinational;
 - (void) populateDatastructures;
-- (DLLAComponent *)boardStateAt:(DLLPoint *)coords;
 
 @end
 
 @implementation DLLBoard
 
-#define NUMROWS 31
-#define NUMCOLUMNS 63
+#define NUMROWS 31  //hard coded number of rows in the breadboardStateArray
+#define NUMCOLUMNS 63 //hard coded number of columns in the breadboardStateArray
 #define CLOCK_LIMIT 100
 
 DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
@@ -42,6 +41,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
 - (void)labSelectionChangedTo:(NSInteger)labNum
 {
     // Casey - added this to complete the lab view
+    // TODO: implement XML parsing to load existing lab data structures
 }
 
 - (NSMutableDictionary *)chipDictionary
@@ -80,8 +80,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
 #pragma mark initialization methods
 - (id)init
 {
-    // Creates an array w/ 63 columns and 31 rows w/ all values set to NSNull * myNull
-    // define overarching array as columns
+    // Creates an array w/ 63 columns and 31 rows w/ all values set to nil to represent an empty board
     if((self = [super init])){        
         for(int i = 0; i < NUMCOLUMNS; i++)
         {
@@ -350,7 +349,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
 - (void)addChipWithPartNum:(NSInteger)partNum atUpperLeftCornerCoordinate:(DLLPoint *)coords
 {
     DLLChip * newChip;
-    //TODO: add cases for other chip numbers - Joe
+    //TODO: implement logic for each un-implemented chip and initialize in its case
     switch(partNum)
     {
         case 7400: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
@@ -390,6 +389,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
         [self.chipDictionary setValue: newChip forKey: [coords toString]];
     
         //add chip to breadboardStateArray
+        //NOTE: this function assumes collision detection has already been performed
         DLLPoint * current = [[DLLPoint alloc] initWithIntX: coords.xCoord andY: coords.yCoord];
         
         for(;current.xCoord < coords.xCoord + newChip.size / 2; current.xCoord++)
@@ -429,10 +429,10 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     
     if(component)
     {
-      if([component isKindOfClass: [DLLWire class]])
+      if([component isKindOfClass: [DLLWire class]]) //no additional checks needed for wires
       {
         breadboardStateArray[coords.xCoord][coords.yCoord] = nil;
-      } else if(((DLLChip *)component).size == 24){
+      } else if(((DLLChip *)component).size == 24){  //ALU - remove from 12x3 group of cells starting at top left
         int startingX = ((DLLChip *)component).loc.xCoord;
         int startingY = ((DLLChip *)component).loc.yCoord;
         int endingX = coords.xCoord + ((DLLChip *)component).size / 2;
@@ -442,9 +442,8 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
           breadboardStateArray[i][startingY] = nil;
           breadboardStateArray[i][startingY + 1] = nil;
           breadboardStateArray[i][startingY + 2] = nil;
-          breadboardStateArray[i][startingY + 3] = nil;
         }
-      } else {
+      } else { //catch-all case for other chips - remove from Ax2 group of cells starting at top left, where A is chip size/2
         int startingX = ((DLLChip *)component).loc.xCoord;
         int startingY = ((DLLChip *)component).loc.yCoord;
         int endingX = coords.xCoord + ((DLLChip *)component).size / 2;
@@ -457,7 +456,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
       }
     }
     
-    // need to add 7-segment display case
+    //TODO: add 7-segment display case
     
 }
 
@@ -476,7 +475,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
 #pragma mark -
 #pragma mark board state methods
 
-- (BOOL)isOccupiedAt:(DLLPoint *)coords
+- (BOOL)isOccupiedAt:(DLLPoint *)coords //simple check to determine whether a point contains a component
 {
     if(coords.xCoord > 63 && coords.yCoord > 31)
         return NO;
@@ -490,13 +489,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     // (99,99) is a 'trash' point, items put here will not be added-mark as always available
 }
 
-- (DLLAComponent *)boardStateAt:(DLLPoint *)coords
-{
-    return breadboardStateArray[coords.xCoord][coords.yCoord];
-    // returning nil means the board is empty at given coords
-}
-
-- (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger) size
+- (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger) size //collision detection function
 {
     /*
         Wire size = 1
@@ -508,12 +501,11 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     if(size == 1) // wire
     {
         return !((coords.xCoord > 63) || (coords.yCoord > 31));
-                 //([[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord] != nil) 
     }
     
-    if (size == 24)     // ALU
+    if (size == 24)     // NOTE: the ALU is double the width of other chips, but it only spans 3 rows in breadboardStateArray
     {
-        numRows = 4;
+        numRows = 3;
     } else              // chip
     {
         numRows = 2;
@@ -525,15 +517,10 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     if(NUMCOLUMNS < coords.xCoord + size / 2 || NUMROWS < coords.yCoord + numRows)
         return NO;
     
-    DLLPoint * tempPoint = [[DLLPoint alloc] initWithIntX: coords.xCoord andY: coords.yCoord];
-    for(int j = 0; j < numRows; j++){
+    for(int j = coords.yCoord; j < coords.yCoord + numRows; j++){
         for(int i = coords.xCoord; i < coords.xCoord + size / 2; i++){
-            
-            if ([self boardStateAt: tempPoint]) return NO;
-            
-            tempPoint.xCoord++;
+            if (breadboardStateArray[i][j]) return NO;
         }
-        tempPoint.yCoord++;
     }
     
     return YES;
@@ -555,18 +542,12 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
 
 - (void) determineChipFunctionality // chip initialized to not functional, must prove functionality (power and ground are connected correctly)
 {
-   // NSEnumerator *enumerator = [self.chipDictionary objectEnumerator];
-   // DLLChip * chip;
+    NSEnumerator *enumerator = [self.chipDictionary objectEnumerator];
+    DLLChip * chip;
     
-   // while (chip = (DLLChip *)[enumerator nextObject]) //{
-        
-   // }
-    NSArray *chipsOnBoard = [self.chipDictionary allValues];
-   for(int i = 0; i < [chipsOnBoard count]; i++)
+    while (chip = (DLLChip *)[enumerator nextObject])
     {
-        DLLChip *chip = [chipsOnBoard objectAtIndex:i];
         DLLPoint *powerPinCoord = [chip powerPinCoordinate];
-        // TODO: change bellow
         NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]]; 
         NSArray *powerElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[powerElectricalPoint integerValue]];
         
@@ -650,6 +631,8 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     }
 }
 
+//do not simulate if an illegal connection exists
+//this is meant to prevent the user from creating a state that will freeze or crash the app
 - (BOOL) illegalConnectionExists
 {
     NSMutableArray *activeElectricalPoints = [NSMutableArray array];
