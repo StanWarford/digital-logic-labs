@@ -489,7 +489,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     // (99,99) is a 'trash' point, items put here will not be added-mark as always available
 }
 
-- (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger) size //collision detection function
+- (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentWithIdentifier: (NSUInteger)identifier OfSize: (NSUInteger) size //collision detection function
 {
     /*
         Wire size = 1

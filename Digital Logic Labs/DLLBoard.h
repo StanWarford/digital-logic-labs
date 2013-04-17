@@ -34,7 +34,7 @@
 - (void)clearBoard;
 
 - (BOOL)isOccupiedAt:(DLLPoint *)coords;
-- (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger)size;
+- (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentWithIdentifier: (NSUInteger)identifier OfSize: (NSUInteger)size;
 
 - (void) runSimulation;
 - (void) simulateThrowOfSwitchLabeled:(int)switchID;
