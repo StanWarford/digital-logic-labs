@@ -38,10 +38,23 @@
     // move the instantiated frames to their correct positions on screen
     CGRect initialBoardFrame = self.boardView.view.frame;
     CGRect initialDockFrame = self.dockView.view.frame;
+    
+    // these lines cause retina display issues
+    /*
     CGAffineTransform moveBoard = CGAffineTransformMakeTranslation(-20, 0);
     CGAffineTransform moveDock = CGAffineTransformMakeTranslation(-20, 634);
     self.boardView.view.frame = CGRectApplyAffineTransform(initialBoardFrame, moveBoard);
     self.dockView.view.frame = CGRectApplyAffineTransform(initialDockFrame, moveDock);
+    */
+    
+    initialBoardFrame.origin.x = 0;
+    initialBoardFrame.origin.y = 0;
+    initialDockFrame.origin.x = 0;
+    initialDockFrame.origin.y = 634;
+    
+    [self.boardView.view setFrame:initialBoardFrame];
+    [self.dockView.view setFrame:initialDockFrame];
+    
     imageView.frame = CGRectMake(0, 634, imageView.frame.size.width, imageView.frame.size.height);
     
     // set dockView delegate to be boardView
