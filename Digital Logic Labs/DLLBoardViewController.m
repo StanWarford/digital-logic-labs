@@ -105,6 +105,7 @@ typedef enum{
     
     // Add invisible wire layer on bottom
     [self.view addSubview:self.chipLayer];
+    [self.view sendSubviewToBack:self.chipLayer];
 }
 
 #pragma mark -
