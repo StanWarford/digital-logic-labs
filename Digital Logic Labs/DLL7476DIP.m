@@ -20,13 +20,14 @@
     if(self = [super init])
     {
         self.loc = loc;
-        self.identifier = 7400;
-        self.outputPins = @[@2, @5, @7, @10];
-        self.inputPins = @[@0, @1, @3, @4, @8, @9, @11, @12];
-        self.groundPin = 6;
-        self.powerPin = 13;
-        self.size = 14;
+        self.identifier = 7476;
+        self.outputPins = @[@9, @10, @13, @14];
+        self.inputPins = @[@0, @1, @2, @3, @5, @6, @7, @8, @11, @15];
+        self.groundPin = 12;
+        self.powerPin = 4;
+        self.size = 16;
         self.pins = [[NSMutableArray alloc] initWithObjects:[[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
+                     [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
                      [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
                      [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],
                      [[DLLElectricalPoint alloc] init], [[DLLElectricalPoint alloc] init],

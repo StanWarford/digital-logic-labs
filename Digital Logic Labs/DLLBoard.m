@@ -355,15 +355,15 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     {
         case 7400: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
             break;
-        case 7402: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+        case 7402: newChip = [[DLL7402DIP alloc] initWithLocation: coords];
             break;
-        case 7404: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+        case 7404: newChip = [[DLL7404DIP alloc] initWithLocation: coords];
             break;
-        case 7408: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+        case 7408: newChip = [[DLL7408DIP alloc] initWithLocation: coords];
             break;
-        case 7432: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+        case 7432: newChip = [[DLL7432DIP alloc] initWithLocation: coords];
             break;
-        case 7447: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+        case 7447: newChip = [[DLL7447DIP alloc] initWithLocation: coords];
             break;
         case 7476: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
             break;
@@ -425,7 +425,6 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     //remove component from breadboardStateArray
     //not necessarily upper left-need to check 2D array
     
-  //  leaving this commented for compile testing tomorrow - Joe
     DLLAComponent * component = breadboardStateArray[coords.xCoord][coords.yCoord];
     
     if(component)
@@ -460,12 +459,6 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     
     // need to add 7-segment display case
     
-}
-
-//DEPRECATED: use removeComponentAtCoordinate
-- (void)removeWireAtPoint: (DLLPoint *)startPoint
-{    
-    breadboardStateArray[startPoint.xCoord][startPoint.yCoord] = nil;
 }
 
 - (void)clearBoard
