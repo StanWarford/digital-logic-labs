@@ -513,7 +513,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     
     if (size == 24)     // ALU
     {
-        numRows = 4;
+        numRows = 3;
     } else              // chip
     {
         numRows = 2;
@@ -525,15 +525,10 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     if(NUMCOLUMNS < coords.xCoord + size / 2 || NUMROWS < coords.yCoord + numRows)
         return NO;
     
-    DLLPoint * tempPoint = [[DLLPoint alloc] initWithIntX: coords.xCoord andY: coords.yCoord];
-    for(int j = 0; j < numRows; j++){
+    for(int j = coords.yCoord; j < coords.yCoord + numRows; j++){
         for(int i = coords.xCoord; i < coords.xCoord + size / 2; i++){
-            
-            if ([self boardStateAt: tempPoint]) return NO;
-            
-            tempPoint.xCoord++;
+            if (breadboardStateArray[i][j]) return NO;
         }
-        tempPoint.yCoord++;
     }
     
     return YES;
