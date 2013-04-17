@@ -23,7 +23,6 @@
 - (void) simulateInitialState;
 - (void) simulateCombinational;
 - (void) populateDatastructures;
-- (DLLAComponent *)boardStateAt:(DLLPoint *)coords;
 
 @end
 
@@ -490,12 +489,6 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     // (99,99) is a 'trash' point, items put here will not be added-mark as always available
 }
 
-- (DLLAComponent *)boardStateAt:(DLLPoint *)coords
-{
-    return breadboardStateArray[coords.xCoord][coords.yCoord];
-    // returning nil means the board is empty at given coords
-}
-
 - (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger) size
 {
     /*
@@ -508,10 +501,10 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     if(size == 1) // wire
     {
         return !((coords.xCoord > 63) || (coords.yCoord > 31));
-                 //([[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord] != nil) 
+                 //([[self.breadboardStateArray objectAtIndex: coords.xCoord] objectAtIndex: coords.yCoord] != nil)
     }
     
-    if (size == 24)     // ALU
+    if (size == 24)     // NOTE: the ALU is double the width of other chips, but it only spans 3 rows in breadboardStateArray
     {
         numRows = 3;
     } else              // chip
