@@ -523,6 +523,8 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
         }
     }
     
+    //TODO: add special case for 7-segment display based on identifier
+    
     return YES;
 }
 
@@ -1020,6 +1022,25 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     return [NSArray arrayWithObjects:temp0, temp1, temp2, temp3, temp4, temp5, temp6, temp7, nil];*/
     
     return  stateOfLights;
+}
+
+- (NSArray *)newStateOfSevenSeg
+{
+    NSArray * stateOfSevenSeg = @[@1, @1, @1, @0, @1, @1, @1];
+    
+    /*
+     7-Segment Display (segment mapping for view)
+     
+     Top Left: 1
+     Bottom Left: 2
+     Bottom: 3
+     Bottom Right: 4
+     Top Right: 5
+     Top: 6
+     Middle: 7
+     */
+    
+    return stateOfSevenSeg;
 }
 
 - (void)dumpBreadBoardStateArray

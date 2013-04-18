@@ -39,6 +39,7 @@
 - (void) runSimulation;
 - (void) simulateThrowOfSwitchLabeled:(int)switchID;
 - (NSArray *) newStateOfLights;  // 0= off, 1=on, 2=unknown
+- (NSArray *) newStateOfSevenSeg;
 
 // function for which lights are lit
 // note: of light is "unknown" return off to Controller
