@@ -41,15 +41,15 @@
 
 - (void)calculateOutputs
 {
-    DLLElectricalPoint * pin0 = [self.pins objectAtIndex:0];
-    DLLElectricalPoint * pin1 = [self.pins objectAtIndex:1];
-    DLLElectricalPoint * pin2 = [self.pins objectAtIndex:2];
-    DLLElectricalPoint * pin3 = [self.pins objectAtIndex:3];
-    DLLElectricalPoint * pin4 = [self.pins objectAtIndex:4];
-    DLLElectricalPoint * pin5 = [self.pins objectAtIndex:5];
-    DLLElectricalPoint * pin6 = [self.pins objectAtIndex:6];
+    DLLElectricalPoint * pin0 = [self.pins objectAtIndex:0]; // A1
+    DLLElectricalPoint * pin1 = [self.pins objectAtIndex:1]; // A2
+    DLLElectricalPoint * pin2 = [self.pins objectAtIndex:2]; // LT
+    DLLElectricalPoint * pin3 = [self.pins objectAtIndex:3]; // BI/RBO
+    DLLElectricalPoint * pin4 = [self.pins objectAtIndex:4]; // RBI
+    DLLElectricalPoint * pin5 = [self.pins objectAtIndex:5]; // A3
+    DLLElectricalPoint * pin6 = [self.pins objectAtIndex:6]; // A0
     
-    if(pin3.electricalPointValue == EPValueZero)
+    if(pin3.electricalPointValue == EPValueZero) // BI/RBO
     {
         for(int i = 8; i < 15; i++)
         {
@@ -58,7 +58,7 @@
         }
     } else if (pin3.electricalPointValue == EPValueOne)
     {
-        if(pin2.electricalPointValue == EPValueZero)
+        if(pin2.electricalPointValue == EPValueZero) // LT
         {
             for(int i = 8; i < 15; i++)
             {
@@ -383,13 +383,13 @@
 }
 - (NSArray *)coordinatesOfOutputPins
 {
-    return [NSArray arrayWithObjects:[[DLLPoint alloc] initWithIntX:self.loc.xCoord + 1 andY:self.loc.yCoord],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 4 andY:self.loc.yCoord],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord],
+    return [NSArray arrayWithObjects:[[DLLPoint alloc] initWithIntX:self.loc.xCoord + 7 andY:self.loc.yCoord],
             [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 6 andY:self.loc.yCoord],
-            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 7 andY:self.loc.yCoord], nil];
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 5 andY:self.loc.yCoord],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 4 andY:self.loc.yCoord],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 3 andY:self.loc.yCoord],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 2 andY:self.loc.yCoord],
+            [[DLLPoint alloc] initWithIntX:self.loc.xCoord + 1 andY:self.loc.yCoord], nil];
 }
 
 - (void)setPin:(int)index to:(DLLElectricalPoint *)electricalPoint
