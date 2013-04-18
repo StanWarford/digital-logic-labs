@@ -551,6 +551,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     
     while (chip = (DLLChip *)[enumerator nextObject])
     {
+        if(chip.identifier == 74711) continue;
         DLLPoint *powerPinCoord = [chip powerPinCoordinate];
         NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]]; 
         NSArray *powerElectricalArrayOfHoles = [self.electricalPointToBoardPointArray objectAtIndex:[powerElectricalPoint integerValue]];
@@ -612,12 +613,15 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     {
         DLLChip *chip = activeChipsOnBoard[i];
         
-        DLLPoint *powerPinCoord = [chip powerPinCoordinate];
-        DLLPoint *groundPinCoord = [chip groundPinCoordinate];
-        NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
-        NSNumber *groundElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[groundPinCoord toString]];
-        [[self.electricalPointArray objectAtIndex:[powerElectricalPoint integerValue]] changePointTypeTo:EPTypeInput];
-        [[self.electricalPointArray objectAtIndex:[groundElectricalPoint integerValue]] changePointTypeTo:EPTypeInput];
+        if(chip.identifier != 74711)
+        {
+            DLLPoint *powerPinCoord = [chip powerPinCoordinate];
+            DLLPoint *groundPinCoord = [chip groundPinCoordinate];
+            NSNumber *powerElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[powerPinCoord toString]];
+            NSNumber *groundElectricalPoint = [self.boardPointToElectricalPointDictionary valueForKey:[groundPinCoord toString]];
+            [[self.electricalPointArray objectAtIndex:[powerElectricalPoint integerValue]] changePointTypeTo:EPTypeInput];
+            [[self.electricalPointArray objectAtIndex:[groundElectricalPoint integerValue]] changePointTypeTo:EPTypeInput];
+        }
         
         NSArray *coordsOfInputPins = [chip coordinatesOfInputPins];
         for(int j = 0; j < [coordsOfInputPins count]; j++)

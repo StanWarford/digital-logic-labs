@@ -37,19 +37,6 @@
     return self;
 }
 
-- (void)calculateOutputs
-{
-    
-}
-
-- (DLLPoint *)powerPinCoordinate
-{
-    return [[DLLPoint alloc] initWithIntX:0 andY:0];
-}
-
-- (DLLPoint *)groundPinCoordinate
-{
-    return [[DLLPoint alloc] initWithIntX:0 andY:0];}
 
 - (NSArray *)coordinatesOfInputPins
 {
