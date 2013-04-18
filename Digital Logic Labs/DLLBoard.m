@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSMutableArray *electricalPointToBoardPointArray;
 @property (strong, nonatomic) NSMutableDictionary *boardPointToElectricalPointDictionary;
 @property (strong, nonatomic) NSMutableArray *electricalPointArray;
+@property BOOL sevenSegmentDisplayUsed;
 
 //Note: changed boardPointToElectricalPointDictionary to have NSNumber values rather than NSString.
 
@@ -91,6 +92,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
         }
         
         [self populateDatastructures];
+        self.sevenSegmentDisplayUsed = NO;
     }
     
     return self;
@@ -378,8 +380,9 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
             break;
         case 74181: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
             break;
-        case 74711: newChip = [[DLL7400DIP alloc] initWithLocation: coords];   // MAN 
-            break; 
+        case 74711: newChip = [[DLL7400DIP alloc] initWithLocation: coords];
+            self.sevenSegmentDisplayUsed = YES; // MAN
+            break;
         default: newChip = nil;
             break;
     }
@@ -456,8 +459,6 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
       }
     }
     
-    //TODO: add 7-segment display case
-    
 }
 
 - (void)clearBoard
@@ -498,6 +499,9 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     NSArray * validChipRows = @[@11, @23];
     NSInteger numRows = 0;
     
+    if(identifier == 74711 && self.sevenSegmentDisplayUsed)
+        return NO;
+    
     if(size == 1) // wire
     {
         return !((coords.xCoord > 63) || (coords.yCoord > 31));
@@ -522,8 +526,6 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
             if (breadboardStateArray[i][j]) return NO;
         }
     }
-    
-    //TODO: add special case for 7-segment display based on identifier
     
     return YES;
 }
@@ -1026,7 +1028,7 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
 
 - (NSArray *)newStateOfSevenSeg
 {
-    NSArray * stateOfSevenSeg = @[@1, @1, @1, @0, @1, @1, @1];
+    NSMutableArray * stateOfSevenSeg = [NSMutableArray array];
     
     /*
      7-Segment Display (segment mapping for view)
@@ -1039,6 +1041,8 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
      Top: 6
      Middle: 7
      */
+    
+    
     
     return stateOfSevenSeg;
 }
