@@ -41,6 +41,16 @@
     [self.boardModel labSelectionChangedTo:DEFAULT_LAB_NUM];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    DLLLabTableViewController *tableView = [self.viewControllers objectAtIndex:0];
+    DLLPDFViewController *pdfView = [self.viewControllers objectAtIndex:1];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:pdfView.selection inSection:0];
+    [tableView.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
+}
+
 #pragma mark -
 #pragma mark segue control methods
 // pass a pointer to the board model on to the next view

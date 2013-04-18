@@ -17,6 +17,8 @@
 #define FILE_TYPE @"pdf"
 
 @synthesize myWebView = _myWebView;
+@synthesize selection = _selection;
+@synthesize boardModel = _boardModel;
 
 #pragma mark -
 #pragma mark view initialization methods
@@ -24,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.selection = 0;
     [self displayPageNamed:@"Lab1" ofType:FILE_TYPE];
 }
 
@@ -32,9 +35,10 @@
 // lab selection in tableview changed, update pdf viewer and model
 - (void)selectionDidChangeTo:(NSInteger)selection
 {
+    self.selection = selection;
     NSInteger offsetSelection = selection + 1;
     [self displayPageNamed:[NSString stringWithFormat:@"Lab%d", offsetSelection] ofType:FILE_TYPE];
-    [self.boardModel labSelectionChangedTo:selection];
+    [self.boardModel labSelectionChangedTo:offsetSelection];
 }
 
 #pragma mark -

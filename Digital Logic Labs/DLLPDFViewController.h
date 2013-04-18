@@ -14,6 +14,7 @@
 
 @property (nonatomic, weak) DLLBoard *boardModel;
 @property (nonatomic, weak) IBOutlet UIWebView *myWebView;
+@property (nonatomic, assign) NSInteger selection;
 - (void) selectionDidChangeTo:(NSInteger)selection;
 
 @end

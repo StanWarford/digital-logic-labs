@@ -32,13 +32,6 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
-}
-
 #pragma mark -
 #pragma mark TableView datasource methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
