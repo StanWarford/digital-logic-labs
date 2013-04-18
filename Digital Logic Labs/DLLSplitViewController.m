@@ -9,7 +9,7 @@
 #import "DLLSplitViewController.h"
 
 @interface DLLSplitViewController ()
-
+- (void)swipeSegue:(UISwipeGestureRecognizer*)recognizer;
 @end
 
 @implementation DLLSplitViewController
@@ -39,6 +39,13 @@
     DLLPDFViewController *pdfView = [self.viewControllers objectAtIndex:1];
     tableView.delegate = pdfView;
     [self.boardModel labSelectionChangedTo:DEFAULT_LAB_NUM];
+    
+    // setup 2 finger swipe left gesture recognizer to segue to board screen
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeSegue:)];
+    [swipe setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [swipe setDelaysTouchesBegan:YES];
+    [swipe setNumberOfTouchesRequired:2];
+    [self.view addGestureRecognizer:swipe];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -60,6 +67,13 @@
         DLLContainerViewController *controller = (DLLContainerViewController*)segue.destinationViewController;
         controller.boardModel = self.boardModel;
     }
+}
+
+#pragma mark -
+#pragma mark gesture recognizer responder methods
+- (void)swipeSegue:(UISwipeGestureRecognizer *)recognizer
+{
+    [self performSegueWithIdentifier:@"LabToBoardSegue" sender:self];
 }
 
 #pragma mark -
