@@ -10,7 +10,8 @@
 #import "DLLTestViewController.h"
 
 @interface DLLContainerViewController ()
-
+- (void)swipeLeftSegue:(UISwipeGestureRecognizer*)recogizer;
+- (void)swipeRightSegue:(UISwipeGestureRecognizer*)recognizer;
 @end
 
 @implementation DLLContainerViewController
@@ -67,6 +68,18 @@
     fixedSpaceBarButtonItem.width = NAV_BUTTON_SPACING;
     
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:testButton, fixedSpaceBarButtonItem, clearButton, nil];
+    
+    // setup 2 finger swipe left/right gesture recognizers
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRightSegue:)];
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeftSegue:)];
+    [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [swipeLeft setDelaysTouchesBegan:YES];
+    [swipeRight setDelaysTouchesBegan:YES];
+    [swipeLeft setNumberOfTouchesRequired:2];
+    [swipeRight setNumberOfTouchesRequired:2];
+    [self.view addGestureRecognizer:swipeLeft];
+    [self.view addGestureRecognizer:swipeRight];
 }
 
 #pragma mark -
@@ -111,6 +124,18 @@
     }else{ // user pressed cancel
         // do nothing
     }
+}
+
+#pragma mark -
+#pragma mark gesture recognizer responder methods
+- (void)swipeLeftSegue:(UISwipeGestureRecognizer *)recogizer
+{
+    [self performSegueWithIdentifier:@"BoardToTestSegue" sender:self];
+}
+
+- (void)swipeRightSegue:(UISwipeGestureRecognizer *)recognizer
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -
