@@ -11,6 +11,7 @@
 @interface DLLTestViewController ()
 - (void)updateLightState:(NSArray*)lights;
 - (void)updateSevenSegState:(NSArray*)segments;
+- (void)swipeSegue:(UISwipeGestureRecognizer*)recognizer;
 @end
 
 @implementation DLLTestViewController
@@ -118,6 +119,14 @@
     [self.boardModel runSimulation];
     [self updateLightState:[self.boardModel newStateOfLights]];
     [self updateSevenSegState:[self.boardModel newStateOfSevenSeg]];
+    
+    // setup 2 finger swipe right gesture recognizer to segue to board screen
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeSegue:)];
+    [swipe setDirection:UISwipeGestureRecognizerDirectionRight];
+    [swipe setDelaysTouchesBegan:YES];
+    [swipe setNumberOfTouchesRequired:2];
+    [self.view addGestureRecognizer:swipe];
+
 }
 
 #pragma mark -
@@ -154,6 +163,13 @@
         NSInteger set = [num integerValue];
         [self.segView toggleSegment:i+1 onOff:set == 1];
     }
+}
+
+#pragma mark -
+#pragma mark gesture recognizer responder methods
+- (void)swipeSegue:(UISwipeGestureRecognizer *)recognizer
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -
