@@ -117,6 +117,7 @@
     
     [self.boardModel runSimulation];
     [self updateLightState:[self.boardModel newStateOfLights]];
+    [self updateSevenSegState:[self.boardModel newStateOfSevenSeg]];
 }
 
 #pragma mark -
