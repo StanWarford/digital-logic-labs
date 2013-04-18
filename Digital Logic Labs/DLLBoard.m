@@ -1030,6 +1030,11 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
 {
     NSMutableArray * stateOfSevenSeg = [NSMutableArray array];
     
+    for(int i = 0; i < 7; i++)
+    {
+        [stateOfSevenSeg insertObject: @0 atIndex: i];
+    }
+    
     /*
      7-Segment Display (segment mapping for view)
      
@@ -1042,7 +1047,16 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
      Middle: 7
      */
     
-    
+    if(self.sevenSegmentDisplayUsed)
+    {
+        NSEnumerator * enumerator = [self.chipDictionary objectEnumerator];
+        DLLChip * chip;
+        
+        /*while(chip = (DLLChip *)[enumerator nextObject] && ![chip isKindOfClass: [DLL74711DIP class]])
+        {
+            
+        }*/
+    }
     
     return stateOfSevenSeg;
 }

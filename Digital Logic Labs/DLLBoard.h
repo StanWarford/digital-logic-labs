@@ -18,6 +18,7 @@
 #import "DLL7408DIP.h"
 #import "DLL7432DIP.h"
 #import "DLL7447DIP.h"
+#import "DLL74711DIP.h"
 
 
 
