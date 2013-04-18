@@ -275,7 +275,7 @@
             self.size = 24;
             break;
         case 74711:
-            self.image = [UIImage imageNamed:@"74711"];
+            self.image = [UIImage imageNamed:@"74711"]; // seven segment display
             self.size = 14;
             break;
         default:

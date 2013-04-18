@@ -10,6 +10,7 @@
 
 @interface DLLTestViewController ()
 - (void)updateLightState:(NSArray*)lights;
+- (void)updateSevenSegState:(NSArray*)segments;
 @end
 
 @implementation DLLTestViewController
@@ -116,6 +117,7 @@
     
     [self.boardModel runSimulation];
     [self updateLightState:[self.boardModel newStateOfLights]];
+    [self updateSevenSegState:[self.boardModel newStateOfSevenSeg]];
 }
 
 #pragma mark -
@@ -124,9 +126,7 @@
     NSInteger i = sender.identifier;
     [self.boardModel simulateThrowOfSwitchLabeled:i];
     [self updateLightState:[self.boardModel newStateOfLights]];
-    // DLLLightView *target = [self.lights objectAtIndex:i];
-    // [self.segView toggleSegment:i+1 onOff:sender.on];
-    NSLog([NSString stringWithFormat:@"%d turned %s", sender.identifier, sender.on ? "ON" : "OFF"]);
+    [self updateSevenSegState:[self.boardModel newStateOfSevenSeg]];
 }
 
 #pragma mark -
@@ -142,6 +142,17 @@
         }else{
             [[self.lights objectAtIndex:i] toggleDim];
         }
+    }
+}
+
+#pragma mark -
+#pragma mark seven segment methods
+- (void)updateSevenSegState:(NSArray *)segments
+{
+    for(NSInteger i = 0; i < 7; i++){
+        NSNumber *num = [segments objectAtIndex:i];
+        NSInteger set = [num integerValue];
+        [self.segView toggleSegment:i+1 onOff:set == 1];
     }
 }
 

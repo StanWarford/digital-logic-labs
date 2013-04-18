@@ -31,15 +31,15 @@
 - (void)addWireFromPoint:(DLLPoint *)startingPoint toPoint:(DLLPoint *) endingPoint withColor:(UIColor *)color;
 
 - (void)removeComponentAtCoordinate:(DLLPoint *)coords;
-- (void)removeWireAtPoint: (DLLPoint *) startPoint;
 - (void)clearBoard;
 
 - (BOOL)isOccupiedAt:(DLLPoint *)coords;
-- (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentOfSize: (NSUInteger)size;
+- (BOOL)cellAt: (DLLPoint *)coords IsAvailableForComponentWithIdentifier: (NSUInteger)identifier OfSize: (NSUInteger)size;
 
 - (void) runSimulation;
 - (void) simulateThrowOfSwitchLabeled:(int)switchID;
 - (NSArray *) newStateOfLights;  // 0= off, 1=on, 2=unknown
+- (NSArray *) newStateOfSevenSeg;
 
 // function for which lights are lit
 // note: of light is "unknown" return off to Controller
