@@ -1042,13 +1042,13 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
     /*
      7-Segment Display (segment mapping for view)
      
-     Top Left: 1
-     Bottom Left: 2
-     Bottom: 3
-     Bottom Right: 4
-     Top Right: 5
-     Top: 6
-     Middle: 7
+     Top Left: 0
+     Bottom Left: 1
+     Bottom: 2
+     Bottom Right: 3
+     Top Right: 4
+     Top: 5
+     Middle: 6
      */
     
     if(self.sevenSegmentDisplayUsed)
@@ -1056,10 +1056,47 @@ DLLAComponent * breadboardStateArray[NUMCOLUMNS][NUMROWS];
         NSEnumerator * enumerator = [self.chipDictionary objectEnumerator];
         DLLChip * chip;
         
-        /*while(chip = (DLLChip *)[enumerator nextObject] && ![chip isKindOfClass: [DLL74711DIP class]])
+        
+        while((chip = (DLLChip *)[enumerator nextObject]) && ![chip isKindOfClass: [DLL74711DIP class]])
         {
-            
-        }*/
+        }
+        
+        DLLElectricalPoint * pin0 = [chip.pins objectAtIndex:0];
+        DLLElectricalPoint * pin1 = [chip.pins objectAtIndex:1];
+        DLLElectricalPoint * pin2 = [chip.pins objectAtIndex:2];
+        DLLElectricalPoint * pin6 = [chip.pins objectAtIndex:6];
+        DLLElectricalPoint * pin7 = [chip.pins objectAtIndex:7];
+        DLLElectricalPoint * pin8 = [chip.pins objectAtIndex:8];
+        DLLElectricalPoint * pin9 = [chip.pins objectAtIndex:9];
+        DLLElectricalPoint * pin10 = [chip.pins objectAtIndex:10];
+        DLLElectricalPoint * pin12 = [chip.pins objectAtIndex:12];
+        DLLElectricalPoint * pin13 = [chip.pins objectAtIndex:13];
+        
+        // for now place all values powered by pin2
+        if(pin2.electricalPointValue == EPValueOne)
+        {
+            if (pin1.electricalPointValue == EPValueOne) {
+                [stateOfSevenSeg replaceObjectAtIndex:0 withObject:@1];
+            }
+            if (pin6.electricalPointValue == EPValueOne) {
+                [stateOfSevenSeg replaceObjectAtIndex:1 withObject:@1];
+            }
+            if (pin7.electricalPointValue == EPValueOne) {
+                [stateOfSevenSeg replaceObjectAtIndex:2 withObject:@1];
+            }
+            if (pin9.electricalPointValue == EPValueOne) {
+                [stateOfSevenSeg replaceObjectAtIndex:3 withObject:@1];
+            }
+            if (pin12.electricalPointValue == EPValueOne) {
+                [stateOfSevenSeg replaceObjectAtIndex:4 withObject:@1];
+            }
+            if (pin0.electricalPointValue == EPValueOne) {
+                [stateOfSevenSeg replaceObjectAtIndex:5 withObject:@1];
+            }
+            if (pin10.electricalPointValue == EPValueOne) {
+                [stateOfSevenSeg replaceObjectAtIndex:6 withObject:@1];
+            }
+        }
     }
     
     return stateOfSevenSeg;
