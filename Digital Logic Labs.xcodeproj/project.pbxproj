@@ -75,7 +75,6 @@
 		CFDBF6E416B0C19A009C3DA4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CFDBF6E316B0C19A009C3DA4 /* Default.png */; };
 		CFDBF6E616B0C19A009C3DA4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CFDBF6E516B0C19A009C3DA4 /* Default@2x.png */; };
 		CFDBF6E816B0C19A009C3DA4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CFDBF6E716B0C19A009C3DA4 /* Default-568h@2x.png */; };
-		CFDBF6F616B0C19A009C3DA4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFDBF6F516B0C19A009C3DA4 /* SenTestingKit.framework */; };
 		CFDBF6F716B0C19A009C3DA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFDBF6D116B0C199009C3DA4 /* UIKit.framework */; };
 		CFDBF6F816B0C19A009C3DA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFDBF6D316B0C199009C3DA4 /* Foundation.framework */; };
 		CFDBF70016B0C19A009C3DA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFDBF6FE16B0C19A009C3DA4 /* InfoPlist.strings */; };
@@ -228,7 +227,6 @@
 		CFDBF6E516B0C19A009C3DA4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		CFDBF6E716B0C19A009C3DA4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CFDBF6F416B0C19A009C3DA4 /* Digital Logic LabsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Digital Logic LabsTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CFDBF6F516B0C19A009C3DA4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		CFDBF6FD16B0C19A009C3DA4 /* Digital Logic LabsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digital Logic LabsTests-Info.plist"; sourceTree = "<group>"; };
 		CFDBF6FF16B0C19A009C3DA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CFDBF70116B0C19A009C3DA4 /* Digital_Logic_LabsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Digital_Logic_LabsTests.h; sourceTree = "<group>"; };
@@ -313,7 +311,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFDBF6F616B0C19A009C3DA4 /* SenTestingKit.framework in Frameworks */,
 				CFDBF6F716B0C19A009C3DA4 /* UIKit.framework in Frameworks */,
 				CFDBF6F816B0C19A009C3DA4 /* Foundation.framework in Frameworks */,
 			);
@@ -568,7 +565,6 @@
 				CFDBF6D116B0C199009C3DA4 /* UIKit.framework */,
 				CFDBF6D316B0C199009C3DA4 /* Foundation.framework */,
 				CFDBF6D516B0C199009C3DA4 /* CoreGraphics.framework */,
-				CFDBF6F516B0C19A009C3DA4 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -716,7 +712,7 @@
 			name = "Digital Logic LabsTests";
 			productName = "Digital Logic LabsTests";
 			productReference = CFDBF6F416B0C19A009C3DA4 /* Digital Logic LabsTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -725,6 +721,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = DLL;
+				LastTestingUpgradeCheck = 0610;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = Pepperdine;
 			};
@@ -954,7 +951,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -976,7 +973,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1017,13 +1014,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digital Logic Labs/Digital Logic Labs-Prefix.pch";
 				INFOPLIST_FILE = "Digital Logic LabsTests/Digital Logic LabsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -1034,13 +1031,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digital Logic Labs/Digital Logic Labs-Prefix.pch";
 				INFOPLIST_FILE = "Digital Logic LabsTests/Digital Logic LabsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};

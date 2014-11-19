@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Pepperdine. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface Digital_Logic_LabsTests : SenTestCase
+@interface Digital_Logic_LabsTests : XCTestCase
 
 @end
